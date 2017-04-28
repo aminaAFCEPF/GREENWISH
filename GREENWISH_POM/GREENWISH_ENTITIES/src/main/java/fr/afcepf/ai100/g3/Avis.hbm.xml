@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Avis" table="avis" catalog="greenwish" optimistic-lock="version">
+        <id name="idavis" type="java.lang.Integer">
+            <column name="IDAVIS" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="participant" class="fr.afcepf.ai100.g3.Participant" fetch="select">
+            <column name="IDPARTICIPANT" />
+        </many-to-one>
+        <property name="avis" type="string">
+            <column name="AVIS" length="500" not-null="true" />
+        </property>
+        <property name="note" type="int">
+            <column name="NOTE" not-null="true" />
+        </property>
+        <set name="echanges" table="echange" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDAVIS" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Echange" />
+        </set>
+    </class>
+</hibernate-mapping>

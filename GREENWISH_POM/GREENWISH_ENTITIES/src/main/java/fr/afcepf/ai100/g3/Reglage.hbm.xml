@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Reglage" table="reglage" catalog="greenwish" optimistic-lock="version">
+        <id name="idreglage" type="java.lang.Integer">
+            <column name="IDREGLAGE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="frequencenotif" class="fr.afcepf.ai100.g3.Frequencenotif" fetch="select">
+            <column name="IDFREQUENCE" />
+        </many-to-one>
+        <many-to-one name="participant" class="fr.afcepf.ai100.g3.Participant" fetch="select">
+            <column name="IDPARTICIPANT" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prioriterecherche" class="fr.afcepf.ai100.g3.Prioriterecherche" fetch="select">
+            <column name="IDPRIORITE" />
+        </many-to-one>
+        <many-to-one name="taillepolice" class="fr.afcepf.ai100.g3.Taillepolice" fetch="select">
+            <column name="IDTAILLEPOLICE" />
+        </many-to-one>
+        <many-to-one name="theme" class="fr.afcepf.ai100.g3.Theme" fetch="select">
+            <column name="IDTHEME" />
+        </many-to-one>
+        <set name="participants" table="participant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDREGLAGE" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Participant" />
+        </set>
+    </class>
+</hibernate-mapping>

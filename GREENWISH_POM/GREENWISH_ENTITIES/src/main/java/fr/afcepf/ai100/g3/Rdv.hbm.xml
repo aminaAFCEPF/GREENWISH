@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Rdv" table="rdv" catalog="greenwish" optimistic-lock="version">
+        <id name="idrdv" type="java.lang.Integer">
+            <column name="IDRDV" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="echange" class="fr.afcepf.ai100.g3.Echange" fetch="select">
+            <column name="IDECHANGE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ville" class="fr.afcepf.ai100.g3.Ville" fetch="select">
+            <column name="IDVILLE" not-null="true" />
+        </many-to-one>
+        <property name="daterdv" type="timestamp">
+            <column name="DATERDV" length="19" not-null="true" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="ADRESSE" length="200" not-null="true" />
+        </property>
+        <set name="echanges" table="echange" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRDV" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Echange" />
+        </set>
+    </class>
+</hibernate-mapping>

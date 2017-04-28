@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.ListeProposition" table="liste_proposition" catalog="greenwish" optimistic-lock="version">
+        <id name="idlisteobjet" type="java.lang.Integer">
+            <column name="IDLISTEOBJET" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="participant" class="fr.afcepf.ai100.g3.Participant" fetch="select">
+            <column name="IDPARTICIPANT" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="NOM" length="100" not-null="true" />
+        </property>
+        <property name="actif" type="boolean">
+            <column name="ACTIF" not-null="true" />
+        </property>
+        <set name="objets" table="objet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLISTEOBJET" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Objet" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Prioriterecherche" table="prioriterecherche" catalog="greenwish" optimistic-lock="version">
+        <id name="idpriorite" type="java.lang.Integer">
+            <column name="IDPRIORITE" />
+            <generator class="identity" />
+        </id>
+        <property name="priorite" type="string">
+            <column name="PRIORITE" length="200" not-null="true" />
+        </property>
+        <set name="reglages" table="reglage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRIORITE" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Reglage" />
+        </set>
+    </class>
+</hibernate-mapping>

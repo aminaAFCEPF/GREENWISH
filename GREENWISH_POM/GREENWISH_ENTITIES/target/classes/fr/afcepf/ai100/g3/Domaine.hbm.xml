@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Domaine" table="domaine" catalog="greenwish" optimistic-lock="version">
+        <id name="iddomaine" type="java.lang.Integer">
+            <column name="IDDOMAINE" />
+            <generator class="identity" />
+        </id>
+        <property name="domaine" type="string">
+            <column name="DOMAINE" length="150" not-null="true" />
+        </property>
+        <set name="objets" table="objet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDDOMAINE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Objet" />
+        </set>
+        <set name="souhaits" table="souhait" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDDOMAINE" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Souhait" />
+        </set>
+        <set name="categories" table="categorie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDDOMAINE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Categorie" />
+        </set>
+    </class>
+</hibernate-mapping>

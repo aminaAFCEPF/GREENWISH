@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Echange" table="echange" catalog="greenwish" optimistic-lock="version">
+        <id name="idechange" type="java.lang.Integer">
+            <column name="IDECHANGE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="avis" class="fr.afcepf.ai100.g3.Avis" fetch="select">
+            <column name="IDAVIS" not-null="true" />
+        </many-to-one>
+        <many-to-one name="litige" class="fr.afcepf.ai100.g3.Litige" fetch="select">
+            <column name="IDLITIGE" />
+        </many-to-one>
+        <many-to-one name="objet" class="fr.afcepf.ai100.g3.Objet" fetch="select">
+            <column name="IDOBJET" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rdv" class="fr.afcepf.ai100.g3.Rdv" fetch="select">
+            <column name="IDRDV" />
+        </many-to-one>
+        <property name="dateactivation" type="timestamp">
+            <column name="DATEACTIVATION" length="19" />
+        </property>
+        <property name="daterefus" type="timestamp">
+            <column name="DATEREFUS" length="19" />
+        </property>
+        <property name="datelitige" type="timestamp">
+            <column name="DATELITIGE" length="19" />
+        </property>
+        <property name="codefin" type="string">
+            <column name="CODEFIN" length="50" />
+        </property>
+        <property name="valeur" type="int">
+            <column name="VALEUR" not-null="true" />
+        </property>
+        <set name="rdvs" table="rdv" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDECHANGE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Rdv" />
+        </set>
+        <set name="litiges" table="litige" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDECHANGE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Litige" />
+        </set>
+        <set name="refuses" table="refuse" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDECHANGE" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Refus">
+                <column name="IDREFUS" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

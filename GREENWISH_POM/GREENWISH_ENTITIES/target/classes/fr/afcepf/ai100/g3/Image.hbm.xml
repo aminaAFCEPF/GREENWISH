@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Image" table="image" catalog="greenwish" optimistic-lock="version">
+        <id name="idimage" type="java.lang.Integer">
+            <column name="IDIMAGE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="objet" class="fr.afcepf.ai100.g3.Objet" fetch="select">
+            <column name="IDOBJET" not-null="true" />
+        </many-to-one>
+        <property name="image" type="string">
+            <column name="IMAGE" length="150" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

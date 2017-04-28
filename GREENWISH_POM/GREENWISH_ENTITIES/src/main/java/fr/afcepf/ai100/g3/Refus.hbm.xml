@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Refus" table="refus" catalog="greenwish" optimistic-lock="version">
+        <id name="idrefus" type="java.lang.Integer">
+            <column name="IDREFUS" />
+            <generator class="identity" />
+        </id>
+        <property name="motif" type="string">
+            <column name="MOTIF" length="250" not-null="true" />
+        </property>
+        <set name="echanges" table="refuse" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDREFUS" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Echange">
+                <column name="IDECHANGE" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

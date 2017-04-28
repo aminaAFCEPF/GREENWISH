@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Message" table="message" catalog="greenwish" optimistic-lock="version">
+        <id name="idmessage" type="java.lang.Integer">
+            <column name="IDMESSAGE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="messagerie" class="fr.afcepf.ai100.g3.Messagerie" fetch="select">
+            <column name="IDMESSAGERIE" not-null="true" />
+        </many-to-one>
+        <property name="message" type="string">
+            <column name="MESSAGE" length="250" not-null="true" />
+        </property>
+        <property name="lu" type="boolean">
+            <column name="LU" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

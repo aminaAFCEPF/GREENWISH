@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Litige" table="litige" catalog="greenwish" optimistic-lock="version">
+        <id name="idlitige" type="java.lang.Integer">
+            <column name="IDLITIGE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="echange" class="fr.afcepf.ai100.g3.Echange" fetch="select">
+            <column name="IDECHANGE" not-null="true" />
+        </many-to-one>
+        <property name="motif" type="string">
+            <column name="MOTIF" length="250" not-null="true" />
+        </property>
+        <property name="motifreceveur" type="string">
+            <column name="MOTIFRECEVEUR" length="100" not-null="true" />
+        </property>
+        <property name="resolu" type="boolean">
+            <column name="RESOLU" not-null="true" />
+        </property>
+        <set name="echanges" table="echange" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLITIGE" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Echange" />
+        </set>
+    </class>
+</hibernate-mapping>

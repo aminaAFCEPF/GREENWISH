@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Jour" table="jour" catalog="greenwish" optimistic-lock="version">
+        <id name="idjour" type="java.lang.Integer">
+            <column name="IDJOUR" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="disponibilite" class="fr.afcepf.ai100.g3.Disponibilite" fetch="select">
+            <column name="IDDISPO" not-null="true" />
+        </many-to-one>
+        <property name="nomjour" type="string">
+            <column name="NOMJOUR" length="50" not-null="true" />
+        </property>
+        <set name="horaires" table="horaire" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJOUR" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Horaire" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Ville" table="ville" catalog="greenwish" optimistic-lock="version">
+        <id name="idville" type="java.lang.Integer">
+            <column name="IDVILLE" />
+            <generator class="identity" />
+        </id>
+        <property name="ville" type="string">
+            <column name="VILLE" length="200" not-null="true" />
+        </property>
+        <property name="codePostal" type="string">
+            <column name="CODE_POSTAL" length="50" not-null="true" />
+        </property>
+        <set name="participants" table="participant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDVILLE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Participant" />
+        </set>
+        <set name="rdvs" table="rdv" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDVILLE" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Rdv" />
+        </set>
+    </class>
+</hibernate-mapping>

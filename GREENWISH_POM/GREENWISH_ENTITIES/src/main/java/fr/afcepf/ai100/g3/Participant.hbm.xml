@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28 avr. 2017 11:29:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.afcepf.ai100.g3.Participant" table="participant" catalog="greenwish" optimistic-lock="version">
+        <id name="idparticipant" type="java.lang.Integer">
+            <column name="IDPARTICIPANT" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="disponibilite" class="fr.afcepf.ai100.g3.Disponibilite" fetch="select">
+            <column name="IDDISPO" />
+        </many-to-one>
+        <many-to-one name="messagerie" class="fr.afcepf.ai100.g3.Messagerie" fetch="select">
+            <column name="IDMESSAGERIE" />
+        </many-to-one>
+        <many-to-one name="reglage" class="fr.afcepf.ai100.g3.Reglage" fetch="select">
+            <column name="IDREGLAGE" />
+        </many-to-one>
+        <many-to-one name="ville" class="fr.afcepf.ai100.g3.Ville" fetch="select">
+            <column name="IDVILLE" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="NOM" length="100" not-null="true" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="PRENOM" length="50" not-null="true" />
+        </property>
+        <property name="datenaissance" type="date">
+            <column name="DATENAISSANCE" length="10" not-null="true" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="ADRESSE" length="200" not-null="true" />
+        </property>
+        <property name="mail" type="string">
+            <column name="MAIL" length="50" not-null="true" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="TELEPHONE" length="10" />
+        </property>
+        <property name="solde" type="int">
+            <column name="SOLDE" not-null="true" />
+        </property>
+        <property name="dateradiation" type="date">
+            <column name="DATERADIATION" length="10" />
+        </property>
+        <property name="commentaireradiation" type="string">
+            <column name="COMMENTAIRERADIATION" length="300" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="50" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="IMAGE" length="150" />
+        </property>
+        <property name="statutadmin" type="boolean">
+            <column name="STATUTADMIN" not-null="true" />
+        </property>
+        <property name="datederniercontact" type="timestamp">
+            <column name="DATEDERNIERCONTACT" length="19" />
+        </property>
+        <set name="avises" table="avis" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Avis" />
+        </set>
+        <set name="souhaits" table="souhait" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Souhait" />
+        </set>
+        <set name="notifications" table="notifie" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Notification">
+                <column name="IDNOTIFICATION" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="favorises" table="appartient" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Favoris">
+                <column name="IDFAVORIS" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="reglages" table="reglage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Reglage" />
+        </set>
+        <set name="activations" table="activation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Activation" />
+        </set>
+        <set name="messageries" table="messagerie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Messagerie" />
+        </set>
+        <set name="actualites" table="publie" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Actualite">
+                <column name="IDACTU" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="listePropositions" table="liste_proposition" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.ListeProposition" />
+        </set>
+        <set name="statistiques" table="defini" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <many-to-many entity-name="fr.afcepf.ai100.g3.Statistique">
+                <column name="IDSTAT" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="inscriptions" table="inscription" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Inscription" />
+        </set>
+        <set name="disponibilites" table="disponibilite" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPARTICIPANT" not-null="true" />
+            </key>
+            <one-to-many class="fr.afcepf.ai100.g3.Disponibilite" />
+        </set>
+    </class>
+</hibernate-mapping>
