@@ -67,7 +67,7 @@ public class Favoris  implements java.io.Serializable {
         this.objet = objet;
     }
 
-@ManyToMany(fetch=FetchType.LAZY, mappedBy="favorises")
+@ManyToMany(fetch=FetchType.LAZY, mappedBy="favoris")
     public List<Participant> getParticipants() {
         return this.participants;
     }

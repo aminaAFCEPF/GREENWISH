@@ -2,11 +2,14 @@ package fr.afcepf.ai100.g3;
 // Generated 28 avr. 2017 11:29:33 by Hibernate Tools 4.3.1
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,7 +35,7 @@ public class Souhait  implements java.io.Serializable {
      private TrancheAge trancheAge;
      private String intitule;
      private Integer valeur;
-     private Long distance;
+     private BigDecimal distance;
 
     public Souhait() {
     }
@@ -41,7 +44,7 @@ public class Souhait  implements java.io.Serializable {
     public Souhait(Participant participant) {
         this.participant = participant;
     }
-    public Souhait(Domaine domaine, Participant participant, TrancheAge trancheAge, String intitule, Integer valeur, Long distance) {
+    public Souhait(Domaine domaine, Participant participant, TrancheAge trancheAge, String intitule, Integer valeur, BigDecimal distance) {
        this.domaine = domaine;
        this.participant = participant;
        this.trancheAge = trancheAge;
@@ -113,12 +116,12 @@ public class Souhait  implements java.io.Serializable {
     }
 
     
-    @Column(name="DISTANCE", precision=10, scale=0)
-    public Long getDistance() {
+    @Column(name="DISTANCE")
+    public BigDecimal getDistance() {
         return this.distance;
     }
     
-    public void setDistance(Long distance) {
+    public void setDistance(BigDecimal distance) {
         this.distance = distance;
     }
 

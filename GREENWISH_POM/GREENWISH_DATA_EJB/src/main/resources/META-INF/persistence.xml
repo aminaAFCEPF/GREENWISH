@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="GREENWISH_DATA_EJB">
+		<jta-data-source>java:/greenwishDS</jta-data-source>
+		<class>fr.afcepf.ai100.g3.Activation</class>
+		<class>fr.afcepf.ai100.g3.Actualite</class>
+		<class>fr.afcepf.ai100.g3.Avis</class>
+		<class>fr.afcepf.ai100.g3.Categorie</class>
+		<class>fr.afcepf.ai100.g3.Disponibilite</class>
+		<class>fr.afcepf.ai100.g3.Domaine</class>
+		<class>fr.afcepf.ai100.g3.Echange</class>
+		<class>fr.afcepf.ai100.g3.Favoris</class>
+		<class>fr.afcepf.ai100.g3.Frequencenotif</class>
+		<class>fr.afcepf.ai100.g3.Horaire</class>
+		<class>fr.afcepf.ai100.g3.Image</class>
+		<class>fr.afcepf.ai100.g3.Inscription</class>
+		<class>fr.afcepf.ai100.g3.Jour</class>
+		<class>fr.afcepf.ai100.g3.ListeProposition</class>
+		<class>fr.afcepf.ai100.g3.Litige</class>
+		<class>fr.afcepf.ai100.g3.Message</class>
+		<class>fr.afcepf.ai100.g3.Messagerie</class>
+		<class>fr.afcepf.ai100.g3.Notification</class>
+		<class>fr.afcepf.ai100.g3.Objet</class>
+		<class>fr.afcepf.ai100.g3.Participant</class>
+		<class>fr.afcepf.ai100.g3.Prioriterecherche</class>
+		<class>fr.afcepf.ai100.g3.Rdv</class>
+		<class>fr.afcepf.ai100.g3.Refus</class>
+		<class>fr.afcepf.ai100.g3.Reglage</class>
+		<class>fr.afcepf.ai100.g3.Souhait</class>
+		<class>fr.afcepf.ai100.g3.Souscategorie</class>
+		<class>fr.afcepf.ai100.g3.Statistique</class>
+		<class>fr.afcepf.ai100.g3.Taillepolice</class>
+		<class>fr.afcepf.ai100.g3.Theme</class>
+		<class>fr.afcepf.ai100.g3.TrancheAge</class>
+		<class>fr.afcepf.ai100.g3.Valeur</class>
+		<class>fr.afcepf.ai100.g3.Ville</class>
+
+		<properties>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
+		</properties>
+	</persistence-unit>
+</persistence>
