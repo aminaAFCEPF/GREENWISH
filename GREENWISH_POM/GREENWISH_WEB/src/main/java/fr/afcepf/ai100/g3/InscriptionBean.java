@@ -16,8 +16,8 @@ public class InscriptionBean {
 	private IBusinessInscription proxyInscription;
 	@EJB
 	private IDaoVille proxyDaoVille;
-	private String adresse;
-	private Date datenaissance;
+	private String adresse = "rue des marins";
+	private Date datenaissance = new Date();
 	private String mail;
 	private String nom;
 	private String password;
@@ -30,8 +30,9 @@ public class InscriptionBean {
 		Inscription inscription = new Inscription();
 		inscriptions.add(inscription);
 		inscription.setDateinscription(new Date());
-		ville = new Ville("vitry", "94400");
-		proxyDaoVille.ajouterVille(ville);
+		ville = new Ville();
+		ville.setIdville(4);
+		
 		Participant participant = new Participant(ville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
 		proxyInscription.inscrire(participant);
 		return null;
