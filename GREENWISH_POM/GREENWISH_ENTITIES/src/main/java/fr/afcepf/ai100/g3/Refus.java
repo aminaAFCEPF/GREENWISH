@@ -65,7 +65,7 @@ public class Refus  implements java.io.Serializable {
         this.motif = motif;
     }
 
-@ManyToMany(fetch=FetchType.LAZY, mappedBy="refuses")
+@ManyToMany(fetch=FetchType.LAZY, mappedBy="refus")
     public List<Echange> getEchanges() {
         return this.echanges;
     }
