@@ -50,7 +50,7 @@
 			<div class="row logintextPosition padding-vert-10">
 				<!-- Register Box -->
 				<div class="col-md-6">
-					<form class="signup-page divBorderComposition">
+					<h:form class="signup-page divBorderComposition">
 						<div class="signup-header">
 							<h1 class="SubTitlePositionCenter">Inscrivez-vous</h1>
 						</div>
@@ -78,11 +78,11 @@
 								</label>
 							</div>
 							<div class="col-lg-4 padding-vert-10">
-								<button class="btn btn-primary" type="submit">Valider</button>
+								<h:commandButton action="#{mbInscription.inscrire()}" value="S'inscrire" />
 							</div>
 						</div>
 						<span class="color-red">*</span> Champ obligatoire
-					</form>
+					</h:form>
 				</div>
 				<!-- End Register Box -->
 				<!-- === END CONTENT SIGN_UP === -->

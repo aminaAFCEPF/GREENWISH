@@ -8,16 +8,14 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import fr.afcepf.ai100.g3_2.Inscription;
-import fr.afcepf.ai100.g3_2.Participant;
-import fr.afcepf.ai100.g3_2.Ville;
-
 @ManagedBean(name = "mbInscription")
 @SessionScoped
 public class InscriptionBean {
 
 	@EJB
 	private IBusinessInscription proxyInscription;
+	@EJB
+	private IDaoVille proxyDaoVille;
 	private String adresse;
 	private Date datenaissance;
 	private String mail;
@@ -32,7 +30,9 @@ public class InscriptionBean {
 		Inscription inscription = new Inscription();
 		inscriptions.add(inscription);
 		inscription.setDateinscription(new Date());
-		Participant participant = new Participant(adresse, datenaissance, mail, nom, password, prenom, telephone, inscriptions, ville);
+		ville = new Ville("vitry", "94400");
+		proxyDaoVille.ajouterVille(ville);
+		Participant participant = new Participant(ville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
 		proxyInscription.inscrire(participant);
 		return null;
 	}

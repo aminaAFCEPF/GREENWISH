@@ -5,22 +5,20 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.afcepf.ai100.g3.Participant;
-
-@Remote(IDaoParticipant.class)
+@Remote(IDaoVille.class)
 @Singleton
-public class DaoParticipant implements IDaoParticipant{
+public class DaoVille implements IDaoVille{
 
+	
 	@PersistenceContext(unitName="GREENWISH_DATA_EJB")
 	EntityManager em;
 	@SuppressWarnings("unchecked")
 	
+	
 	@Override
-	public Participant ajouter(Participant participant) {
-		em.persist(participant);
-		return participant;
+	public Ville ajouterVille(Ville ville) {
+		em.persist(ville);
+		return ville;
 	}
 
-	
-	
 }
