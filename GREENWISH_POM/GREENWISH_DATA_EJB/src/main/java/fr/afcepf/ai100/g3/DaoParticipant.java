@@ -50,9 +50,19 @@ public class DaoParticipant implements IDaoParticipant{
 	public Participant ajouter(Participant participant) {
 		em.persist(participant);
 		return participant;
->>>>>>> refs/heads/master2
 	}
-
-	
+	@Override
+	public Participant identification(String mail, String mdp) {
+		final String req = "SELECT p FROM Participant p WHERE p.mail = :pmail AND p.password = :ppassword";
+		Query query = em.createQuery(req).setParameter("pmail", mail)
+				.setParameter("ppassword", mdp);
+		Participant retour = null;
+		try {
+			retour = (Participant)query.getSingleResult();
+		} catch (Exception e) {
+			// catch misère...
+		}
+		return retour;
+	}
 	
 }
