@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT SIGN_UP === -->
+			<div id="content">
+				<div class="container background-white bottom-border">
+					<h1 class="titlePosition">Connexion</h1>
+					<ul class="breadcrumb background-white">
+						<li><a href="Accueil.xhtml">Accueil</a></li>
+						<li class="active">Connexion</li>
+					</ul>
+				</div>
+
+				<div class="container background-gray-lighter">
+					<div class="row logintextPosition padding-vert-10">
+						<!-- Register Box -->
+						<div class="col-md-6">
+							<h:form class="signup-page divBorderComposition">
+								<div class="signup-header">
+									<h1 class="SubTitlePositionCenter margin-vert-10">Inscrivez-vous</h1>
+								</div>
+								<label>Prénom : </label>
+								<h:inputText value="#{mbInscription.prenom}"
+									class="form-control  margin-bottom-20" />
+								<label>Nom : </label>
+								<h:inputText value="#{mbInscription.nom}"
+									class="form-control  margin-bottom-20" />
+								<label>Adresse mail : <span class="color-red">*</span>
+								</label>
+								<h:inputText value="#{mbInscription.mail}"
+									class="form-control  margin-bottom-20" />
+								<div class="row">
+									<div class="col-sm-6">
+										<label>Mot de passe : <span class="color-red">*</span>
+										</label>
+										<h:inputText value="#{mbInscription.password}"
+											class="form-control  margin-bottom-20" />
+									</div>
+									<div class="col-sm-6">
+										<label>Confirmer mot de passe : <span
+											class="color-red">*</span>
+										</label>
+										<h:inputText value="#{mbInscription.password}"
+											class="form-control  margin-bottom-20" />
+									</div>
+								</div>
+								<div>
+									<label>N° et rue : <span class="color-red">*</span>
+									</label>
+									<h:inputText value="#{mbInscription.adresse}"
+										class="form-control  margin-bottom-20" />
+								</div>
+								<div>
+									<label>Code postal : <span class="color-red">*</span></label>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<h:inputText value="#{mbInscription.codePostal}"
+											class="form-control  margin-bottom-20">
+											<f:ajax render="lesVilles" event="keyup" execute="@this"
+												listener="#{mbInscription.rechercherVilles()}" />
+										</h:inputText>
+									</div>
+									<div class="col-md-6">
+										<h:selectOneMenu id="lesVilles" value="#{mbInscription.selectedville.idville}"
+										class="form-control  margin-bottom-20">
+											<f:selectItems  value="#{mbInscription.villes}" var="ville"
+												itemLabel="#{ville.ville}" itemValue="#{ville.idville}" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-6">
+										<label class="checkbox"> <input type="checkbox" />J'ai
+											lu et j'accepte les <a href="#">Conditions Générales
+												d'Utilisation</a>
+										</label>
+									</div>
+									<div class="col-lg-6 padding-top-20">
+										<h:commandButton action="#{mbInscription.inscrire()}"
+											value="S'inscrire" />
+									</div>
+								</div>
+								<span class="color-red">*</span> Champ obligatoire
+							</h:form>
+						</div>
+						<!-- End Register Box -->
+						<!-- === END CONTENT SIGN_UP === -->
+
+						<div
+							class="login-page divBorderComposition AlignCenter padding-20">
+							<h1 style="margin: 0;">OU</h1>
+						</div>
+
+						<!-- === BEGIN CONTENT LOGIN === -->
+						<!-- Login Box -->
+						<div class="col-md-6">
+							<h:form class="login-page divBorderComposition">
+								<div class="login-header margin-bottom-30">
+									<h1 class="SubTitlePositionCenter margin-vert-10">Connectez-vous</h1>
+								</div>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-user"></i></span>
+									<h:inputText value="#{mbCnx.mail}"
+											class="form-control  margin-bottom-20"
+											a:placeholder="Mail" />
+								</div>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-lock"></i>
+									</span> 
+									<h:inputText value="#{mbCnx.mdp}"
+											class="form-control  margin-bottom-20"
+											a:placeholder="Mot de passe" />
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-6">
+										<label class="checkbox"> <input type="checkbox" />Je
+											souhaite rester connecter
+										</label>
+									</div>
+									<div class="col-lg-6 padding-top-20">
+										<button class="btn btn-primary borderRadius" type="submit">Connexion</button>
+									</div>
+								</div>
+								<hr />
+								<h4>Mot de passe oublié ?</h4>
+								<p>
+									<a href="#">Cliquez ici</a> pour réinitialiser votre mot de
+									passe.
+								</p>
+
+							</h:form>
+						</div>
+					</div>
+					<!-- End Login Box -->
+				</div>
+			</div>
+			<!-- === END CONTENT LOGIN === -->
+		</body>
+	</ui:define>
+</ui:composition>
+</html>
