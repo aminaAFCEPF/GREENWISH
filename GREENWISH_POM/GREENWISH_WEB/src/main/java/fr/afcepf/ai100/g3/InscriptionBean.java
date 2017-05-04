@@ -135,6 +135,22 @@ public class InscriptionBean {
 	public void setSelectedville(Ville selectedville) {
 		this.selectedville = selectedville;
 	}
+
+	public ConnexionBean getMbCnx() {
+		return mbCnx;
+	}
+
+	public void setMbCnx(ConnexionBean mbCnx) {
+		this.mbCnx = mbCnx;
+	}
+
+	public IDaoVille getProxyDaoVille() {
+		return proxyDaoVille;
+	}
+
+	public void setProxyDaoVille(IDaoVille proxyDaoVille) {
+		this.proxyDaoVille = proxyDaoVille;
+	}
 	
 	
 	
