@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT === -->
+			<div>
+				<div
+					class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
+					<div class="row ">
+						<h1>Fiche Transfert</h1>
+					</div>
+					<div class="row">
+						<ol class="breadcrumb background-white">
+							<li class="breadcrumb-item"><a href="#">Mon Compte</a></li>
+							<li class="breadcrumb-item"><a href="#">Mes transferts</a></li>
+							<li class="breadcrumb-item active">Fiche Transfert</li>
+						</ol>
+					</div>
+				</div>
+				<div>
+					<div>
+						<div class="container background-white bottom-border ">
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical ">
+								<div class="col-md-10 centrerElementHorizontal">
+									<h1>Fin de l'échange avec Thierry A. prévu le 5 Mai 2017</h1>
+								</div>
+								<div class="col-md-2 centrerElementHorizontal">
+									<button class=" btn btn-primary borderRadius" type="submit">Annuler
+										l'échange</button>
+								</div>
+							</div>
+
+							<div class="margin-top-40 margin-bottom-40 progress progress2">
+								<div class="one B1  success-color"></div>
+								<div class="two B2  success-color"></div>
+								<div class="three B3 success-color"></div>
+								<div class="four B4 no-color"></div>
+								<div class="progress-bar progress-bar-success"
+									style="width: 75%"></div>
+							</div>
+							<div
+								class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+								<div class="col-md-8 centrerElementHorizontal">
+									<h3>Entrez ci-après le code reçu lors de l'échange pour le
+										terminer :</h3>
+								</div>
+								<div class="col-md-2 centrerElementHorizontal">
+									<input type="text" />
+								</div>
+								<div class="col-md-2 centrerElementHorizontal">
+									<button class=" btn btn-primary borderRadius" type="submit">Valider</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="container background-gray-lighter ">
+							<div class="row margin-bottom-10 margin-top-10">
+								<div class="col-md-6 ">
+									<h:form
+										class="borderperso background-white centrerElementHorizontal padding-horiz-10 padding-vert-10">
+										<h3>Objet de l'échange</h3>
+									</h:form>
+								</div>
+								<div class="col-md-6 ">
+									<h:form
+										class="borderperso background-white centrerElementHorizontal padding-horiz-10 padding-vert-10">
+										<h3>Contact pour l'échange</h3>
+									</h:form>
+								</div>
+							</div>
+							<div class="row margin-bottom-10">
+								<div class="col-md-6">
+									<h:form class="borderperso background-white">
+										<div
+											class="row centrerElementVertical centrerElementHorizontal">
+											<div class="col-md-4 centrerElementHorizontal">
+												<img src="assets/img/blog/asia.jpg" alt="thumb1" />
+											</div>
+											<div class="col-md-8">
+												<div class="row centrerElementHorizontal padding-top-10">
+													<h3>Super-Bang</h3>
+												</div>
+												<p>
+													Valeur : 4 <img class="idflocon"
+														src="assets/img/blog/flocon.jpg" alt="thumb1" />
+												</p>
+
+												<p>Ajouté le 10 juin 2016</p>
+												<p class="justifier padding-right-10">Description objet
+													: bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+													bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+													bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+													bla bla bla bla bla bla bla...</p>
+											</div>
+
+										</div>
+									</h:form>
+								</div>
+								<div class="col-md-6">
+									<h:form class="borderperso background-white">
+										<div
+											class="row centrerElementVertical centrerElementHorizontal">
+											<div
+												class="col-md-4 centrerElementHorizontal centrerElementVertical margin-top-10 margin-bottom-10 padding-vert-30 ">
+												<img src="assets/img/blog/asia.jpg" alt="thumb1" />
+											</div>
+											<div class="col-md-8 padding-horiz-10 padding-vert-10 ">
+												<div class="row centrerElementHorizontal padding-vert-20 ">
+													<h3>
+														Proposé par <a href="#">Thierry</a>
+													</h3>
+													<br />
+												</div>
+												<div class="rating centrerElementHorizontal">
+													<div class="stars">
+														<span class="fa fa-star checked"></span> <span
+															class="fa fa-star checked"></span> <span
+															class="fa fa-star checked"></span> <span
+															class="fa fa-star"></span> <span class="fa fa-star"></span>
+													</div>
+													<span class="review-no">41 reviews</span>
+												</div>
+												<div class="centrerElementHorizontal">
+													<span>Distance : 3 km</span>
+												</div>
+												<div class="centrerElementHorizontal padding-vert-20">
+													<button class=" btn btn-primary margin-bottom-20 borderRadius"
+														type="submit">Signaler un litige</button>
+												</div>
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+							<div class="row margin-bottom-10 centrerElementHorizontal">
+								<div class="col-md-12">
+									<h:form
+										class="borderperso background-white centrerElementHorizontal margin-bottom-10 padding-horiz-10 padding-vert-10">
+										<h3>Messagerie</h3>
+									</h:form>
+									<blockquote class="primary">
+										<p>
+											<em>"Bonjour je vous propose un rendez-vous tel jour
+												telle heure selon vos disponibilité, êtes vous d'accord ?"</em>
+										</p>
+										<small>Envoyé le 01/01/1700</small>
+									</blockquote>
+									<blockquote class="primary right">
+										<p>
+											<em>"Bonjour, aucun problème rendez-vous tel jour telle
+												heure"</em>
+										</p>
+										<small>Reçu le 20/20/2220 </small>
+									</blockquote>
+
+								</div>
+							</div>
+							<div
+								class="row margin-bottom-10 margin-right-5 margin-left-5 background-white padding-top-10 borderperso">
+								<div class="col-md-12">
+									<h:form>
+										<label>Nouveau Message : </label>
+										<textarea class="form-control" rows="3"> Bonjour,</textarea>
+										<button
+											class=" btn btn-primary borderRadius margin-bottom-20 margin-top-10 col-md-offset-11"
+											type="submit">Envoyer</button>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>
+

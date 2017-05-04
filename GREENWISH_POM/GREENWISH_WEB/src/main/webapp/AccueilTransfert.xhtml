@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT === -->
+			<div id="content">
+				<div
+					class="container background-white bottom-border padding-top-10 padding-left-0 padding-right-0">
+					<div class="row ">
+						<div class="col-md-4 margin-bottom-20">
+							<h1>Mes transferts</h1>
+						</div>
+						<div class="col-md-7 padding-vert-10 customAlign">
+							<span class="">Sélectionner les Rendez-vous pris entre le</span>
+							<span><input type="date" name="debutRendezVous" /></span> <span>et
+								le</span> <span><input type="date" name="finRendezVous" /></span>
+						</div>
+
+
+						<div id="pannelBouton" class="col-md-12 pull-right">
+							<ol class="breadcrumb col-lg-3">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Library</a></li>
+								<li class="active">Data</li>
+							</ol>
+
+							<div class="boutons col-lg-4 text-center">
+
+								<div class="btn-group">
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">En
+										cours</button>
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Terminés</button>
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Annulés</button>
+								</div>
+							</div>
+							<div class="boutons col-lg-4 text-center">
+								<div class="btn-group">
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Donnés</button>
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Reçus</button>
+									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Tous</button>
+								</div>
+							</div>
+							<div class="col-lg-4 text-center">
+                        <select class="boutonsSelect btn-primary borderRadius" id="btnFiltre">
+                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous proposés</option>
+                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous validés</option>
+                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous terminés</option>
+                                <option  id="btnFiltre" class="btn btn-primary ">Transferts terminés</option>
+                                <option  id="btnFiltre" class="btn btn-primary ">Tous</option>
+                            </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+			<div class="container background-gray-lighter">
+				<div class="row margin-vert-30">
+					<!-- Main Column -->
+					<div class="col-md-12">
+						<!-- debut panel titrePage-->
+
+						<!-- fin panel titrePage-->
+						<!-- debut panel boutons-->
+
+						<!-- fin panel boutons-->
+						<!-- debut panel label-->
+						<div class="panel panel-primary background-white">
+
+
+							<div id="label" class="panel-body">
+								<span><h3>Objet</h3></span> <span><h3>Donneur</h3></span> <span><h3>Rendez-vous
+										proposé</h3></span> <span><h3>Rendez-vous validé</h3></span> <span><h3>Rendez-vous
+										terminé</h3></span> <span><h3>transfert terminé</h3></span>
+							</div>
+						</div>
+						<!-- fin panel label-->
+						<div class="containerBar">
+							<div class="well background-white divBorderComposition">
+								<img src="resources/img/imgObjetsMini/velopetit.png" alt="velo"/>
+							</div>
+							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">
+
+								<div class="progress progress1">
+									<div class="one T1 success-color"></div>
+									<div class="two T2 no-color"></div>
+									<div class="three T3 no-color"></div>
+									<div class="four T4 no-color"></div>
+									<div class="progress-bar progress-bar-success"
+										style="width: 35%"></div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="containerBar ">
+							<div class="well background-white divBorderComposition">
+								<img src="resources/img/imgObjetsMini/cafetiere.png" alt="Cafetiere"/>
+							</div>
+							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">
+
+								<div class="progress progress1">
+									<div class="one T1 success-color"></div>
+									<div class="two T2 no-color"></div>
+									<div class="three T3 no-color"></div>
+									<div class="four T4 no-color"></div>
+									<div class="progress-bar progress-bar-success"
+										style="width: 35%"></div>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="containerBar ">
+							<div class="well background-white divBorderComposition">
+								<img src="resources/img/imgObjetsMini/fusee.png" alt="fusee_tintin"/>
+							</div>
+							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">
+
+								<div class="progress progress1">
+									<div class="one T1 success-color"></div>
+									<div class="two T2 no-color"></div>
+									<div class="three T3 no-color"></div>
+									<div class="four T4 no-color"></div>
+									<div class="progress-bar progress-bar-success"
+										style="width: 35%"></div>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="containerBar ">
+							<div class="well background-white divBorderComposition">
+								<img src="resources/img/imgObjetsMini/kangourou.png" alt="Kangourou"/>
+							</div>
+							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">
+
+								<div class="progress progress1">
+									<div class="one T1 success-color"></div>
+									<div class="two T2 no-color"></div>
+									<div class="three T3 no-color"></div>
+									<div class="four T4 no-color"></div>
+									<div class="progress-bar progress-bar-success"
+										style="width: 35%"></div>
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<div class="containerBar">
+							<div class="well background-white divBorderComposition">
+								<img src="resources/img/imgObjetsMini/xbox.png" alt="Xbox"/>
+							</div>
+							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">
+
+								<div class="progress progress1">
+									<div class="one T1 success-color"></div>
+									<div class="two T2 no-color"></div>
+									<div class="three T3 no-color"></div>
+									<div class="four T4 no-color"></div>
+									<div class="progress-bar progress-bar-success"
+										style="width: 35%"></div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="text-center">
+							<ul class="pagination">
+								<li><a href="#">&laquo;</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">&raquo;</a></li>
+							</ul>
+						</div>
+
+
+					</div>
+				</div>
+				<!-- End Main Column -->
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

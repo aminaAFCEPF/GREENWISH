@@ -35,7 +35,7 @@ public class DaoVille implements IDaoVille{
 		StringBuilder sb = new StringBuilder();
 		sb.append(codePostal).append("%");
 		Query query = em.createQuery(req).setParameter("pcode", sb.toString());
-		return query.getResultList();
+		return query.setMaxResults(25).getResultList();
 	}
 
 }

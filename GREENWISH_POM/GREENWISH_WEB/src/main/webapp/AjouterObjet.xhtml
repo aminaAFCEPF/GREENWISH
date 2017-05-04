@@ -4,12 +4,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/arche.xhtml">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+
 	<ui:define name="content">
 		<body>
 			<div class="container background-gray-lighter ">
 				<div class="row margin-vert-30 ">
+
 					<h:form id="ajouterObjetForm" class="login-page bottom-border borderperso">
+
 						<div class="signup-header"></div>
 
 						<div class="row ">
@@ -22,12 +26,14 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
+
 								<h:selectOneMenu id="lesListes" 
 								value="#{mbAjouterObjet.selectedListeProposition.idlisteobjet}"
 								class="form-control margin-bottom-20 fa-plus">
 									<f:selectItems value="#{mbAjouterObjet.listePropositions}" var="listeProp"
 										itemLabel="#{listeprop.nom}" itemValue="#{listeProp.idlisteobjet}" />
 								</h:selectOneMenu> 
+
 							</div>
 							<div class="col-md-1">
 								<i class="fa-plus fa-2x color-primary animate fadeIn"></i>
@@ -49,6 +55,7 @@
 								<textarea rows="5" class="form-control  margin-bottom-20"></textarea>
 							</div>
 							<div class="col-md-6">
+
 								<label>Domaine</label>
 								<h:selectOneMenu id="lesDomaines"
 									value="#{mbAjouterObjet.selectedDomaine.iddomaine}"
@@ -78,6 +85,7 @@
 									<f:selectItems value="#{mbAjouterObjet.sousCategories}" var="souscategorie"
 										itemLabel="#{souscategorie.intitule}" itemValue="#{souscategorie.idsouscategorie}"/>
 								</h:selectOneMenu>
+
 							</div>
 						</div>
 
