@@ -35,6 +35,8 @@ public class Objet  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idobjet;
      private Domaine domaine;
+     private Categorie categorie;
+     private Souscategorie souscategorie;
      private ListeProposition listeProposition;
      private TrancheAge trancheAge;
      private Valeur valeur;
@@ -98,6 +100,28 @@ public class Objet  implements java.io.Serializable {
     public void setDomaine(Domaine domaine) {
         this.domaine = domaine;
     }
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IDCATEGORIE", nullable=false)
+    public Categorie getCategorie() {
+        return this.categorie;
+    }
+    
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }  
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IDSOUSCATEGORIE", nullable=false)
+	public Souscategorie getSouscategorie() {
+		return souscategorie;
+	}
+
+
+	public void setSouscategorie(Souscategorie souscategorie) {
+		this.souscategorie = souscategorie;
+	}
+     
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IDLISTEOBJET", nullable=false)
@@ -160,7 +184,7 @@ public class Objet  implements java.io.Serializable {
     }
 
     
-    @Column(name="ACTIF")
+    @Column(name="ACTIF", columnDefinition = "TINYINT(1)")
     public Boolean getActif() {
         return this.actif;
     }
@@ -189,14 +213,6 @@ public class Objet  implements java.io.Serializable {
         this.datesuppression = datesuppression;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
-    public List<Favoris> getfavoris() {
-        return this.favoris;
-    }
-    
-    public void setfavoris(List<Favoris> favoris) {
-        this.favoris = favoris;
-    }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
     public List<Image> getImages() {
@@ -215,6 +231,18 @@ public class Objet  implements java.io.Serializable {
     public void setEchanges(List<Echange> echanges) {
         this.echanges = echanges;
     }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
+	public List<Favoris> getFavoris() {
+		return favoris;
+	}
+
+
+	public void setFavoris(List<Favoris> favoris) {
+		this.favoris = favoris;
+	}
+
+
 
 
 

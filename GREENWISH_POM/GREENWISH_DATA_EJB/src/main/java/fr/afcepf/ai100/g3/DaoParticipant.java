@@ -30,6 +30,7 @@ public class DaoParticipant implements IDaoParticipant {
 		Participant retour = null;
 		try {
 			retour = (Participant) query.getSingleResult();
+
 		} catch (Exception e) {
 			// catch misère...
 		}

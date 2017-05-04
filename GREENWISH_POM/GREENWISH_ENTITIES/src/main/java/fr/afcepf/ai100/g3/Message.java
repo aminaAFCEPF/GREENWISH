@@ -73,7 +73,7 @@ public class Message  implements java.io.Serializable {
     }
 
     
-    @Column(name="LU", nullable=false)
+    @Column(name="LU", nullable=false, columnDefinition = "TINYINT(1)")
     public boolean isLu() {
         return this.lu;
     }
