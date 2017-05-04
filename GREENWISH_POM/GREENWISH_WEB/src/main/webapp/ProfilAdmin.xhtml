@@ -1,0 +1,156 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT === -->
+			<div id="content">
+				<div class="container background-white bottom-border">
+					<h1 class="titlePosition">Profil administrateur</h1>
+					<ul class="breadcrumb background-white">
+						<li><a href="Accueil.xhtml">Accueil</a></li>
+						<li><a href="CompteAdh.xhtml">Mon compte</a></li>
+						<li class="active">Profil administrateur</li>
+					</ul>
+				</div>
+				<div class="container background-gray-lighter">
+					<div class="row">
+
+						<!-- Register Box -->
+						<div class="col-lg-12 col-md-10 col-sm-8">
+							<h:form class="signup-page divBorderComposition margin-vert-10">
+								<div class="signup-header row">
+									<div class="col-md-5 posLeft">
+										<h3 class="padding-vert-10">Données personnelles</h3>
+										<label>Nom : </label> <input
+											class="form-control outwidth margin-bottom-20" type="text" />
+										<label>Prénom : </label> <input
+											class="form-control outwidth margin-bottom-20" type="text" />
+										<label>Adresse mail : <span class="color-red">*</span></label>
+										<input class="form-control outwidth margin-bottom-40"
+											type="text" />
+
+										<h3 class="padding-vert-10">Modifier le mot de passe</h3>
+										<label>Ancien mot de passe : <span class="color-red" />*
+										</label> <input class="form-control outwidth margin-bottom-20"
+											type="text" /> <label>Nouveau mot de passe : </label> <input
+											class="form-control outwidth margin-bottom-20" type="text" />
+										<label>Confirmer le nouveau mot de passe : </label> <input
+											class="form-control outwidth margin-bottom-20" type="text" />
+									</div>
+
+									<div class="col-md-5 posRight">
+										<h3 class="padding-vert-10">Lieu(x) de rendez-vous</h3>
+										<label>N° et rue : <span class="color-red" />*
+										</label> <input class="form-control outwidth margin-bottom-20"
+											type="text" /> <label>code postal : <span
+											class="color-red" />*
+										</label> <input class="form-control outwidth margin-bottom-20"
+											type="text" /> <label>Ville : <span
+											class="color-red">*</span></label> <input
+											class="form-control outwidth margin-bottom-40" type="text" />
+									</div>
+
+									<div class="col-md-5 posRight">
+										<h3 class="padding-vert-10">Mail de contact de
+											l'association</h3>
+										<label>Mail publié : </label><input type="text"
+											value="info@greenwish.fr" class="form-control outwidth" /><br />
+										<div class="padding-bottom-40">
+											<button type="button" class="btn btn-primary borderRadius"
+												id="okDispo" onclick="">Publier</button>
+											<button type="button" class="btn btn-primary borderRadius"
+												id="okDispo" onclick="">Effacer</button>
+										</div>
+									</div>
+
+									<div class="col-md-5 posRight">
+										<h3 class="padding-vert-10">Vos disponibilités de
+											rendez-vous</h3>
+										<select class="mr-10 line">
+											<option value="">Jour</option>
+											<option value="Lundi">Lundi</option>
+											<option value="Mardi">Mardi</option>
+											<option value="Mercredi">Mercredi</option>
+											<option value="Jeudi">Jeudi</option>
+											<option value="Vendredi">Vendredi</option>
+											<option value="Samedi">Samedi</option>
+											<option value="Dimanche">Dimanche</option>
+										</select><span>à</span> <select class="margin-horiz-10 line">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+										</select><span>:</span> <select class="margin-horiz-10 line">
+											<option value="00">00</option>
+											<option value="05">05</option>
+											<option value="10">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option>
+											<option value="30">30</option>
+											<option value="35">35</option>
+											<option value="40">40</option>
+											<option value="45">45</option>
+											<option value="50">50</option>
+											<option value="55">55</option>
+										</select> <br />
+										<table
+											class="table table-hover table-responsive margin-vert-30">
+											<thead>
+												<tr>
+													<th>Jour</th>
+													<th>heure</th>
+												</tr>
+											</thead>
+										</table>
+										<button type="button" class="btn btn-primary borderRadius"
+											id="okDispo" onclick="">Enregistrer</button>
+										<button type="button" class="btn btn-primary borderRadius"
+											id="okDispo" onclick="">Effacer</button>
+									</div>
+								</div>
+
+								<div class="row padding-top-20 text-center">
+									<button class="btn btn-lg btn-primary borderRadius"
+										type="submit">Valider</button>
+									<button class="btn btn-lg btn-primary borderRadius"
+										type="submit">Annuler</button>
+								</div>
+								<br /> <label> <span class="color-red">*</span> Champ
+									obligatoire
+								</label>
+							</h:form>
+						</div>
+					</div>
+				</div>
+				<!-- End Register Box -->
+				<!-- === END CONTENT === -->
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

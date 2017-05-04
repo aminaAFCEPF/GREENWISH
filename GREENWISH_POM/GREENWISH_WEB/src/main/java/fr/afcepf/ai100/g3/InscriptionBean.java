@@ -3,7 +3,6 @@ package fr.afcepf.ai100.g3;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -134,6 +133,22 @@ public class InscriptionBean {
 
 	public void setSelectedville(Ville selectedville) {
 		this.selectedville = selectedville;
+	}
+
+	public ConnexionBean getMbCnx() {
+		return mbCnx;
+	}
+
+	public void setMbCnx(ConnexionBean mbCnx) {
+		this.mbCnx = mbCnx;
+	}
+
+	public IDaoVille getProxyDaoVille() {
+		return proxyDaoVille;
+	}
+
+	public void setProxyDaoVille(IDaoVille proxyDaoVille) {
+		this.proxyDaoVille = proxyDaoVille;
 	}
 	
 	

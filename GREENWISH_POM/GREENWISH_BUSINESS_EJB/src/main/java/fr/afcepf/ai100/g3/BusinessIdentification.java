@@ -13,8 +13,7 @@ public class BusinessIdentification implements IBusinessIdentification{
 	
 	@Override
 	public Participant identifier(String mail, String mdp) {
-		proxyParticipant.identification(mail, mdp);
-		return null;
+		return proxyParticipant.identification(mail, mdp);
 	}
 
 }
