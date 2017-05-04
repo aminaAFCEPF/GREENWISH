@@ -12,4 +12,6 @@ public interface IBusinessAjouterObjet {
 	List<Categorie> rechercherCategorieParDomaine(Domaine domaine);
 	List<Souscategorie> rechercherSousCategorieParCategorie(Categorie categorie);
 	List<ListeProposition> rechercherListeProposition(Participant participant);
+	Participant rechercherParticipantParId(int idParticipant);
+	ListeProposition ajouterUneListe(ListeProposition listeProposition);
 }

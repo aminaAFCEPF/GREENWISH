@@ -7,5 +7,4 @@ public interface IDaoListeProposition {
 	void supprimerListeProposition(ListeProposition listeProposition);
 	List<ListeProposition> getAllListePropositions(Participant participant);
 	
-
 }
