@@ -120,7 +120,7 @@ public class Actualite  implements java.io.Serializable {
     }
 
     
-    @Column(name="ACTIF", nullable=false)
+    @Column(name="ACTIF", nullable=false, columnDefinition = "TINYINT(1)")
     public boolean isActif() {
         return this.actif;
     }

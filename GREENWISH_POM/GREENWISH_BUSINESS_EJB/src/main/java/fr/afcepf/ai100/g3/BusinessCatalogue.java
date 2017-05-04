@@ -14,9 +14,8 @@ public class BusinessCatalogue implements IBusinessCatalogue {
 	IDaoObjet proxyDaoObjet;
 	
 	@Override
-	public List<Objet> rechercher(Domaine domaine) {
-		
-		return proxyDaoObjet.rechercherObjetsParDomaine(domaine);
+	public List<Objet> afficherTousLesObjets() {
+		return proxyDaoObjet.getAllObjets();
 	}
 
 }

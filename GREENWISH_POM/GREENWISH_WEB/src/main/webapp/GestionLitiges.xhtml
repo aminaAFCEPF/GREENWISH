@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<div id="body-bg">
+				<div class="content">
+					<div
+						class="container background-white padding-bottom-10 padding-top-10 padding-left-0 padding-right-0 bottom-border">
+						<h1 class="titlePosition">Gestion des litiges</h1>
+						<div id="searchFiltre">
+							<ol class="breadcrumb background-white">
+								<li><a href="Accueil.xhtml">Accueil</a></li>
+								<li><a href="Accueil.xhtml">Connexion</a></li>
+								<li><a href="Accueil.xhtml">Accueil Administrateur</a></li>
+								<li class="active">Gestion des litiges</li>
+							</ol>
+							<div class="centrerElementVertical">
+								<span> Trier par date : </span> <select
+									class="borderRadius line margin-left-5">
+									<option value="dateCroissante">Date croissante</option>
+									<option value="dateDecroissante">Date décroissante</option>
+								</select>
+							</div>
+							<div class="centrerElementVertical">
+								<span> Trier par litige : </span> <select
+									class="borderRadius line margin-left-5">
+									<option value="tousLitiges">Tous</option>
+									<option value="LitigesenCours">En cours</option>
+									<option value="LitigesResolus">Résolus</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="bottom-border-shadow">
+						<div class="container">
+							<div class="row padding-top-10 padding-bottom-40">
+								<div
+									class="row background-inactif padding-top-10 borderperso margin-bottom-10"
+									id="centrerElementVertical">
+									<div class="col-sm-2 text-center" id="centrerElementHorizontal">
+										<img src="resources/img/blog/bob.jpg" class="imageIcone"
+											alt="thumb1" /> <br /> <span> Bob Marley </span>
+									</div>
+									<div class="col-sm-2" id="centrerElementHorizontal">
+										<i class="fa fa-arrow-right fa-4x"></i>
+									</div>
+									<div class="col-sm-2" id="centrerElementHorizontal">
+										<div class="text-center">
+											<img src="resources/img/blog/petertosh.jpg"
+												class="imageIcone" alt="thumb1" /> <br /> <span>
+												Peter Tosh </span>
+										</div>
+									</div>
+									<div class="col-sm-3 " id="centrerElementHorizontal ">
+										<div class="text-center">
+											<img src="resources/img/blog/bang-ice.jpg" class="imageIcone"
+												alt="thumb1" /> <br /> <span> Super-Bang </span>
+										</div>
+									</div>
+									<div class="col-sm-3" id="centrerElementHorizontal">
+										<div class="text-center">
+											<label><h3>Date de création du litige</h3></label> <br /> <span>
+												10 janvier 1968 </span>
+										</div>
+									</div>
+								</div>
+								<div
+									class="row background-white padding-top-10 borderperso margin-bottom-10"
+									id="centrerElementVertical">
+									<div class="col-sm-2 text-center" id="centrerElementHorizontal">
+										<img src="resources/img/blog/bob.jpg" class="imageIcone"
+											alt="thumb1" /> <br /> <span> Bob Marley </span>
+									</div>
+									<div class="col-sm-2" id="centrerElementHorizontal">
+										<i class="fa fa-arrow-right fa-4x"></i>
+									</div>
+									<div class="col-sm-2" id="centrerElementHorizontal">
+										<div class="text-center">
+											<img src="resources/img/blog/petertosh.jpg"
+												class="imageIcone" alt="thumb1" /> <br /> <span>
+												Peter Tosh </span>
+										</div>
+									</div>
+									<div class="col-sm-3 " id="centrerElementHorizontal ">
+										<div class="text-center">
+											<img src="resources/img/blog/bang-ice.jpg" class="imageIcone"
+												alt="thumb1" /> <br /> <span> Super-Bang </span>
+										</div>
+									</div>
+									<div class="col-sm-3" id="centrerElementHorizontal">
+										<div class="text-center">
+											<label><h3>Date de création du litige</h3></label> <br /> <span>
+												10 janvier 1968 </span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">
+								<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li class="active"><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

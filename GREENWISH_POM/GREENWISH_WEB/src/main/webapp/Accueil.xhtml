@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT === -->
+			<div id="slideshow">
+				<div
+					class="container no-padding background-gray-lighter bottom-border">
+					<div class="row">
+						<!-- Carousel Slideshow -->
+						<div id="carousel-example" class="carousel slide"
+							data-ride="carousel">
+							<!-- Carousel Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-example" data-slide-to="0"
+									class="active"></li>
+								<li data-target="#carousel-example" data-slide-to="1"></li>
+								<li data-target="#carousel-example" data-slide-to="2"></li>
+							</ol>
+							<div class="clearfix"></div>
+							<!-- End Carousel Indicators -->
+							<!-- Carousel Images -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="resources/img/slideshow/AG.png" />
+								</div>
+								<div class="item">
+									<img src="resources/img/slideshow/statutUtilitePublique.png" />
+								</div>
+								<div class="item">
+									<img src="resources/img/slideshow/voyageCrete.png" />
+								</div>
+							</div>
+							<!-- End Carousel Images -->
+							<!-- Carousel Controls -->
+							<a class="left carousel-control" href="#carousel-example"
+								data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-left"></span>
+							</a> <a class="right carousel-control" href="#carousel-example"
+								data-slide="next"> <span
+								class="glyphicon glyphicon-chevron-right"></span>
+							</a>
+							<!-- End Carousel Controls -->
+						</div>
+						<!-- End Carousel Slideshow -->
+					</div>
+				</div>
+			</div>
+			<div id="icons">
+				<div class="container background-grey bottom-border">
+					<div class="row padding-vert-60">
+						<h2
+							class="padding-top-1 padding-bottom-40 animate fadeIn text-center">Trouvez
+							votre objet en trois étapes :</h2>
+						<!-- Icons -->
+						<div class="col-md-4 text-center">
+							<i class="fa-search fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">Recherchez votre
+								objet</h2>
+							<p class="animate fadeIn">...avec la fonction de recherche
+								simple et la recherche multicritères mises à votre disposition!</p>
+						</div>
+						<div class="col-md-4 text-center">
+							<i class="fa-pencil fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">Inscrivez-vous et
+								proposez un objet</h2>
+							<p class="animate fadeIn">... pour recevoir des points et
+								faire vos premiers échanges!</p>
+						</div>
+						<div class="col-md-4 text-center">
+							<i class="fa-exchange fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">Récupérez votre
+								objet!</h2>
+							<p class="animate fadeIn">Prenez rendez-vous avec le
+								propriétaire via la messagerie mise en place pour vous et donnez
+								votre avis sur cet échange!</p>
+						</div>
+						<!-- End Icons -->
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio -->
+			<div id="portfolio">
+				<div class="container bottom-border">
+					<div class="row padding-top-40 padding-bottom-40">
+						<ul class="portfolio-group">
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInLeft"> <img
+										alt="Cinema" src="resources/img/frontpage/Cinema.png" /> <figcaption>
+									<h3>Cinéma/TV</h3>
+									<span>Films DVD, films Blu-Ray, films pour enfants,
+										dessins animés/mangas, séries TV, classement par genre...</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeIn"> <img
+										alt="Gros Electromenager"
+										src="resources/img/frontpage/Gros_elec.png" /> <figcaption>
+									<h3>Gros électroménager</h3>
+									<span>Lave-linge, lave-vaisselle, four, congélateur,
+										réfrigétareur...</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Petit electromenager"
+										src="resources/img/frontpage/petit_elec.png" /> <figcaption>
+									<h3>Petit électroménager</h3>
+									<span>Petit déjeuner, cuisine conviviale, préparations
+										culinaires, cuisson, entretien de la maison...</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInLeft"> <img
+										alt="Jeux_Jouets" src="resources/img/frontpage/Jouets.png" />
+									<figcaption>
+									<h3>Jeux/Jouets</h3>
+									<span>Activités manuelles, fêtes et anniversaires,
+										figurines et leurs univers, jeux de société, jouets en bois...</span>
+									</figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeIn"> <img
+										alt="jeux_video" src="resources/img/frontpage/Jeux_video.png" />
+									<figcaption>
+									<h3>Jeux vidéo</h3>
+									<span>Accessoires, plateformes</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Livre" src="resources/img/frontpage/livre.png" /> <figcaption>
+									<h3>Livre</h3>
+									<span>Romans, littérature et fiction, vie pratique,
+										scolaire et universitaire...</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Maison et jardin"
+										src="resources/img/frontpage/Maison.png" /> <figcaption>
+									<h3>Maison et jardin</h3>
+									<span>Meuble, literie, déco, jardin/bricolage</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Musique" src="resources/img/frontpage/musique.png" /> <figcaption>
+									<h3>Musique</h3>
+									<span>CDs, DVDs, mp3/mp4, vinyles, classement par genre</span>
+									</figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Informatique_multimedia"
+										src="resources/img/frontpage/IT.png" /> <figcaption>
+									<h3>Informatique/multimédia</h3>
+									<span>Ordinateurs, tablettes, pérophériques et
+										accessoires, bureautique, smartphones et objets connectés...</span> </figcaption>
+									</figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Mode_feminine"
+										src="resources/img/frontpage/mode_femin.png" /> <figcaption>
+									<h3>Mode féminine</h3>
+									<span>Vêtements, chaussures, sacs et bagages,
+										accessoires</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Mode_masculine"
+										src="resources/img/frontpage/mode_mascul.png" /> <figcaption>
+									<h3>Mode masculine</h3>
+									<span>Vêtements, chaussures, sacs et bagages,
+										accessoires</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Mode_enfant"
+										src="resources/img/frontpage/mode_enfants.png" /> <figcaption>
+									<h3>Mode enfant</h3>
+									<span>filles de 8 à 16 ans, garçons de 8 à 16 ans</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+														<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Puericulture"
+										src="resources/img/frontpage/baby.png" /> <figcaption>
+									<h3>Mode petite enfance </h3>
+									<span>0-18 mois, 2-8 ans</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Sport" src="resources/img/frontpage/sports.png" /> <figcaption>
+									<h3>Sport</h3>
+									<span>Sports d'hiver, fitness/musculation,
+										vélo/cyclisme, sports collectifs, athlétisme, sports de
+										combat...</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+							<!-- Portfolio Item -->
+							<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-10">
+								<a href="#"> <figure class="animate fadeInRight"> <img
+										alt="Puericulture"
+										src="resources/img/frontpage/puericulture.png" /> <figcaption>
+									<h3>Puériculture</h3>
+									<span>Chambre, repas, toilette, sortie, Eveil et jouets,
+										vêtements</span> </figcaption> </figure>
+							</a>
+							</li>
+							<!-- //Portfolio Item// -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- End Portfolio -->
+			<!-- Begin stats -->
+			<div id="stats" class="bottom-border-shadow">
+				<div class="container bottom-border">
+					<h2 class="padding-vert-30 animate fadeIn text-center">Nos
+						statistiques</h2>
+					<div class="row padding-top-10 padding-bottom-40">
+						<!-- Icons -->
+						<div class="col-md-3 text-center">
+							<i class="fa-group fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">460 adhérents
+								inscrits</h2>
+						</div>
+						<div class="col-md-3 text-center">
+							<i class="fa-map-marker fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">Présence sur 6
+								villes</h2>
+						</div>
+						<div class="col-md-3 text-center">
+							<i class="fa-gift fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">56 objets échangés</h2>
+						</div>
+						<div class="col-md-3 text-center">
+							<i class="fa-globe fa-4x color-primary animate fadeIn"></i>
+							<h2 class="padding-top-10 animate fadeIn">Moins 36 Tonnes de
+								CO2</h2>
+						</div>
+						<!-- End Icons -->
+					</div>
+				</div>
+				<!-- End stats -->
+				<!-- === END CONTENT === -->
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -10,30 +10,33 @@ import fr.afcepf.ai100.g3.Participant;
 
 @Remote(IDaoParticipant.class)
 @Singleton
-public class DaoParticipant implements IDaoParticipant{
+public class DaoParticipant implements IDaoParticipant {
 
-	@PersistenceContext(unitName="GREENWISH_DATA_EJB")
+	@PersistenceContext(unitName = "GREENWISH_DATA_EJB")
 	EntityManager em;
+
 	@SuppressWarnings("unchecked")
-	
+
 	@Override
 	public Participant ajouter(Participant participant) {
 		em.persist(participant);
 		return participant;
 	}
+
 	@Override
 	public Participant identification(String mail, String mdp) {
 		final String req = "SELECT p FROM Participant p WHERE p.mail = :pmail AND p.password = :ppassword";
-		Query query = em.createQuery(req).setParameter("pmail", mail)
-				.setParameter("ppassword", mdp);
+		Query query = em.createQuery(req).setParameter("pmail", mail).setParameter("ppassword", mdp);
 		Participant retour = null;
 		try {
-			retour = (Participant)query.getSingleResult();
+			retour = (Participant) query.getSingleResult();
+
 		} catch (Exception e) {
 			// catch misère...
 		}
 		return retour;
 	}
+  
 	@Override
 	public Participant rechercherParticipantParId(int idParticipant) {
 		Participant retour = null;
@@ -44,3 +47,4 @@ public class DaoParticipant implements IDaoParticipant{
 	}
 	
 }
+

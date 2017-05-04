@@ -97,7 +97,7 @@ public class Litige  implements java.io.Serializable {
     }
 
     
-    @Column(name="RESOLU", nullable=false)
+    @Column(name="RESOLU", nullable=false, columnDefinition = "TINYINT(1)")
     public boolean isResolu() {
         return this.resolu;
     }

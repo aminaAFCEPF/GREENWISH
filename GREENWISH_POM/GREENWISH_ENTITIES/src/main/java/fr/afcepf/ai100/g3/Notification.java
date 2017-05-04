@@ -30,6 +30,7 @@ public class Notification  implements java.io.Serializable {
 	private Integer idnotification;
      private String notification;
      private List<Participant> participants = new ArrayList<>();
+     private boolean lu;
 
     public Notification() {
     }
@@ -73,6 +74,16 @@ public class Notification  implements java.io.Serializable {
     public void setParticipants(List<Participant> participants) {
         this.participants = participants;
     }
+
+    @Column(name="LU", nullable=false, columnDefinition = "TINYINT(1)")
+	public boolean isLu() {
+		return lu;
+	}
+
+	
+	public void setLu(boolean lu) {
+		this.lu = lu;
+	}
 
 
 

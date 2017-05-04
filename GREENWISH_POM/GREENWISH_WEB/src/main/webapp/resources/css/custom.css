@@ -1,3 +1,17 @@
+.background-red
+{
+	background-color:red;
+}
+.background-green
+{
+	background-color:green;
+}
+.ImgDimensions
+{
+	width: auto;
+	height: 100px;
+}
+
 #hornav ul#hornavmenu {
     display: inline-flex;
     margin: 0 0 -6px;
@@ -6,7 +20,7 @@
 
 .mr-10
 {
-    margin-right: 10;
+    margin-right: 10px;
 }
 .logo a 
 {
@@ -87,7 +101,6 @@
     border-radius: 3px;
     border: 1px solid #313131;
 }
-
 #loginDiv {
     width: 100px;
     height: 100px;
@@ -152,7 +165,9 @@
 
 #gmap {
     margin-top: 50 vh;
-    transform: translateY(+13.5%);
+    transform: translateY(+10.5%);
+    border: 1px solid #33747a;
+    
 }
 
 #myCarousel {
@@ -222,29 +237,13 @@ fieldset {
 
 
 
-.blog-tag {
-    background: #F4F4F4;
-    border-radius: 3px 0 0 3px;
-    color: #333333;
-    display: inline-block;
-    font-size: 10px;
-    height: 22px;
-    line-height: 22px;
-    padding: 0 25px 0 10px;
-    position: relative;
-    margin: 0 7px 7px 0;
-    text-decoration: none;
-    -webkit-transition: color 0.2s;
-    box-shadow: 1px -1px 0px rgba(0, 0, 0, 0.15) inset;
-}
-
 .perso {
     font-size: 16px;
 }
 
 .borderperso {
-	border-width: 1;
-	border-color: #33747a ;
+    border: 1px solid #33747a;
+    border-radius: 5px;
 }
 
 h4 {
@@ -299,11 +298,9 @@ h5 {
 {
     margin-left: 85px;
 }
-.breadcrumb {
-  padding: 8px 15px;
-  list-style: none;
-  background-color: white;
-  border-radius: 5px;
+.SiteBreadcrumb {
+
+  margin : 0;
 }
 
 .caracteristiques-rappel
@@ -381,7 +378,7 @@ h5 {
     border-radius: 3px 0 0 3px;
     color: #333333;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     height: 22px;
     line-height: 22px;
     padding: 0 25px 0 10px;
@@ -567,8 +564,8 @@ h5 {
 }
 
 .containerBar img {
-    height: 45px;
-    width: 60px;
+    max-height: 45px;
+    max-width: 60px;
 }
 
 
@@ -576,11 +573,10 @@ h5 {
 .boutons {
     display: flex;
     justify-content: space-around;
-    margin-right: 100px;
 }
 
 .btn-group button {
-    max-width: 65px;
+    max-width: 80px;
     max-height: 40px;
 }
 
@@ -672,3 +668,66 @@ background-color: #33747a;
 .divNotif{
 color: white;
 }
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.margin-right-5{
+    margin-right: 5px;
+}
+.margin-left-5{
+    margin-left: 5px;
+}
+
+.table-bordered {
+    border: 1px solid #33747a;
+}
+.muted{
+    color: #999999;
+}
+
+.background-color-event{
+    background-color: #1b891f;
+    color: #ffffff; 
+}
+
+.customAlign{
+    display: block;
+    /*float: right;*/
+    text-align: center;
+}
+
+.boutonsSelect {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+}
+.margin-bottom-35 {
+    margin-bottom: 35px;
+}
+
+.btn-groupFavo button {
+    float: left;
+    max-width: 80px;
+    max-height: 40px;
+}
+
+.favorisTittleObj {
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 420px;
+    margin-bottom: 15px;
+}
+
+.favorisTittleRch {
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 420px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+

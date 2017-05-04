@@ -33,6 +33,7 @@ public class Categorie  implements java.io.Serializable {
      private Domaine domaine;
      private String intitule;
      private List<Souscategorie> souscategories = new ArrayList<>();
+     private List<Objet>objets = new ArrayList<>();
 
     public Categorie() {
     }
@@ -58,6 +59,15 @@ public class Categorie  implements java.io.Serializable {
     
     public void setIdcategorie(Integer idcategorie) {
         this.idcategorie = idcategorie;
+    }
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="categorie")
+    public List<Objet> getObjets() {
+        return this.objets;
+    }
+    
+    public void setObjets(List<Objet> objets) {
+        this.objets = objets;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
