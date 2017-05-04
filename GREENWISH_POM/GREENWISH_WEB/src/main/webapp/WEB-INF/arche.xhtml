@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<!-- Favicon -->
+	<link href="favicon.ico" rel="shortcut icon" />
+	<!-- Bootstrap Core CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<!-- Template CSS -->
+	<h:outputStylesheet library="css" name="animate.css" />
+	<h:outputStylesheet library="css" name="font-awesome.css" />
+	<h:outputStylesheet library="css" name="nexus.css" />
+	<h:outputStylesheet library="css" name="responsive.css" />
+	<h:outputStylesheet library="css" name="custom.css" />
+	<!-- Google Fonts-->
+	<link
+		href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
+		rel="stylesheet" type="text/css" />
+	<ui:insert name="scriptsAndCss"></ui:insert>
+</h:head>
+<body>
+	<div id="header">
+		<div class="container">
+			<div class="row">
+				<!-- Logo -->
+				<div class="logo">
+					<a href="Accueil.xhtml" title="" style="text-decoration: none;"> <img
+						src="assets/img/logo6.0.png" title="Titre" />
+					</a>
+				</div>
+				<!-- End Logo -->
+			</div>
+		</div>
+	</div>
+	<!-- End Header -->
+	<!-- Top Menu -->
+	<div id="hornav" class="bottom-border-shadow">
+		<div class="container no-padding border-bottom">
+			<div class="row">
+				<div class="col-md-12 no-padding">
+					<div class="visible-lg">
+						<ul id="hornavmenu" class="no-margin nav navbar-nav pull-left">
+							<li class="no-padding"><a href="../Accueil.xhtml"
+								class="glyphicon glyphicon-home"> Accueil</a></li>
+							<li><a href="../Catalogue.xhtml"
+								class="glyphicon glyphicon-shopping-cart"> Catalogue</a></li>
+							<li><a href="../AjouterObjet.xhtml"
+								class="glyphicon glyphicon-gift"> Proposer un objet</a></li>
+							<li><a href="../AccueilAdmin.xhtml"
+								class="glyphicon glyphicon-user"> Mon compte</a></li>
+						</ul>
+						<ul id="hornavmenu" class="no-margin nav navbar-nav pull-right">
+							<li><a href="" target="_blank" id="btnSearch"
+								class="glyphicon glyphicon-search" title="Rechercher"></a></li>
+							<li><a href="#" target="_blank" id="btnNotif"
+								class="glyphicon glyphicon-bell" title="Notifications"></a></li>
+							<li><a href="../Connexion.xhtml" target="_blank"
+								id="btnLogin" class="glyphicon glyphicon-lock"
+								title="Se connecter/S'enregistrer"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="divNotifs" class="background-gray-lighter">
+					<a href="#"><div class="bottom-border divNotif">
+							<p>Vous avez un nouveau message concernant le transfert du
+								canard de bain.</p>
+						</div></a> <a href="../FicheTransfert.xhtml"><div
+							class="bottom-border divNotif">
+							<p>Vous avez un nouveau message concernant le transfert du
+								canard de bain.</p>
+						</div></a> <a href="../FicheTransfert.xhtml"><div
+							class="bottom-border divNotif">
+							<p>Vous avez un nouveau message concernant le transfert du
+								canard de bain.</p>
+						</div></a> <a href="../FicheTransfert.xhtml"><div
+							class="bottom-border divNotif">
+							<p>Vous avez un nouveau message concernant le transfert du
+								canard de bain.</p>
+						</div></a>
+				</div>
+				<div id="loginDiv">
+					<a href="../Accueil.xhtml" id="btnImgLogin"><img
+						src="assets/img/profiles/84.jpg" id="imgLogin" /></a> <br /> <input
+						type="button" id="btnSeCo" value="Se deconnecter"
+						class="btn btn-primary borderRadius" />
+				</div>
+				<div id="searchDiv">
+					<h:form id="search" name="recherche" class="input-group">
+						<input type="text" id="searchBar" placeholder="Rechercher..." />
+						<input type="submit" id="searchSubmit" value="Rechercher" />
+						<br /> <br />
+						<div class="text-center" id="searchFiltre">
+							<select id="filtre">
+								<option>Domaine</option>
+								<option>0-99ans</option>
+								<option>-6ans</option>
+								<option>18+</option>
+							</select> <select id="filtre">
+								<option>Categorie</option>
+								<option>0-99ans</option>
+								<option>-6ans</option>
+								<option>18+</option>
+							</select> <select id="filtre">
+								<option>Sous-categorie</option>
+								<option>0-99ans</option>
+								<option>-6ans</option>
+								<option>18+</option>
+							</select> <select id="filtre">
+								<option>Distance</option>
+								<option>moins de 5km</option>
+								<option>moins de 10km</option>
+								<option>moins de 30km</option>
+							</select> <select id="filtre">
+								<option>Tranche d'age</option>
+								<option>0-99ans</option>
+								<option>-6ans</option>
+								<option>18+</option>
+							</select> <select id="filtre">
+								<option>Valeur</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+							</select>
+						</div>
+					</h:form>
+				</div>
+				<br />
+			</div>
+		</div>
+	</div>
+	<!-- End Top Menu -->
+	<!-- === END HEADER === -->
+	<div id="content">
+		<ui:insert name="content"></ui:insert>
+	</div>
+	<!-- === BEGIN FOOTER === -->
+	<div id="base">
+		<div class="container padding-vert-30">
+			<div class="row">
+				<!-- Disclaimer -->
+				<div class="col-md-4">
+					<h3 class="class margin-bottom-10">Nos Partenaires</h3>
+					<ul>
+						<li>ToysRus</li>
+						<li>La Grande Récré</li>
+						<li>La FoireFouille</li>
+						<li>King-Jouet</li>
+						<li>JouéClub</li>
+					</ul>
+				</div>
+				<!-- End Disclaimer -->
+				<!-- Contact Details -->
+				<div class="col-md-4 margin-bottom-20">
+					<h3 class="margin-bottom-10">Contact</h3>
+					<p>
+						<span class="fa-phone">Téléphone:</span>01-02-03-04-05 <br /> <span
+							class="fa-envelope">Email:</span> <a
+							href="mailto:contact@Greenlist.com">contact@Greenlist.com</a> <br />
+					</p>
+					<p>
+						France, <br />92120, Montrouge, <br />9 boulevard du Général de
+						Gaule.
+					</p>
+				</div>
+				<!-- End Contact Details -->
+				<!-- Sample Menu -->
+				<div class="col-md-4 margin-bottom-20">
+					<h3 class="margin-bottom-10">Besoin d'aide?</h3>
+					<ul class="menu">
+						<li><a class="fa-leaf" href="#">L'association GreenWish</a></li>
+						<li><a class="fa-info-circle" href="#">Comment ça marche?</a></li>
+						<li><a class="fa-question-circle" href="#">FAQ</a></li>
+
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+				<!-- End Sample Menu -->
+			</div>
+		</div>
+	</div>
+	<!-- End Footer -->
+	<!-- JS -->
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/scripts.js"></script>
+	<script src="resources/js/jquery.isotope.js"></script>
+	<script src="resources/js/jquery.slicknav.js"></script>
+	<script src="resources/js/jquery.visible.js"></script>
+	<script src="resources/js/jquery.sticky.js"></script>
+	<script src="resources/js/slimbox2.js"></script>
+	<script src="resources/js/modernizr.custom.js"></script>
+	<script src="resources/js/custom.js"></script>
+	<script src="resources/js/ActusBrowse.js"></script>
+	<script src="resources/js/tabFill.js"></script>
+	<!-- End JS -->
+	<!-- === END FOOTER === -->
+</body>
+</html>

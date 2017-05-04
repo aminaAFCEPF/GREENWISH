@@ -6,36 +6,46 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "mbInscription")
-@SessionScoped
+@ViewScoped
 public class InscriptionBean {
-
+	@ManagedProperty(value = "#{mbCnx}")
+	ConnexionBean mbCnx;
 	@EJB
 	private IBusinessInscription proxyInscription;
 	@EJB
 	private IDaoVille proxyDaoVille;
-	private String adresse = "rue des marins";
+	private String adresse;
 	private Date datenaissance = new Date();
 	private String mail;
 	private String nom;
 	private String password;
 	private String prenom;
 	private String telephone;
-	private Ville ville;
+	private String codePostal;
+	private List<Ville> villes;
+	private Ville selectedville = new Ville();
+	
+	public void rechercherVilles(){
+		villes = proxyDaoVille.rechercherVille(codePostal);
+	}
 	
 	public String inscrire(){
 		List<Inscription> inscriptions = new ArrayList<>();
 		Inscription inscription = new Inscription();
 		inscriptions.add(inscription);
 		inscription.setDateinscription(new Date());
-		ville = new Ville();
-		ville.setIdville(4);
 		
-		Participant participant = new Participant(ville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
+		Participant participant = new Participant(selectedville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
 		proxyInscription.inscrire(participant);
-		return null;
+		mbCnx.setMail(mail);
+		mbCnx.setMdp(password);
+		
+		return mbCnx.seConnecter();
 	}
 
 	public IBusinessInscription getProxyInscription() {
@@ -102,14 +112,29 @@ public class InscriptionBean {
 		this.telephone = telephone;
 	}
 
-	public Ville getVille() {
-		return ville;
+	public String getCodePostal() {
+		return codePostal;
+	}
+	
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
-	public void setVille(Ville ville) {
-		this.ville = ville;
+	public List<Ville> getVilles() {
+		return villes;
 	}
 
+	public void setVilles(List<Ville> villes) {
+		this.villes = villes;
+	}
+
+	public Ville getSelectedville() {
+		return selectedville;
+	}
+
+	public void setSelectedville(Ville selectedville) {
+		this.selectedville = selectedville;
+	}
 	
 	
 	
