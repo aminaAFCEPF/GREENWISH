@@ -7,4 +7,6 @@ public interface IDaoParticipant {
 	Participant  ajouter(Participant participant);
 	
 	Participant identification(String mail, String mdp);
+	
+	Participant rechercherParticipantParId(int idParticipant);
 }

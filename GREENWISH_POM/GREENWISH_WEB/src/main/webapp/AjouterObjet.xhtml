@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/arche.xhtml">
+<ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
 			<div class="container background-gray-lighter ">
@@ -26,24 +26,27 @@
 								value="#{mbAjouterObjet.selectedListeProposition.idlisteobjet}"
 								class="form-control margin-bottom-20 fa-plus">
 									<f:selectItems value="#{mbAjouterObjet.listePropositions}" var="listeProp"
-										itemLabel="#{listeprop.nom}" itemValue="#{listeProp.idlisteobjet}" />
+										itemLabel="#{listeProp.nom}" itemValue="#{listeProp.idlisteobjet}" />
 								</h:selectOneMenu> 
 							</div>
 							<div class="col-md-1">
-								<i class="fa-plus fa-2x color-primary animate fadeIn"></i>
+								<h:button type="button" class="btn btn-primary" ><i class="fa-plus fa-2x color-primary animate fadeIn"></i></h:button>
+								
 							</div>
 							<div class="col-md-4">
 								<input class="form-control  margin-bottom-20" type="text"
 									placeholder="Nom" />
 							</div>
 							<div class="col-md-1">
+								<h:button type="button" class="btn btn-primary" action="#{mbAjouterObjet.ajouterUneListe(participant)}">
 								<i class="fa-check fa-2x color-primary animate fadeIn"></i>
+								</h:button>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<label>Nom <span class="color-red">*</span>
-								</label> <input class="form-control  margin-bottom-20" type="text" /> <label>Description
+								</label> <inputtext value="#{mbAjouterObjet.nom}" class="form-control  margin-bottom-20" type="text" /> <label>Description
 									<span class="color-red">*</span>
 								</label>
 								<textarea rows="5" class="form-control  margin-bottom-20"></textarea>

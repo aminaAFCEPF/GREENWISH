@@ -34,5 +34,13 @@ public class DaoParticipant implements IDaoParticipant{
 		}
 		return retour;
 	}
+	@Override
+	public Participant rechercherParticipantParId(int idParticipant) {
+		Participant retour = null;
+		final String req="SELECT p FROM Participant p WHERE p.id = :pid";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		retour = (Participant)query.getSingleResult();
+		return retour;
+	}
 	
 }

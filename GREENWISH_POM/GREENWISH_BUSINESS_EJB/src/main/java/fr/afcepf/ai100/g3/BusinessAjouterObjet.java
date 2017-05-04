@@ -20,7 +20,8 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	IDaoSousCategorie proxyDaoSousCategorie;
 	@EJB
 	IDaoListeProposition proxyDaoListeProposition;
-	@Override
+	@EJB
+	IDaoParticipant proxyDaoParticipant;
 	public void ajouterObjet(Objet objet) {
 		proxyDaoObjet.ajouterObjet(objet);
 	}
@@ -42,7 +43,7 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	@Override
 	public List<ListeProposition> rechercherListeProposition(Participant participant) {
 		List<ListeProposition> listePropositions = proxyDaoListeProposition.getAllListePropositions(participant);
-		return null;
+		return listePropositions;
 	}
 	
 	@Override
@@ -62,6 +63,18 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 		List<Souscategorie> sousCategories;
 		sousCategories = proxyDaoSousCategorie.getAllSousCategorie();
 		return sousCategories;
+	}
+	
+	@Override
+	public Participant rechercherParticipantParId(int idParticipant) {
+		Participant participant = proxyDaoParticipant.rechercherParticipantParId(idParticipant);
+		return participant;
+	}
+	
+	@Override
+	public ListeProposition ajouterUneListe(ListeProposition listeProposition) {
+		ListeProposition nouvelleListeProposition = proxyDaoListeProposition.ajouterListeProposition(listeProposition);
+		return nouvelleListeProposition;
 	}
 
 	public IDaoObjet getProxyDaoObjet() {
@@ -95,6 +108,10 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	public void setProxyDaoSousCategorie(IDaoSousCategorie proxyDaoSousCategorie) {
 		this.proxyDaoSousCategorie = proxyDaoSousCategorie;
 	}
+
+	
+
+	
 
 	
 

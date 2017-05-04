@@ -24,9 +24,37 @@ public class AjouterObjetBean {
 	private List<Souscategorie> sousCategories;
 	private List<ListeProposition> listePropositions;
 	private ListeProposition selectedListeProposition = new ListeProposition();
-	private Participant participant = new Participant();
+	private Participant participant;
+	private ListeProposition nouvelleListeProposition = new ListeProposition();
+	private String nom;
+	
+	public List<ListeProposition> getListePropositions() {
+		return listePropositions;
+	}
+
+	public void setListePropositions(List<ListeProposition> listePropositions) {
+		this.listePropositions = listePropositions;
+	}
+
+	public ListeProposition getSelectedListeProposition() {
+		return selectedListeProposition;
+	}
+
+	public void setSelectedListeProposition(ListeProposition selectedListeProposition) {
+		this.selectedListeProposition = selectedListeProposition;
+	}
+
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
 	@PostConstruct
 	public void init(){
+		participant = proxyAjouterObjet.rechercherParticipantParId(2);
 		domaines = proxyAjouterObjet.rechercherDomaine();
 		selectedDomaine = domaines.get(0);
 		chargerCategories();
@@ -48,6 +76,11 @@ public class AjouterObjetBean {
 	
 	public void chargerListeProposition(){
 		listePropositions = proxyAjouterObjet.rechercherListeProposition(participant);
+System.out.println(listePropositions);
+	}
+	
+	public void ajouterUneListe(Participant participant ){
+		nouvelleListeProposition = proxyAjouterObjet.ajouterUneListe(nouvelleListeProposition);
 	}
 
 	public IBusinessAjouterObjet getProxyAjouterObjet() {
