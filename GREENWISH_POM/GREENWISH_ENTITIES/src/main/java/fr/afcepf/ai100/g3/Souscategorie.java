@@ -7,9 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,6 +34,7 @@ public class Souscategorie  implements java.io.Serializable {
 	private Integer idsouscategorie;
      private Categorie categorie;
      private String intitule;
+     private List<Objet> objets = new ArrayList<>();
 
     public Souscategorie() {
     }
@@ -48,6 +54,15 @@ public class Souscategorie  implements java.io.Serializable {
     
     public void setIdsouscategorie(Integer idsouscategorie) {
         this.idsouscategorie = idsouscategorie;
+    }
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="souscategorie")
+    public List<Objet> getObjets() {
+        return this.objets;
+    }
+    
+    public void setObjets(List<Objet> objets) {
+        this.objets = objets;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)

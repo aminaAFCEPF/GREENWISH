@@ -84,7 +84,7 @@ public class ListeProposition  implements java.io.Serializable {
     }
 
     
-    @Column(name="ACTIF", nullable=false)
+    @Column(name="ACTIF", nullable=false, columnDefinition = "TINYINT(1)")
     public boolean isActif() {
         return this.actif;
     }

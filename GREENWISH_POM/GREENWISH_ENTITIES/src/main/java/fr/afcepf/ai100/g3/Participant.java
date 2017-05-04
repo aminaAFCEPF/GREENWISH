@@ -283,7 +283,7 @@ public class Participant  implements java.io.Serializable {
     }
 
     
-    @Column(name="STATUTADMIN", nullable=false)
+    @Column(name="STATUTADMIN", nullable=false, columnDefinition = "TINYINT(1)")
     public boolean isStatutadmin() {
         return this.statutadmin;
     }
