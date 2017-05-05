@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-@Remote
+@Remote(IDaoMessagerie.class)
 @Singleton
 public class DaoMessagerie implements IDaoMessagerie{
 
@@ -17,14 +17,14 @@ public class DaoMessagerie implements IDaoMessagerie{
 	
 	@Override
 	public Messagerie getMessagerieByIdParticipant(int id) {
-		final String req = "SELECT * FROM messagerie m WHERE m.IDPARTICIPANT = :pidparticipant";
+		final String req = "SELECT m FROM Messagerie m WHERE m.participant.idparticipant = :pidparticipant";
 		Query query = em.createQuery(req).setParameter("pidparticipant", id);
 		return (Messagerie) query.getSingleResult();
 	}
 
 	@Override
 	public Messagerie getMessagerieById(int id) {
-		final String req = "SELECT * FROM messagerie m WHERE m.IDMESSAGERIE = :pidmessagerie";
+		final String req = "SELECT m FROM Messagerie m WHERE m.idmessagerie = :pidmessagerie";
 		Query query = em.createQuery(req).setParameter("pidActualite", id);
 		return (Messagerie) query.getSingleResult();
 	}

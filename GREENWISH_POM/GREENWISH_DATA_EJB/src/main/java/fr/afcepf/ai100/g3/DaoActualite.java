@@ -46,14 +46,14 @@ public class DaoActualite implements IDaoActualite{
 
 	@Override
 	public Actualite getActualiteById(int id) {
-		final String req = "SELECT * FROM actualite a WHERE a.IDACTU = :pidActualite";
+		final String req = "SELECT a FROM Actualite a WHERE a.idactu = :pidActualite";
 		Query query = em.createQuery(req).setParameter("pidActualite", id);
 		return (Actualite) query.getSingleResult();
 	}
 
 	@Override
 	public List<Actualite> getAllActualite() {
-		final String req = "SELECT * FROM actualite";
+		final String req = "SELECT a FROM Actualite";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}

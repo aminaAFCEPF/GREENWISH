@@ -29,7 +29,7 @@ public class DaoSouhait implements IDaoSouhait{
 
 	@Override
 	public List<Souhait> getSouhaitByIdParticipant(int idParticipant) {
-		String req="SELECT * FROM souhait s WHERE s.IDPARTICIPANT =:pidParticipant";
+		String req="SELECT s FROM Souhait s WHERE s.participant.idparticipant =:pidParticipant";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);		
 		return query.getResultList();
 	}

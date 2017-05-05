@@ -24,14 +24,14 @@ public class DaoMessage implements IDaoMessage{
 
 	@Override
 	public List<Message> getAllMessage() {
-		String req="SELECT * FROM message";
+		String req="SELECT m FROM Message m";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Message> getMessageByIdTransfert(int idTransfert, int idParticipant) {
-		String req="SELECT * FROM message m WHERE m.IDTRANSFERT =:pidTransfert AND m.IDPARTICIPANT =:pidParticipant";
+		String req="SELECT m FROM Message m WHERE m.idtransfert =:pidTransfert AND m.messagerie.participant.idparticipant =:pidParticipant";
 		Query query= em.createQuery(req).setParameter("pidParticipant", idParticipant).setParameter("pidTransfert", idTransfert);
 		return query.getResultList();
 	}
