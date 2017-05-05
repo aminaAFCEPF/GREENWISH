@@ -7,6 +7,7 @@
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
+		<h:form>
 			<div class="bottom-border-shadow">
 				<div
 					class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
@@ -22,7 +23,7 @@
 				</div>
 				<div>
 					<div class="bottom-border-shadow">
-						<div class="container bottom-border">
+						<div class="container bottom-border tailleFixe">
 							<div
 								class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
 								<div class="col-md-11">
@@ -43,119 +44,34 @@
 							</div>
 							<div class="row padding-top-10 padding-bottom-10">
 								<div class="col-sm-6">
-									<a href="#">
-										<div
-											class="row background-white padding-top-10 borderperso margin-bottom-5 ">
-											<div class="col-sm-3 centrerElementVertical">
-												<img src="resources/img/imgObjetsMaxi/velo.png"
-													alt="thumb1" class="ImgDimensions" />
-											</div>
-											<div class="col-sm-9">
-												<div class="row">
-													<div class="col-sm-7">
-														<h4>Super-bang</h4>
-														<h5>
-															Valeur : 4 <img class="idflocon"
-																src="resources/img/blog/flocon.jpg" alt="thumb1" />
-														</h5>
-													</div>
-													<div class="col-sm-5">
-														<a href="#"
-															class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"></a>
-														<h5 class="col-md-offset-2">Distance : 10 km</h5>
-													</div>
-												</div>
-												<p>Description objet : bla bla bla bla bla bla bla bla
-													bla bla bla bla ...</p>
-											</div>
-										</div>
-									</a>
 
-									<a href="#">
-									<div class="row background-white padding-top-10 borderperso margin-bottom-5 ">
-										<div class="col-sm-3 centrerElementVertical">
-											<img
-												src="resources/img/imgObjetsMaxi/cafetiere.jpg" alt="thumb1" class="ImgDimensions" />
-
-										</div>
-										<div class="col-sm-9">
-											<div class="row">
-												<div class="col-sm-7">
-													<h4>Super-bang</h4>
-													<h5>
-														Valeur : 4 <img class="idflocon"
-															src="resources/img/blog/flocon.jpg" alt="thumb1" />
-													</h5>
+									<ui:repeat var="lObjet" value="#{mbCatalogue.paginator.model}">
+										<a href="#">
+											<div
+												class="row background-white padding-top-10 borderperso margin-bottom-5 ">
+												<div class="col-sm-3 centrerElementVertical">
+													<img src="resources/img/imgObjetsMaxi/velo.png"
+														alt="thumb1" class="ImgDimensions" />
 												</div>
-												<div class="col-sm-5">
-													<a href="#"
-														class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"></a>
-													<h5 class="col-md-offset-2">Distance : 10 km</h5>
+												<div class="col-sm-9">
+													<div class="row">
+														<div class="col-sm-7">
+															<h4>#{lObjet.intitule}</h4>
+															<h5>
+																Valeur : #{lObjet.valeur.valeur} <img class="idflocon"
+																	src="resources/img/blog/flocon.jpg" alt="thumb1" />
+															</h5>
+														</div>
+														<div class="col-sm-5">
+															<h:commandLink action="#{mbCatalogue.ajouterFavoris(lObjet)}" value="" class="col-md-offset-9 fa-star-o fa-2x animate fadeIn" />
+															<h5 class="col-md-offset-2">Distance : 10 km</h5>
+														</div>
+													</div>
+													<p>Description objet : #{lObjet.description.substring(0,50)}...</p>
 												</div>
 											</div>
-											<p>Description objet : bla bla bla bla bla bla bla bla
-												bla bla bla bla ...</p>
-										</div>
-									</div>
-
-									</a>
-
-									<a href="#">
-										<div
-											class="row background-white padding-top-10 borderperso margin-bottom-5 ">
-											<div class="col-sm-3">
-												<img src="resources/img/imgObjetsMaxi/fusee.jpg"
-													alt="thumb1" class="ImgDimensions"/>
-											</div>
-											<div class="col-sm-9">
-												<div class="row">
-													<div class="col-sm-7">
-														<h4>Super-bang</h4>
-														<h5>
-															Valeur : 4 <img class="idflocon"
-																src="resources/img/blog/flocon.jpg" alt="thumb1" />
-														</h5>
-													</div>
-													<div class="col-sm-5">
-														<a href="#"
-															class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"></a>
-														<h5 class="col-md-offset-2">Distance : 10 km</h5>
-													</div>
-												</div>
-												<p>Description objet : bla bla bla bla bla bla bla bla
-													bla bla bla bla ...</p>
-											</div>
-										</div>
-
-									</a> 
-									<a href="#">
-
-										<div
-											class="row background-white padding-top-10 borderperso margin-bottom-5 ">
-											<div class="col-sm-3">
-												<img src="resources/img/imgObjetsMaxi/Kangourou.jpg"
-													alt="thumb1" class="ImgDimensions"/>
-											</div>
-											<div class="col-sm-9">
-												<div class="row">
-													<div class="col-sm-7">
-														<h4>Super-bang</h4>
-														<h5>
-															Valeur : 4 <img class="idflocon"
-																src="resources/img/blog/flocon.jpg" alt="thumb1" />
-														</h5>
-													</div>
-													<div class="col-sm-5">
-														<a href="#"
-															class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"></a>
-														<h5 class="col-md-offset-2">Distance : 10 km</h5>
-													</div>
-												</div>
-												<p>Description objet : bla bla bla bla bla bla bla bla
-													bla bla bla bla ...</p>
-											</div>
-										</div>
-									</a>
+										</a>
+									</ui:repeat>
 								</div>
 								<div class="col-sm-6">
 									<div id="gmap">
@@ -166,20 +82,23 @@
 								</div>
 							</div>
 							<div class="text-center">
-								<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+								<h:commandButton action="#{mbCatalogue.paginator.prev}"
+									value="&lt; prev" />
+								<h:outputText
+									value="#{mbCatalogue.paginator.pageIndex} / #{mbCatalogue.paginator.pages}" />
+								<h:commandButton action="#{mbCatalogue.paginator.next}"
+									value="next &gt;" />
+								<h:inputHidden value="#{mbCatalogue.paginator.pageIndex}" />
+
 							</div>
+
+
+
 						</div>
 					</div>
 				</div>
 			</div>
+			</h:form>
 		</body>
 	</ui:define>
 </ui:composition>
