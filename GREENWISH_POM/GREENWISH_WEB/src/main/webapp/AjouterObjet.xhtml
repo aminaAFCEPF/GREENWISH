@@ -36,26 +36,27 @@
 
 							</div>
 							<div class="col-md-1">
-								<h:button type="button" class="btn btn-primary" ><i class="fa-plus fa-2x color-primary animate fadeIn"></i></h:button>
+								<h:commandButton  class="btn btn-primary" ><i class="fa-plus fa-2x color-primary animate fadeIn"></i></h:commandButton>
 								
-							</div>
+						 	</div>
 							<div class="col-md-4">
-								<input class="form-control  margin-bottom-20" type="text"
+								<h:inputText value="#{mbAjouterObjet.nouvelleListeProposition.nom}" class="form-control  margin-bottom-20" type="text"
 									placeholder="Nom" />
 							</div>
 							<div class="col-md-1">
-								<h:button type="button" class="btn btn-primary" action="#{mbAjouterObjet.ajouterUneListe(participant)}">
+								<h:commandButton id="toto" class="btn btn-primary" action="#{mbAjouterObjet.ajouterUneListe()}">
 								<i class="fa-check fa-2x color-primary animate fadeIn"></i>
-								</h:button>
+								</h:commandButton>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label>Nom <span class="color-red">*</span>
-								</label> <inputtext value="#{mbAjouterObjet.nom}" class="form-control  margin-bottom-20" type="text" /> <label>Description
+								<label>Nom <span class="color-red">*</span></label> 
+								<h:inputText id="nomObjet" value="#{mbAjouterObjet.objetNouveau.intitule}" class="form-control  margin-bottom-20" /> 
+								<label>Description
 									<span class="color-red">*</span>
 								</label>
-								<textarea rows="5" class="form-control  margin-bottom-20"></textarea>
+								<h:inputTextarea value="#{mbAjouterObjet.objetNouveau.description}"  rows="5" class="form-control  margin-bottom-20" />
 							</div>
 							<div class="col-md-6">
 
@@ -63,7 +64,7 @@
 								<h:selectOneMenu id="lesDomaines"
 									value="#{mbAjouterObjet.selectedDomaine.iddomaine}"
 									class="form-control margin-bottom-20 fa-plus">
-									<f:ajax event="change" render=":ajouterObjetForm:lesCategories"
+									<f:ajax event="change" render=":ajouterObjetForm:lesCategories :ajouterObjetForm:lesSousCategories"
 										listener="#{mbAjouterObjet.chargerCategories()}"
 										execute="@form" />
 									<f:selectItems value="#{mbAjouterObjet.domaines}" var="domain"
@@ -121,6 +122,8 @@
 						</div>
 						<div class="row padding-vert-10 padding-horiz-20">
 							<label>(*) : Champ obligatoire</label>
+							<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
+											value="Ajouter" />
 						</div>
 					</h:form>
 				</div>

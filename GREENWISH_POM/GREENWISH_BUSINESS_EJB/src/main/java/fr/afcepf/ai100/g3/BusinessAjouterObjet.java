@@ -22,7 +22,20 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	IDaoListeProposition proxyDaoListeProposition;
 	@EJB
 	IDaoParticipant proxyDaoParticipant;
+	
+	
+	
 	public void ajouterObjet(Objet objet) {
+		
+		int nbEspace;
+		int longueurDescription = objet.getDescription().length();
+		String texteDescription = objet.getDescription();
+		if(longueurDescription < 50) {
+			nbEspace = 50 - longueurDescription;
+			for(int i = 0; i < nbEspace ; i++){
+				texteDescription = texteDescription + " ";
+			}
+		}
 		proxyDaoObjet.ajouterObjet(objet);
 	}
 
@@ -73,9 +86,15 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	
 	@Override
 	public ListeProposition ajouterUneListe(ListeProposition listeProposition) {
-		ListeProposition nouvelleListeProposition = proxyDaoListeProposition.ajouterListeProposition(listeProposition);
-		return nouvelleListeProposition;
+		proxyDaoListeProposition.ajouterListeProposition(listeProposition);
+		return listeProposition;
 	}
+	
+	
+	
+	
+	
+	
 
 	public IDaoObjet getProxyDaoObjet() {
 		return proxyDaoObjet;
