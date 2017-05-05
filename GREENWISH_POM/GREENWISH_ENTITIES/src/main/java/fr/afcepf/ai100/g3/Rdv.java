@@ -38,13 +38,24 @@ public class Rdv  implements java.io.Serializable {
      private Ville ville;
      private Date daterdv;
      private String adresse;
-     private List<Echange> echanges = new ArrayList<>();
+     private Participant participant;
 
     public Rdv() {
     }
-
+    
 	
-    public Rdv(Echange echange, Ville ville, Date daterdv, String adresse) {
+    public Rdv(Integer idrdv, Echange echange, Ville ville, Date daterdv, String adresse, Participant participant) {
+		super();
+		this.idrdv = idrdv;
+		this.echange = echange;
+		this.ville = ville;
+		this.daterdv = daterdv;
+		this.adresse = adresse;
+		this.participant = participant;
+	}
+
+
+	public Rdv(Echange echange, Ville ville, Date daterdv, String adresse) {
         this.echange = echange;
         this.ville = ville;
         this.daterdv = daterdv;
@@ -55,7 +66,7 @@ public class Rdv  implements java.io.Serializable {
        this.ville = ville;
        this.daterdv = daterdv;
        this.adresse = adresse;
-       this.echanges = echanges;
+
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -110,14 +121,17 @@ public class Rdv  implements java.io.Serializable {
         this.adresse = adresse;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="rdv")
-    public List<Echange> getEchanges() {
-        return this.echanges;
-    }
-    
-    public void setEchanges(List<Echange> echanges) {
-        this.echanges = echanges;
-    }
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IDPARTICIPANT", nullable=false)
+	public Participant getParticipant() {
+		return participant;
+	}
+
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
 
 
 

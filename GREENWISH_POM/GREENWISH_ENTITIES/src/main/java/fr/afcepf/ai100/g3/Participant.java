@@ -64,6 +64,7 @@ public class Participant  implements java.io.Serializable {
      private List<Statistique> statistiques = new ArrayList<>();
      private List<Inscription> inscriptions = new ArrayList<>();
      private List<Disponibilite> disponibilites = new ArrayList<>();
+     private List<Rdv> rdvs = new ArrayList<>();
 
     public Participant() {
     }
@@ -409,6 +410,16 @@ public class Participant  implements java.io.Serializable {
     public void setDisponibilites(List<Disponibilite> disponibilites) {
         this.disponibilites = disponibilites;
     }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="participant")
+	public List<Rdv> getRdvs() {
+		return rdvs;
+	}
+
+
+	public void setRdvs(List<Rdv> rdvs) {
+		this.rdvs = rdvs;
+	}
 
 
 

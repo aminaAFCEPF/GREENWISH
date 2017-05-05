@@ -44,9 +44,9 @@ public class Echange  implements java.io.Serializable {
      private Date datelitige;
      private String codefin;
      private int valeur;
-     private List<Rdv> rdvs = new ArrayList<>();
      private List<Litige> litiges = new ArrayList<>();
      private List<Refus> refus = new ArrayList<>();
+     private List<Message> messages = new ArrayList<>();
 
     public Echange() {
     }
@@ -57,7 +57,7 @@ public class Echange  implements java.io.Serializable {
         this.objet = objet;
         this.valeur = valeur;
     }
-    public Echange(Avis avis, Litige litige, Objet objet, Rdv rdv, Date dateactivation, Date daterefus, Date datelitige, String codefin, int valeur, List<Rdv> rdvs, List<Litige> litiges, List<Refus> refus) {
+    public Echange(Avis avis, Litige litige, Objet objet, Rdv rdv, Date dateactivation, Date daterefus, Date datelitige, String codefin, int valeur, List<Litige> litiges, List<Refus> refus) {
        this.avis = avis;
        this.litige = litige;
        this.objet = objet;
@@ -67,7 +67,6 @@ public class Echange  implements java.io.Serializable {
        this.datelitige = datelitige;
        this.codefin = codefin;
        this.valeur = valeur;
-       this.rdvs = rdvs;
        this.litiges = litiges;
        this.refus = refus;
     }
@@ -175,15 +174,6 @@ public class Echange  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="echange")
-    public List<Rdv> getRdvs() {
-        return this.rdvs;
-    }
-    
-    public void setRdvs(List<Rdv> rdvs) {
-        this.rdvs = rdvs;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="echange")
     public List<Litige> getLitiges() {
         return this.litiges;
     }
@@ -203,6 +193,16 @@ public class Echange  implements java.io.Serializable {
     public void setrefus(List<Refus> refus) {
         this.refus = refus;
     }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="echange")
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
 
 
 

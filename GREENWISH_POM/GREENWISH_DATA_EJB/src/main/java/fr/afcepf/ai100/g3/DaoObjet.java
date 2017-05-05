@@ -47,7 +47,7 @@ public class DaoObjet implements IDaoObjet{
 
 	@Override
 	public List<Objet> getAllObjets() {
-		final String req="Select o FROM Objet o";
+		final String req="Select o FROM Objet o inner join fetch o.valeur";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
