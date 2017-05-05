@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.awt.SystemColor;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,6 +35,9 @@ public class Message  implements java.io.Serializable {
      private Messagerie messagerie;
      private String message;
      private boolean lu;
+     private Echange echange;
+     private Date datePublication;
+     
 
     public Message() {
     }
@@ -81,6 +89,23 @@ public class Message  implements java.io.Serializable {
     public void setLu(boolean lu) {
         this.lu = lu;
     }
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IDECHANGE", nullable=false)
+	public Echange getEchange() {
+		return echange;
+	}
+
+	public void setEchange(Echange echange) {
+		this.echange = echange;
+	}
+	@Column(name="DATE_PUBLICATION", nullable=false)
+	public Date getDatePublication() {
+		return datePublication;
+	}
+
+	public void setDatePublication(Date datePublication) {
+		this.datePublication = datePublication;
+	}
 
 
 
