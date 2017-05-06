@@ -81,7 +81,7 @@ public class TrancheAge  implements java.io.Serializable {
         this.ageMaxi = ageMaxi;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="trancheAge")
+@OneToMany(mappedBy="trancheAge")
     public List<Objet> getObjets() {
         return this.objets;
     }
