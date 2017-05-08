@@ -50,7 +50,7 @@ public class DaoEchange implements IDaoEchange{
 
 	@Override
 	public List<Echange> rechercherEchangeEnCours(int idParticipant) {
-		final String req = "SELECT e FROM Echange e WHERE "
+		
 		return null;
 	}
 
@@ -100,6 +100,13 @@ public class DaoEchange implements IDaoEchange{
 	public List<Echange> rechercherTousLesEchangesLitiges() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Echange> rechercherTousLesEchangesDUnParticipant(int idParticipant) {
+		final String req = "SELECT e FROM Echange e WHERE e.objet.listeProposition.participant.idparticipant = :pid";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		return query.getResultList();
 	}
 
 }
