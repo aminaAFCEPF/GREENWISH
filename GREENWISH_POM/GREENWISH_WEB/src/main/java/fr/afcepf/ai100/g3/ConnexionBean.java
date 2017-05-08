@@ -1,6 +1,7 @@
 package fr.afcepf.ai100.g3;
 
 import javax.ejb.EJB;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -19,9 +20,9 @@ public class ConnexionBean {
 		participant = proxyIdentification.identifier(mail, mdp);
 		String nav = "";
 		if (participant.isStatutadmin()) {
-			nav = "/accueilAdmin.xhtml?faces-redirect=true";
+			nav = "/AccueilAdmin.xhtml?faces-redirect=true";
 		} else {
-			nav = "/accueilAdherent.xhtml?faces-redirect=true";
+			nav = "/AccueilAdh.xhtml?faces-redirect=true";
 		}
 		return nav;
 	}
@@ -29,7 +30,19 @@ public class ConnexionBean {
 	public String seDeconnecter() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		session.invalidate();
-		return "/activationTest.xhtml?faces-redirect=true";
+		return "/Accueil.xhtml?faces-redirect=true";
+	}
+	
+	
+	public void securePage() {
+		if(participant == null) {
+			ConfigurableNavigationHandler  nav =
+					(ConfigurableNavigationHandler)
+					FacesContext.getCurrentInstance()
+					.getApplication()
+					.getNavigationHandler();
+			nav.performNavigation("/Connexion.xhtml?faces-redirect=true");
+		}
 	}
 
 	public IBusinessIdentification getProxyIdentification() {

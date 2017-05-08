@@ -22,6 +22,13 @@ public class DaoParticipant implements IDaoParticipant {
 		em.persist(participant);
 		return participant;
 	}
+	
+	@Override
+	public Participant updateParticipant(Participant participant) {
+		participant.setIdparticipant(2);
+		em.merge(participant);
+		return participant;
+	}
 
 	@Override
 	public Participant identification(String mail, String mdp) {
@@ -46,6 +53,7 @@ public class DaoParticipant implements IDaoParticipant {
 		return retour;
 	}
 
+
 	@Override
 	public Participant updateParticipant(Participant participant) {
 		em.merge(participant);
@@ -56,6 +64,7 @@ public class DaoParticipant implements IDaoParticipant {
 	public void deleteParticipant(Participant participant) {
 		em.remove(participant);
 	}
+
 	
 }
 

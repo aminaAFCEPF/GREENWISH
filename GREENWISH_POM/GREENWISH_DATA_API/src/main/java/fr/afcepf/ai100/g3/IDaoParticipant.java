@@ -13,4 +13,5 @@ public interface IDaoParticipant {
 	Participant updateParticipant(Participant participant);
 	
 	void deleteParticipant(Participant participant);
+
 }

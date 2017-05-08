@@ -12,11 +12,11 @@
 				<div
 					class="container background-white bottom-border  padding-left-0 padding-right-0">
 					<div class="row">
-						<h1>Guitare LES PAUL CUSTOM 1957</h1>
+						<h1>#{mbFicheObjet.objet.intitule}</h1>
 					</div>
 					<div class="margin-bottom-10">
 						<ol class="breadcrumb ">
-							<li><a href="#">Catalogue</a></li>
+							<li><a href="Catalogue.xhtml">Catalogue</a></li>
 							<li class="active">Fiche objet</li>
 						</ol>
 					</div>
@@ -25,21 +25,21 @@
 					<div class="row margin-vert-30">
 						<div class="col-md-6 ">
 							<div class=" borderperso">
-								<img class="grande-img " src="resources/img/blog/guitare7.JPG"
+								<img class="grande-img " src="#{mbFicheObjet.objet.images.get(0).image}"
 									alt="image1" />
 							</div>
 							<div class="row centrerElementHorizontal margin-top-5">
 								<div class="col-md-3 div-petite-img">
 									<a href="#" class="thumbnail"> <img
-										src="./resources/img/blog/guitare3.JPG" class="petite-img" /></a>
+										src="#{mbFicheObjet.objet.images.get(1).image}" class="petite-img" /></a>
 								</div>
 								<div class="col-md-3 div-petite-img ">
 									<a href="#" class="thumbnail"> <img
-										src="./resources/img/blog/guitare4.JPG" class="petite-img " /></a>
+										src="#{mbFicheObjet.objet.images.get(2).image}" class="petite-img " /></a>
 								</div>
 								<div class="col-md-3 div-petite-img ">
 									<a href="#" class="thumbnail"> <img
-										src="./resources/img/blog/guitare8.JPG" class="petite-img " /></a>
+										src="#{mbFicheObjet.objet.images.get(3).image}" class="petite-img " /></a>
 								</div>
 							</div>
 						</div>
@@ -49,21 +49,24 @@
 								<div class="col-md-6 background-white">
 									<div>
 										<h3>
-											Valeur : 5 <img class="idflocon"
-												src="resources/img/blog/flocon.jpg" alt="thumb1" />
+											#{mbFicheObjet.objet.valeur.valeur} <img class="idflocon"
+												src="resources/img/blog/flocon.png" alt="thumb1" />
 										</h3>
 									</div>
 									<br />
 									<div>
-										<a class="blog-tag " href="#">Guitare</a> <a class="blog-tag"
-											href="#">Moins de 10km</a> <a class="blog-tag" href="#">Bouton</a>
-										<a class="blog-tag" href="#">Bouton</a> <a class="blog-tag"
-											href="#">Bouton</a> <a class="blog-tag" href="#">Bouton</a>
+										<a class="blog-tag " >#{mbFicheObjet.objet.domaine.domaine}</a>
+										<a class="blog-tag " >#{mbFicheObjet.objet.categorie.intitule}</a>
+										<a class="blog-tag " >#{mbFicheObjet.objet.souscategorie.intitule}</a>
+										<a class="blog-tag " >#{mbFicheObjet.objet.valeur.valeur} <img class="idflocon"
+												src="resources/img/blog/flocon.png" alt="thumb1" /> </a>
+										<a class="blog-tag " >#{mbFicheObjet.objet.trancheAge.ageMini}-#{mbFicheObjet.objet.trancheAge.ageMaxi} ans</a>
+										<a class="blog-tag" >#{mbFicheObjet.objet.dategarantie}</a> 
 									</div>
 								</div>
 								<div class="col-md-6 text-right">
 									<h3>
-										Proposé par <a href="#">Thierry</a>
+										Proposé par #{mbFicheObjet.objet.listeProposition.participant.nom} <a href="#"></a>
 									</h3>
 									<br />
 									<div class="rating">
@@ -73,7 +76,7 @@
 												class="fa fa-star checked"></span> <span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
 										</div>
-										<span class="review-no">41 reviews</span>
+										<span class="review-no"> reviews</span>
 									</div>
 									<span>Distance : 3 km</span>
 								</div>
@@ -84,18 +87,7 @@
 
 								<h3>Description</h3>
 								<br />
-								<p>La Les Paul 57 Custom est un instrument de légende, le
-									Saint Graal de tout guitariste qui sait de quoi il parle, et le
-									premier modèle de Les Paul a avoir reçu les humbuckers PAF.
-									Avec la série True Historic, Gibson présente une Black Beauty
-									plus vraie que nature, et cette superbe 57 sonne avec le
-									tranchant et la clarté typique de ces modèles, avec le manche
-									bien rond de 57 qui épouse parfaitement la main. Le corps est
-									en acajou massif sans table rapportée, et la touche en ébène
-									comme elle devrait toujours l'être sur les Custom ! Fatigué des
-									copies, variations et autres interprétations ? Il est temps de
-									passer à l'originale... édition limitée à 200 exemplaires pour
-									le monde.</p>
+								<p>#{mbFicheObjet.objet.description}</p>
 							</div>
 						</div>
 					</div>

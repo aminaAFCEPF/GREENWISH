@@ -46,7 +46,7 @@
 								<div class="col-sm-6">
 
 									<ui:repeat var="lObjet" value="#{mbCatalogue.paginator.model}">
-										<a href="#">
+										<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
 											<div
 												class="row background-white padding-top-10 borderperso margin-bottom-5 ">
 												<div class="col-sm-3 centrerElementVertical">
@@ -59,7 +59,7 @@
 															<h4>#{lObjet.intitule}</h4>
 															<h5>
 																Valeur : #{lObjet.valeur.valeur} <img class="idflocon"
-																	src="resources/img/blog/flocon.jpg" alt="thumb1" />
+																	src="resources/img/blog/flocon.png" alt="thumb1" />
 															</h5>
 														</div>
 														<div class="col-sm-5">
@@ -70,7 +70,7 @@
 													<p>Description objet : #{lObjet.description.substring(0,50)}...</p>
 												</div>
 											</div>
-										</a>
+											</h:commandLink>
 									</ui:repeat>
 								</div>
 								<div class="col-sm-6">

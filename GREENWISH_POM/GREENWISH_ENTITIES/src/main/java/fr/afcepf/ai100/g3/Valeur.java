@@ -65,7 +65,7 @@ public class Valeur  implements java.io.Serializable {
         this.valeur = valeur;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="valeur")
+@OneToMany( mappedBy="valeur")
     public List<Objet> getObjets() {
         return this.objets;
     }

@@ -24,9 +24,10 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	IDaoParticipant proxyDaoParticipant;
 	
 	
-	
-	public void ajouterObjet(Objet objet) {
-		
+	//a ajouter
+	public void ajouterObjet(Objet objet,Participant participant) {
+		int valeur = objet.getValeur().getValeur();
+		int solde = participant.getSolde();
 		int nbEspace;
 		int longueurDescription = objet.getDescription().length();
 		String texteDescription = objet.getDescription();
@@ -36,6 +37,8 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 				texteDescription = texteDescription + " ";
 			}
 		}
+		participant.setSolde(solde+valeur);
+		proxyDaoParticipant.updateParticipant(participant);
 		proxyDaoObjet.ajouterObjet(objet);
 	}
 
@@ -91,8 +94,12 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	}
 	
 	
+	//a rajouter
+	@Override
+	public Participant ajouterPointsAUnParticipant(Participant participant) {
 	
-	
+		return null;
+	}
 	
 	
 
@@ -127,6 +134,8 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	public void setProxyDaoSousCategorie(IDaoSousCategorie proxyDaoSousCategorie) {
 		this.proxyDaoSousCategorie = proxyDaoSousCategorie;
 	}
+
+	
 
 	
 

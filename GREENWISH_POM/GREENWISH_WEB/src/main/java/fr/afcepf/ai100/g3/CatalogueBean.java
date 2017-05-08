@@ -12,7 +12,7 @@ import javax.faces.bean.ViewScoped;
 import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 
 @ManagedBean(name = "mbCatalogue")
-@ViewScoped
+@SessionScoped
 public class CatalogueBean {
 
 	@EJB
