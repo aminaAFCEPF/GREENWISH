@@ -45,6 +45,17 @@ public class DaoParticipant implements IDaoParticipant {
 		retour = (Participant)query.getSingleResult();
 		return retour;
 	}
+
+	@Override
+	public Participant updateParticipant(Participant participant) {
+		em.merge(participant);
+		return participant;
+	}
+
+	@Override
+	public void deleteParticipant(Participant participant) {
+		em.remove(participant);
+	}
 	
 }
 

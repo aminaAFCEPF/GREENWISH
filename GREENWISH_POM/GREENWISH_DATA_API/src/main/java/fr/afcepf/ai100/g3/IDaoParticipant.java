@@ -9,4 +9,8 @@ public interface IDaoParticipant {
 	Participant identification(String mail, String mdp);
 	
 	Participant rechercherParticipantParId(int idParticipant);
+	
+	Participant updateParticipant(Participant participant);
+	
+	void deleteParticipant(Participant participant);
 }
