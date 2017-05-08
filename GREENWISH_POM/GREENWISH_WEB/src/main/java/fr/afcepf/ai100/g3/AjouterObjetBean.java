@@ -79,7 +79,7 @@ public class AjouterObjetBean {
 		listePropositions.add(nouvelleListeProposition);
 		return null;
 	}
-	
+	//a ajouter
 	public Objet ajouterObjet(){
 		valeur = new Valeur(10);
 		valeur = proxyDaoValeur.ajouterValeur(valeur);
@@ -91,7 +91,7 @@ public class AjouterObjetBean {
 		objetNouveau.setSouscategorie(selectedSousCategorie);
 		objetNouveau.setTrancheAge(null);
 		objetNouveau.setValeur(valeur);
-		proxyDaoAjouterObjet.ajouterObjet(objetNouveau);
+		proxyAjouterObjet.ajouterObjet(objetNouveau,participant);
 		return null;
 	}
 
