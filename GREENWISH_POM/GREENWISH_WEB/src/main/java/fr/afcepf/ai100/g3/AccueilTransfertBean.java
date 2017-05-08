@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import fr.afcepf.ai100.g3.entities.RepeatPaginator;
@@ -13,6 +14,8 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 @ManagedBean(name = "mbAfficherTransfert")
 @ViewScoped
 public class AccueilTransfertBean {
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean mbCnx;
 	@EJB
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
@@ -41,13 +44,13 @@ public class AccueilTransfertBean {
 		etatsDesTransferts.add("Transferts validés");
 		selectedEtatDesTransferts = etatsDesTransferts.get(0);
 		
-		typesDeTransferts.add("tous");
+		typesDeTransferts.add("Tous");
 		typesDeTransferts.add("Objets donnés");
 		typesDeTransferts.add("Objets reçus");
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
-		participant = proxyAjouterObjet.rechercherParticipantParId(2);
-		echanges = proxyAfficherEchange.afficherTousLesEchangesDUnParticipant(participant.getIdparticipant());
+		
+		echanges = proxyAfficherEchange.afficherTousLesEchangesDUnParticipant(mbCnx.getParticipant().getIdparticipant());
 				paginator = new RepeatPaginator(echanges);
 	}
 
