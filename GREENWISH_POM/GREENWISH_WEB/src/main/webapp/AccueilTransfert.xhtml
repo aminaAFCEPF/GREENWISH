@@ -38,12 +38,14 @@
                                 
                             </h:selectOneMenu>
                             </div>
-							<div class="boutons col-lg-4 text-center">
-								<div class="btn-group">
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Donnés</button>
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Reçus</button>
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Tous</button>
-								</div>
+							<div class=" col-lg-4 text-center">
+								<h:selectOneMenu id="menuTypeTransfert" class="boutonsSelect btn-primary borderRadius"
+								value="#{mbAfficherTransfert.selectedTypesDesTransferts}">
+								<f:selectItems value="#{mbAfficherTransfert.typesDeTransferts}" var="typesDesTransferts"
+										itemLabel="#{typesDesTransferts.toString()}" itemValue="#{typesDesTransferts.toString()}" />
+                       
+                                
+                            </h:selectOneMenu>
 							</div>
 							<div class="col-lg-4 text-center">
 							<h:selectOneMenu id="btnFiltre" class="boutonsSelect btn-primary borderRadius"
