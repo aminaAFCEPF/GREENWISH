@@ -50,56 +50,67 @@ public class DaoEchange implements IDaoEchange{
 
 	@Override
 	public List<Echange> rechercherEchangeEnCours(int idParticipant) {
-		
-		return null;
+
+		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet AND INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet WHERE lp.participant.idparticipant = :pidParticipant AND e.datefin IS NULL";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
+
 	}
 
 	@Override
 	public List<Echange> rechercherEchangeTerminés(int idParticipant) {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet AND INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet WHERE lp.participant.idparticipant = :pidParticipant AND e.datefin IS NOT NULL";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchanges() {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e";
+		Query query = em.createQuery(req);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherEchangesRefuses(int idParticipant) {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet AND INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet WHERE lp.participant.idparticipant = :pidParticipant AND e.daterefus IS NOT NULL";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherEchangesLitiges(int idParticipant) {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet AND INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet WHERE lp.participant.idparticipant = :pidParticipant AND e.datelitige IS NOT NULL";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesEnCours() {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e WHERE e.datefin IS NULL";
+		Query query = em.createQuery(req);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesTermines() {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e WHERE e.datefin IS NOT NULL";
+		Query query = em.createQuery(req);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesRefuses() {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e WHERE e.daterefus IS NOT NULL";
+		Query query = em.createQuery(req);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesLitiges() {
-		// TODO Auto-generated method stub
-		return null;
+		final String req = "SELECT e FROM Echange e WHERE e.datelitige IS NOT NULL";
+		Query query = em.createQuery(req);
+		return query.getResultList();
 	}
 
 	@Override
