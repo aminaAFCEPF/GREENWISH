@@ -56,7 +56,7 @@ public class Souscategorie  implements java.io.Serializable {
         this.idsouscategorie = idsouscategorie;
     }
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="souscategorie")
+    @OneToMany(mappedBy="souscategorie")
     public List<Objet> getObjets() {
         return this.objets;
     }

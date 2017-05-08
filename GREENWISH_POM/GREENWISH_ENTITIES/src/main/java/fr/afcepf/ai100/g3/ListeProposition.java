@@ -63,7 +63,7 @@ public class ListeProposition  implements java.io.Serializable {
         this.idlisteobjet = idlisteobjet;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDPARTICIPANT", nullable=false)
     public Participant getParticipant() {
         return this.participant;
@@ -93,7 +93,7 @@ public class ListeProposition  implements java.io.Serializable {
         this.actif = actif;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="listeProposition")
+@OneToMany(mappedBy="listeProposition")
     public List<Objet> getObjets() {
         return this.objets;
     }

@@ -91,7 +91,7 @@ public class Objet  implements java.io.Serializable {
         this.idobjet = idobjet;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDDOMAINE", nullable=false)
     public Domaine getDomaine() {
         return this.domaine;
@@ -101,7 +101,7 @@ public class Objet  implements java.io.Serializable {
         this.domaine = domaine;
     }
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="IDCATEGORIE", nullable=false)
     public Categorie getCategorie() {
         return this.categorie;
@@ -111,7 +111,7 @@ public class Objet  implements java.io.Serializable {
         this.categorie = categorie;
     }  
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="IDSOUSCATEGORIE", nullable=false)
 	public Souscategorie getSouscategorie() {
 		return souscategorie;
@@ -123,7 +123,7 @@ public class Objet  implements java.io.Serializable {
 	}
      
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDLISTEOBJET", nullable=false)
     public ListeProposition getListeProposition() {
         return this.listeProposition;
@@ -133,7 +133,7 @@ public class Objet  implements java.io.Serializable {
         this.listeProposition = listeProposition;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDAGE")
     public TrancheAge getTrancheAge() {
         return this.trancheAge;
@@ -143,7 +143,7 @@ public class Objet  implements java.io.Serializable {
         this.trancheAge = trancheAge;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDVALEUR", nullable=false)
     public Valeur getValeur() {
         return this.valeur;
@@ -214,7 +214,7 @@ public class Objet  implements java.io.Serializable {
     }
 
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
+@OneToMany(mappedBy="objet")
     public List<Image> getImages() {
         return this.images;
     }

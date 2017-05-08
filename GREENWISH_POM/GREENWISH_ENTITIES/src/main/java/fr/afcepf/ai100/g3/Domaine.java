@@ -69,7 +69,7 @@ public class Domaine  implements java.io.Serializable {
         this.domaine = domaine;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="domaine")
+@OneToMany( mappedBy="domaine")
     public List<Objet> getObjets() {
         return this.objets;
     }

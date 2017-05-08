@@ -61,7 +61,7 @@ public class Categorie  implements java.io.Serializable {
         this.idcategorie = idcategorie;
     }
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="categorie")
+    @OneToMany( mappedBy="categorie")
     public List<Objet> getObjets() {
         return this.objets;
     }

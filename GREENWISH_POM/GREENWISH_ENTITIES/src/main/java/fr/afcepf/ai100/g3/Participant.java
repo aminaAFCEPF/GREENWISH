@@ -375,7 +375,7 @@ public class Participant  implements java.io.Serializable {
         this.actualites = actualites;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="participant")
+@OneToMany(mappedBy="participant")
     public List<ListeProposition> getListePropositions() {
         return this.listePropositions;
     }
