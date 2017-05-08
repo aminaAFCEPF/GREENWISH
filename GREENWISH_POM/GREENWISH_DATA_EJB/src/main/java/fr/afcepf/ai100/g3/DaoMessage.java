@@ -16,8 +16,8 @@ public class DaoMessage implements IDaoMessage{
 	@SuppressWarnings("unchecked")
 	private EntityManager em;
 	@Override
-	public Message ajouterMessage(Message message, int idTransfert) {
-		message.setIdTransfert(idTransfert);
+	public Message ajouterMessage(Message message) {
+		
 		em.persist(message);
 		return message;
 	}

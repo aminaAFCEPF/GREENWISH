@@ -29,15 +29,15 @@
 								<li class="active">Data</li>
 							</ol>
 
-							<div class="boutons col-lg-4 text-center">
-
-								<div class="btn-group">
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">En
-										cours</button>
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Terminés</button>
-									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Annulés</button>
-								</div>
-							</div>
+							<div class="col-lg-4 text-center">
+							<h:selectOneMenu id="menuEtatTransfert" class="boutonsSelect btn-primary borderRadius"
+								value="#{mbAfficherTransfert.selectedEtatDesTransferts}">
+								<f:selectItems value="#{mbAfficherTransfert.etatsDesTransferts}" var="etatsDesTransferts"
+										itemLabel="#{etatsDesTransferts.toString()}" itemValue="#{etatsDesTransferts.toString()}" />
+                       
+                                
+                            </h:selectOneMenu>
+                            </div>
 							<div class="boutons col-lg-4 text-center">
 								<div class="btn-group">
 									<button type="button" id="btnFiltre" class="btn btn-primary borderRadius">Donnés</button>
@@ -46,13 +46,13 @@
 								</div>
 							</div>
 							<div class="col-lg-4 text-center">
-                        <select class="boutonsSelect btn-primary borderRadius" id="btnFiltre">
-                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous proposés</option>
-                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous validés</option>
-                                <option  id="btnFiltre" class="btn btn-primary ">Rendez-vous terminés</option>
-                                <option  id="btnFiltre" class="btn btn-primary ">Transferts terminés</option>
-                                <option  id="btnFiltre" class="btn btn-primary ">Tous</option>
-                            </select>
+							<h:selectOneMenu id="btnFiltre" class="boutonsSelect btn-primary borderRadius"
+								value="#{mbAfficherTransfert.selectedTypeRdv}">
+								<f:selectItems value="#{mbAfficherTransfert.lesTypesDeRdv}" var="typesDeRdv"
+										itemLabel="#{typesDeRdv.toString()}" itemValue="#{typesDeRdv.toString()}" />
+                       
+                                
+                            </h:selectOneMenu>
                     </div>
                 </div>
 
@@ -85,11 +85,12 @@
 							</div>
 						</div>
 						<!-- fin panel label-->
+						<ui:repeat var="unEchange" value="#{mbAfficherTransfert.paginator.model}">
 						<div class="containerBar">
 							<div class="well background-white divBorderComposition">
 								<img src="resources/img/imgObjetsMini/velopetit.png" alt="velo"/>
 							</div>
-							<div class="well background-white divBorderComposition">Infos donneur</div>
+							<div class="well background-white divBorderComposition">#{unEchange.objet.listeProposition.participant.nom}</div>
 							<div class="well background-white divBorderComposition">
 
 								<div class="progress progress1">
@@ -104,85 +105,8 @@
 							</div>
 
 						</div>
-
-						<div class="containerBar ">
-							<div class="well background-white divBorderComposition">
-								<img src="resources/img/imgObjetsMini/cafetiere.png" alt="Cafetiere"/>
-							</div>
-							<div class="well background-white divBorderComposition">Infos donneur</div>
-							<div class="well background-white divBorderComposition">
-
-								<div class="progress progress1">
-									<div class="one T1 success-color"></div>
-									<div class="two T2 no-color"></div>
-									<div class="three T3 no-color"></div>
-									<div class="four T4 no-color"></div>
-									<div class="progress-bar progress-bar-success"
-										style="width: 35%"></div>
-								</div>
-
-							</div>
-
-						</div>
-						<div class="containerBar ">
-							<div class="well background-white divBorderComposition">
-								<img src="resources/img/imgObjetsMini/fusee.png" alt="fusee_tintin"/>
-							</div>
-							<div class="well background-white divBorderComposition">Infos donneur</div>
-							<div class="well background-white divBorderComposition">
-
-								<div class="progress progress1">
-									<div class="one T1 success-color"></div>
-									<div class="two T2 no-color"></div>
-									<div class="three T3 no-color"></div>
-									<div class="four T4 no-color"></div>
-									<div class="progress-bar progress-bar-success"
-										style="width: 35%"></div>
-								</div>
-
-							</div>
-
-						</div>
-						<div class="containerBar ">
-							<div class="well background-white divBorderComposition">
-								<img src="resources/img/imgObjetsMini/kangourou.png" alt="Kangourou"/>
-							</div>
-							<div class="well background-white divBorderComposition">Infos donneur</div>
-							<div class="well background-white divBorderComposition">
-
-								<div class="progress progress1">
-									<div class="one T1 success-color"></div>
-									<div class="two T2 no-color"></div>
-									<div class="three T3 no-color"></div>
-									<div class="four T4 no-color"></div>
-									<div class="progress-bar progress-bar-success"
-										style="width: 35%"></div>
-								</div>
-
-							</div>
-
-						</div>
-
-
-						<div class="containerBar">
-							<div class="well background-white divBorderComposition">
-								<img src="resources/img/imgObjetsMini/xbox.png" alt="Xbox"/>
-							</div>
-							<div class="well background-white divBorderComposition">Infos donneur</div>
-							<div class="well background-white divBorderComposition">
-
-								<div class="progress progress1">
-									<div class="one T1 success-color"></div>
-									<div class="two T2 no-color"></div>
-									<div class="three T3 no-color"></div>
-									<div class="four T4 no-color"></div>
-									<div class="progress-bar progress-bar-success"
-										style="width: 35%"></div>
-								</div>
-
-							</div>
-
-						</div>
+						</ui:repeat>
+						
 
 						<div class="text-center">
 							<ul class="pagination">

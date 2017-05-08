@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IBusinessAjouterObjet {
 
-	void ajouterObjet(Objet objet);
+	void ajouterObjet(Objet objet,Participant participant);
 	
 	List<Domaine> rechercherDomaine();
 	List<Categorie> rechercherCategorie();
@@ -14,4 +14,5 @@ public interface IBusinessAjouterObjet {
 	List<ListeProposition> rechercherListeProposition(Participant participant);
 	Participant rechercherParticipantParId(int idParticipant);
 	ListeProposition ajouterUneListe(ListeProposition listeProposition);
+	Participant ajouterPointsAUnParticipant(Participant participant);
 }
