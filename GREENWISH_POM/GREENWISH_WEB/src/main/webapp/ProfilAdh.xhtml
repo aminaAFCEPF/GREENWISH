@@ -25,39 +25,39 @@
 								<div class="signup-header row">
 									<div class="col-md-5 posLeft">
 										<h3 class="padding-vert-10">Données personnelles</h3>
-										<label>Nom : </label> <h:inputText
-											class="form-control outwidth margin-bottom-20" type="text" />
-										<label>Prénom : </label> <input
-											class="form-control outwidth margin-bottom-20" type="text" />
-										<label>Adresse mail : <span class="color-red">*</span></label>
-										<h:inputText class="form-control outwidth margin-bottom-40"
-											type="text" />
-
+											<label>Nom : </label>
+										<h:inputText value="#{mbGestionProfil.participant.nom}" class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Prénom : </label> 
+										<h:inputText value="#{mbGestionProfil.participant.prenom}" class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Adresse mail : <span class="color-red">*</span></label>
+										<h:inputText value="#{mbGestionProfil.participant.mail}" class="form-control outwidth margin-bottom-40" type="text" />
+										
 										<h3 class="padding-vert-10">Modifier le mot de passe</h3>
-										<label>Ancien mot de passe : <span class="color-red" />*
-										</label> <h:inputText id="previousMdp"
-											class="form-control outwidth margin-bottom-20" type="text" />
-										<label>Nouveau mot de passe : </label> <h:inputText id="newMdp"
-											class="form-control outwidth margin-bottom-20" type="text" />
-										<label>Confirmer le nouveau mot de passe : </label> <h:inputText
-											id="newMdpConf"
-											class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Ancien mot de passe : <span class="color-red" />*</label>
+										<h:inputText id="previousMdp" class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Nouveau mot de passe : </label>
+										<h:inputText id="newMdp" class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Confirmer le nouveau mot de passe : </label> 
+										<h:inputText id="newMdpConf" class="form-control outwidth margin-bottom-20" type="text" />
 									</div>
 
 									<div class="col-md-5 posRight">
-										<h3 class="padding-vert-10">Lieu(x) de rendez-vous</h3>
-										<label>N° et rue : <span class="color-red" />*
-										</label> <h:inputText class="form-control outwidth margin-bottom-20"
-											type="text" /> <label>code postal : <span
-											class="color-red" />*
-										</label> <h:inputText class="form-control outwidth margin-bottom-20"
-											type="text" /> <label>Ville : <span
-											class="color-red">*</span></label> <input
-											class="form-control outwidth margin-bottom-40" type="text" />
+										<h3 class="padding-vert-10">Lieu(x) de Rendez-vous</h3>
+											<label>N° et rue : <span class="color-red" >*</span></label>
+										<h:inputText value="#{mbGestionProfil.participant.adresse}" class="form-control outwidth margin-bottom-20" type="text" />
+											<label>Code Postal : <span class="color-red" >*</span></label> 
+										<h:inputText value="#{mbInscription.codePostal}" class="form-control outwidth margin-bottom-20" type="text" >
+											<f:ajax render="lesVilles" event="keyup" execute="@this"
+													listener="#{mbInscription.rechercherVilles()}" />
+										</h:inputText>
+											<label>Ville : <span class="color-red">*</span></label>
+										<h:selectOneMenu id="lesVilles" value="#{mbInscription.selectedville.idville}" class="form-control  margin-bottom-20">
+											<f:selectItems  value="#{mbInscription.villes}" var="ville"
+														itemLabel="#{ville.ville}" itemValue="#{ville.idville}" />
+										</h:selectOneMenu>
 									</div>
 									<div class="col-md-5 posRight">
-										<h3 class="padding-vert-10">Vos disponibilités de
-											rendez-vous</h3>
+										<h3 class="padding-vert-10">Vos disponibilités de rendez-vous</h3>
 										<select id="day" class="mr-10 line">
 											<option value="Jour">Jour</option>
 											<option value="Lundi">Lundi</option>
@@ -167,13 +167,13 @@
 
 								</div>
 								<div class="row padding-vert-10 text-center">
-									<button class="btn btn-lg btn-primary borderRadius"
-										type="submit">Valider</button>
+									<h:commandButton action="#{mbGestionProfil.majInformationsParticipant()}" class="btn btn-lg btn-primary borderRadius"
+										 value="Valider" />
 									<button class="btn btn-lg btn-primary borderRadius"
 										type="submit">Annuler</button>
 								</div>
 								<p>
-									<span class="color-red">*</span> Champ obligatoire
+									<span class="color-red">*</span> Champs obligatoires
 								</p>
 							</h:form>
 						</div>

@@ -22,6 +22,13 @@ public class DaoParticipant implements IDaoParticipant {
 		em.persist(participant);
 		return participant;
 	}
+	
+	@Override
+	public Participant updateParticipant(Participant participant) {
+		participant.setIdparticipant(2);
+		em.merge(participant);
+		return participant;
+	}
 
 	@Override
 	public Participant identification(String mail, String mdp) {

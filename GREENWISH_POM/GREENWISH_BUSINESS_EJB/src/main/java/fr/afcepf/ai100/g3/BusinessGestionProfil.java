@@ -9,11 +9,28 @@ import javax.ejb.Stateless;
 public class BusinessGestionProfil implements IBusinessGestionProfil {
 	@EJB
 	IDaoParticipant proxyGestionProfil;
+	@EJB
+	IDaoVille proxyGestionVille;
 
 	@Override
 	public Participant rechercherParticipantById(int idParticipant) {
-		proxyGestionProfil.rechercherParticipantParId(idParticipant);
-		return null;
+		Participant participant = proxyGestionProfil.rechercherParticipantParId(idParticipant);
+		return participant;
 	}
+	
+
+	public IDaoParticipant getProxyGestionProfil() {
+		return proxyGestionProfil;
+	}
+
+	public void setProxyGestionProfil(IDaoParticipant proxyGestionProfil) {
+		this.proxyGestionProfil = proxyGestionProfil;
+	}
+
+
+
+	
+	
+	
 
 }
