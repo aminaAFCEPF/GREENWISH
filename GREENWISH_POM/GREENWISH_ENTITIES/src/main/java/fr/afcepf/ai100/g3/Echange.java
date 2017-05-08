@@ -84,7 +84,7 @@ public class Echange  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IDAVIS", nullable=false)
+    @JoinColumn(name="IDAVIS", nullable=true)
     public Avis getAvis() {
         return this.avis;
     }
@@ -114,7 +114,7 @@ public class Echange  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IDRDV")
+    @JoinColumn(name="IDRDV", nullable=true)
     public Rdv getRdv() {
         return this.rdv;
     }
