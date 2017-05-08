@@ -3,7 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -25,8 +27,8 @@
 						<div class="col-md-2 vertical">
 							<a href="#" class="btn primary margin-bottom-35">
 								<div class="well borderperso background-white">
-									<img src="resources/img/MonProfil.png" class="background-white "
-										title="Mes Infos" />
+									<img src="resources/img/MonProfil.png"
+										class="background-white " title="Mes Infos" />
 								</div>
 							</a> <a href="#" class="btn primary margin-bottom-35">
 								<div class="well borderperso background-white">
@@ -50,7 +52,8 @@
 								<div class="centrerElementHorizontal">
 									<h3
 										class=" padding-vert-10 margin-bottom-20 padding-horiz-10 margin-top-20 centrerElementHorizontal ">
-										<b> Bonjour Mr Jacquie et bon retour parmi nous !</b>
+										<b> Bonjour #{mbAcceuilAdh.participant.prenom}
+											#{mbAcceuilAdh.participant.nom} et bon retour parmi nous !</b>
 									</h3>
 								</div>
 								<div class="padding-vert-10 padding-horiz-20 row">
@@ -59,9 +62,9 @@
 									</div>
 									<div class="col-md-11 padding-horiz-20 justifier">
 										<h3>
-											Vous disposez de 5 <img class="idflocon"
-												src="resources/img/blog/flocon.jpg" alt="thumb1" /> !
-											N'hésitez pas à visiter notre catalogue
+											Vous disposez de #{mbAcceuilAdh.participant.solde} <img
+												class="idflocon" src="resources/img/blog/flocon.jpg"
+												alt="thumb1" /> ! N'hésitez pas à visiter notre catalogue
 										</h3>
 									</div>
 								</div>
@@ -70,25 +73,9 @@
 										<i class="glyphicon glyphicon-info-sign"></i>
 									</div>
 									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>Vous avez 2 nouvelles notifications dans vos
-											transferts en cours. Consultez vos-transferts.</h3>
-									</div>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
-									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>Vous avez 2 nouvelles demandes de transferts!</h3>
-									</div>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
-									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>1 nouveau rendez-vous planifié avec Mr Michel ! Un
-											transfert effectué, des pingouins de sauvés !</h3>
+										<h3>Vous avez #{mbAcceuilAdh.nbNotifsNonLues()} nouvelles
+											notifications dans vos transferts en cours. Consultez
+											vos-transferts.</h3>
 									</div>
 								</div>
 							</div>
@@ -112,18 +99,13 @@
 									<div class="carousel-inner">
 										<div class="item active">
 											<div class="row">
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
+												<ui:repeat var="lObjet"
+													value="#{mbAcceuilAdh.afficherSuggestions()}">
+													<div class="col-md-4">
+														<h:graphicImage width="150" height="130" 
+														value="#{mbAcceuilAdh.proxyBusinessCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" />
+													</div>
+												</ui:repeat>
 											</div>
 										</div>
 										<div class="item">

@@ -18,4 +18,9 @@ public class BusinessCatalogue implements IBusinessCatalogue {
 		return proxyDaoObjet.getAllObjets();
 	}
 
+	@Override
+	public Image getFirstImageByIdObjet(int idObjet) {
+		return proxyDaoObjet.getFirstImageByIdObjet(idObjet);
+	}
+
 }

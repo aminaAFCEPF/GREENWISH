@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import fr.afcepf.ai100.g3.Participant;
 
 public interface IDaoParticipant {
@@ -13,5 +15,8 @@ public interface IDaoParticipant {
 	Participant updateParticipant(Participant participant);
 	
 	void deleteParticipant(Participant participant);
+	
+	List<Notification> rechercherNotifByIdParticipant(int idParticipant);
+	
 
 }

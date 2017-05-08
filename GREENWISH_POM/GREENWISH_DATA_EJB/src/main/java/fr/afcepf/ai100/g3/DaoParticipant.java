@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -23,12 +25,6 @@ public class DaoParticipant implements IDaoParticipant {
 		return participant;
 	}
 	
-	@Override
-	public Participant updateParticipant(Participant participant) {
-		participant.setIdparticipant(2);
-		em.merge(participant);
-		return participant;
-	}
 
 	@Override
 	public Participant identification(String mail, String mdp) {
@@ -64,6 +60,15 @@ public class DaoParticipant implements IDaoParticipant {
 	public void deleteParticipant(Participant participant) {
 		em.remove(participant);
 	}
+
+
+	@Override
+	public List<Notification> rechercherNotifByIdParticipant(int idParticipant) {
+		final String req = "SELECT p.notifications FROM Participant p WHERE p.idparticipant = :idParticipant";
+		Query query = em.createQuery(req).setParameter("idParticipant", idParticipant);
+		return query.getResultList();
+	}
+
 
 	
 }
