@@ -19,5 +19,5 @@ public interface IDaoObjet {
 	List<Objet> rechercherObjetParValeur(int valeur);
 	List<Objet> rechercherObjetParAge(int age);
 	
-
+	Image getFirstImageByIdObjet(int idObjet);
 }

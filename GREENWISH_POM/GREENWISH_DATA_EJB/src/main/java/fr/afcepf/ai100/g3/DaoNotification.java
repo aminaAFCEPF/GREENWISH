@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -30,6 +32,7 @@ public class DaoNotification implements IDaoNotification{
 	public void deleteNotification(Notification notification) {
 		em.remove(notification);
 	}
+
 	
 	
 	

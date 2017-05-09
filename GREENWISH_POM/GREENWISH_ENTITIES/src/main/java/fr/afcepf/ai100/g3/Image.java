@@ -50,7 +50,7 @@ public class Image  implements java.io.Serializable {
         this.idimage = idimage;
     }
 
-@ManyToOne
+@ManyToOne()
     @JoinColumn(name="IDOBJET", nullable=false)
     public Objet getObjet() {
         return this.objet;

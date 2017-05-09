@@ -117,4 +117,12 @@ public class DaoObjet implements IDaoObjet{
 	}
 
 
+	@Override
+	public Image getFirstImageByIdObjet(int idObjet) {
+		final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
+		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
+		return (Image)query.getResultList().get(0);
+	}
+
+
 }
