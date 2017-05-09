@@ -14,6 +14,9 @@ public class BusinessGestionAdh implements IBusinessGestionAdh {
 	@EJB
 	IDaoParticipant proxyDaoParticipant;
 	
+	@EJB
+	IDaoObjet proxyDaoObjet;
+	
 	@Override
 	public List<Notification> rechercherNotificationNonLuesByParticipant(int idParticipant) {
 		List<Notification> notifs;
@@ -26,5 +29,13 @@ public class BusinessGestionAdh implements IBusinessGestionAdh {
 		}
 		return notifsNonLues;
 	}
+
+	@Override
+	public List<Objet> getAllObjetsByIdParticipant(int idParticipant) {
+		
+		return proxyDaoObjet.getAllObjetsByIdParticipant(idParticipant);
+	}
+	
+	
 
 }

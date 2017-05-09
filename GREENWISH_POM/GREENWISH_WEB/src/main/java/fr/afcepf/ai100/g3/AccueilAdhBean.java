@@ -20,6 +20,9 @@ public class AccueilAdhBean {
 	private IBusinessGestionAdh proxyBusinessGestionAdh;
 	@EJB
 	private IBusinessCatalogue proxyBusinessCatalogue;
+	
+	@EJB
+	private IBusinessGestionEchange proxyBusinessEchange;
 
 	private Participant participant;
 	private List<Objet> suggestions = new ArrayList<>();
@@ -35,8 +38,26 @@ public class AccueilAdhBean {
 		return proxyBusinessGestionAdh.rechercherNotificationNonLuesByParticipant(participant.getIdparticipant()).size();
 	}
 	
-	public List<Objet> afficherSuggestions(){
-		return proxyBusinessCatalogue.afficherTousLesObjets().subList(0, 3);
+	public List<Objet> afficherSuggestions(int page){
+		if(page == 1){
+			return proxyBusinessCatalogue.afficherTousLesObjets().subList(0, 2);
+		}
+		else{
+			return proxyBusinessCatalogue.afficherTousLesObjets().subList(3, 5);
+		}
+		
+	}
+	
+	public double calculEcoCO(){
+		double coeff = 3.5;
+		int nbEchangesTermines = proxyBusinessEchange.afficherLesEchangesTerminesDUnParticipant(participant.getIdparticipant()).size();
+		return coeff*nbEchangesTermines;
+		
+	}
+	
+	
+	public String afficherProfil(){
+		return "/ProfilAdh.xhtml?faces-redirect=true";
 	}
 	
 	
@@ -87,6 +108,20 @@ public class AccueilAdhBean {
 	public void setSuggestions(List<Objet> suggestions) {
 		this.suggestions = suggestions;
 	}
+
+
+	public IBusinessGestionEchange getProxyBusinessEchange() {
+		return proxyBusinessEchange;
+	}
+
+
+	public void setProxyBusinessEchange(IBusinessGestionEchange proxyBusinessEchange) {
+		this.proxyBusinessEchange = proxyBusinessEchange;
+	}
+
+
+	
+	
 	
 	
 
