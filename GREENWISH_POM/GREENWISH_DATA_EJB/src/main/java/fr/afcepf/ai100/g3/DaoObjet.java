@@ -123,6 +123,13 @@ public class DaoObjet implements IDaoObjet{
 		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
 		return (Image)query.getResultList().get(0);
 	}
+	
+	@Override
+    public List<Image> getAllImageByIdObjet(int idObjet) {
+        final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
+        Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
+        return query.getResultList();
+    }
 
 
 }

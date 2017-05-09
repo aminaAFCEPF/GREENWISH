@@ -18,6 +18,7 @@ public interface IDaoObjet {
 	List<Objet> rechercherObjetParIntitule(String intitule);
 	List<Objet> rechercherObjetParValeur(int valeur);
 	List<Objet> rechercherObjetParAge(int age);
+	List<Image> getAllImageByIdObjet(int idObjet);
 	
 	Image getFirstImageByIdObjet(int idObjet);
 }
