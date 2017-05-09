@@ -15,6 +15,7 @@ public class ConnexionBean {
 	private String mail;
 	private String mdp;
 	private Participant participant;
+	private String pageRedirection = "/AccueilAdh.xhtml?faces-redirect=true";
 
 	public String seConnecter() {
 		participant = proxyIdentification.identifier(mail, mdp);
@@ -22,7 +23,7 @@ public class ConnexionBean {
 		if (participant.isStatutadmin()) {
 			nav = "/AccueilAdmin.xhtml?faces-redirect=true";
 		} else {
-			nav = "/AccueilAdh.xhtml?faces-redirect=true";
+			nav = pageRedirection;
 		}
 		return nav;
 	}
@@ -75,6 +76,14 @@ public class ConnexionBean {
 
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
+	}
+
+	public String getPageRedirection() {
+		return pageRedirection;
+	}
+
+	public void setPageRedirection(String pageRedirection) {
+		this.pageRedirection = pageRedirection;
 	}
 
 }

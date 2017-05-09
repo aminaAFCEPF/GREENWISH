@@ -22,13 +22,6 @@ public class DaoParticipant implements IDaoParticipant {
 		em.persist(participant);
 		return participant;
 	}
-	
-	@Override
-	public Participant updateParticipant(Participant participant) {
-		participant.setIdparticipant(2);
-		em.merge(participant);
-		return participant;
-	}
 
 	@Override
 	public Participant identification(String mail, String mdp) {
@@ -65,6 +58,11 @@ public class DaoParticipant implements IDaoParticipant {
 		em.remove(participant);
 	}
 
-	
+	@Override
+	public Participant recupProprio(int Idobjet) {
+		final String req="SELECT o.listeProposition.participant FROM Objet o WHERE o.idobjet = :pIdobjet";
+		Query query = em.createQuery(req).setParameter("pIdobjet", Idobjet);
+		return (Participant)query.getSingleResult();
+	}
 }
 
