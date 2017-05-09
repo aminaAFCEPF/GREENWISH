@@ -40,10 +40,10 @@ public class AccueilAdhBean {
 	
 	public List<Objet> afficherSuggestions(int page){
 		if(page == 1){
-			return proxyBusinessCatalogue.afficherTousLesObjets().subList(0, 2);
+			return proxyBusinessCatalogue.afficherTousLesObjets().subList(0, 3);
 		}
 		else{
-			return proxyBusinessCatalogue.afficherTousLesObjets().subList(3, 5);
+			return proxyBusinessCatalogue.afficherTousLesObjets().subList(4, 6);
 		}
 		
 	}
