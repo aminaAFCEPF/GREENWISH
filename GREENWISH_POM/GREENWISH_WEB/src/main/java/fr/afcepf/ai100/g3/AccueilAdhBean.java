@@ -60,6 +60,17 @@ public class AccueilAdhBean {
 		return "/ProfilAdh.xhtml?faces-redirect=true";
 	}
 	
+	public String afficherObjets(){
+		return "/MesObjets.xhtml?faces-redirect=true";
+	}
+	
+	public String afficherTransferts(){
+		return "/AccueilTransfert.xhtml?faces-redirect=true";
+	}
+	
+	public String afficherFavoris(){
+		return "/Favoris.xhtml?faces-redirect=true";
+	}
 	
 	public ConnexionBean getMbCnx() {
 		return mbCnx;
