@@ -13,7 +13,8 @@ public interface IDaoEchange {
 	List<Echange> rechercherEchangeTerminés(int idParticipant);
 	List<Echange> rechercherTousLesEchanges();
 	//a ajouter
-	List<Echange> rechercherTousLesEchangesDUnParticipant(int idParticipant);
+	List<Echange> rechercherTousLesEchangesDonnesDUnParticipant(int idParticipant);
+	List<Echange> rechercherTousLesEchangesRecusDUnParticipant(int idParticipant);
 	List<Echange> rechercherEchangesRefuses(int idParticipant);
 	List<Echange> rechercherEchangesLitiges(int idParticipant);
 	List<Echange> rechercherTousLesEchangesEnCours();
