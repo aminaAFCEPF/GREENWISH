@@ -36,6 +36,9 @@ public class ConnexionBean {
 		participant = proxyIdentification.identifier(mail, mdp);
 		String nav = "";
 		setConnecte("Déconnexion");
+		if (participant.getImage() == null){
+			participant.setImage("resources/img/404.png");
+		}
 		if (participant.isStatutadmin()) {
 			nav = "/AccueilAdmin.xhtml?faces-redirect=true";
 		} else {

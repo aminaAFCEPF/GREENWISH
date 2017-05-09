@@ -32,8 +32,8 @@
 			<div class="row">
 				<!-- Logo -->
 				<div class="logo">
-					<a href="Accueil.xhtml" title="" style="text-decoration: none;"> <img
-						src="resources/img/logo6.0.png" title="Titre" />
+					<a href="Accueil.xhtml" title="" style="text-decoration: none;">
+						<img src="resources/img/logo6.0.png" title="Titre" />
 					</a>
 				</div>
 				<!-- End Logo -->
@@ -54,7 +54,7 @@
 								class="glyphicon glyphicon-shopping-cart"> Catalogue</a></li>
 							<li><a href="../AjouterObjet.xhtml"
 								class="glyphicon glyphicon-gift"> Proposer un objet</a></li>
-								
+
 							<li><a href="../AccueilAdmin.xhtml"
 								class="glyphicon glyphicon-user"> Mon compte</a></li>
 						</ul>
@@ -63,7 +63,8 @@
 								class="glyphicon glyphicon-search" title="Rechercher"></a></li>
 							<li><a href="#" target="_blank" id="btnNotif"
 								class="glyphicon glyphicon-bell" title="Notifications"></a></li>
-							<li><a> 5 <img class="idflocon" src="resources/img/blog/flocon.png"></img></a></li>
+							<li><a> #{mbCnx.participant.solde} <img class="idflocon"
+									src="resources/img/blog/flocon.png"></img></a></li>
 							<li><a href="../Connexion.xhtml" target="_blank"
 								id="btnLogin" class="glyphicon glyphicon-lock"
 								title="Se connecter/S'enregistrer"></a></li>
@@ -74,7 +75,8 @@
 					<a href="#"><div class="bottom-border divNotif">
 							<p>Vous avez un nouveau message concernant le transfert du
 								canard de bain.</p>
-						</div></a> <a href="../FicheTransfert.xhtml"><div
+						</div>
+						</a> <a href="../FicheTransfert.xhtml"><div
 							class="bottom-border divNotif">
 							<p>Vous avez un nouveau message concernant le transfert du
 								canard de bain.</p>
@@ -89,17 +91,20 @@
 						</div></a>
 				</div>
 				<div id="loginDiv">
-					<a href="../Accueil.xhtml" id="btnImgLogin">
-					<img value="/resources/img/profiles/37.jpg" class="imgLogin" alt="Pas de photo"/></a> <br /> 
+					<a href="../Accueil.xhtml" id="btnImgLogin"> <img
+						src="#{mbCnx.participant.image}" class="imgLogin"
+						alt="Pas de photo" /></a> <br />
 					<h:form>
-					<h:commandButton id="btnSeCo" class="btn btn-primary borderRadius" action="#{mbCnx.connexion()}" value="#{mbCnx.connecte}" />
+						<h:commandButton class="btnSeCo btn btn-primary borderRadius"
+							action="#{mbCnx.connexion()}" value="#{mbCnx.connecte}" />
 					</h:form>
 				</div>
 				<div id="searchDiv">
 					<h:form id="search" name="recherche" class="input-group">
 						<input type="text" id="searchBar" placeholder="Rechercher..." />
 						<input type="submit" id="searchSubmit" value="Rechercher" />
-						<br /> <br />
+						<br />
+						<br />
 						<div class="text-center" id="searchFiltre">
 							<select id="filtre">
 								<option>Domaine</option>
