@@ -91,7 +91,9 @@
 				<div id="loginDiv">
 					<a href="../Accueil.xhtml" id="btnImgLogin">
 					<img value="/resources/img/profiles/37.jpg" class="imgLogin" alt="Pas de photo"/></a> <br /> 
-					<input type="button" id="btnSeCo" value="Se deconnecter" class="btn btn-primary borderRadius" />
+					<h:form>
+					<h:commandButton id="btnSeCo" class="btn btn-primary borderRadius" action="#{mbCnx.connexion()}" value="#{mbCnx.connecte}" />
+					</h:form>
 				</div>
 				<div id="searchDiv">
 					<h:form id="search" name="recherche" class="input-group">
