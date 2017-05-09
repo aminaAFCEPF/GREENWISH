@@ -6,4 +6,5 @@ public interface IDaoStatistique {
 
 	List<Statistique> getAllStatistique();
 	Statistique getStatistiqueById(int idStatistique);
+	
 }

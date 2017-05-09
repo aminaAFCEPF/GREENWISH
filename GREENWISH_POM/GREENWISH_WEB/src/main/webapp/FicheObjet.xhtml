@@ -6,99 +6,354 @@
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
-		<body>
-			<!-- === BEGIN CONTENT === -->
-			<div id="content">
-				<div
-					class="container background-white bottom-border  padding-left-0 padding-right-0">
-					<div class="row">
-						<h1>#{mbFicheObjet.objet.intitule}</h1>
+		
+			<body>
+			<h:form>
+				<!-- === BEGIN CONTENT === -->
+				<div id="content">
+						
+					<div
+						class="container background-white bottom-border  padding-left-0 padding-right-0">
+						<div class="row">
+							<h1>#{mbFicheObjet.objet.intitule}</h1>
+						</div>
+						<div class="margin-bottom-10">
+							<ol class="breadcrumb ">
+								<li><a href="Catalogue.xhtml">Catalogue</a></li>
+								<li class="active">Fiche objet</li>
+							</ol>
+						</div>
 					</div>
-					<div class="margin-bottom-10">
-						<ol class="breadcrumb ">
-							<li><a href="Catalogue.xhtml">Catalogue</a></li>
-							<li class="active">Fiche objet</li>
-						</ol>
-					</div>
-				</div>
-				<div class="container background-gray-lighter ">
-					<div class="row margin-vert-30">
-						<div class="col-md-6 ">
-							<div class=" borderperso">
-								<img class="grande-img " src="#{mbFicheObjet.objet.images.get(0).image}"
-									alt="image1" />
-							</div>
-							<div class="row centrerElementHorizontal margin-top-5">
-								<div class="col-md-3 div-petite-img">
-									<a href="#" class="thumbnail"> <img
-										src="#{mbFicheObjet.objet.images.get(1).image}" class="petite-img" /></a>
-								</div>
-								<div class="col-md-3 div-petite-img ">
-									<a href="#" class="thumbnail"> <img
-										src="#{mbFicheObjet.objet.images.get(2).image}" class="petite-img " /></a>
-								</div>
-								<div class="col-md-3 div-petite-img ">
-									<a href="#" class="thumbnail"> <img
-										src="#{mbFicheObjet.objet.images.get(3).image}" class="petite-img " /></a>
-								</div>
+					<div class="container background-gray-lighter ">
+						<div style="display:#{(mbFicheObjet.notMyObjet)?'none':'block'}">
+							<div class="container background-gray-lighter ">
+							<h1>Essaie pas d'échanger avec toi-même !</h1>
 							</div>
 						</div>
-						<div class=" col-md-6 background-white borderperso">
-							<div class="row">
-								<br />
-								<div class="col-md-6 background-white">
-									<div>
-										<h3>
-											#{mbFicheObjet.objet.valeur.valeur} <img class="idflocon"
-												src="resources/img/blog/flocon.png" alt="thumb1" />
-										</h3>
+						<div class="row margin-vert-30">
+							<div class="col-md-6 ">
+								<div class=" borderperso">
+									<img class="grande-img "
+										src="#{mbFicheObjet.images.get(0).image}" alt="image1" />
+								</div>
+								<div class="row centrerElementHorizontal margin-top-5">
+									<div class="col-md-3 div-petite-img">
+										<a href="#" class="thumbnail"> <img
+											src="#{mbFicheObjet.images.get(1).image}" class="petite-img" /></a>
 									</div>
-									<br />
-									<div>
-										<a class="blog-tag " >#{mbFicheObjet.objet.domaine.domaine}</a>
-										<a class="blog-tag " >#{mbFicheObjet.objet.categorie.intitule}</a>
-										<a class="blog-tag " >#{mbFicheObjet.objet.souscategorie.intitule}</a>
-										<a class="blog-tag " >#{mbFicheObjet.objet.valeur.valeur} <img class="idflocon"
-												src="resources/img/blog/flocon.png" alt="thumb1" /> </a>
-										<a class="blog-tag " >#{mbFicheObjet.objet.trancheAge.ageMini}-#{mbFicheObjet.objet.trancheAge.ageMaxi} ans</a>
-										<a class="blog-tag" >#{mbFicheObjet.objet.dategarantie}</a> 
+									<div class="col-md-3 div-petite-img ">
+										<a href="#" class="thumbnail"> <img
+											src="#{mbFicheObjet.images.get(2).image}" class="petite-img " /></a>
+									</div>
+									<div class="col-md-3 div-petite-img ">
+										<a href="#" class="thumbnail"> <img
+											src="#{mbFicheObjet.images.get(3).image}" class="petite-img " /></a>
 									</div>
 								</div>
-								<div class="col-md-6 text-right">
-									<h3>
-										Proposé par #{mbFicheObjet.objet.listeProposition.participant.nom} <a href="#"></a>
-									</h3>
+							</div>
+							<div class=" col-md-6 background-white borderperso">
+								<div class="row">
 									<br />
-									<div class="rating">
-										<div class="stars">
-											<span class="fa fa-star checked"></span> <span
-												class="fa fa-star checked"></span> <span
-												class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
+									<div class="col-md-6 background-white">
+										<div>
+											<h3>
+												#{mbFicheObjet.objet.valeur.valeur} <img class="idflocon"
+													src="resources/img/blog/flocon.png" alt="thumb1" />
+											</h3>
 										</div>
-										<span class="review-no"> reviews</span>
+										<br />
+										<div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.objet.domaine.domaine))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.domaine.domaine}</a>
+											</div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.objet.categorie.intitule))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.categorie.intitule}</a>
+											</div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.objet.souscategorie.intitule))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.souscategorie.intitule}</a>
+											</div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.valeur))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.valeur.valeur}
+													<img class="idflocon" src="resources/img/blog/flocon.png"
+													alt="thumb1" />
+												</a>
+											</div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.idAge))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.trancheAge.ageMini}-#{mbFicheObjet.objet.trancheAge.ageMaxi}
+													ans</a>
+											</div>
+											<div
+												style="display:#{(mbFicheObjet.estVide(mbFicheObjet.objet.intitule))?'none':'block'}">
+												<a class="blog-tag ">#{mbFicheObjet.objet.intitule}</a>
+											</div>
+
+
+										</div>
 									</div>
-									<span>Distance : 3 km</span>
+									<div class="col-md-6 text-right">
+										<h3>
+											Proposé par
+											#{mbFicheObjet.objet.listeProposition.participant.nom} <a
+												href="#"></a>
+										</h3>
+										<br />
+										<div class="rating">
+											<div class="stars">
+												<span class="fa fa-star checked"></span> <span
+													class="fa fa-star checked"></span> <span
+													class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+											</div>
+											<span class="review-no"> reviews</span>
+										</div>
+										<span>Distance : 3 km</span>
+									</div>
+
 								</div>
-
-							</div>
-							<br />
-							<div class="justifier">
-
-								<h3>Description</h3>
 								<br />
-								<p>#{mbFicheObjet.objet.description}</p>
+								<div class="justifier">
+
+									<h3>Description</h3>
+									<br />
+									<p>#{mbFicheObjet.objet.description}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="container background-gray-lighter centrerElementHorizontal"  >
+						<h:commandButton class=" btn btn-echange margin-bottom-20"
+							action="#{mbFicheObjet.estConnecte()}"
+							value="Proposer un échange"/>
+					</div>
+					<div style="display:#{(mbFicheObjet.connecteAndNotMyObjet)?'block':'none'}">
+				
+						<div class="container background-gray-lighter ">
+							<div
+								class="row margin-vert-10 centrerElementHorizontal
+							background-white padding-top-10 borderperso">
+								<div class="col-md-8">
+									<div>
+										<label>Nouveau Message : </label>
+										<textarea class="form-control" rows="8"> Bonjour,</textarea>
+										<div class="row margin-top-10">
+											<div class="col-md-3">
+												<label class="col-md-offset-1">Lieu de rendez-vous :</label>
+											</div>
+											<div class="col-md-3">
+												<select id="filtre" class="col-md-offset-1"
+													style="width: 100%;">
+													<option>Lieu de rendez-vous 1</option>
+													<option>Lieu de rendez-vous 2</option>
+													<option>Autre lieu</option>
+												</select>
+											</div>
+											<div class="col-md-6">
+												<button
+													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
+													type="submit">Envoyer</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div
+									class="borderperso background-white centrerElementHorizontal">
+									<h3>Disponibilités</h3>
+								</div>
+								<table id="tableDispos"
+									class="table table-hover table-responsive">
+									<thead>
+										<tr>
+											<th>Jour</th>
+											<th>heure</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Lundi</td>
+											<td><span>à</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+											</select><span>:</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="05">05</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option>
+													<option value="30">30</option>
+													<option value="35">35</option>
+													<option value="40">40</option>
+													<option value="45">45</option>
+													<option value="50">50</option>
+													<option value="55">55</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Mercredi</td>
+											<td><span>à</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+											</select><span>:</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="05">05</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option>
+													<option value="30">30</option>
+													<option value="35">35</option>
+													<option value="40">40</option>
+													<option value="45">45</option>
+													<option value="50">50</option>
+													<option value="55">55</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Vendredi</td>
+											<td><span>à</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+											</select><span>:</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="05">05</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option>
+													<option value="30">30</option>
+													<option value="35">35</option>
+													<option value="40">40</option>
+													<option value="45">45</option>
+													<option value="50">50</option>
+													<option value="55">55</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Samedi</td>
+											<td><span>à</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+													<option value="16">16</option>
+													<option value="17">17</option>
+													<option value="18">18</option>
+													<option value="19">19</option>
+													<option value="20">20</option>
+													<option value="21">21</option>
+													<option value="22">22</option>
+													<option value="23">23</option>
+											</select><span>:</span> <select class="margin-horiz-10 line">
+													<option value="00">00</option>
+													<option value="05">05</option>
+													<option value="10">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option>
+													<option value="30">30</option>
+													<option value="35">35</option>
+													<option value="40">40</option>
+													<option value="45">45</option>
+													<option value="50">50</option>
+													<option value="55">55</option>
+											</select></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div
-					class="container background-gray-lighter centrerElementHorizontal">
-					<button class=" btn btn-echange margin-bottom-20" type="submit">Proposer
-						un échange</button>
-				</div>
-			</div>
-		</body>
+					
+				</h:form>
+			</body>
+		
 	</ui:define>
 </ui:composition>
 </html>

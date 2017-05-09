@@ -31,7 +31,7 @@ public class DaoMessage implements IDaoMessage{
 
 	@Override
 	public List<Message> getMessageByIdTransfert(int idTransfert, int idParticipant) {
-		String req="SELECT m FROM Message m WHERE m.idtransfert =:pidTransfert AND m.messagerie.participant.idparticipant =:pidParticipant";
+		String req="SELECT m FROM Message m WHERE m.echange.idechange =:pidTransfert AND m.messagerie.participant.idparticipant =:pidParticipant";
 		Query query= em.createQuery(req).setParameter("pidParticipant", idParticipant).setParameter("pidTransfert", idTransfert);
 		return query.getResultList();
 	}
