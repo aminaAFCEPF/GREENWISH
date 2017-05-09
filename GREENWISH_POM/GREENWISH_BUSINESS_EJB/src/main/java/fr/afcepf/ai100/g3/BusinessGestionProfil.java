@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -10,7 +12,7 @@ public class BusinessGestionProfil implements IBusinessGestionProfil {
 	@EJB
 	IDaoParticipant proxyDaoParticipant;
 	@EJB
-	IDaoVille proxyGestionVille;
+	IDaoVille proxyDaoVille;
 
 	@Override
 	public Participant rechercherParticipantById(int idParticipant) {
@@ -30,6 +32,10 @@ public class BusinessGestionProfil implements IBusinessGestionProfil {
 	public void updateParticipant(Participant participant){
 		proxyDaoParticipant.updateParticipant(participant);
 		
+	}
+	@Override
+	public List<Ville> rechercherVille(String codePostal){
+		return proxyDaoVille.rechercherVille(codePostal);
 	}
 
 

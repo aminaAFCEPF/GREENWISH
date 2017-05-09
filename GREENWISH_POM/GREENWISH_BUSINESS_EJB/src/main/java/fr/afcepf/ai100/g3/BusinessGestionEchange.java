@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 public class BusinessGestionEchange implements IBusinessGestionEchange {
 	@EJB
 	private IDaoEchange proxyDaoEchange;
-	private List<Echange> echangesDonnes;
-	private List<Echange> echangesRecus;
-	private List<Echange>echanges;
+	private List<Echange> echangesDonnes = new ArrayList<>();
+	private List<Echange> echangesRecus = new ArrayList<>();
+	private List<Echange> echanges = new ArrayList<>();
 
 	@Override
 	public List<Echange> afficherTousLesEchangesDUnParticipant(int idParticipant) {
