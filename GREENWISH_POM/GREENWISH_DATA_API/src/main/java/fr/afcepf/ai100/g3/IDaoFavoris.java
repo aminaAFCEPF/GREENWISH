@@ -8,6 +8,7 @@ public interface IDaoFavoris {
 	Favoris updateFavoris(Favoris favoris);
 	void supprimerFavoris(Favoris favoris);
 	Favoris rechercherFavorisParId(int idFavoris);
+	List<Favoris> rechercherFavorisParIdParticipant(int idParticipant);
 	List<Favoris> getAllFavoris();
 	
 }
