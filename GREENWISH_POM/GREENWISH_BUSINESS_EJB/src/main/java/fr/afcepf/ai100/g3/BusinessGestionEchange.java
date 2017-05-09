@@ -1,5 +1,6 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,12 +11,21 @@ import javax.ejb.Stateless;
 public class BusinessGestionEchange implements IBusinessGestionEchange {
 	@EJB
 	private IDaoEchange proxyDaoEchange;
+	private List<Echange> echangesDonnes;
+	private List<Echange> echangesRecus;
 	private List<Echange>echanges;
 
 	@Override
 	public List<Echange> afficherTousLesEchangesDUnParticipant(int idParticipant) {
 		try {
-			echanges= proxyDaoEchange.rechercherTousLesEchangesDUnParticipant(idParticipant);
+			
+			
+			echangesDonnes= proxyDaoEchange.rechercherTousLesEchangesDonnesDUnParticipant(idParticipant);
+			echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusDUnParticipant(idParticipant);
+			echanges.addAll(echangesDonnes);
+			echanges.addAll(echangesRecus);
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -24,7 +34,19 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 
 	@Override
 	public List<Echange> afficherLesEchangesTerminesDUnParticipant(int idParticipant) {
-		return proxyDaoEchange.rechercherEchangeTerminés(idParticipant);
+		
+		echangesDonnes= proxyDaoEchange.rechercherTousLesEchangesDonnesDUnParticipant(idParticipant);
+		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusDUnParticipant(idParticipant);
+		echanges.addAll(echangesDonnes);
+		echanges.addAll(echangesRecus);
+		List<Echange> echangesTermines = new ArrayList<>();
+		for(Echange e : echanges){
+			if(e.getDateFin() != null){
+				echangesTermines.add(e);
+			}
+		}
+		
+		return echangesTermines;
 	}
 
 }
