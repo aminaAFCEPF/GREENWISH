@@ -19,7 +19,7 @@ public class AccueilTransfertBean {
 	@EJB
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
-	private IBusinessAfficherEchange proxyAfficherEchange;
+	private IBusinessGestionEchange proxyAfficherEchange;
 	private List<Echange> echanges;
 	private Participant participant;
 	private RepeatPaginator paginator;
@@ -65,12 +65,12 @@ public class AccueilTransfertBean {
 	}
 
 
-	public IBusinessAfficherEchange getProxyAfficherEchange() {
+	public IBusinessGestionEchange getProxyAfficherEchange() {
 		return proxyAfficherEchange;
 	}
 
 
-	public void setProxyAfficherEchange(IBusinessAfficherEchange proxyAfficherEchange) {
+	public void setProxyAfficherEchange(IBusinessGestionEchange proxyAfficherEchange) {
 		this.proxyAfficherEchange = proxyAfficherEchange;
 	}
 

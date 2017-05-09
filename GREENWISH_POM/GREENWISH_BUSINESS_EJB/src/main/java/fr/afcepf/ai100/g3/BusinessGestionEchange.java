@@ -5,21 +5,26 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-@Remote(IBusinessAfficherEchange.class)
+@Remote(IBusinessGestionEchange.class)
 @Stateless
-public class BusinessAfficherEchange implements IBusinessAfficherEchange {
+public class BusinessGestionEchange implements IBusinessGestionEchange {
 	@EJB
-	private IDaoEchange proxyAfficherEchange;
+	private IDaoEchange proxyDaoEchange;
 	private List<Echange>echanges;
 
 	@Override
 	public List<Echange> afficherTousLesEchangesDUnParticipant(int idParticipant) {
 		try {
-			echanges= proxyAfficherEchange.rechercherTousLesEchangesDUnParticipant(idParticipant);
+			echanges= proxyDaoEchange.rechercherTousLesEchangesDUnParticipant(idParticipant);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return echanges;
+	}
+
+	@Override
+	public List<Echange> afficherLesEchangesTerminesDUnParticipant(int idParticipant) {
+		return proxyDaoEchange.rechercherEchangeTerminés(idParticipant);
 	}
 
 }
