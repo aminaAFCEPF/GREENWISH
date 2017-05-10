@@ -3,6 +3,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+		<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+	</f:metadata>
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
@@ -33,7 +37,7 @@
 								<h:selectOneMenu id="menuEtatTransfert"
 									class="boutonsSelect btn-primary borderRadius"
 									value="#{mbAfficherTransfert.selectedEtatDesTransferts}">
-									<f:ajax event="change" render=":TrierEchange:afficherUnEchangeForm:afficherUnEchange"
+									<f:ajax event="change" render=":toto"
 										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
 										execute="@form" />
 									<f:selectItems
@@ -49,7 +53,7 @@
 								<h:selectOneMenu id="menuTypeTransfert"
 									class="boutonsSelect btn-primary borderRadius"
 									value="#{mbAfficherTransfert.selectedTypesDesTransferts}">
-									<f:ajax event="change" render=":TrierEchange:afficherUnEchangeForm:afficherUnEchange"
+									<f:ajax event="change" render=":toto"
 										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
 										execute="@form" />
 									<f:selectItems value="#{mbAfficherTransfert.typesDeTransferts}"
@@ -102,6 +106,7 @@
 							</div>
 						</div>
 						<!-- fin panel label-->
+						<h:panelGroup id="toto">
 						<ui:repeat var="unEchange"
 							value="#{mbAfficherTransfert.paginator.model}">
 							<h:form id="afficherUnEchangeForm">
@@ -130,7 +135,7 @@
 								</h:commandLink>
 							</h:form>
 						</ui:repeat>
-
+</h:panelGroup>
 
 						<div class="text-center margin-bottom-20">
 								<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
