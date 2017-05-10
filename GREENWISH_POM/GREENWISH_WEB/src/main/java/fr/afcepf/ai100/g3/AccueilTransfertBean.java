@@ -14,7 +14,8 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 @ManagedBean(name = "mbAfficherTransfert")
 @ViewScoped
 public class AccueilTransfertBean {
-	
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean mbCnx;
 	@EJB
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
@@ -36,6 +37,7 @@ public class AccueilTransfertBean {
 
 	@PostConstruct
 	public void init(){
+		participant = mbCnx.getParticipant();
 		lesTypesDeRdv.add("Rendez-vous proposés");
 		lesTypesDeRdv.add("Rendez-vous validés");
 		lesTypesDeRdv.add("Rendez-vous terminés");
@@ -45,7 +47,7 @@ public class AccueilTransfertBean {
 		etatsDesTransferts.add("Transferts en cours");
 		etatsDesTransferts.add("Transferts terminés");
 		etatsDesTransferts.add("Transferts validés");
-		selectedEtatDesTransferts = etatsDesTransferts.get(0);
+		selectedEtatDesTransferts = etatsDesTransferts.get(0).toString();
 		
 		typesDeTransferts.add("Tous");
 		typesDeTransferts.add("Objets donnés");
@@ -53,12 +55,15 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 3);
+		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 				paginator = new RepeatPaginator(echanges);
 	}
 	
 	public void chargerLesTransferts(){
-		echanges=proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 3);
+//		selectedEtatDesTransferts = etatsDesTransferts.get(0);
+//		selectedTypesDesTransferts = typesDeTransferts.get(0);
+		echanges = new ArrayList<>();
+		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 		paginator = new RepeatPaginator(echanges);
 	}
 	
@@ -184,6 +189,14 @@ public class AccueilTransfertBean {
 
 	public void setProxyDaoAfficherImage(IDaoObjet proxyDaoAfficherImage) {
 		this.proxyDaoAfficherImage = proxyDaoAfficherImage;
+	}
+
+	public ConnexionBean getMbCnx() {
+		return mbCnx;
+	}
+
+	public void setMbCnx(ConnexionBean mbCnx) {
+		this.mbCnx = mbCnx;
 	}
 
 

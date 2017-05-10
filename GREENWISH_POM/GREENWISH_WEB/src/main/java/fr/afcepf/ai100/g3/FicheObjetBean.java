@@ -25,13 +25,30 @@ public class FicheObjetBean {
 	private String idAge;
 	private boolean isConnecte;
 	private boolean NotMyObjet = true;
-	private boolean connecteAndNotMyObjetCptPointsOk;
-	private boolean cptPointsOk;
+	private boolean connecteAndNotMyObjetCptPointsOk = false;
+	private boolean cptPointsOk = true;
 	private Disponibilite disponibilite;
 	private Ville villeParticipantDonneur;
-	private Ville villeParticipantReceveur;
 	private String adresseParticipantDonneur;
-	private String adresseParticipantReceveur;
+	private Horaire h = new Horaire();
+	private Jour j = new Jour();
+	
+	public Horaire getH() {
+		return h;
+	}
+
+	public void setH(Horaire h) {
+		this.h = h;
+	}
+
+	public Jour getJ() {
+		return j;
+	}
+
+	public void setJ(Jour j) {
+		this.j = j;
+	}
+
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean cnxBean;
 	
@@ -60,28 +77,12 @@ public class FicheObjetBean {
 		this.villeParticipantDonneur = villeParticipantDonneur;
 	}
 
-	public Ville getVilleParticipantReceveur() {
-		return villeParticipantReceveur;
-	}
-
-	public void setVilleParticipantReceveur(Ville villeParticipantReceveur) {
-		this.villeParticipantReceveur = villeParticipantReceveur;
-	}
-
 	public String getAdresseParticipantDonneur() {
 		return adresseParticipantDonneur;
 	}
 
 	public void setAdresseParticipantDonneur(String adresseParticipantDonneur) {
 		this.adresseParticipantDonneur = adresseParticipantDonneur;
-	}
-
-	public String getAdresseParticipantReceveur() {
-		return adresseParticipantReceveur;
-	}
-
-	public void setAdresseParticipantReceveur(String adresseParticipantReceveur) {
-		this.adresseParticipantReceveur = adresseParticipantReceveur;
 	}
 
 	public ConnexionBean getCnxBean() {
@@ -181,8 +182,6 @@ public class FicheObjetBean {
 		this.disponibilite = proxyFicheObjet.recupProprio(objet.getIdobjet()).getDisponibilite();
 		this.adresseParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getAdresse();
 		this.villeParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getVille();
-		this.adresseParticipantReceveur = cnxBean.getParticipant().getAdresse();
-		this.villeParticipantReceveur = cnxBean.getParticipant().getVille();
 		
 		return "/FicheObjet.xhtml?faces-redirect=true";
 	}
@@ -233,14 +232,20 @@ public class FicheObjetBean {
 
 		}
 	}
-
 	
-
-
-
-
-
-
-
-
+	public String redirectionReinitia(String redirection){
+		String bla = "http://localhost:8080/GreenWish/faces/";
+		bla = bla.concat(redirection);
+		this.connecteAndNotMyObjetCptPointsOk=false;
+		this.NotMyObjet=true;
+		this.cptPointsOk=true;
+	return redirection;
+	}
+	
+	public void setUneDispoRdv(Jour j, Horaire h ){
+		this.j = j;
+		this.h = h;
+		System.out.println(j.getNomjour());
+		System.out.println(h.getHeuredebut());
+	}
 }

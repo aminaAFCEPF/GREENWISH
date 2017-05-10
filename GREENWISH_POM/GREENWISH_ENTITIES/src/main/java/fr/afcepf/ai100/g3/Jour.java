@@ -3,6 +3,8 @@ package fr.afcepf.ai100.g3;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -74,7 +76,7 @@ public class Jour implements java.io.Serializable {
 		this.nomjour = nomjour;
 	}
 
-	@OneToMany(mappedBy = "jour")
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "jour")
 	public List<Horaire> getHoraires() {
 		return this.horaires;
 	}

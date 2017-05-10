@@ -93,14 +93,14 @@ public class DaoEchange implements IDaoEchange{
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesEnCours() {
-		final String req = "SELECT e FROM Echange e WHERE e.datefin IS NULL";
+		final String req = "SELECT e FROM Echange e WHERE e.dateFin IS NULL";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesTermines() {
-		final String req = "SELECT e FROM Echange e WHERE e.datefin IS NOT NULL";
+		final String req = "SELECT e FROM Echange e WHERE e.dateFin IS NOT NULL";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
