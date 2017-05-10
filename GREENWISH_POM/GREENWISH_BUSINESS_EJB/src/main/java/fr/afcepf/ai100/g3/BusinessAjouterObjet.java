@@ -41,6 +41,19 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 		proxyDaoParticipant.updateParticipant(participant);
 		proxyDaoObjet.ajouterObjet(objet);
 	}
+	
+	public String RemplirEspaces(Objet objet, String description){
+		int nbEspace;
+		int longueurDescription = objet.getDescription().length();
+		String texteDescription = objet.getDescription();
+		if(longueurDescription < 50) {
+			nbEspace = 50 - longueurDescription;
+			for(int i = 0; i < nbEspace ; i++){
+				texteDescription = texteDescription + " ";
+			}
+		}
+		return texteDescription;
+	}
 
 	@Override
 	public List<Domaine> rechercherDomaine() {

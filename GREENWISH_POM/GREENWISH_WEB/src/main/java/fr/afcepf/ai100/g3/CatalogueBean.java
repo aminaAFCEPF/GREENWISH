@@ -19,6 +19,9 @@ public class CatalogueBean {
 	private IBusinessCatalogue proxyCatalogue;
 	@EJB
 	private IBusinessFavoris proxyFavoris;
+	@EJB
+	private IBusinessAjouterObjet proxyAjoutObjet;
+
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
 	private List<Objet> objets;
@@ -35,6 +38,13 @@ public class CatalogueBean {
 		fav.getParticipants().add(mbCnx.getParticipant());
 		proxyFavoris.ajouterFavoris(fav);
 		}
+	
+	public String formatDescription(Objet objet, String description){
+		String output = objet.getDescription();
+		description = proxyAjoutObjet.RemplirEspaces(objet, output);
+		
+		return description;
+	}
 
 	public IBusinessCatalogue getProxyCatalogue() {
 		return proxyCatalogue;
@@ -74,6 +84,14 @@ public class CatalogueBean {
 
 	public void setMbCnx(ConnexionBean mbCnx) {
 		this.mbCnx = mbCnx;
+	}
+	
+	public IBusinessAjouterObjet getProxyAjoutObjet() {
+		return proxyAjoutObjet;
+	}
+
+	public void setProxyAjoutObjet(IBusinessAjouterObjet proxyAjoutObjet) {
+		this.proxyAjoutObjet = proxyAjoutObjet;
 	}
 	
 }
