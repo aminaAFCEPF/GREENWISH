@@ -38,13 +38,14 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusDUnParticipant(idParticipant);
 		echanges.addAll(echangesDonnes);
 		echanges.addAll(echangesRecus);
+		System.out.println(echanges.size());
 		List<Echange> echangesTermines = new ArrayList<>();
 		for (Echange e : echanges) {
 			if (e.getDateFin() != null) {
 				echangesTermines.add(e);
 			}
 		}
-
+		System.out.println(echangesTermines.size());
 		return echangesTermines;
 	}
 
@@ -59,6 +60,7 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 
 	@Override
 	public List<Echange> trierEchangesParEtat(String etat, int idParticipant) {
+		System.out.println(etat);
 		List<Echange> echangesTriesParEtat = new ArrayList<>();
 		switch (etat) {
 		case "Transferts en cours":
@@ -99,9 +101,9 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 		List<Echange> echangesTriesParEtat = new ArrayList<>();
 		echangesTriesParEtat = trierEchangesParEtat(etat,idParticipant);
 		echangesTriesParType = trierEchangeParType(type, idParticipant);
-		echangesTries.addAll(echangesTriesParEtat);
+		
 		for(Echange echange:echangesTriesParType){
-			if(!echangesTries.contains(echange)){
+			if(echangesTriesParEtat.contains(echange)){
 				echangesTries.add(echange);
 			}
 		}
