@@ -22,4 +22,10 @@ public interface IDaoEchange {
 	List<Echange> rechercherTousLesEchangesRefuses();
 	List<Echange> rechercherTousLesEchangesLitiges();
 	
+	List<Echange> rechercherTousLesEchangesDonnesEnCoursDUnParticipant(int idParticipant);
+	List<Echange> rechercherTousLesEchangesRecusEnCoursDUnParticipant(int idParticipant);
+	List<Echange> rechercherTousLesEchangesDonnesTerminesDUnParticipant(int idParticipant);
+	List<Echange> rechercherTousLesEchangesRecusTerminesDUnParticipant(int idParticipant);
+	
+	
 }

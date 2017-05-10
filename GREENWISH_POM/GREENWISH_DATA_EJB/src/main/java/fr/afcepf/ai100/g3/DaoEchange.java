@@ -54,7 +54,7 @@ public class DaoEchange implements IDaoEchange{
 		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet "
 				+ " INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet "
 				+ "WHERE lp.participant.idparticipant = :pidParticipant "
-				+ "AND e.datefin IS NULL";
+				+ "AND e.dateFin IS NULL";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 
@@ -65,7 +65,7 @@ public class DaoEchange implements IDaoEchange{
 		final String req = "SELECT e FROM Echange e INNER JOIN Objet o ON o.objet.idobjet = e.objet.idobjet "
 				+ "INNER JOIN ListeProposition lp ON lp.objet.idobjet = e.objet.idobjet "
 				+ "WHERE lp.participant.idparticipant = :pidParticipant "
-				+ "AND e.datefin IS NOT NULL";
+				+ "AND e.dateFin IS NOT NULL";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}
@@ -129,10 +129,49 @@ public class DaoEchange implements IDaoEchange{
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesRecusDUnParticipant(int idParticipant) {
-		final String req = "SELECT e FROM Echange e inner join fetch e.rdv rdv inner join fetch rdv.participant p WHERE e.rdv.participant.idparticipant = :pid";
+		final String req = "SELECT e FROM Echange e inner join fetch e.rdv rdv inner join fetch rdv.participant  WHERE e.rdv.participant.idparticipant = :pid";
 		Query query = em.createQuery(req).setParameter("pid", idParticipant);
 		return query.getResultList();
 	}
+
+	@Override
+	public List<Echange> rechercherTousLesEchangesDonnesEnCoursDUnParticipant(int idParticipant) {
+		final String req ="SELECT e FROM Echange e inner join fetch e.objet obj "
+				+ "inner join fetch obj.listeProposition l  "
+				+ "inner join fetch l.participant "
+				+ "WHERE e.objet.listeProposition.participant.idparticipant = :pid AND e.dateFin IS NULL ";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Echange> rechercherTousLesEchangesRecusEnCoursDUnParticipant(int idParticipant) {
+		final String req = "SELECT e FROM Echange e inner join fetch e.rdv rdv "
+				+ "inner join fetch rdv.participant  "
+				+ "WHERE e.rdv.participant.idparticipant = :pid AND e.dateFin IS NULL";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Echange> rechercherTousLesEchangesDonnesTerminesDUnParticipant(int idParticipant) {
+		final String req ="SELECT e FROM Echange e inner join fetch e.objet obj "
+				+ "inner join fetch obj.listeProposition l  "
+				+ "inner join fetch l.participant "
+				+ "WHERE e.objet.listeProposition.participant.idparticipant = :pid AND e.dateFin IS NOT NULL ";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Echange> rechercherTousLesEchangesRecusTerminesDUnParticipant(int idParticipant) {
+		final String req = "SELECT e FROM Echange e inner join fetch e.rdv rdv "
+				+ "inner join fetch rdv.participant  "
+				+ "WHERE e.rdv.participant.idparticipant = :pid AND e.dateFin IS NOT NULL";
+		Query query = em.createQuery(req).setParameter("pid", idParticipant);
+		return query.getResultList();
+	}
+
 	
 	
 	
