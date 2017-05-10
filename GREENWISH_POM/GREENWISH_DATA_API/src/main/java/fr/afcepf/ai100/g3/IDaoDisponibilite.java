@@ -6,4 +6,5 @@ public interface IDaoDisponibilite {
 	Disponibilite ajouterDisponibilite (Disponibilite disponibilite);
 	Disponibilite updateDisponibilite (Disponibilite disponibilite);
 	void deleteDisponibilite (Disponibilite disponibilite);
+
 }

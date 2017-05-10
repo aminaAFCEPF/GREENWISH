@@ -24,12 +24,16 @@ public class DaoJour implements IDaoJour {
 	}
 
 	@Override
-	public List<Jour> getJourByIdJour(int id) {
+	public Jour getJourByIdJour(int id) {
 		String req = "SELECT j FROM Jour j WHERE j.idjour = :pid";
 		Query query = em.createQuery(req).setParameter("pid", id);
-		return query.getResultList();
+		return (Jour)query.getSingleResult();
 	}
+	
+	
 
+	
+	
 	@Override
 	public Jour ajouterJour(Jour jour) {
 		em.persist(jour);
