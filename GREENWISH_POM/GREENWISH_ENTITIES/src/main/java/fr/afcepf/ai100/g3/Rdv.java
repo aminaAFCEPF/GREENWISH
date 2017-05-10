@@ -53,6 +53,15 @@ public class Rdv  implements java.io.Serializable {
 		this.adresse = adresse;
 		this.participant = participant;
 	}
+    
+    public Rdv(Echange echange, Ville ville, Date daterdv, String adresse, Participant participant) {
+		super();
+		this.echange = echange;
+		this.ville = ville;
+		this.daterdv = daterdv;
+		this.adresse = adresse;
+		this.participant = participant;
+	}
 
 
 	public Rdv(Echange echange, Ville ville, Date daterdv, String adresse) {

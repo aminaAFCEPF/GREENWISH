@@ -22,6 +22,68 @@ public class FicheObjetBean {
 	private Objet objet;
 	private List<Image> images;
 	private String valeur;
+	private String idAge;
+	private boolean isConnecte;
+	private boolean NotMyObjet = true;
+	private boolean connecteAndNotMyObjetCptPointsOk;
+	private boolean cptPointsOk;
+	private Disponibilite disponibilite;
+	private Ville villeParticipantDonneur;
+	private Ville villeParticipantReceveur;
+	private String adresseParticipantDonneur;
+	private String adresseParticipantReceveur;
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean cnxBean;
+	
+	
+	public boolean isConnecteAndNotMyObjetCptPointsOk() {
+		return connecteAndNotMyObjetCptPointsOk;
+	}
+
+	public void setConnecteAndNotMyObjetCptPointsOk(boolean connecteAndNotMyObjetCptPointsOk) {
+		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
+	}
+
+	public Disponibilite getDisponibilite() {
+		return disponibilite;
+	}
+
+	public void setDisponibilite(Disponibilite disponibilite) {
+		this.disponibilite = disponibilite;
+	}
+
+	public Ville getVilleParticipantDonneur() {
+		return villeParticipantDonneur;
+	}
+
+	public void setVilleParticipantDonneur(Ville villeParticipantDonneur) {
+		this.villeParticipantDonneur = villeParticipantDonneur;
+	}
+
+	public Ville getVilleParticipantReceveur() {
+		return villeParticipantReceveur;
+	}
+
+	public void setVilleParticipantReceveur(Ville villeParticipantReceveur) {
+		this.villeParticipantReceveur = villeParticipantReceveur;
+	}
+
+	public String getAdresseParticipantDonneur() {
+		return adresseParticipantDonneur;
+	}
+
+	public void setAdresseParticipantDonneur(String adresseParticipantDonneur) {
+		this.adresseParticipantDonneur = adresseParticipantDonneur;
+	}
+
+	public String getAdresseParticipantReceveur() {
+		return adresseParticipantReceveur;
+	}
+
+	public void setAdresseParticipantReceveur(String adresseParticipantReceveur) {
+		this.adresseParticipantReceveur = adresseParticipantReceveur;
+	}
+
 	public ConnexionBean getCnxBean() {
 		return cnxBean;
 	}
@@ -29,22 +91,99 @@ public class FicheObjetBean {
 	public void setCnxBean(ConnexionBean cnxBean) {
 		this.cnxBean = cnxBean;
 	}
+	
+	public IBusinessCatalogue getProxyCatalogue() {
+		return proxyCatalogue;
+	}
 
-	private String idAge;
-	private boolean isConnecte;
-	private boolean NotMyObjet = true;
-	private boolean connecteAndNotMyObjetCptPointsOk;
-	private boolean cptPointsOk;
+	public void setProxyCatalogue(IBusinessCatalogue proxyCatalogue) {
+		this.proxyCatalogue = proxyCatalogue;
+	}
 
+	public Objet getObjet() {
+		return objet;
+	}
 
-	@ManagedProperty(value="#{mbCnx}")
-	private ConnexionBean cnxBean;
+	public void setObjet(Objet objet) {
+		this.objet = objet;
+	}
 
+	public IBusinessFicheObjet getProxyFicheObjet() {
+		return proxyFicheObjet;
+	}
+
+	public void setProxyFicheObjet(IBusinessFicheObjet proxyFicheObjet) {
+		this.proxyFicheObjet = proxyFicheObjet;
+	}
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
+	public String getValeur() {
+		return valeur;
+	}
+
+	public void setValeur(String valeur) {
+		this.valeur = valeur;
+	}
+
+	public String getIdAge() {
+		return idAge;
+	}
+
+	public void setIdAge(String idAge) {
+		this.idAge = idAge;
+	}
+
+	public boolean isConnecte() {
+		return isConnecte;
+	}
+
+	public void setConnecte(boolean isConnecte) {
+		this.isConnecte = isConnecte;
+	}
+
+	public boolean isNotMyObjet() {
+		return NotMyObjet;
+	}
+
+	public void setNotMyObjet(boolean notMyObjet) {
+		NotMyObjet = notMyObjet;
+	}
+
+	public boolean isconnecteAndNotMyObjetCptPointsOk() {
+		return connecteAndNotMyObjetCptPointsOk;
+	}
+
+	public void setconnecteAndNotMyObjetCptPointsOk(boolean connecteAndNotMyObjetCptPointsOk) {
+		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
+	}
+
+	public boolean isCptPointsOk() {
+		return cptPointsOk;
+	}
+
+	public void setCptPointsOk(boolean cptPointsOk) {
+		this.cptPointsOk = cptPointsOk;
+	}
+	
 	public String afficherObjet(Objet objet){
 		this.objet = objet;
 		this.images = proxyFicheObjet.getImageByIdObjet(objet.getIdobjet());
 		this.valeur = objet.getValeur().toString();
 		this.setIdAge(objet.getTrancheAge().getIdage().toString());
+		
+		this.disponibilite = proxyFicheObjet.recupProprio(objet.getIdobjet()).getDisponibilite();
+		this.adresseParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getAdresse();
+		this.villeParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getVille();
+		this.adresseParticipantReceveur = cnxBean.getParticipant().getAdresse();
+		this.villeParticipantReceveur = cnxBean.getParticipant().getVille();
+		
 		return "/FicheObjet.xhtml?faces-redirect=true";
 	}
 
@@ -95,95 +234,7 @@ public class FicheObjetBean {
 		}
 	}
 
-	public IBusinessCatalogue getProxyCatalogue() {
-		return proxyCatalogue;
-	}
-
-	public void setProxyCatalogue(IBusinessCatalogue proxyCatalogue) {
-		this.proxyCatalogue = proxyCatalogue;
-	}
-
-	public Objet getObjet() {
-		return objet;
-	}
-
-	public void setObjet(Objet objet) {
-		this.objet = objet;
-	}
-
-
-	public IBusinessFicheObjet getProxyFicheObjet() {
-		return proxyFicheObjet;
-	}
-
-
-	public void setProxyFicheObjet(IBusinessFicheObjet proxyFicheObjet) {
-		this.proxyFicheObjet = proxyFicheObjet;
-	}
-
-
-	public List<Image> getImages() {
-		return images;
-	}
-
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
-
-
-	public String getValeur() {
-		return valeur;
-	}
-
-
-	public void setValeur(String valeur) {
-		this.valeur = valeur;
-	}
-
-
-	public String getIdAge() {
-		return idAge;
-	}
-
-
-	public void setIdAge(String idAge) {
-		this.idAge = idAge;
-	}
-
-
-
-	public boolean isConnecte() {
-		return isConnecte;
-	}
-
-	public void setConnecte(boolean isConnecte) {
-		this.isConnecte = isConnecte;
-	}
-
-	public boolean isNotMyObjet() {
-		return NotMyObjet;
-	}
-
-	public void setNotMyObjet(boolean notMyObjet) {
-		NotMyObjet = notMyObjet;
-	}
-
-	public boolean isconnecteAndNotMyObjetCptPointsOk() {
-		return connecteAndNotMyObjetCptPointsOk;
-	}
-
-	public void setconnecteAndNotMyObjetCptPointsOk(boolean connecteAndNotMyObjetCptPointsOk) {
-		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
-	}
-
-	public boolean isCptPointsOk() {
-		return cptPointsOk;
-	}
-
-	public void setCptPointsOk(boolean cptPointsOk) {
-		this.cptPointsOk = cptPointsOk;
-	}
+	
 
 
 

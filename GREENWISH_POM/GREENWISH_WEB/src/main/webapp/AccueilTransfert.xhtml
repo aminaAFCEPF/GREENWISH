@@ -15,13 +15,14 @@
 						<div class="col-md-4 margin-bottom-20">
 							<h1>Mes transferts</h1>
 						</div>
+						<h:form id="TrierParRdvForm">
 						<div class="col-md-7 padding-vert-10 customAlign">
 							<span class="">Sélectionner les Rendez-vous pris entre le</span>
 							<span><input type="date" name="debutRendezVous" /></span> <span>et
 								le</span> <span><input type="date" name="finRendezVous" /></span>
 						</div>
-
-
+						</h:form>
+						<h:form id="TrierEchange">
 						<div id="pannelBouton" class="col-md-12 pull-right">
 							<ol class="breadcrumb col-lg-3 background-white">
 								<li><a href="#">Accueil</a></li>
@@ -32,6 +33,9 @@
 								<h:selectOneMenu id="menuEtatTransfert"
 									class="boutonsSelect btn-primary borderRadius"
 									value="#{mbAfficherTransfert.selectedEtatDesTransferts}">
+									<f:ajax event="change" render=":TrierEchange:afficherUnEchangeForm:afficherUnEchange"
+										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
+										execute="@form" />
 									<f:selectItems
 										value="#{mbAfficherTransfert.etatsDesTransferts}"
 										var="etatsDesTransferts"
@@ -45,6 +49,9 @@
 								<h:selectOneMenu id="menuTypeTransfert"
 									class="boutonsSelect btn-primary borderRadius"
 									value="#{mbAfficherTransfert.selectedTypesDesTransferts}">
+									<f:ajax event="change" render=":TrierEchange:afficherUnEchangeForm:afficherUnEchange"
+										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
+										execute="@form" />
 									<f:selectItems value="#{mbAfficherTransfert.typesDeTransferts}"
 										var="typesDesTransferts"
 										itemLabel="#{typesDesTransferts.toString()}"
@@ -65,7 +72,7 @@
 								</h:selectOneMenu>
 							</div>
 						</div>
-
+						</h:form>
 					</div>
 
 				</div>
@@ -89,7 +96,7 @@
 
 
 							<div id="label" class="panel-body">
-								<span><h3>Objet</h3></span> <span><h3>Donneur</h3></span> <span><h3>Rendez-vous
+								<span><h3>Objet</h3></span> <span><h3>Intitulé Objet</h3></span> <span><h3>Rendez-vous
 										proposé</h3></span> <span><h3>Rendez-vous validé</h3></span> <span><h3>Rendez-vous
 										terminé</h3></span> <span><h3>transfert terminé</h3></span>
 							</div>
@@ -97,46 +104,44 @@
 						<!-- fin panel label-->
 						<ui:repeat var="unEchange"
 							value="#{mbAfficherTransfert.paginator.model}">
-							<h:form>
-							<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
-							<div class="containerBar">
-								<div class="well background-white divBorderComposition">
-								<h:graphicImage width="150" height="130" 
-									value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
-									alt="thumb1" class="ImgDimensions" />
-									
-								</div>
-								<div class="well background-white divBorderComposition">#{unEchange.objet.listeProposition.participant.nom}</div>
-								<div class="well background-white divBorderComposition">
+							<h:form id="afficherUnEchangeForm">
+								<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
+									<div id="afficherUnEchange" class="containerBar">
+										<div class="well background-white divBorderComposition">
+											<h:graphicImage width="150" height="130"
+												value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
+												alt="thumb1" class="ImgDimensions" />
+										</div>
+										<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
+										<div class="well background-white divBorderComposition">
 
-									<div class="progress progress1">
-										<div class="one T1 success-color"></div>
-										<div class="two T2 #{mbAfficherTransfert.test()}"></div>
-										<div class="three T3 #{mbAfficherTransfert.test()}"></div>
-										<div class="four T4 #{mbAfficherTransfert.test()}"></div>
-										<div class="progress-bar progress-bar-success"
-											style="width: 35%"></div>
+											<div class="progress progress1">
+												<div class="one T1 success-color"></div>
+												<div class="two T2 #{mbAfficherTransfert.test()}"></div>
+												<div class="three T3 #{mbAfficherTransfert.test()}"></div>
+												<div class="four T4 #{mbAfficherTransfert.test()}"></div>
+												<div class="progress-bar progress-bar-success"
+													style="width: 35%"></div>
+											</div>
+
+										</div>
+
 									</div>
-
-								</div>
-
-							</div>
-							</h:commandLink>
+								</h:commandLink>
 							</h:form>
 						</ui:repeat>
 
 
-						<div class="text-center">
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
+						<div class="text-center margin-bottom-20">
+								<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
+									value="&lt; prev" />
+								<h:outputText
+									value="#{mbAfficherTransfert.paginator.pageIndex} / #{mbAfficherTransfert.paginator.pages}" />
+								<h:commandButton action="#{mbAfficherTransfert.paginator.next}"
+									value="next &gt;" />
+								<h:inputHidden value="#{mbAfficherTransfert.paginator.pageIndex}" />
+
+							</div>
 
 
 					</div>

@@ -84,7 +84,7 @@ public class Echange  implements java.io.Serializable {
         this.idechange = idechange;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDAVIS", nullable=true)
     public Avis getAvis() {
         return this.avis;
@@ -94,7 +94,7 @@ public class Echange  implements java.io.Serializable {
         this.avis = avis;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDLITIGE")
     public Litige getLitige() {
         return this.litige;
@@ -104,7 +104,7 @@ public class Echange  implements java.io.Serializable {
         this.litige = litige;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDOBJET", nullable=false)
     public Objet getObjet() {
         return this.objet;
@@ -114,7 +114,7 @@ public class Echange  implements java.io.Serializable {
         this.objet = objet;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDRDV", nullable=true)
     public Rdv getRdv() {
         return this.rdv;
@@ -184,7 +184,7 @@ public class Echange  implements java.io.Serializable {
         this.valeur = valeur;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="echange")
+@OneToMany(mappedBy="echange")
     public List<Litige> getLitiges() {
         return this.litiges;
     }
@@ -193,7 +193,7 @@ public class Echange  implements java.io.Serializable {
         this.litiges = litiges;
     }
 
-@ManyToMany(fetch=FetchType.LAZY)
+@ManyToMany
     @JoinTable(name="refuse", catalog="greenwish", joinColumns = { 
         @JoinColumn(name="IDECHANGE", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="IDREFUS", nullable=false, updatable=false) })
@@ -205,7 +205,7 @@ public class Echange  implements java.io.Serializable {
         this.refus = refus;
     }
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="echange")
+    @OneToMany(mappedBy="echange")
 	public List<Message> getMessages() {
 		return messages;
 	}
