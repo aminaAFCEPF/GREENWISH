@@ -140,12 +140,12 @@
     border-radius: 7px;
 }
 
-#searchFiltre {
+.searchFiltre {
     display: flex;
     justify-content: space-between;
 }
 
-#filtre {
+.filtre {
     border-radius: 7px;
     width: 120px;
     height: 30px;
@@ -735,6 +735,6 @@ color: white;
 }
 .fixeTaille
 {
-	height: 621px;
+	min-height: 621px;
 }
 

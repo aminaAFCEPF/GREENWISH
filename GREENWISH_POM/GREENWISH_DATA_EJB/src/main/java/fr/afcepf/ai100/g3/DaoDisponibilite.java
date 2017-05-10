@@ -22,14 +22,13 @@ public class DaoDisponibilite implements IDaoDisponibilite{
 		return (Disponibilite) query.getSingleResult();
 	}
 	
-
 	@Override
 	public Disponibilite getDisponibiliteById(int id) {
 		final String req = "SELECT d FROM Disponibilite d WHERE d.iddispo = :pid";
 		Query query = em.createQuery(req).setParameter("pid", id);
 		return (Disponibilite) query.getSingleResult();
 	}
-	
+
 	@Override
 	public Disponibilite ajouterDisponibilite(Disponibilite disponibilite) {
 		em.persist(disponibilite);

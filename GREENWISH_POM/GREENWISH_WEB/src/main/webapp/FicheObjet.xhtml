@@ -19,7 +19,7 @@
 						</div>
 						<div class="margin-bottom-10">
 							<ol class="breadcrumb ">
-								<li><a href="Catalogue.xhtml">Catalogue</a></li>
+								<li><h:commandLink action="#{mbFicheObjet.redirectionReinitia('Catalogue.xhtml')}" value="Catalogue"></h:commandLink></li>
 								<li class="active">Fiche objet</li>
 							</ol>
 						</div>
@@ -162,197 +162,45 @@
 											<div class="col-md-6">
 												<h:commandButton
 													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
-													type="submit">Envoyer</h:commandButton>
+													type="submit" value="Envoyer"/>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-4">
-								<div
-									class="borderperso background-white centrerElementHorizontal">
-									<h3>Disponibilités</h3>
+								<div class="col-md-4">
+									<div
+										class="borderperso background-white centrerElementHorizontal">
+										<h3>Disponibilités</h3>
+										
+									</div>
+									<table id="tableDispos"
+										class="table table-hover table-responsive">
+										<thead>
+											<tr>
+												<th>Jour</th>
+												<th>heure</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat var="j" value="#{mbFicheObjet.disponibilite.jours}">
+												<ui:repeat var="h" value="#{j.horaires}">
+													<h:commandLink action="#{mbFicheObjet.setUneDispoRdv(j,h)}" >
+														<div class="row">
+															<div class="col-md-4 text-center">
+																#{j.nomjour}
+															</div>
+															<div class="col-md-8 text-center">
+																#{h.heuredebut} à #{h.heurefin}
+															</div>
+														</div>
+													</h:commandLink>
+												</ui:repeat>
+											</ui:repeat>
+										</tbody>
+									</table>
+									
 								</div>
-								<table id="tableDispos"
-									class="table table-hover table-responsive">
-									<thead>
-										<tr>
-											<th>Jour</th>
-											<th>heure</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Lundi</td>
-											<td><span>à</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-													<option value="13">13</option>
-													<option value="14">14</option>
-													<option value="15">15</option>
-													<option value="16">16</option>
-													<option value="17">17</option>
-													<option value="18">18</option>
-													<option value="19">19</option>
-													<option value="20">20</option>
-													<option value="21">21</option>
-													<option value="22">22</option>
-													<option value="23">23</option>
-											</select><span>:</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="05">05</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
-													<option value="35">35</option>
-													<option value="40">40</option>
-													<option value="45">45</option>
-													<option value="50">50</option>
-													<option value="55">55</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td>Mercredi</td>
-											<td><span>à</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-													<option value="13">13</option>
-													<option value="14">14</option>
-													<option value="15">15</option>
-													<option value="16">16</option>
-													<option value="17">17</option>
-													<option value="18">18</option>
-													<option value="19">19</option>
-													<option value="20">20</option>
-													<option value="21">21</option>
-													<option value="22">22</option>
-													<option value="23">23</option>
-											</select><span>:</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="05">05</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
-													<option value="35">35</option>
-													<option value="40">40</option>
-													<option value="45">45</option>
-													<option value="50">50</option>
-													<option value="55">55</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td>Vendredi</td>
-											<td><span>à</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-													<option value="13">13</option>
-													<option value="14">14</option>
-													<option value="15">15</option>
-													<option value="16">16</option>
-													<option value="17">17</option>
-													<option value="18">18</option>
-													<option value="19">19</option>
-													<option value="20">20</option>
-													<option value="21">21</option>
-													<option value="22">22</option>
-													<option value="23">23</option>
-											</select><span>:</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="05">05</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
-													<option value="35">35</option>
-													<option value="40">40</option>
-													<option value="45">45</option>
-													<option value="50">50</option>
-													<option value="55">55</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td>Samedi</td>
-											<td><span>à</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-													<option value="13">13</option>
-													<option value="14">14</option>
-													<option value="15">15</option>
-													<option value="16">16</option>
-													<option value="17">17</option>
-													<option value="18">18</option>
-													<option value="19">19</option>
-													<option value="20">20</option>
-													<option value="21">21</option>
-													<option value="22">22</option>
-													<option value="23">23</option>
-											</select><span>:</span> <select class="margin-horiz-10 line">
-													<option value="00">00</option>
-													<option value="05">05</option>
-													<option value="10">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
-													<option value="35">35</option>
-													<option value="40">40</option>
-													<option value="45">45</option>
-													<option value="50">50</option>
-													<option value="55">55</option>
-											</select></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							</div>	
 						</div>
 					</div>
 				</div>
