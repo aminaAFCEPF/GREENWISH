@@ -53,8 +53,13 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 2);
+		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 3);
 				paginator = new RepeatPaginator(echanges);
+	}
+	
+	public void chargerLesTransferts(){
+		echanges=proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 3);
+		paginator = new RepeatPaginator(echanges);
 	}
 	
 	public String test(){
