@@ -21,6 +21,7 @@ public class DaoDisponibilite implements IDaoDisponibilite{
 		Query query = em.createQuery(req);
 		return (Disponibilite) query.getSingleResult();
 	}
+	
 
 	@Override
 	public Disponibilite getDisponibiliteById(int id) {
@@ -29,6 +30,26 @@ public class DaoDisponibilite implements IDaoDisponibilite{
 		return (Disponibilite) query.getSingleResult();
 	}
 	
+	@Override
+	public Disponibilite ajouterDisponibilite(Disponibilite disponibilite) {
+		em.persist(disponibilite);
+		return disponibilite;
+	}
+
+
+	@Override
+	public Disponibilite updateDisponibilite(Disponibilite disponibilite) {
+		em.merge(disponibilite);
+		return disponibilite;
+	}
+
+
+	@Override
+	public void deleteDisponibilite(Disponibilite disponibilite) {
+		em.remove(disponibilite);
+	}
+
+
 	@Override
 	public Disponibilite ajouterDisponibilite(Disponibilite disponibilite) {
 		em.persist(disponibilite);
