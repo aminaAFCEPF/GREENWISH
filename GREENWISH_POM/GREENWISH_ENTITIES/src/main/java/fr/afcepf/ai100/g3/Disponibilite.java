@@ -3,6 +3,8 @@ package fr.afcepf.ai100.g3;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -73,8 +75,8 @@ public class Disponibilite implements java.io.Serializable {
 	public void setParticipants(List<Participant> participants) {
 		this.participants = participants;
 	}
-
-	@OneToMany(mappedBy = "disponibilite")
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "disponibilite", cascade = CascadeType.ALL)
 	public List<Jour> getJours() {
 		return this.jours;
 	}
