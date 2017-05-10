@@ -19,6 +19,8 @@ public class AccueilTransfertBean {
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
 	private IBusinessGestionEchange proxyAfficherEchange;
+	@EJB
+	private IDaoObjet proxyDaoAfficherImage;
 	private List<Echange> echanges;
 	private Participant participant;
 	private RepeatPaginator paginator;
@@ -28,6 +30,8 @@ public class AccueilTransfertBean {
 	private String selectedEtatDesTransferts;
 	private List<String> typesDeTransferts = new ArrayList<>();
 	private String selectedTypesDesTransferts;
+	
+
 	
 
 	@PostConstruct
@@ -49,8 +53,12 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherTousLesEchangesDUnParticipant(2);
+		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, 2);
 				paginator = new RepeatPaginator(echanges);
+	}
+	
+	public String test(){
+		return "success-color";
 	}
 
 
@@ -162,6 +170,19 @@ public class AccueilTransfertBean {
 	public void setSelectedTypesDesTransferts(String selectedTypesDesTransferts) {
 		this.selectedTypesDesTransferts = selectedTypesDesTransferts;
 	}
+
+
+	public IDaoObjet getProxyDaoAfficherImage() {
+		return proxyDaoAfficherImage;
+	}
+
+
+	public void setProxyDaoAfficherImage(IDaoObjet proxyDaoAfficherImage) {
+		this.proxyDaoAfficherImage = proxyDaoAfficherImage;
+	}
+
+
+
 
 
 	

@@ -101,16 +101,19 @@
 							<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
 							<div class="containerBar">
 								<div class="well background-white divBorderComposition">
-									<img src="resources/img/imgObjetsMini/velopetit.png" alt="velo" />
+								<h:graphicImage width="150" height="130" 
+									value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
+									alt="thumb1" class="ImgDimensions" />
+									
 								</div>
 								<div class="well background-white divBorderComposition">#{unEchange.objet.listeProposition.participant.nom}</div>
 								<div class="well background-white divBorderComposition">
 
 									<div class="progress progress1">
 										<div class="one T1 success-color"></div>
-										<div class="two T2 no-color"></div>
-										<div class="three T3 no-color"></div>
-										<div class="four T4 no-color"></div>
+										<div class="two T2 #{mbAfficherTransfert.test()}"></div>
+										<div class="three T3 #{mbAfficherTransfert.test()}"></div>
+										<div class="four T4 #{mbAfficherTransfert.test()}"></div>
 										<div class="progress-bar progress-bar-success"
 											style="width: 35%"></div>
 									</div>

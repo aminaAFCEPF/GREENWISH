@@ -117,12 +117,7 @@ public class DaoObjet implements IDaoObjet{
 	}
 
 
-	@Override
-	public Image getFirstImageByIdObjet(int idObjet) {
-		final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
-		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
-		return (Image)query.getResultList().get(0);
-	}
+	
 	
 	@Override
     public List<Image> getAllImageByIdObjet(int idObjet) {
@@ -130,6 +125,17 @@ public class DaoObjet implements IDaoObjet{
         Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
         return query.getResultList();
     }
-
+	@Override
+	public Image getFirstImageByIdObjet(int idObjet) 
+	{
+		final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
+		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
+		List<Image> liste = query.getResultList();
+		Image img = new Image(null, "404.png");
+		if(!liste.isEmpty()) {
+			img = (Image) query.getResultList().get(0);
+		}
+		return img;
+	}
 
 }
