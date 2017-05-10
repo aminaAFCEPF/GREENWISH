@@ -15,4 +15,5 @@ public interface IBusinessAjouterObjet {
 	Participant rechercherParticipantParId(int idParticipant);
 	ListeProposition ajouterUneListe(ListeProposition listeProposition);
 	Participant ajouterPointsAUnParticipant(Participant participant);
+	String RemplirEspaces(Objet objet, String description);
 }
