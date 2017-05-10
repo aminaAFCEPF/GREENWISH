@@ -157,8 +157,10 @@
 													<th>Jour</th>
 													<th>heure</th>
 												</tr>
+												
 											</thead>
 											<tbody>
+											<h:outputText value="#{mbGestionProfil.ajoutLigneTabHTML()}" escape="html" />
 											</tbody>
 										</table>
 
@@ -167,7 +169,7 @@
 										<button type="button" class="btn btn-primary borderRadius"
 											id="okDispo" onclick="deleteRow()">Effacer</button>
 									</div>
-
+									
 
 								</div>
 								<div class="row padding-vert-10 text-center">
