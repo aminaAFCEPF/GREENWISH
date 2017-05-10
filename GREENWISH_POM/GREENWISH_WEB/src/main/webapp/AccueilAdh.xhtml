@@ -31,22 +31,25 @@
 										<img src="resources/img/MonProfil.png"
 											class="background-white " title="Mes Infos" />
 									</div>
-								</h:commandLink> <a href="#" class="btn primary margin-bottom-35">
+								</h:commandLink> 
+								<h:commandLink action="#{mbAcceuilAdh.afficherObjets()}" class="btn primary margin-bottom-35">
 									<div class="well borderperso background-white">
 										<img src="resources/img/MesObjets.png" title="Mes Objets"
 											class="background-white" />
 									</div>
-								</a> <a href="#" class="btn primary margin-bottom-35">
+								</h:commandLink>
+								<h:commandLink action="#{mbAcceuilAdh.afficherTransferts()}" class="btn primary margin-bottom-35">
 									<div class="well borderperso background-white">
 										<img src="resources/img/transfert.png" title="Mes Transferts"
 											class="background-white" />
 									</div>
-								</a> <a href="#" class="btn primary margin-bottom-35">
+								</h:commandLink>
+								<h:commandLink action="#{mbAcceuilAdh.afficherFavoris()}" class="btn primary margin-bottom-35">
 									<div class="well borderperso background-white">
 										<img src="resources/img/favoriEtoile.jpg" title="Mes Favoris"
 											class="background-white" />
 									</div>
-								</a>
+								</h:commandLink>
 							</div>
 							<div class="col-md-7">
 								<div class=" borderperso background-white padding-bottom-20">
@@ -88,19 +91,17 @@
 								</div>
 								<div class="borderperso background-white">
 									<div id="carousel-example-2" class="carousel slide alternative"
-										data-ride="carousel">
+										data-ride="carousel" data-interval="50000" >
 										<!-- Indicators -->
 										<ol class="carousel-indicators">
-											<li data-target="#carousel-example-2" data-slide-to="0"
-												class="active"></li>
+											<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
 											<li data-target="#carousel-example-2" data-slide-to="1"></li>
 										</ol>
 										<!-- Wrapper for slides -->
-										<div class="carousel-inner carousselAdh">
+										<div class="carousel-inner" >
 											<div class="item active">
 												<div class="row">
-													<ui:repeat var="lObjet"
-														value="#{mbAcceuilAdh.afficherSuggestions(1)}">
+													<ui:repeat var="lObjet" value="#{mbAcceuilAdh.afficherSuggestions(1)}">
 														<div class="col-md-4">
 															<h:graphicImage width="150" height="130"
 																value="#{mbAcceuilAdh.proxyBusinessCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" />
@@ -229,8 +230,8 @@
 									</div>
 									<div class="row centrerElementHorizontal">
 										<p>Vous avez
-											5
-											échanges en cours !</p>
+											#{mbAcceuilAdh.proxyBusinessEchange.afficherTousLesEchangesDUnParticipant(mbAcceuilAdh.participant.idparticipant).size()}
+											échanges enregistrés !</p>
 									</div>
 									<div class="row centrerElementHorizontal">
 										<i class="fa-globe fa-4x color-primary animate fadeIn"></i>

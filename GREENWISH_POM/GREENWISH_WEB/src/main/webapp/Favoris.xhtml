@@ -4,6 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
+
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -15,15 +19,15 @@
 						<h1>Favoris</h1>
 					</div>
 					<div id="searchFiltre">
-						<ol class="breadcrumb ">
+						<ol class="breadcrumb background-white">
 							<li><a href="#">Mon compte</a></li>
 							<li class="active">Favoris</li>
 						</ol>
 						<div class="boutons pull-left">
 							<div class="btn-groupFavo">
-								<button type="button" class="btn btn-primary">Objet</button>
-								<button type="button" class="btn btn-primary">Recherche</button>
-								<button type="button" class="btn btn-primary">Tous</button>
+								<button type="button" class="btn btn-primary borderRadius">Objet</button>
+								<button type="button" class="btn btn-primary ">Recherche</button>
+								<button type="button" class="btn btn-primary borderRadius">Tous</button>
 							</div>
 						</div>
 					</div>
@@ -34,250 +38,81 @@
 							<h3>Objets</h3>
 						</div>
 						<div class="col-md-12 margin-top-10">
-							<a href="#">
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/bang-ice.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
+							<ui:repeat var="favoris" value="#{mbFavoris.paginatorFavoris.model}">
+								<h:form>
+									<h:commandLink action="#{mbFicheObjet.afficherObjet(favoris.objet)}">
+										<div
+											class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
+											<div class="col-sm-2">
+												<img src="#{mbFavoris.premiereImage}" alt="thumb1" />
 											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a href="#">
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/bang-ice.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
+											<div class="col-sm-10 vertical">
+												<div class="row ">
+													<div class="col-sm-6">
+														<h4>#{favoris.objet.intitule}</h4>
+													</div>
+													<div class="col-sm-6">
+														<h5>Ajouté le : #{mbFavoris.dateAjoutFormat}</h5>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-8">
+														<fieldset>
+															<legend class="animate fadeIn">Ma recherche</legend>
+															<a class="blog-tag perso" href="#">#{favoris.objet.domaine.domaine}</a>
+															<a class="blog-tag perso" href="#">#{favoris.objet.categorie.intitule}</a>
+															<a class="blog-tag perso" href="#">#{favoris.objet.souscategorie.intitule}</a>
+															<a class="blog-tag perso" href="#">Valeur :
+																#{favoris.objet.valeur.valeur}</a> <a class="blog-tag perso"
+																href="#">#{favoris.objet.trancheAge.ageMaxi}-#{favoris.objet.trancheAge.ageMini}
+																ans</a>
+														</fieldset>
+													</div>
+													<div class="col-sm-4">
+														<h5>
+															Valeur : #{favoris.objet.valeur.valeur} <img
+																class="idflocon" src="resources/img/blog/flocon.jpg"
+																alt="thumb1" />
+														</h5>
+													</div>
+												</div>
+												<div>Description objet :#{favoris.objet.description}</div>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a href="#">
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/bang-ice.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a href="#">
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/bang-ice.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a href="#">
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/bang-ice.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a>
-							<div class="col-xs-2 background-white borderRadius">
+									</h:commandLink>
+								</h:form>
+							</ui:repeat>
+							<div
+								class="col-xs-2 background-white borderRadius favorisTittleObj">
 								<h3>Recherche</h3>
 							</div>
 
 							<div class="col-md-12 margin-top-10">
-								<div
-									class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
-									<div class="col-md-11">
-										<fieldset>
-											<legend class="animate fadeIn">Ma recherche</legend>
-											<a class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a>
-										</fieldset>
-									</div>
-									<div class="col-md-1">
-										<a href="#"><i class="fa-search fa-2x animate fadeIn"></i></a>
-									</div>
-								</div>
-								<div
-									class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
-									<div class="col-md-11">
-										<fieldset>
-											<legend class="animate fadeIn">Ma recherche</legend>
-											<a class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a> <a
-												class="blog-tag perso" href="#">Bouton</a>
-										</fieldset>
-									</div>
-									<div class="col-md-1">
-										<a href="#"><i class="fa-search fa-2x animate fadeIn"></i></a>
-									</div>
-								</div>
+								<ui:repeat var="favoris" value="#{mbFavoris.paginatorSouhaits.model}">
+									<h:form>
+										<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
+											<div
+												class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
+												<div class="col-md-11">
+													<fieldset>
+														<legend class="animate fadeIn">Ma recherche</legend>
+														<a class="blog-tag perso" href="#">Bouton</a> <a
+															class="blog-tag perso" href="#">Bouton</a> <a
+															class="blog-tag perso" href="#">Bouton</a> <a
+															class="blog-tag perso" href="#">Bouton</a> <a
+															class="blog-tag perso" href="#">Bouton</a> <a
+															class="blog-tag perso" href="#">Bouton</a>
+													</fieldset>
+												</div>
+												<div class="col-md-1">
+													<a href="#"><i class="fa-search fa-2x animate fadeIn"></i></a>
+												</div>
+											</div>
+										</h:commandLink>
+									</h:form>
+								</ui:repeat>
 							</div>
-
 						</div>
-
 					</div>
 					<div class="text-center">
 						<ul class="pagination">

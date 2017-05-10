@@ -13,9 +13,9 @@ import javax.persistence.Query;
 public class DaoFavoris implements IDaoFavoris {
 	
 	@PersistenceContext(unitName="GREENWISH_DATA_EJB")
-	EntityManager em;
 	@SuppressWarnings("unchecked")
-	
+	EntityManager em;
+
 	@Override
 	public Favoris ajouterFavoris(Favoris favoris) {
 			em.persist(favoris);
@@ -43,5 +43,11 @@ public class DaoFavoris implements IDaoFavoris {
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Favoris> rechercherFavorisParIdParticipant(int idParticipant) {
+		final String req = "SELECT f FROM Favoris f inner join fetch f.objet o inner join fetch o.listeProposition l inner join fetch l.participant WHERE f.objet.listeProposition.participant.idparticipant = :pidParticipant";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
+	}
 }

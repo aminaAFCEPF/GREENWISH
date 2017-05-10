@@ -27,14 +27,14 @@ public class DaoParticipant implements IDaoParticipant {
 
 	@Override
 	public Participant identification(String mail, String mdp) {
-		final String req = "SELECT p FROM Participant p WHERE p.mail = :pmail AND p.password = :ppassword";
+		final String req = "SELECT p FROM Participant p INNER JOIN FETCH p.ville WHERE p.mail = :pmail AND p.password = :ppassword";
 		Query query = em.createQuery(req).setParameter("pmail", mail).setParameter("ppassword", mdp);
 		Participant retour = null;
 		try {
 			retour = (Participant) query.getSingleResult();
 
 		} catch (Exception e) {
-			// catch misère...
+			e.printStackTrace();
 		}
 		return retour;
 	}
