@@ -2,6 +2,7 @@ package fr.afcepf.ai100.g3;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,22 +17,22 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 @ManagedBean(name="mbFavoris")
 @SessionScoped
 public class FavorisBean {
-	
+
 	@EJB
 	private IBusinessCatalogue proxyCatalogue;
-	
+
 	@EJB
 	private IBusinessFavoris proxyFavoris;
-	
+
 	@ManagedProperty(value = "#{mbCnx}")
 	private ConnexionBean cnxBean;
-	
-	private List<Favoris> favoris;
-	private List<Souhait> souhaits;
-	
+
+	private List<Favoris> favoris = new ArrayList<>();
+	private List<Souhait> souhaits = new ArrayList<>();
+
 	private RepeatPaginator paginatorFavoris;
 	private RepeatPaginator paginatorSouhaits;
-	
+
 	private Date dateAjout;
 	private String dateAjoutFormat;
 	private Image PremiereImage;
@@ -39,6 +40,8 @@ public class FavorisBean {
 	@PostConstruct
 	public void init(){
 		favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
+		System.out.println(cnxBean.getParticipant().getIdparticipant());
+		System.out.println(favoris);
 		setPaginatorFavoris(new RepeatPaginator(favoris));
 		souhaits = proxyFavoris.afficherSouhaitsByIdParticipant(cnxBean.getParticipant().getIdparticipant());
 		setPaginatorSouhaits(new RepeatPaginator(souhaits));
@@ -46,6 +49,10 @@ public class FavorisBean {
 		DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
 		setDateAjoutFormat(outputFormatter.format(dateAjout));
 		setPremiereImage(proxyFavoris.AfficherPremiereImageParIdObjet(favoris.get(0).getObjet().getIdobjet()));
+	}
+
+	public String afficherMonCompte(){
+		return "/AccueilAdh.xhtml?faces-redirect=true";
 	}
 
 	public IBusinessCatalogue getProxyCatalogue() {
@@ -71,7 +78,7 @@ public class FavorisBean {
 	public void setFavoris(List<Favoris> favoris) {
 		this.favoris = favoris;
 	}
-	
+
 	public ConnexionBean getCnxBean() {
 		return cnxBean;
 	}
@@ -91,7 +98,7 @@ public class FavorisBean {
 	public String getDateAjoutFormat() {
 		return dateAjoutFormat;
 	}
-	
+
 	public void setDateAjoutFormat(String dateAjoutFormat) {
 		this.dateAjoutFormat = dateAjoutFormat;
 	}
@@ -119,7 +126,7 @@ public class FavorisBean {
 	public void setPaginatorSouhaits(RepeatPaginator paginatorSouhaits) {
 		this.paginatorSouhaits = paginatorSouhaits;
 	}
-	
-	
+
+
 
 }

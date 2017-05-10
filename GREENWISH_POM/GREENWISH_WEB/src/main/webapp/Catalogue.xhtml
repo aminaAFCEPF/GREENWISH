@@ -7,99 +7,102 @@
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
-		<h:form>
-			<div class="bottom-border-shadow">
-				<div
-					class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
-					<div class="row">
-						<h1>Résultat de la recherche</h1>
-					</div>
-					<div id="searchFiltre" class="margin-bottom-10">
-						<ol class="breadcrumb">
-							<li class="active">Catalogue</li>
-						</ol>
-					</div>
+			<h:form>
+				<div class="bottom-border-shadow">
+					<div
+						class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
+						<div class="row">
+							<h1>Résultat de la recherche</h1>
+						</div>
+						<div id="searchFiltre" class="margin-bottom-10">
+							<ol class="breadcrumb">
+								<li class="active">Catalogue</li>
+							</ol>
+						</div>
 
-				</div>
-				<div>
-					<div class="bottom-border-shadow">
-						<div class="container bottom-border tailleFixe">
-							<div
-								class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
-								<div class="col-md-11">
-									<fieldset>
-										<legend class="animate fadeIn"> Mes filtres de
-											recherche </legend>
-										<a class="blog-tag perso" href="#">Bouton</a> <a
-											class="blog-tag perso" href="#">Bouton</a> <a
-											class="blog-tag perso" href="#">Bouton</a> <a
-											class="blog-tag perso" href="#">Bouton</a> <a
-											class="blog-tag perso" href="#">Bouton</a> <a
-											class="blog-tag perso" href="#">Bouton</a>
-									</fieldset>
+					</div>
+					<div>
+						<div class="bottom-border-shadow">
+							<div class="container bottom-border tailleFixe">
+								<div
+									class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
+									<div class="col-md-11">
+										<fieldset>
+											<legend class="animate fadeIn"> Mes filtres de
+												recherche </legend>
+											<a class="blog-tag perso" href="#">Bouton</a> <a
+												class="blog-tag perso" href="#">Bouton</a> <a
+												class="blog-tag perso" href="#">Bouton</a> <a
+												class="blog-tag perso" href="#">Bouton</a> <a
+												class="blog-tag perso" href="#">Bouton</a> <a
+												class="blog-tag perso" href="#">Bouton</a>
+										</fieldset>
+									</div>
+									<div class="col-md-1">
+										<i class="fa-star-o fa-2x animate fadeIn"></i>
+									</div>
 								</div>
-								<div class="col-md-1">
-									<i class="fa-star-o fa-2x animate fadeIn"></i>
-								</div>
-							</div>
-							<div class="fixeTaille row padding-top-10 padding-bottom-10">
-								<div class="col-sm-6">
+								<div class="fixeTaille row padding-top-10 padding-bottom-10">
+									<div class="col-sm-6">
 
-									<ui:repeat var="lObjet" value="#{mbCatalogue.paginator.model}">
-										<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
-											<div
-												class="row background-white padding-top-10 borderperso margin-bottom-5 ">
-												<div class="col-sm-3 centrerElementVertical">
-													<h:graphicImage width="150" height="130" 
-														value="#{mbCatalogue.proxyCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" alt="thumb1" class="ImgDimensions" />
-														
-												</div>
-												<div class="col-sm-9">
-													<div class="row">
-														<div class="col-sm-7">
-															<h4>#{lObjet.intitule}</h4>
-															<h5>
-																Valeur : #{lObjet.valeur.valeur} <img class="idflocon"
-																	src="resources/img/blog/flocon.png" alt="thumb1" />
-															</h5>
-														</div>
-														<div class="col-sm-5">
-															<h:commandLink action="#{mbCatalogue.ajouterFavoris(lObjet)}" value="" class="col-md-offset-9 fa-star-o fa-2x animate fadeIn" />
-															<h5 class="col-md-offset-2">Distance : 10 km</h5>
-														</div>
+										<ui:repeat var="lObjet" value="#{mbCatalogue.paginator.model}">
+											<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
+												<div
+													class="row background-white padding-top-10 borderperso margin-bottom-5 ">
+													<div class="col-sm-3 centrerElementVertical">
+														<h:graphicImage width="150" height="130"
+															value="#{mbCatalogue.proxyCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}"
+															alt="thumb1" class="ImgDimensions" />
+
 													</div>
-													<p>Description objet : #{mbCatalogue.formatDescription(lObjet, lObjet.description)}...</p>
+													<div class="col-sm-9">
+														<div class="row">
+															<div class="col-sm-7">
+																<h4>#{lObjet.intitule}</h4>
+																<h5>
+																	Valeur : #{lObjet.valeur.valeur} <img class="idflocon"
+																		src="resources/img/blog/flocon.png" alt="thumb1" />
+																</h5>
+															</div>
+															<div class="col-sm-5">
+																<h:commandLink
+																	action="#{mbCatalogue.ajouterFavoris(lObjet)}" value=""
+																	class="col-md-offset-9 fa-star-o fa-2x animate fadeIn" />
+																<h5 class="col-md-offset-2">Distance : 10 km</h5>
+															</div>
+														</div>
+														<p>Description objet :
+															#{mbCatalogue.formatDescription(lObjet,
+															lObjet.description)}...</p>
+													</div>
 												</div>
-											</div>
 											</h:commandLink>
-									</ui:repeat>
+										</ui:repeat>
+									</div>
+									<div class="col-sm-6">
+										<div id="gmap">
+											<iframe
+												src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d21020.924706351136!2d2.342848660156265!3d48.80831494231264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1493051875411"
+												width="100%" height="450" frameborder="0" style="border: 0"></iframe>
+										</div>
+									</div>
 								</div>
-								<div class="col-sm-6">
-									<div id="gmap">
-										<iframe
-											src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d21020.924706351136!2d2.342848660156265!3d48.80831494231264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1493051875411"
-											width="100%" height="450" frameborder="0" style="border: 0"></iframe>
+								<div class="text-center margin-bottom-20">
+									<div class="text-center">
+										<h:commandButton class="btn btn-primary borderRadius"
+											action="#{mbCatalogue.paginator.prev}" value="&lt; prev" />
+										<h:outputText
+											value="#{mbCatalogue.paginator.pageIndex} / #{mbCatalogue.paginator.pages}"
+											class="margin-horiz-10" />
+										<h:commandButton class="btn btn-primary borderRadius"
+											action="#{mbCatalogue.paginator.next}" value="next &gt;" />
+										<h:inputHidden value="#{mbCatalogue.paginator.pageIndex}" />
 									</div>
 								</div>
 							</div>
-							<div class="text-center margin-bottom-20">
-								<h:commandButton action="#{mbCatalogue.paginator.prev}"
-									value="&lt; prev" />
-								<h:outputText
-									value="#{mbCatalogue.paginator.pageIndex} / #{mbCatalogue.paginator.pages}" />
-								<h:commandButton action="#{mbCatalogue.paginator.next}"
-									value="next &gt;" />
-								<h:inputHidden value="#{mbCatalogue.paginator.pageIndex}" />
-
-							</div>
-							
-
-
-
 						</div>
 					</div>
 				</div>
-			</div>
 			</h:form>
 		</body>
 	</ui:define>
