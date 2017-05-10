@@ -42,6 +42,7 @@ public class Echange  implements java.io.Serializable {
      private Date dateactivation;
      private Date daterefus;
      private Date datelitige;
+     private Date dateFin;
      private String codefin;
      private int valeur;
      private List<Litige> litiges = new ArrayList<>();
@@ -151,6 +152,16 @@ public class Echange  implements java.io.Serializable {
     
     public void setDatelitige(Date datelitige) {
         this.datelitige = datelitige;
+    }
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="DATEFIN", length=19)
+    public Date getDateFin() {
+        return this.dateFin;
+    }
+    
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     

@@ -11,14 +11,14 @@ import javax.ejb.Stateless;
 public class BusinessFicheObjet implements IBusinessFicheObjet {
 	
 	@EJB
-	private IDaoImage proxyDaoImage;
+	private IDaoObjet proxyDaoObjet;
 	
 	@EJB
 	private IDaoParticipant proxyDaoParticipant;
 	
 	@Override
 	public List<Image> getImageByIdObjet(int id) {
-		return proxyDaoImage.getImageByIdObjet(id);
+		return proxyDaoObjet.getAllImageByIdObjet(id);
 	}
 
 	@Override

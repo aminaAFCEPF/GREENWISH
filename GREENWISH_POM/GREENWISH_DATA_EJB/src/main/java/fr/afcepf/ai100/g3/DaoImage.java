@@ -28,12 +28,7 @@ public class DaoImage implements IDaoImage{
 		em.remove(image);
 	}
 
-	@Override
-	public List<Image> getImageByIdObjet(int id) {
-		String req = "SELECT i FROM Image i WHERE i.objet.idobjet = :pidObjet";
-		Query query = em.createQuery(req).setParameter("pidImage", id);
-		return query.getResultList();
-	}
+
 
 	@Override
 	public Image updateImage(Image image) {

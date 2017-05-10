@@ -42,7 +42,7 @@
 									<i class="fa-star-o fa-2x animate fadeIn"></i>
 								</div>
 							</div>
-							<div class="row padding-top-10 padding-bottom-10">
+							<div class="fixeTaille row padding-top-10 padding-bottom-10">
 								<div class="col-sm-6">
 
 									<ui:repeat var="lObjet" value="#{mbCatalogue.paginator.model}">
@@ -50,8 +50,9 @@
 											<div
 												class="row background-white padding-top-10 borderperso margin-bottom-5 ">
 												<div class="col-sm-3 centrerElementVertical">
-													<img src="resources/img/imgObjetsMaxi/velo.png"
-														alt="thumb1" class="ImgDimensions" />
+													<h:graphicImage width="150" height="130" 
+														value="#{mbCatalogue.proxyCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" alt="thumb1" class="ImgDimensions" />
+														
 												</div>
 												<div class="col-sm-9">
 													<div class="row">
@@ -81,7 +82,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="text-center">
+							<div class="text-center margin-bottom-20">
 								<h:commandButton action="#{mbCatalogue.paginator.prev}"
 									value="&lt; prev" />
 								<h:outputText
@@ -91,6 +92,7 @@
 								<h:inputHidden value="#{mbCatalogue.paginator.pageIndex}" />
 
 							</div>
+							
 
 
 

@@ -3,9 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-<f:metadata>
-	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
-</f:metadata>
+
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -99,6 +97,8 @@
 						<!-- fin panel label-->
 						<ui:repeat var="unEchange"
 							value="#{mbAfficherTransfert.paginator.model}">
+							<h:form>
+							<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
 							<div class="containerBar">
 								<div class="well background-white divBorderComposition">
 									<img src="resources/img/imgObjetsMini/velopetit.png" alt="velo" />
@@ -118,6 +118,8 @@
 								</div>
 
 							</div>
+							</h:commandLink>
+							</h:form>
 						</ui:repeat>
 
 

@@ -30,8 +30,14 @@
 							<h1>Essaie pas d'échanger avec toi-même !</h1>
 							</div>
 						</div>
+						<div style="display:#{(mbFicheObjet.cptPointsOk)?'none':'block'}">
+							<div class="container background-gray-lighter ">
+							<h1>Pas assez de points! Proposez un objet</h1>
+							</div>
+						</div>
 						<div class="row margin-vert-30">
 							<div class="col-md-6 ">
+								
 								<div class=" borderperso">
 									<img class="grande-img "
 										src="#{mbFicheObjet.images.get(0).image}" alt="image1" />
@@ -131,7 +137,7 @@
 							action="#{mbFicheObjet.estConnecte()}"
 							value="Proposer un échange"/>
 					</div>
-					<div style="display:#{(mbFicheObjet.connecteAndNotMyObjet)?'block':'none'}">
+					<div style="display:#{(mbFicheObjet.connecteAndNotMyObjetCptPointsOk)?'block':'none'}">
 				
 						<div class="container background-gray-lighter ">
 							<div

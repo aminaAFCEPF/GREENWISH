@@ -14,12 +14,11 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 @ManagedBean(name = "mbAfficherTransfert")
 @ViewScoped
 public class AccueilTransfertBean {
-	@ManagedProperty(value="#{mbCnx}")
-	private ConnexionBean mbCnx;
+	
 	@EJB
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
-	private IBusinessAfficherEchange proxyAfficherEchange;
+	private IBusinessGestionEchange proxyAfficherEchange;
 	private List<Echange> echanges;
 	private Participant participant;
 	private RepeatPaginator paginator;
@@ -50,7 +49,7 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherTousLesEchangesDUnParticipant(mbCnx.getParticipant().getIdparticipant());
+		echanges = proxyAfficherEchange.afficherTousLesEchangesDUnParticipant(2);
 				paginator = new RepeatPaginator(echanges);
 	}
 
@@ -65,12 +64,12 @@ public class AccueilTransfertBean {
 	}
 
 
-	public IBusinessAfficherEchange getProxyAfficherEchange() {
+	public IBusinessGestionEchange getProxyAfficherEchange() {
 		return proxyAfficherEchange;
 	}
 
 
-	public void setProxyAfficherEchange(IBusinessAfficherEchange proxyAfficherEchange) {
+	public void setProxyAfficherEchange(IBusinessGestionEchange proxyAfficherEchange) {
 		this.proxyAfficherEchange = proxyAfficherEchange;
 	}
 
@@ -163,6 +162,9 @@ public class AccueilTransfertBean {
 	public void setSelectedTypesDesTransferts(String selectedTypesDesTransferts) {
 		this.selectedTypesDesTransferts = selectedTypesDesTransferts;
 	}
+
+
+	
 	
 	
 	

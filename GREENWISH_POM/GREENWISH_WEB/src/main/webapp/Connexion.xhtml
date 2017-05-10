@@ -85,7 +85,7 @@
 										</label>
 									</div>
 									<div class="col-lg-6 padding-top-20">
-										<h:commandButton action="#{mbInscription.inscrire()}"
+										<h:commandButton class="btn btn-primary" action="#{mbInscription.inscrire()}"
 											value="S'inscrire" />
 									</div>
 								</div>
@@ -119,31 +119,33 @@
 										class="form-control  margin-bottom-20"
 										a:placeholder="Mot de passe" />
 								</div>
-								<h:form>
-									<div class="row text-center">
-										<div class="col-lg-6">
-											<label class="checkbox"> <input type="checkbox" />Je
-												souhaite rester connecter
-											</label>
-										</div>
-										<div class="col-lg-6 padding-top-20">
-											<h:commandButton action="#{mbCnx.seConnecter()}" value="Connexion" />
-										</div>
+
+								<div class="row text-center">
+									<div class="col-lg-6">
+										<label class="checkbox"> <input type="checkbox" />Je
+											souhaite rester connecter
+										</label>
 									</div>
-								</h:form>
+									<div class="col-lg-6 padding-top-20">
+										<h:commandButton class="btn btn-primary" action="#{mbCnx.seConnecter()}"
+											value="Connexion" />
+									</div>
+								</div>
+
 								<hr />
 								<h4>Mot de passe oublié ?</h4>
 								<p>
 									<a href="#">Cliquez ici</a> pour réinitialiser votre mot de
 									passe.
 								</p>
-
 							</h:form>
 						</div>
+
 					</div>
-					<!-- End Login Box -->
 				</div>
+				<!-- End Login Box -->
 			</div>
+			
 			<!-- === END CONTENT LOGIN === -->
 		</body>
 	</ui:define>

@@ -16,10 +16,29 @@ public class ConnexionBean {
 	private String mdp;
 	private Participant participant;
 	private String pageRedirection = "/AccueilAdh.xhtml?faces-redirect=true";
+	private String connecte ="Connexion";
+	
+	public void connexion(){
+		if(participant ==null){
+			ConfigurableNavigationHandler  nav =
+					(ConfigurableNavigationHandler)
+					FacesContext.getCurrentInstance()
+					.getApplication()
+					.getNavigationHandler();
+			nav.performNavigation("/Connexion.xhtml?faces-redirect=true");
+		}
+		else{
+			seDeconnecter();
+		}
+	}
 
 	public String seConnecter() {
 		participant = proxyIdentification.identifier(mail, mdp);
 		String nav = "";
+		setConnecte("Déconnexion");
+		if (participant.getImage() == null){
+			participant.setImage("resources/img/404.png");
+		}
 		if (participant.isStatutadmin()) {
 			nav = "/AccueilAdmin.xhtml?faces-redirect=true";
 		} else {
@@ -31,6 +50,7 @@ public class ConnexionBean {
 	public String seDeconnecter() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		session.invalidate();
+		setConnecte("Connexion");
 		return "/Accueil.xhtml?faces-redirect=true";
 	}
 	
@@ -84,6 +104,14 @@ public class ConnexionBean {
 
 	public void setPageRedirection(String pageRedirection) {
 		this.pageRedirection = pageRedirection;
+	}
+
+	public String getConnecte() {
+		return connecte;
+	}
+
+	public void setConnecte(String connecte) {
+		this.connecte = connecte;
 	}
 
 }

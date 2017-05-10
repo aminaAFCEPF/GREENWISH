@@ -3,264 +3,248 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
 			<!-- === BEGIN CONTENT === -->
 			<div id="content">
-				<div
-					class="container background-white bottom-border  padding-left-0 padding-right-0">
-					<div class="row">
-						<h1>Accueil Adhérent</h1>
-					</div>
-					<div class="margin-bottom-10">
-						<ol class="breadcrumb ">
-							<li class="active">Mon compte</li>
-						</ol>
-					</div>
-				</div>
-				<div class="container background-gray-lighter ">
-					<div class="row margin-vert-30">
-						<div class="col-md-2 vertical">
-							<a href="#" class="btn primary margin-bottom-35">
-								<div class="well borderperso background-white">
-									<img src="resources/img/MonProfil.png" class="background-white "
-										title="Mes Infos" />
-								</div>
-							</a> <a href="#" class="btn primary margin-bottom-35">
-								<div class="well borderperso background-white">
-									<img src="resources/img/MesObjets.png" title="Mes Objets"
-										class="background-white" />
-								</div>
-							</a> <a href="#" class="btn primary margin-bottom-35">
-								<div class="well borderperso background-white">
-									<img src="resources/img/transfert.png" title="Mes Transferts"
-										class="background-white" />
-								</div>
-							</a> <a href="#" class="btn primary margin-bottom-35">
-								<div class="well borderperso background-white">
-									<img src="resources/img/favoriEtoile.jpg" title="Mes Favoris"
-										class="background-white" />
-								</div>
-							</a>
+				<h:form>
+					<div
+						class="container background-white bottom-border  padding-left-0 padding-right-0">
+						<div class="row">
+							<h1>Accueil Adhérent</h1>
 						</div>
-						<div class="col-md-7">
-							<div class=" borderperso background-white padding-bottom-20">
-								<div class="centrerElementHorizontal">
-									<h3
-										class=" padding-vert-10 margin-bottom-20 padding-horiz-10 margin-top-20 centrerElementHorizontal ">
-										<b> Bonjour Mr Jacquie et bon retour parmi nous !</b>
-									</h3>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
+						<div class="margin-bottom-10">
+							<ol class="breadcrumb ">
+								<li class="active">Mon compte</li>
+							</ol>
+						</div>
+					</div>
+					<div class="container background-gray-lighter ">
+						<div class="row margin-vert-30">
+							<div class="col-md-2 vertical">
+								<h:commandLink action="#{mbAcceuilAdh.afficherProfil()}" class="btn primary margin-bottom-35">
+									<div class="well borderperso background-white">
+										<img src="resources/img/MonProfil.png"
+											class="background-white " title="Mes Infos" />
 									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>
-											Vous disposez de 5 <img class="idflocon"
-												src="resources/img/blog/flocon.jpg" alt="thumb1" /> !
-											N'hésitez pas à visiter notre catalogue
+								</h:commandLink> 
+								<h:commandLink action="#{mbAcceuilAdh.afficherObjets()}" class="btn primary margin-bottom-35">
+									<div class="well borderperso background-white">
+										<img src="resources/img/MesObjets.png" title="Mes Objets"
+											class="background-white" />
+									</div>
+								</h:commandLink>
+								<h:commandLink action="#{mbAcceuilAdh.afficherTransferts()}" class="btn primary margin-bottom-35">
+									<div class="well borderperso background-white">
+										<img src="resources/img/transfert.png" title="Mes Transferts"
+											class="background-white" />
+									</div>
+								</h:commandLink>
+								<h:commandLink action="#{mbAcceuilAdh.afficherFavoris()}" class="btn primary margin-bottom-35">
+									<div class="well borderperso background-white">
+										<img src="resources/img/favoriEtoile.jpg" title="Mes Favoris"
+											class="background-white" />
+									</div>
+								</h:commandLink>
+							</div>
+							<div class="col-md-7">
+								<div class=" borderperso background-white padding-bottom-20">
+									<div class="centrerElementHorizontal">
+										<h3
+											class=" padding-vert-10 margin-bottom-20 padding-horiz-10 margin-top-20 centrerElementHorizontal ">
+											<b> Bonjour #{mbAcceuilAdh.participant.prenom}
+												#{mbAcceuilAdh.participant.nom} et bon retour parmi nous !</b>
 										</h3>
 									</div>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
-									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>Vous avez 2 nouvelles notifications dans vos
-											transferts en cours. Consultez vos-transferts.</h3>
-									</div>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
-									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>Vous avez 2 nouvelles demandes de transferts!</h3>
-									</div>
-								</div>
-								<div class="padding-vert-10 padding-horiz-20 row">
-									<div class="col-md-1 centrerElementHorizontal">
-										<i class="glyphicon glyphicon-info-sign"></i>
-									</div>
-									<div class="col-md-11 padding-horiz-20 justifier">
-										<h3>1 nouveau rendez-vous planifié avec Mr Michel ! Un
-											transfert effectué, des pingouins de sauvés !</h3>
-									</div>
-								</div>
-							</div>
-							<div
-								class=" borderperso background-white padding-vert-10 margin-top-40 margin-bottom-10 borderperso text-center">
-								<h3>
-									<b>Quelques suggestions...</b>
-								</h3>
-							</div>
-							<div class="borderperso background-white">
-
-								<div id="carousel-example-2" class="carousel slide alternative"
-									data-ride="carousel">
-									<!-- Indicators -->
-									<ol class="carousel-indicators">
-										<li data-target="#carousel-example-2" data-slide-to="0"
-											class="active"></li>
-										<li data-target="#carousel-example-2" data-slide-to="1"></li>
-									</ol>
-									<!-- Wrapper for slides -->
-									<div class="carousel-inner">
-										<div class="item active">
-											<div class="row">
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-											</div>
+									<div class="padding-vert-10 padding-horiz-20 row">
+										<div class="col-md-1 centrerElementHorizontal">
+											<i class="glyphicon glyphicon-info-sign"></i>
 										</div>
-										<div class="item">
-											<div class="row">
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-												<div class="col-md-4">
-													<img src="resources/img/blog/asia.jpg"
-														style="max-width: 100%;" />
-												</div>
-											</div>
+										<div class="col-md-11 padding-horiz-20 justifier">
+											<h3>
+												Vous disposez de #{mbAcceuilAdh.participant.solde} <img
+													class="idflocon" src="resources/img/blog/flocon.jpg"
+													alt="thumb1" /> ! N'hésitez pas à visiter notre catalogue
+											</h3>
 										</div>
 									</div>
-									<!-- Controls -->
-									<a class="left carousel-control" href="#carousel-example-2"
-										data-slide="prev"> <span
-										class="glyphicon glyphicon-chevron-left"></span>
-									</a> <a class="right carousel-control" href="#carousel-example-2"
-										data-slide="next"> <span
-										class="glyphicon glyphicon-chevron-right"></span>
-									</a>
+									<div class="padding-vert-10 padding-horiz-20 row">
+										<div class="col-md-1 centrerElementHorizontal">
+											<i class="glyphicon glyphicon-info-sign"></i>
+										</div>
+										<div class="col-md-11 padding-horiz-20 justifier">
+											<h3>Vous avez #{mbAcceuilAdh.nbNotifsNonLues()}
+												nouvelles notifications dans vos transferts en cours.
+												Consultez vos-transferts.</h3>
+										</div>
+									</div>
 								</div>
+								<div
+									class=" borderperso background-white padding-vert-10 margin-top-40 margin-bottom-10 borderperso text-center">
+									<h3>
+										<b>Quelques suggestions...</b>
+									</h3>
+								</div>
+								<div class="borderperso background-white">
+									<div id="carousel-example-2" class="carousel slide alternative"
+										data-ride="carousel" data-interval="50000" >
+										<!-- Indicators -->
+										<ol class="carousel-indicators">
+											<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+											<li data-target="#carousel-example-2" data-slide-to="1"></li>
+										</ol>
+										<!-- Wrapper for slides -->
+										<div class="carousel-inner" >
+											<div class="item active">
+												<div class="row">
+													<ui:repeat var="lObjet" value="#{mbAcceuilAdh.afficherSuggestions(1)}">
+														<div class="col-md-4">
+															<h:graphicImage width="150" height="130"
+																value="#{mbAcceuilAdh.proxyBusinessCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" />
+														</div>
+													</ui:repeat>
+												</div>
+											</div>
+											<div class="item">
+												<div class="row">
+													<ui:repeat var="lObjet"
+														value="#{mbAcceuilAdh.afficherSuggestions(2)}">
+														<div class="col-md-4">
+															<h:graphicImage width="150" height="130"
+																value="#{mbAcceuilAdh.proxyBusinessCatalogue.getFirstImageByIdObjet(lObjet.idobjet).image}" />
+														</div>
+													</ui:repeat>
+												</div>
+											</div>
+											<!-- Controls -->
+											<a class="left carousel-control" href="#carousel-example-2"
+												data-slide="prev"> <span
+												class="glyphicon glyphicon-chevron-left"></span>
+											</a> <a class="right carousel-control" href="#carousel-example-2"
+												data-slide="next"> <span
+												class="glyphicon glyphicon-chevron-right"></span>
+											</a>
+										</div>
 
-							</div>
-						</div>
-						<div class="col-md-3 vertical">
-							<div id="calendrier" class="col-md-offset-1">
-								<table
-									class="table-condensed table-striped  table-bordered background-white">
-									<thead>
-										<tr>
-											<th colspan="7" class="text-center"><span
-												class="btn-group background-white"> <a class="btn">
-														<i class="glyphicon glyphicon-chevron-left"></i>
-												</a> <a class="btn active">Mai 2017</a> <a class="btn"> <i
-														class="glyphicon glyphicon-chevron-right"></i>
-												</a>
-											</span></th>
-										</tr>
-										<tr>
-											<th>lu</th>
-											<th>ma</th>
-											<th>me</th>
-											<th>je</th>
-											<th>ve</th>
-											<th>sa</th>
-											<th>di</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="muted">24</td>
-											<td class="muted">25</td>
-											<td class="muted">26</td>
-											<td class="muted">27</td>
-											<td class="muted">28</td>
-											<td class="muted">29</td>
-											<td class="muted">30</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td class="btn-primary"><strong>2</strong></td>
-											<td>3</td>
-											<td>4</td>
-											<td>5</td>
-											<td>6</td>
-											<td>7</td>
-										</tr>
-										<tr>
-											<td>8</td>
-											<td>9</td>
-											<td>10</td>
-											<td>11</td>
-											<td>12</td>
-											<td>13</td>
-											<td>14</td>
-										</tr>
-										<tr>
-											<td>15</td>
-											<td>16</td>
-											<td>17</td>
-											<a href="#"><td class="background-color-event"><strong>18</strong></td></a>
-											<td>19</td>
-											<td>20</td>
-											<a href="#"><td class="background-color-event">21</td></a>
-										</tr>
-										<tr>
-											<td>22</td>
-											<td>23</td>
-											<td>24</td>
-											<td>25</td>
-											<td>26</td>
-											<td>27</td>
-											<td>28</td>
+									</div>
+								</div>
+							</div>	
+							<div class="col-md-3 vertical">
+								<div id="calendrier" class="col-md-offset-1">
+									<table
+										class="table-condensed table-striped  table-bordered background-white">
+										<thead>
 											<tr>
-												<td>29</td>
-												<td>30</td>
-												<td>31</td>
-												<td class="muted">1</td>
-												<td class="muted">2</td>
-												<td class="muted">3</td>
-												<td class="muted">4</td>
+												<th colspan="7" class="text-center"><span
+													class="btn-group background-white"> <a class="btn">
+															<i class="glyphicon glyphicon-chevron-left"></i>
+													</a> <a class="btn active">Mai 2017</a> <a class="btn"> <i
+															class="glyphicon glyphicon-chevron-right"></i>
+													</a>
+												</span></th>
 											</tr>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div
-								class="borderperso background-white margin-vert-20 padding-vert-20 vertical">
-								<div class="row centrerElementHorizontal">
-									<i class="fa-gift fa-4x color-primary animate fadeIn"></i>
+											<tr>
+												<th>lu</th>
+												<th>ma</th>
+												<th>me</th>
+												<th>je</th>
+												<th>ve</th>
+												<th>sa</th>
+												<th>di</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="muted">24</td>
+												<td class="muted">25</td>
+												<td class="muted">26</td>
+												<td class="muted">27</td>
+												<td class="muted">28</td>
+												<td class="muted">29</td>
+												<td class="muted">30</td>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td class="btn-primary"><strong>2</strong></td>
+												<td>3</td>
+												<td>4</td>
+												<td>5</td>
+												<td>6</td>
+												<td>7</td>
+											</tr>
+											<tr>
+												<td>8</td>
+												<td>9</td>
+												<td>10</td>
+												<td>11</td>
+												<td>12</td>
+												<td>13</td>
+												<td>14</td>
+											</tr>
+											<tr>
+												<td>15</td>
+												<td>16</td>
+												<td>17</td>
+												<a href="#"><td class="background-color-event"><strong>18</strong></td></a>
+												<td>19</td>
+												<td>20</td>
+												<a href="#"><td class="background-color-event">21</td></a>
+											</tr>
+											<tr>
+												<td>22</td>
+												<td>23</td>
+												<td>24</td>
+												<td>25</td>
+												<td>26</td>
+												<td>27</td>
+												<td>28</td>
+												<tr>
+													<td>29</td>
+													<td>30</td>
+													<td>31</td>
+													<td class="muted">1</td>
+													<td class="muted">2</td>
+													<td class="muted">3</td>
+													<td class="muted">4</td>
+												</tr>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-								<div class="row centrerElementHorizontal">
-									<p>Vous avez ajouté 5 objets !</p>
+								<div
+									class="borderperso background-white margin-vert-20 padding-vert-20 vertical">
+									<div class="row centrerElementHorizontal">
+										<i class="fa-gift fa-4x color-primary animate fadeIn"></i>
+									</div>
+									<div class="row centrerElementHorizontal">
+										<p>Vous avez ajouté
+											#{mbAcceuilAdh.proxyBusinessGestionAdh.getAllObjetsByIdParticipant(mbAcceuilAdh.participant.idparticipant).size()}
+											objets !</p>
+									</div>
+									<div class="row centrerElementHorizontal">
+										<i class="fa-exchange fa-4x color-primary animate fadeIn"></i>
+									</div>
+									<div class="row centrerElementHorizontal">
+										<p>Vous avez
+											#{mbAcceuilAdh.proxyBusinessEchange.afficherTousLesEchangesDUnParticipant(mbAcceuilAdh.participant.idparticipant).size()}
+											échanges enregistrés !</p>
+									</div>
+									<div class="row centrerElementHorizontal">
+										<i class="fa-globe fa-4x color-primary animate fadeIn"></i>
+									</div>
+									<div class="row centrerElementHorizontal">
+										<p>Vous avez économisé 20 gr
+											de CO2 !</p>
+									</div>
 								</div>
-								<div class="row centrerElementHorizontal">
-									<i class="fa-exchange fa-4x color-primary animate fadeIn"></i>
-								</div>
-								<div class="row centrerElementHorizontal">
-									<p>Vous avez échangé 10 objets !</p>
-								</div>
-								<div class="row centrerElementHorizontal">
-									<i class="fa-globe fa-4x color-primary animate fadeIn"></i>
-								</div>
-								<div class="row centrerElementHorizontal">
-									<p>Vous avez économisé 20 gr de CO2 !</p>
-								</div>
-							</div>
+							</div>	
 						</div>
 					</div>
-				</div>
+				</h:form>
 			</div>
 		</body>
 	</ui:define>

@@ -33,7 +33,8 @@ public class FicheObjetBean {
 	private String idAge;
 	private boolean isConnecte;
 	private boolean NotMyObjet = true;
-	private boolean ConnecteAndNotMyObjet;
+	private boolean connecteAndNotMyObjetCptPointsOk;
+	private boolean cptPointsOk;
 
 
 	@ManagedProperty(value="#{mbCnx}")
@@ -71,12 +72,18 @@ public class FicheObjetBean {
 			nav.performNavigation("/Connexion.xhtml?faces-redirect=true&amp;callback=focus");
 		}else{
 			if(cnxBean.getParticipant().getIdparticipant() == proxyFicheObjet.recupProprio(objet.getIdobjet()).getIdparticipant()){
-				ConnecteAndNotMyObjet=false;
+				connecteAndNotMyObjetCptPointsOk=false;
 				NotMyObjet=false;
+				cptPointsOk=true;
 			}
-			else{
-				ConnecteAndNotMyObjet=true;
+			else if (cnxBean.getParticipant().getSolde() < objet.getValeur().getValeur()){
+				connecteAndNotMyObjetCptPointsOk=false;
 				NotMyObjet=true;
+				cptPointsOk=false;
+			}else{
+				connecteAndNotMyObjetCptPointsOk=true;
+				NotMyObjet=true;
+				cptPointsOk=true;
 			}
 			ConfigurableNavigationHandler  nav =
 					(ConfigurableNavigationHandler)
@@ -162,12 +169,20 @@ public class FicheObjetBean {
 		NotMyObjet = notMyObjet;
 	}
 
-	public boolean isConnecteAndNotMyObjet() {
-		return ConnecteAndNotMyObjet;
+	public boolean isconnecteAndNotMyObjetCptPointsOk() {
+		return connecteAndNotMyObjetCptPointsOk;
 	}
 
-	public void setConnecteAndNotMyObjet(boolean connecteAndNotMyObjet) {
-		ConnecteAndNotMyObjet = connecteAndNotMyObjet;
+	public void setconnecteAndNotMyObjetCptPointsOk(boolean connecteAndNotMyObjetCptPointsOk) {
+		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
+	}
+
+	public boolean isCptPointsOk() {
+		return cptPointsOk;
+	}
+
+	public void setCptPointsOk(boolean cptPointsOk) {
+		this.cptPointsOk = cptPointsOk;
 	}
 
 

@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -25,14 +27,14 @@ public class DaoParticipant implements IDaoParticipant {
 
 	@Override
 	public Participant identification(String mail, String mdp) {
-		final String req = "SELECT p FROM Participant p WHERE p.mail = :pmail AND p.password = :ppassword";
+		final String req = "SELECT p FROM Participant p INNER JOIN FETCH p.ville WHERE p.mail = :pmail AND p.password = :ppassword";
 		Query query = em.createQuery(req).setParameter("pmail", mail).setParameter("ppassword", mdp);
 		Participant retour = null;
 		try {
 			retour = (Participant) query.getSingleResult();
 
 		} catch (Exception e) {
-			// catch misère...
+			e.printStackTrace();
 		}
 		return retour;
 	}
@@ -57,6 +59,15 @@ public class DaoParticipant implements IDaoParticipant {
 	public void deleteParticipant(Participant participant) {
 		em.remove(participant);
 	}
+
+
+	@Override
+	public List<Notification> rechercherNotifByIdParticipant(int idParticipant) {
+		final String req = "SELECT p.notifications FROM Participant p WHERE p.idparticipant = :idParticipant";
+		Query query = em.createQuery(req).setParameter("idParticipant", idParticipant);
+		return query.getResultList();
+	}
+
 
 	@Override
 	public Participant recupProprio(int Idobjet) {
