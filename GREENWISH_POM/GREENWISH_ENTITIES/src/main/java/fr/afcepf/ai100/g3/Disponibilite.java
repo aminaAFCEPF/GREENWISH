@@ -76,7 +76,7 @@ public class Disponibilite implements java.io.Serializable {
 		this.participants = participants;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "disponibilite")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "disponibilite", cascade = CascadeType.ALL)
 	public List<Jour> getJours() {
 		return this.jours;
 	}

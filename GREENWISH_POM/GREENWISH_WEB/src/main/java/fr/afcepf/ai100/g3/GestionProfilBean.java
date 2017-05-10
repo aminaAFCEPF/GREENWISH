@@ -36,6 +36,12 @@ public class GestionProfilBean {
 	private List<Ville> villes;
 	private Ville selectedville = new Ville();
 	
+	@PostConstruct
+    public void init(){
+    	participant = mbCnx.getParticipant();
+    }
+	
+	
     
 	public void majInformationsParticipant() {
 		StringBuilder sb = new StringBuilder("resultat : ");
@@ -46,21 +52,20 @@ public class GestionProfilBean {
 		String[] h2 = request.getParameterValues("h2");
 		String[] m2 = request.getParameterValues("m2");
 		int taille = h1.length;
-		Disponibilite disponibilite = new Disponibilite();
-		disponibilite.setParticipant(participant);
-		proxyDaoDispo.ajouterDisponibilite(disponibilite);
-		participant.setDisponibilite(disponibilite);
+		Disponibilite disponibilite = participant.getDisponibilite();
 		for (int i = 0; i < taille; i++) {
 			Time t1 = new Time(Integer.parseInt(h1[i]), Integer.parseInt(m1[i]), 0);
 			Time t2 = new Time(Integer.parseInt(h2[i]), Integer.parseInt(m2[i]), 0);
 			System.out.println("times créés");
-			Jour jour = new Jour(participant.getDisponibilite(), jours[i]);
+			Jour jour = new Jour();
+			jour.setDisponibilite(disponibilite);
+			jour.setNomjour(jours[i]);
 			System.out.println("jour créé");
-			proxyDaoJour.ajouterJour(jour);
+			jour = proxyDaoJour.ajouterJour(jour);
 			System.out.println("jour persisté");
 			Horaire horaire = new Horaire(jour, t1, t2);
 			System.out.println("horaire créé");
-			proxyDaoHoraire.ajouterHoraire(horaire);
+			horaire = proxyDaoHoraire.ajouterHoraire(horaire);
 			System.out.println("horaire persisté");
 			jour.getHoraires().add(horaire);
 			System.out.println("horaire ajouté a jour");
@@ -121,14 +126,7 @@ public class GestionProfilBean {
 
 	public void setMsgConfirmModif(String msgConfirmModif) {
 		this.msgConfirmModif = msgConfirmModif;
-	}
-
-
-
-	@PostConstruct
-    public void init(){
-    	participant = mbCnx.getParticipant();
-    }    
+	}   
     
     
 

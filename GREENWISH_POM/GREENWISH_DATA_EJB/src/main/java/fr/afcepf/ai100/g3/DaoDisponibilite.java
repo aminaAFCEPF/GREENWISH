@@ -35,14 +35,17 @@ public class DaoDisponibilite implements IDaoDisponibilite{
 		return disponibilite;
 	}
 
+
 	@Override
 	public Disponibilite updateDisponibilite(Disponibilite disponibilite) {
 		em.merge(disponibilite);
 		return disponibilite;
 	}
 
+
 	@Override
 	public void deleteDisponibilite(Disponibilite disponibilite) {
 		em.remove(disponibilite);
 	}
+
 }
