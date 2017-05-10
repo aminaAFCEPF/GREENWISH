@@ -118,6 +118,13 @@ public class DaoObjet implements IDaoObjet{
 
 
 	@Override
+	public String getNomListePropositionByIdObjet(int idObjet) {
+		final String req="Select o.listeProposition.nom FROM Objet o WHERE o.idobjet = :pidObjet";
+		Query query = em.createQuery(req).setParameter("pidObjet", idObjet);
+		return (String) query.getSingleResult();
+	}
+	
+
 	public Image getFirstImageByIdObjet(int idObjet) {
 		final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
 		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
