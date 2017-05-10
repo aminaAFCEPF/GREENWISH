@@ -2,6 +2,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+		<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+	</f:metadata>
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
@@ -46,13 +50,13 @@
 											<label>N° et rue : <span class="color-red" >*</span></label>
 										<h:inputText value="#{mbGestionProfil.participant.adresse}" class="form-control outwidth margin-bottom-20" type="text" />
 											<label>Code Postal : <span class="color-red" >*</span></label> 
-										<h:inputText value="#{mbInscription.codePostal}" class="form-control outwidth margin-bottom-20" type="text" >
+										<h:inputText value="#{mbGestionProfil.participant.ville.codePostal}" class="form-control outwidth margin-bottom-20" type="text" >
 											<f:ajax render="lesVilles" event="keyup" execute="@this"
-													listener="#{mbInscription.rechercherVilles()}" />
+													listener="#{mbGestionProfil.rechercherVilles()}" />
 										</h:inputText>
 											<label>Ville : <span class="color-red">*</span></label>
-										<h:selectOneMenu id="lesVilles" value="#{mbInscription.selectedville.idville}" class="form-control  margin-bottom-20">
-											<f:selectItems  value="#{mbInscription.villes}" var="ville"
+										<h:selectOneMenu id="lesVilles" value="#{mbGestionProfil.selectedville.idville}" class="form-control  margin-bottom-20">
+											<f:selectItems  value="#{mbGestionProfil.villes}" var="ville"
 														itemLabel="#{ville.ville}" itemValue="#{ville.idville}" />
 										</h:selectOneMenu>
 									</div>

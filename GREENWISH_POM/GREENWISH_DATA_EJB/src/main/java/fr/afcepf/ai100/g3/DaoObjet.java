@@ -117,25 +117,58 @@ public class DaoObjet implements IDaoObjet{
 	}
 
 
-	
-	
+
 	@Override
-    public List<Image> getAllImageByIdObjet(int idObjet) {
-        final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
-        Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
-        return query.getResultList();
-    }
-	@Override
-	public Image getFirstImageByIdObjet(int idObjet) 
-	{
+	public String getNomListePropositionByIdObjet(int idObjet) {
+		final String req="Select o.listeProposition.nom FROM Objet o WHERE o.idobjet = :pidObjet";
+		Query query = em.createQuery(req).setParameter("pidObjet", idObjet);
+		return (String) query.getSingleResult();
+	}
+	
+
+	public Image getFirstImageByIdObjet(int idObjet) {
 		final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
 		Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
 		List<Image> liste = query.getResultList();
-		Image img = new Image(null, "404.png");
+		Image img = new Image(null, "resources/img/Blank.png");
 		if(!liste.isEmpty()) {
 			img = (Image) query.getResultList().get(0);
 		}
 		return img;
 	}
+	
+	@Override
+    public List<Image> getAllImageByIdObjet(int idObjet) {
+        final String req = "SELECT o.images FROM Objet o WHERE o.idobjet = :pIdObjet";
+        Query query = em.createQuery(req).setParameter("pIdObjet", idObjet);
+        List<Image> liste = query.getResultList();
+        Image img = new Image(null, "resources/img/Blank.png");
+        switch (liste.size()) {
+		case 0:
+			liste.add(img);
+			liste.add(img);
+			liste.add(img);
+			liste.add(img);
+			break;
 
+		case 1: 
+			liste.add(img);
+			liste.add(img);
+			liste.add(img);
+			break;
+			
+		case 2:
+			liste.add(img);
+			liste.add(img);
+			break;
+			
+		case 3:
+			liste.add(img);
+			break;
+			
+		default:
+			break;
+		}
+        return liste;
+    }
 }
