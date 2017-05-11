@@ -46,7 +46,7 @@ public class DaoFavoris implements IDaoFavoris {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Favoris> rechercherFavorisParIdParticipant(int idParticipant) {
-		final String req = "SELECT f FROM Favoris f inner join fetch f.objet o inner join fetch o.listeProposition l inner join fetch l.participant WHERE f.objet.listeProposition.participant.idparticipant = :pidParticipant";
+		final String req = "SELECT f FROM Favoris f, Appartient a, Paticipant p WHERE f.idfavoris = a. = :pidParticipant";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}
