@@ -2,6 +2,7 @@ package fr.afcepf.ai100.g3;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,9 @@ public class FicheObjetBean {
 	@EJB
 	private IBusinessFicheObjet proxyFicheObjet;
 
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean cnxBean;
+	
 	private Objet objet;
 	private List<Image> images;
 	private String valeur;
@@ -32,7 +36,34 @@ public class FicheObjetBean {
 	private String adresseParticipantDonneur;
 	private Horaire h = new Horaire();
 	private Jour j = new Jour();
+	private Ville villeParticipantReceveur;
+	private String adresseParticipantReceveur;
+	private String Message;
+	private List<String> ListeAdresseRdvs;
+	private String selectedAdresseRdv;
 	
+//	@PostConstruct
+//	public void init(){
+//		L = new ListeProposition();
+//		selectedListeProposition.setIdlisteobjet(listePropositions.get(0).getIdlisteobjet());
+//	}
+	
+	public Ville getVilleParticipantReceveur() {
+		return villeParticipantReceveur;
+	}
+
+	public void setVilleParticipantReceveur(Ville villeParticipantReceveur) {
+		this.villeParticipantReceveur = villeParticipantReceveur;
+	}
+
+	public String getAdresseParticipantReceveur() {
+		return adresseParticipantReceveur;
+	}
+
+	public void setAdresseParticipantReceveur(String adresseParticipantReceveur) {
+		this.adresseParticipantReceveur = adresseParticipantReceveur;
+	}
+
 	public Horaire getH() {
 		return h;
 	}
@@ -49,8 +80,7 @@ public class FicheObjetBean {
 		this.j = j;
 	}
 
-	@ManagedProperty(value="#{mbCnx}")
-	private ConnexionBean cnxBean;
+	
 	
 	
 	public boolean isConnecteAndNotMyObjetCptPointsOk() {
@@ -222,6 +252,8 @@ public class FicheObjetBean {
 				connecteAndNotMyObjetCptPointsOk=true;
 				NotMyObjet=true;
 				cptPointsOk=true;
+				this.adresseParticipantReceveur = cnxBean.getParticipant().getAdresse();
+				this.villeParticipantReceveur = cnxBean.getParticipant().getVille();
 			}
 			ConfigurableNavigationHandler  nav =
 					(ConfigurableNavigationHandler)
@@ -247,5 +279,29 @@ public class FicheObjetBean {
 		this.h = h;
 		System.out.println(j.getNomjour());
 		System.out.println(h.getHeuredebut());
+	}
+
+	public String getMessage() {
+		return Message;
+	}
+
+	public void setMessage(String message) {
+		Message = message;
+	}
+
+	public List<String> getListeAdresseRdvs() {
+		return ListeAdresseRdvs;
+	}
+
+	public void setListeAdresseRdvs(List<String> listeAdresseRdvs) {
+		ListeAdresseRdvs = listeAdresseRdvs;
+	}
+
+	public String getSelectedAdresseRdv() {
+		return selectedAdresseRdv;
+	}
+
+	public void setSelectedAdresseRdv(String selectedAdresseRdv) {
+		this.selectedAdresseRdv = selectedAdresseRdv;
 	}
 }
