@@ -25,6 +25,7 @@
 		href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
 		rel="stylesheet" type="text/css" />
 	<ui:insert name="scriptsAndCss"></ui:insert>
+	
 </h:head>
 <body>
 	<div id="header">
@@ -106,44 +107,57 @@
 						<br />
 						<br />
 						<div class="text-center searchFiltre">
+							
+							<h:selectOneMenu value="#{mbRechercherObjet.selectedDomaine.iddomaine}" 
+												class="filtre" id="filtreDomaine">
+								<f:ajax event="change" render=":search:filtreCategorie :search:filtreSousCategorie" 
+										listener ="#{mbRechercherObjet.chargerCategories()}" execute="@form"/>
+								<f:selectItem itemValue="0" itemLabel="Domaines..."/>
+								<f:selectItems value="#{mbRechercherObjet.domaines}" var="domain"
+											itemLabel="#{domain.domaine}" itemValue="#{domain.iddomaine}" />
+
+							</h:selectOneMenu>
+							
+							<h:selectOneMenu value="#{mbRechercherObjet.selectedCategorie.idcategorie}"
+												class="filtre" id="filtreCategorie">
+								<f:ajax event="change" render="search:filtreSousCategorie"
+										listener="#{mbRechercherObjet.chargerSousCategorie()}"
+										execute="@form"/>
+								<f:selectItem itemValue="0" itemLabel="Catégorie..."/>
+								<f:selectItems value="#{mbRechercherObjet.categories}" var="categorie"
+										itemLabel="#{categorie.intitule}" itemValue="#{categorie.idcategorie}"/>
+
+							</h:selectOneMenu>
+							
+							<h:selectOneMenu value="#{mbRechercherObjet.selectedSousCategorie.idsouscategorie}" 
+												class="filtre" id="filtreSousCategorie">
+								<f:selectItem itemValue="0" itemLabel="Sous Catégorie..."/>
+								<f:selectItems value="#{mbRechercherObjet.sousCategories}" var="souscategorie"
+										itemLabel="#{souscategorie.intitule}" itemValue="#{souscategorie.idsouscategorie}"/>	
+							</h:selectOneMenu>
+
+								<h:selectOneMenu value="#{mbRechercherObjet.selectedTrancheAge.idage}"
+												class="filtre" id="filtreAge" >
+								<f:selectItem itemValue="0" itemLabel="Tranche Age..."/>
+								<f:selectItems value ="#{mbRechercherObjet.trancheAges}" var="trancheAge"
+											itemLabel="#{trancheAge.ageMaxi} a #{trancheAge.ageMini} ans" itemValue="#{trancheAge.idage}"/>
+											
+							</h:selectOneMenu>
+							
+							<h:selectOneMenu value="#{mbRechercherObjet.selectedValeur.idvaleur}"
+												class="filtre" id="filtreValeur">
+								<f:selectItem itemValue="0" itemLabel="Valeur..."/>
+								<f:selectItems value="#{mbRechercherObjet.valeurs}" var="valeur"
+											itemLabel="#{valeur.valeur} points" itemValue="#{valeur.idvaleur}"/>
+							</h:selectOneMenu>
+							
 							<select class="filtre">
-								<option>Domaine</option>
-								<option>0-99ans</option>
-								<option>-6ans</option>
-								<option>18+</option>
-							</select> <select class="filtre">
-								<option>Categorie</option>
-								<option>0-99ans</option>
-								<option>-6ans</option>
-								<option>18+</option>
-							</select> <select class="filtre">
-								<option>Sous-categorie</option>
-								<option>0-99ans</option>
-								<option>-6ans</option>
-								<option>18+</option>
-							</select> <select class="filtre">
-								<option>Distance</option>
+								<option>Distance...</option>
 								<option>moins de 5km</option>
 								<option>moins de 10km</option>
 								<option>moins de 30km</option>
-							</select> <select class="filtre">
-								<option>Tranche d'age</option>
-								<option>0-99ans</option>
-								<option>-6ans</option>
-								<option>18+</option>
-							</select> <select class="filtre">
-								<option>Valeur</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>10</option>
 							</select>
+							
 						</div>
 					</h:form>
 				</div>
@@ -203,6 +217,7 @@
 	</div>
 	<!-- End Footer -->
 	<!-- JS -->
+	
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/scripts.js"></script>
@@ -216,7 +231,9 @@
 	<script src="resources/js/ActusBrowse.js"></script>
 	<script src="resources/js/tabFill.js"></script>
 	<script src="resources/js/HideShow.js"></script>
+	
 	<!-- End JS -->
 	<!-- === END FOOTER === -->
+	
 </body>
 </html>

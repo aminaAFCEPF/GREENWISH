@@ -6,12 +6,12 @@
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
-		
-			<body>
+
+		<body>
 			<h:form>
 				<!-- === BEGIN CONTENT === -->
 				<div id="content">
-						
+
 					<div
 						class="container background-white bottom-border  padding-left-0 padding-right-0">
 						<div class="row">
@@ -19,7 +19,9 @@
 						</div>
 						<div class="margin-bottom-10">
 							<ol class="breadcrumb ">
-								<li><h:commandLink action="#{mbFicheObjet.redirectionReinitia('Catalogue.xhtml')}" value="Catalogue"></h:commandLink></li>
+								<li><h:commandLink
+										action="#{mbFicheObjet.redirectionReinitia('Catalogue.xhtml')}"
+										value="Catalogue"></h:commandLink></li>
 								<li class="active">Fiche objet</li>
 							</ol>
 						</div>
@@ -27,17 +29,17 @@
 					<div class="container background-gray-lighter ">
 						<div style="display:#{(mbFicheObjet.notMyObjet)?'none':'block'}">
 							<div class="container background-gray-lighter ">
-							<h1>Essaie pas d'échanger avec toi-même !</h1>
+								<h1>Essaie pas d'échanger avec toi-même !</h1>
 							</div>
 						</div>
 						<div style="display:#{(mbFicheObjet.cptPointsOk)?'none':'block'}">
 							<div class="container background-gray-lighter ">
-							<h1>Pas assez de points! Proposez un objet</h1>
+								<h1>Pas assez de points! Proposez un objet</h1>
 							</div>
 						</div>
 						<div class="row margin-vert-30">
 							<div class="col-md-6 ">
-								
+
 								<div class=" borderperso">
 									<img class="grande-img "
 										src="#{mbFicheObjet.images.get(0).image}" alt="image1" />
@@ -132,13 +134,14 @@
 						</div>
 					</div>
 					<div
-						class="container background-gray-lighter centrerElementHorizontal"  >
+						class="container background-gray-lighter centrerElementHorizontal">
 						<h:commandButton class=" btn btn-echange margin-bottom-20"
 							action="#{mbFicheObjet.estConnecte()}"
-							value="Proposer un échange"/>
+							value="Proposer un échange" />
 					</div>
-					<div style="display:#{(mbFicheObjet.connecteAndNotMyObjetCptPointsOk)?'block':'none'}">
-				
+					<div
+						style="display:#{(mbFicheObjet.connecteAndNotMyObjetCptPointsOk)?'block':'none'}">
+
 						<div class="container background-gray-lighter ">
 							<div
 								class="row margin-vert-10 centrerElementHorizontal
@@ -146,24 +149,34 @@
 								<div class="col-md-8">
 									<div>
 										<label>Nouveau Message : </label>
-										<textarea class="form-control" rows="8"> Bonjour,</textarea>
+										<h:inputTextarea styleClass="form-control"
+											value="#{mbFicheTransfert.message}" />
 										<div class="row margin-top-10">
 											<div class="col-md-3">
 												<label class="col-md-offset-1">Lieu de rendez-vous :</label>
 											</div>
 											<div class="col-md-3">
-												<select id="filtre" class="col-md-offset-1"
-													style="width: 100%;">
-													<option>Lieu de rendez-vous 1</option>
-													<option>Lieu de rendez-vous 2</option>
-													<option>Autre lieu</option>
-												</select>
+<!-- 												<select id="filtre" class="col-md-offset-1" -->
+<!-- 													style="width: 100%;"> -->
+<!-- 													<option>Lieu de rendez-vous 1</option> -->
+<!-- 													<option>Lieu de rendez-vous 2</option> -->
+<!-- 													<option>Autre lieu</option> -->
+<!-- 												</select> -->
+												<h:selectOneMenu id="ladresse"
+													value="#{mbFicheTransfert.selectedAdresseDuRdv}"
+													class="form-control margin-bottom-20 fa-plus">
+													<f:selectItems value="#{mbFicheTransfert.adresseDuRdvs}"
+														var="adresseRdv" itemLabel="#{adresseRdv}"
+														itemValue="#{adresseRdv}" />
+												</h:selectOneMenu>
 											</div>
 											<div class="col-md-6">
 												<h:commandButton
 													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
-													type="submit" value="Envoyer"/>
+													value="Envoyer"
+													action="#{mbFicheTransfert.creerEchange(mbFicheObjet.objet, mbCnx.participant, mbCnx.participant.adresse, mbCnx.participant.ville)}" />
 											</div>
+
 										</div>
 									</div>
 								</div>
@@ -171,7 +184,7 @@
 									<div
 										class="borderperso background-white centrerElementHorizontal">
 										<h3>Disponibilités</h3>
-										
+
 									</div>
 									<table id="tableDispos"
 										class="table table-hover table-responsive">
@@ -182,32 +195,30 @@
 											</tr>
 										</thead>
 										<tbody>
-											<ui:repeat var="j" value="#{mbFicheObjet.disponibilite.jours}">
+											<ui:repeat var="j"
+												value="#{mbFicheObjet.disponibilite.jours}">
 												<ui:repeat var="h" value="#{j.horaires}">
-													<h:commandLink action="#{mbFicheObjet.setUneDispoRdv(j,h)}" >
+													<h:commandLink action="#{mbFicheObjet.setUneDispoRdv(j,h)}">
 														<div class="row">
-															<div class="col-md-4 text-center">
-																#{j.nomjour}
-															</div>
-															<div class="col-md-8 text-center">
-																#{h.heuredebut} à #{h.heurefin}
-															</div>
+															<div class="col-md-4 text-center">#{j.nomjour}</div>
+															<div class="col-md-8 text-center">#{h.heuredebut} à
+																#{h.heurefin}</div>
 														</div>
 													</h:commandLink>
 												</ui:repeat>
 											</ui:repeat>
 										</tbody>
 									</table>
-									
+
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
-					
-				</h:form>
-			</body>
-		
+
+			</h:form>
+		</body>
+
 	</ui:define>
 </ui:composition>
 </html>

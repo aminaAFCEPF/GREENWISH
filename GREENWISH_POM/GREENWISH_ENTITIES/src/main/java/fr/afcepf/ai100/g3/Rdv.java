@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -90,8 +91,8 @@ public class Rdv  implements java.io.Serializable {
         this.idrdv = idrdv;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IDECHANGE", nullable=false)
+    @ManyToOne
+    @JoinColumn(name="IDECHANGE")
     public Echange getEchange() {
         return this.echange;
     }
@@ -100,7 +101,7 @@ public class Rdv  implements java.io.Serializable {
         this.echange = echange;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDVILLE", nullable=false)
     public Ville getVille() {
         return this.ville;
@@ -130,7 +131,7 @@ public class Rdv  implements java.io.Serializable {
         this.adresse = adresse;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="IDPARTICIPANT", nullable=false)
 	public Participant getParticipant() {
 		return participant;
