@@ -223,7 +223,7 @@ public class Objet  implements java.io.Serializable {
         this.images = images;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
+@OneToMany(mappedBy="objet")
     public List<Echange> getEchanges() {
         return this.echanges;
     }
@@ -232,7 +232,7 @@ public class Objet  implements java.io.Serializable {
         this.echanges = echanges;
     }
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="objet")
+    @OneToMany(mappedBy="objet")
 	public List<Favoris> getFavoris() {
 		return favoris;
 	}
