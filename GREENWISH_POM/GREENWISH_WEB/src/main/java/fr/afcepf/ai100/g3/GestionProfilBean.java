@@ -139,7 +139,7 @@ public class GestionProfilBean {
 	}
 
 	public Participant getParticipant() {	
-		return proxyGestionProfil.rechercherParticipantById(2);
+		return participant;
 	}
 
 	public void setParticipant(Participant participant) {

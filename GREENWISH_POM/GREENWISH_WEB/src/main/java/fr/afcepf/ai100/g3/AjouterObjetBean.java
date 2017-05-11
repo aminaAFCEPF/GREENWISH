@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "mbAjouterObjet")
@@ -21,6 +22,10 @@ public class AjouterObjetBean {
 	private IDaoValeur proxyDaoValeur;
 	@EJB
 	private IDaoObjet proxyDaoAjouterObjet;
+	
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean mbCnx;
+	
 	private String intitule;
 	private String description;
 	private Domaine selectedDomaine = new Domaine();
@@ -41,7 +46,7 @@ public class AjouterObjetBean {
 	
 	@PostConstruct
 	public void init(){
-		participant = proxyAjouterObjet.rechercherParticipantParId(2);
+		participant = mbCnx.getParticipant();
 		domaines = proxyAjouterObjet.rechercherDomaine();
 		selectedDomaine = new Domaine();
 		selectedDomaine.setIddomaine(domaines.get(0).getIddomaine());
@@ -56,6 +61,16 @@ public class AjouterObjetBean {
 	}
 	
 	
+	public ConnexionBean getMbCnx() {
+		return mbCnx;
+	}
+
+
+	public void setMbCnx(ConnexionBean mbCnx) {
+		this.mbCnx = mbCnx;
+	}
+
+
 	public void chargerCategories() {
 		categories = proxyAjouterObjet.rechercherCategorieParDomaine(selectedDomaine);
 		selectedCategorie = new Categorie();
