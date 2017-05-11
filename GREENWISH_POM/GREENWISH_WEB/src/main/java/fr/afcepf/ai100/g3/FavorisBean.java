@@ -40,11 +40,9 @@ public class FavorisBean {
 	@PostConstruct
 	public void init(){
 		favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
-		System.out.println(cnxBean.getParticipant().getIdparticipant());
-		System.out.println(favoris);
-		setPaginatorFavoris(new RepeatPaginator(favoris));
+		paginatorFavoris = new RepeatPaginator(favoris);
 		souhaits = proxyFavoris.afficherSouhaitsByIdParticipant(cnxBean.getParticipant().getIdparticipant());
-		setPaginatorSouhaits(new RepeatPaginator(souhaits));
+		paginatorSouhaits = new RepeatPaginator(souhaits);
 		setDateAjout(favoris.get(0).getObjet().getDateajout());
 		DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
 		setDateAjoutFormat(outputFormatter.format(dateAjout));
@@ -125,6 +123,14 @@ public class FavorisBean {
 
 	public void setPaginatorSouhaits(RepeatPaginator paginatorSouhaits) {
 		this.paginatorSouhaits = paginatorSouhaits;
+	}
+	
+	public List<Souhait> getSouhaits() {
+		return souhaits;
+	}
+
+	public void setSouhaits(List<Souhait> souhaits) {
+		this.souhaits = souhaits;
 	}
 
 
