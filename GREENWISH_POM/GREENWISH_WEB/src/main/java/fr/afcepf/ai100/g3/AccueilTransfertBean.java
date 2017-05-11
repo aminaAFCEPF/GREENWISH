@@ -22,6 +22,8 @@ public class AccueilTransfertBean {
 	private IBusinessGestionEchange proxyAfficherEchange;
 	@EJB
 	private IDaoObjet proxyDaoAfficherImage;
+	@EJB
+	private IDaoEchange proxyTest;
 	private List<Echange> echanges;
 	private Participant participant;
 	private RepeatPaginator paginator;
@@ -46,7 +48,7 @@ public class AccueilTransfertBean {
 		
 		etatsDesTransferts.add("Transferts en cours");
 		etatsDesTransferts.add("Transferts terminés");
-		etatsDesTransferts.add("Transferts validés");
+		etatsDesTransferts.add("Tous");
 		selectedEtatDesTransferts = etatsDesTransferts.get(0).toString();
 		
 		typesDeTransferts.add("Tous");
@@ -55,15 +57,16 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
-				paginator = new RepeatPaginator(echanges);
+		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
+		//echanges=proxyTest.rechercherTousLesEchangesDonnesDUnParticipant(participant.getIdparticipant());		
+		paginator = new RepeatPaginator(echanges);
 	}
 	
 	public void chargerLesTransferts(){
 //		selectedEtatDesTransferts = etatsDesTransferts.get(0);
 //		selectedTypesDesTransferts = typesDeTransferts.get(0);
-		echanges = new ArrayList<>();
-		echanges = proxyAfficherEchange.afficherEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
+		
+		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 		paginator = new RepeatPaginator(echanges);
 	}
 	
@@ -197,6 +200,14 @@ public class AccueilTransfertBean {
 
 	public void setMbCnx(ConnexionBean mbCnx) {
 		this.mbCnx = mbCnx;
+	}
+
+	public IDaoEchange getProxyTest() {
+		return proxyTest;
+	}
+
+	public void setProxyTest(IDaoEchange proxyTest) {
+		this.proxyTest = proxyTest;
 	}
 
 
