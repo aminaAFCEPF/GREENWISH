@@ -6,7 +6,7 @@
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="foot">
-	 <script type="text/javascript">
+		<script type="text/javascript">
             $(function () {
                 $('#datetimepicker2').datetimepicker({
                                    
@@ -153,78 +153,75 @@
 						style="display:#{(mbFicheObjet.connecteAndNotMyObjetCptPointsOk)?'block':'none'}">
 
 						<div class="container background-gray-lighter ">
-							<div
-								class="row margin-vert-10 centrerElementHorizontal
-							background-white padding-top-10 borderperso">
-								<div class="col-md-8">
-									<div>
-										<label>Nouveau Message : </label>
-										<h:inputTextarea styleClass="form-control"
-											value="#{mbFicheTransfert.message}" />
-										<div class="row margin-top-10">
-											<div class="col-md-3">
-												<label class="col-md-offset-1">Lieu de rendez-vous :</label>
-											</div>
-											<div class="col-md-3">
-												<h:selectOneMenu id="participant"
-													value="#{mbFicheTransfert.selectedIdParticipant}"
-													class="form-control margin-bottom-20 fa-plus">
-													<f:selectItems value="#{mbFicheObjet.participants}"
-														var="participant" itemLabel="#{participant.adresse}"
-														itemValue="#{participant.idparticipant}" />
-												</h:selectOneMenu>
-											</div>
-											<div class="col-md-3">
-												<label class="col-md-offset-1">Date du rendez-vous :</label>
-											</div>
-    										<div class="col-md-3"> 
-									            <div class="form-group">
-									                <div class="input-group date background-white" style="opacity: 1;" id="datetimepicker2">
-									                    <h:inputText class="form-control" value="#{mbFicheTransfert.dateDuRdvString}"/>
-									                    <span class="input-group-addon">
-									                        <span class="glyphicon glyphicon-calendar"></span>
-									                    </span>
-									                </div>
-									            </div>						       
-										    </div>
+							<div class="background-white borderperso">
+								<div
+									class="row margin-vert-10 centrerElementHorizontal
+								 padding-top-10 padding-bottom-10 padding-horiz-20 ">
+									<div class="col-md-8">
+										<div>
+											<label>Nouveau Message : </label>
+											<h:inputTextarea styleClass="form-control"
+												value="#{mbFicheTransfert.message}" rows="8" />
 										</div>
 									</div>
-								</div>
-								<div class="col-md-4">
-									<div
-										class="borderperso background-white centrerElementHorizontal">
-										<h3>Disponibilités</h3>
+									<div class="col-md-4">
+										<div
+											class="borderperso background-white centrerElementHorizontal">
+											<h3>Disponibilités</h3>
 
+										</div>
+										<table id="tableDispos"
+											class="table table-hover table-responsive">
+											<thead>
+												<tr>
+													<th>Jour</th>
+													<th>heure</th>
+												</tr>
+											</thead>
+											<tbody>
+												<h:outputText value="#{mbFicheObjet.ajoutLigneTabHTML()}"
+													escape="html" />
+											</tbody>
+										</table>
 									</div>
-									<table id="tableDispos"
-										class="table table-hover table-responsive">
-										<thead>
-											<tr>
-												<th>Jour</th>
-												<th>heure</th>
-											</tr>
-										</thead>
-										<tbody>
-											<ui:repeat var="j"
-												value="#{mbFicheObjet.disponibilite.jours}">
-												<ui:repeat var="h" value="#{j.horaires}">
-													<h:commandLink action="#{mbFicheObjet.setUneDispoRdv(j,h)}">
-														<div class="row">
-															<div class="col-md-4 text-center">#{j.nomjour}</div>
-															<div class="col-md-8 text-center">#{h.heuredebut} à
-																#{h.heurefin}</div>
-														</div>
-													</h:commandLink>
-												</ui:repeat>
-											</ui:repeat>
-										</tbody>
-									</table>
-									<h:commandButton
-													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
-													value="Envoyer"
-													action="#{mbFicheTransfert.creerEchange(mbFicheObjet.objet, mbCnx.participant)}" />
 								</div>
-								
+								<div
+									class="row margin-vert-10 centrerElementHorizontal
+								 padding-top-10 padding-horiz-20 ">
+									<div class="col-md-2">
+										<label class="col-md-offset-1">Lieu de rendez-vous</label>
+									</div>
+									<div class="col-md-2">
+										<h:selectOneMenu id="participant"
+											value="#{mbFicheTransfert.selectedIdParticipant}"
+											class="form-control margin-bottom-20 fa-plus">
+											<f:selectItems value="#{mbFicheObjet.participants}"
+												var="participant" itemLabel="#{participant.adresse}"
+												itemValue="#{participant.idparticipant}" />
+										</h:selectOneMenu>
+									</div>
+									<div class="col-md-2">
+										<label class="col-md-offset-1">Date du rendez-vous</label>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="input-group date background-white"
+												style="opacity: 1;" id="datetimepicker2">
+												<h:inputText class="form-control"
+													value="#{mbFicheTransfert.dateDuRdvString}" />
+												<span class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<h:commandButton
+											class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
+											value="Envoyer"
+											action="#{mbFicheTransfert.creerEchange(mbFicheObjet.objet, mbCnx.participant)}" />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

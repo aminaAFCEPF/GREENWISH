@@ -27,7 +27,7 @@
 							</ol>
 						</div>
 					</div>
-					<div>
+					<div style="display:#{(mbFicheTransfert.qui())?'none':'block'}">
 						<div>
 							<div class="container background-white bottom-border ">
 								<div
@@ -35,7 +35,7 @@
 									<div class="col-md-10 centrerElementHorizontal">
 										<h1>Rendez-vous avec #{mbFicheTransfert.participantDonneur.nom} proposé le #{mbFicheTransfert.displayDate} </h1>
 									</div>
-									<div class="col-md-2 centrerElementHorizontal">
+									<div class="col-md-2 centrerElementHorizontal" style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
 										<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}" value="Annuler l'échange"
 											class=" btn btn-primary borderRadius" />
 									</div>
@@ -51,15 +51,8 @@
 								</div>
 								<div
 									class="row margin-bottom-40 padding-top-40 centrerElementVertical">
-									<div class="col-md-8 centrerElementHorizontal">
-										<h3>Entrez ci-après le code reçu lors de l'échange pour
-											le terminer :</h3>
-									</div>
-									<div class="col-md-2 centrerElementHorizontal">
-										<input type="text" />
-									</div>
-									<div class="col-md-2 centrerElementHorizontal">
-										<button class=" btn btn-primary borderRadius" type="submit">Valider</button>
+									<div class="centrerElementHorizontal text-center" style="display:#{(mbFicheTransfert.rdvEnvoye)?'block':'none'}">
+										<h3>Votre demande de rendez-vous a été envoyée! En attente de #{mbFicheTransfert.participantDonneur.nom}.Voici le code a donner lors de l'échange : #{mbFicheTransfert.echange.codefin}</h3>
 									</div>
 								</div>
 							</div>
@@ -143,22 +136,15 @@
 										<div
 											class="borderperso background-white centrerElementHorizontal margin-bottom-10 padding-horiz-10 padding-vert-10">
 											<h3>Messagerie</h3>
-										</div>
-										<blockquote class="primary">
-											<p>
-												<em>"Bonjour je vous propose un rendez-vous tel jour
-													telle heure selon vos disponibilité, êtes vous d'accord ?"</em>
-											</p>
-											<small>Envoyé le 01/01/1700</small>
-										</blockquote>
-										<blockquote class="primary right">
-											<p>
-												<em>"Bonjour, aucun problème rendez-vous tel jour telle
-													heure"</em>
-											</p>
-											<small>Reçu le 20/20/2220 </small>
-										</blockquote>
-
+										</div>	
+											<ui:repeat var="message" value="#{mbFicheTransfert.messages}">
+												<blockquote class="primary">
+													<p>
+													<em>#{message.message}</em>
+													</p>
+												<small>Envoyé par #{message.messagerie.participant.nom}</small>
+												</blockquote>
+											</ui:repeat>		
 									</div>
 								</div>
 								<div
@@ -166,15 +152,16 @@
 									<div class="col-md-12">
 										<div>
 											<label>Nouveau Message : </label>
-											<textarea class="form-control" rows="3"> Bonjour,</textarea>
-											<button
-												class=" btn btn-primary borderRadius margin-bottom-20 margin-top-10 col-md-offset-11"
-												type="submit">Envoyer</button>
+											<h:inputTextarea styleClass="form-control"
+											value="#{mbFicheTransfert.message}" rows="3"/>
+											<h:commandButton action="#{mbFicheTransfert.envoyerMessage()}" value="Envoyer" class=" btn btn-primary borderRadius margin-bottom-20 margin-top-10 col-md-offset-11"/> 
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+					<div style="display:#{(mbFicheTransfert.qui())?'block':'none'}">
 					</div>
 				</div>
 			</body>

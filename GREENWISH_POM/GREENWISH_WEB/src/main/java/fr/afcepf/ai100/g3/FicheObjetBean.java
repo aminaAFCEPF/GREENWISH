@@ -37,9 +37,17 @@ public class FicheObjetBean {
 	private Jour j = new Jour();
 	private String Message;
 	private List<Participant> participants = new ArrayList<>();
+	private Participant participantDonneur;
 
 	
 
+	public Participant getParticipantDonneur() {
+		return participantDonneur;
+	}
+
+	public void setParticipantDonneur(Participant participantDonneur) {
+		this.participantDonneur = participantDonneur;
+	}
 
 	public Horaire getH() {
 		return h;
@@ -169,7 +177,8 @@ public class FicheObjetBean {
 		this.setIdAge(objet.getTrancheAge().getIdage().toString());
 		
 		this.disponibilite = proxyFicheObjet.recupProprio(objet.getIdobjet()).getDisponibilite();
-		this.participants.add(proxyFicheObjet.recupProprio(objet.getIdobjet()));
+		participantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet());
+		this.participants.add(participantDonneur);
 		
 		return "/FicheObjet.xhtml?faces-redirect=true";
 	}
@@ -230,6 +239,18 @@ public class FicheObjetBean {
 		this.NotMyObjet=true;
 		this.cptPointsOk=true;
 	return redirection;
+	}
+	
+	public String ajoutLigneTabHTML () {
+		StringBuilder sb = new StringBuilder();
+		Disponibilite dispo = participantDonneur.getDisponibilite();
+		List<Jour> jours = dispo.getJours();
+		for(Jour j:jours){
+			for(Horaire h : j.getHoraires()){
+				sb.append("<tr>").append("<td>").append(j.getNomjour()).append("</td>").append("<td>").append(h.getHeuredebut()).append(" - ").append(h.getHeurefin()).append("</td>").append("</tr>");
+			}
+		}
+		return sb.toString();
 	}
 	
 	public void setUneDispoRdv(Jour j, Horaire h ){

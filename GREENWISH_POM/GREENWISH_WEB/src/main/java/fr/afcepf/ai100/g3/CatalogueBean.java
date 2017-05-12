@@ -22,8 +22,7 @@ public class CatalogueBean {
 	private IBusinessCatalogue proxyCatalogue;
 	@EJB
 	private IBusinessFavoris proxyFavoris;
-//	@EJB
-//	private IBusinessAjouterObjet proxyAjoutObjet;
+
 
 
 	@ManagedProperty(value = "#{mbCnx}")
@@ -55,10 +54,13 @@ public class CatalogueBean {
 		mbCnx.getParticipant().getFavoris().add(fav);
 		//proxyDaoPart.updateParticipant(mbCnx.getParticipant());
 		proxyFavoris.ajouterFavoris(fav);
+		Participant part = mbCnx.getParticipant();
+		part.getFavoris().add(fav);
 	}
 
 	public String formatDescription(Objet objet, String description) {
 		String output = objet.getDescription();
+
 		description = mbRecherche.getProxyBusinessRecherche().RemplirEspaces(objet, output);
 
 		return description;

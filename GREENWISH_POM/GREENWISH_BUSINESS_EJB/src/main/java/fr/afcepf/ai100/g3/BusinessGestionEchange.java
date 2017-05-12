@@ -46,19 +46,23 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 
 	@Override
 	public List<Echange> afficherLesEchangesTerminesDUnParticipant(int idParticipant) {
-
+		List<Echange> echangesTermines = new ArrayList<>();
 		echangesDonnes = proxyDaoEchange.rechercherTousLesEchangesDonnesDUnParticipant(idParticipant);
 		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusDUnParticipant(idParticipant);
 		echanges.addAll(echangesDonnes);
-		echanges.addAll(echangesRecus);
-		System.out.println(echanges.size());
-		List<Echange> echangesTermines = new ArrayList<>();
+		for(Echange echange:echangesRecus){
+			if(!echanges.contains(echange)){
+				echanges.add(echange);
+			}
+		}
+		
+		
 		for (Echange e : echanges) {
 			if (e.getDateFin() != null) {
 				echangesTermines.add(e);
 			}
 		}
-		System.out.println(echangesTermines.size());
+		
 		return echangesTermines;
 	}
 
@@ -67,7 +71,12 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 		echangesDonnes = proxyDaoEchange.rechercherTousLesEchangesDonnesEnCoursDUnParticipant(idParticipant);
 		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusEnCoursDUnParticipant(idParticipant);
 		echanges.addAll(echangesDonnes);
-		echanges.addAll(echangesRecus);
+		for(Echange echange:echangesRecus){
+			if(!echanges.contains(echange)){
+				echanges.add(echange);
+			}
+		}
+		
 		return echanges;
 	}
 
@@ -101,7 +110,7 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 			echangesEnCoursTriesParType = proxyDaoEchange.rechercherTousLesEchangesRecusEnCoursDUnParticipant(idParticipant);
 		break;
 		case TYPETOUS:
-			echangesEnCoursTriesParType = proxyDaoEchange.rechercherTousLesEchangesEnCours();
+			echangesEnCoursTriesParType = afficherLesEchangesEnCoursDUnParticipant(idParticipant);
 			break;
 		}
 		return echangesEnCoursTriesParType;
@@ -118,7 +127,7 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 			echangesTerminesTriesParType = proxyDaoEchange.rechercherTousLesEchangesRecusTerminesDUnParticipant(idParticipant);
 		break;
 		case TYPETOUS:
-			echangesTerminesTriesParType = proxyDaoEchange.rechercherTousLesEchangesTermines();
+			echangesTerminesTriesParType = afficherLesEchangesTerminesDUnParticipant(idParticipant);
 			break;
 		}
 		return echangesTerminesTriesParType;
