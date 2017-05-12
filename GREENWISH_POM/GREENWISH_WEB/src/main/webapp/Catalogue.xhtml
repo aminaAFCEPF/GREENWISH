@@ -6,11 +6,25 @@
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 
+
+	<ui:define name="scriptsAndCss">
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyAUt-qp3C_b71jsnj50SDdzbv4fM-aFhXg&amp;callback=initMap">
+		</script>
+		<script src="resources/js/gmap.js"></script>
+		<style type="text/css">
+#star:active {
+	color: #33747a !important;
+}
+</style>
+  </ui:define>
+
 	<ui:define name="foot">
 
 		<script type="text/javascript"
 			src="https://maps.googleapis.com/maps/api/js?v3.exp&amp;key=AIzaSyAUt-qp3C_b71jsnj50SDdzbv4fM-aFhXg"></script>
 		<script src="../resources/js/gmap.js"></script>
+
 	</ui:define>
 
 	<ui:define name="content">
@@ -48,8 +62,11 @@
 												class="blog-tag perso" href="#">Bouton</a>
 										</fieldset>
 									</div>
-									<div class="col-md-1">
-										<i class="fa-star-o fa-2x animate fadeIn"></i>
+									<div id="star" class="col-md-1">
+										<h:commandLink action="#{mbCatalogue.ajouterFavoris(lObjet)}"
+											value=""
+											class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"
+											id="star" />
 									</div>
 								</div>
 								<div class="fixeTaille row padding-top-10 padding-bottom-10">
@@ -74,10 +91,11 @@
 																		src="resources/img/blog/flocon.png" alt="thumb1" />
 																</h5>
 															</div>
-															<div class="col-sm-5">
+															<div  id="star" class="col-sm-5">
 																<h:commandLink
 																	action="#{mbCatalogue.ajouterFavoris(lObjet)}" value=""
-																	class="col-md-offset-9 fa-star-o fa-2x animate fadeIn" />
+																	class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"
+																	id="star" />
 																<h5 class="col-md-offset-2">Distance : 10 km</h5>
 															</div>
 														</div>

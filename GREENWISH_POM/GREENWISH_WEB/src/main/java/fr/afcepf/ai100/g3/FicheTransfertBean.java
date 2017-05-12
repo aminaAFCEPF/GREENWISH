@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -17,11 +19,12 @@ import javax.faces.bean.SessionScoped;
 public class FicheTransfertBean {
 
 	
-	
 	@ManagedProperty(value="#{mbFicheObjet}")
 	private FicheObjetBean mbFicheObjet;
 	@EJB
 	private IBusinessFicheTransfert proxyFicheTransfert;
+	@EJB
+	private IBusinessFicheObjet proxyFicheObjet;
 
 	private Echange echange;
 	private Rdv rdv;
@@ -29,21 +32,15 @@ public class FicheTransfertBean {
 	private Participant participantDonneur;
 	private Participant participantReceveur;
 	private List<Message> messages = new ArrayList<>();
-	private List<String> adresseDuRdvs = new ArrayList<>();
-	private List<Ville> villeDuRdv;
+	private String dateDuRdvString;
 	private Date dateDuRdv;
 	private String message = "Bonjour, votre objet m'intéresse, je souhaiterais vous proposer un rendez-vous.";
-	private String selectedAdresseDuRdv = "";
-	private Ville selectedVilleDuRdv;
-
-	@PostConstruct
-	public void initFillAdresseRdv(){
-		adresseDuRdvs.add(mbFicheObjet.getAdresseParticipantDonneur());
-	adresseDuRdvs.add(mbFicheObjet.getAdresseParticipantReceveur());
-		 for (String adresse : adresseDuRdvs){
-			 System.out.println(adresse);
-		 }
-	}
+	private int selectedIdParticipant;
+	private Participant participant;
+	private int annee;
+	private List<Image> imagesObjet;
+	private String displayDate;
+	private String dateAjoutObjet;
 	
 	public FicheObjetBean getMbFicheObjet() {
 		return mbFicheObjet;
@@ -53,33 +50,6 @@ public class FicheTransfertBean {
 		this.mbFicheObjet = mbFicheObjet;
 	}
 
-	public List<Ville> getVilleDuRdv() {
-		return villeDuRdv;
-	}
-
-	public List<String> getAdresseDuRdvs() {
-		return adresseDuRdvs;
-	}
-
-	public void setAdresseDuRdvs(List<String> adresseDuRdvs) {
-		this.adresseDuRdvs = adresseDuRdvs;
-	}
-
-	public String getSelectedAdresseDuRdv() {
-		return selectedAdresseDuRdv;
-	}
-
-	public void setSelectedAdresseDuRdv(String selectedAdresseDuRdv) {
-		this.selectedAdresseDuRdv = selectedAdresseDuRdv;
-	}
-
-	public Ville getSelectedVilleDuRdv() {
-		return selectedVilleDuRdv;
-	}
-
-	public void setSelectedVilleDuRdv(Ville selectedVilleDuRdv) {
-		this.selectedVilleDuRdv = selectedVilleDuRdv;
-	}
 
 	public IBusinessFicheObjet getProxyFicheObjet() {
 		return proxyFicheObjet;
@@ -88,13 +58,6 @@ public class FicheTransfertBean {
 	public void setProxyFicheObjet(IBusinessFicheObjet proxyFicheObjet) {
 		this.proxyFicheObjet = proxyFicheObjet;
 	}
-
-	public void setVilleDuRdv(List<Ville> villeDuRdv) {
-		this.villeDuRdv = villeDuRdv;
-	}
-
-	@EJB
-	private IBusinessFicheObjet proxyFicheObjet;
 
 	public Date getDateDuRdv() {
 		return dateDuRdv;
@@ -169,23 +132,52 @@ public class FicheTransfertBean {
 		}
 		return pass;
 	}
+	
+	public String AnnulerEchange(){
+		//this.echange.setDaterefus(new Date());
+		return "/AccueilAdh.xhtml?faces-redirect=true";
+	}
 
 	public String creerEchange (Objet objet, Participant participantReceveur){
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		System.out.println(dateDuRdvString);
+		try {
+			dateDuRdv = sdf.parse(dateDuRdvString);
+		} catch (ParseException e) {
+			dateDuRdv = new Date();
+		}
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
+		displayDate = sdf2.format(dateDuRdv)+ " à " + sdf3.format(getDateDuRdv());
 		this.objet = objet;
+		dateAjoutObjet = sdf2.format(objet.getDateajout());
 		this.participantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet());
 		this.participantReceveur = participantReceveur;
-		//this.messages = messages;
-		
+		this.participant = (proxyFicheTransfert.rechercherParticipantParId(this.selectedIdParticipant));
 				
 		Echange echange = new Echange(null, null, objet, null, new Date(), null, null, genererCodeFin(), objet.getValeur().getValeur(), null, null);
-		Rdv rdv = new Rdv(echange, selectedVilleDuRdv, dateDuRdv, selectedAdresseDuRdv, participantReceveur);
-		//echange.setRdv(rdv);
 		
+		Rdv rdv = new Rdv(echange, participant.getVille(), this.dateDuRdv, participant.getAdresse(), participantReceveur);
 		
 		echange = proxyFicheTransfert.ajouterEchange(echange);
 		rdv.setEchange(echange);
-		rdv.setDaterdv(new Date());
 		this.rdv = proxyFicheTransfert.ajouterRdv(rdv);
+		
+		participantReceveur.setSolde(participantReceveur.getSolde()-objet.getValeur().getValeur());
+		proxyFicheTransfert.modifierPoints(participantReceveur);
+		
+		Message message1 = new Message(participant.getMessagerie(), this.message, echange, new Date());
+		Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+		message1 = proxyFicheTransfert.ajouterMessage(message1);
+		message2 = proxyFicheTransfert.ajouterMessage(message2);
+		
+		mbFicheObjet.getParticipants().clear(); 
+		mbFicheObjet.setConnecte(true);
+		mbFicheObjet.setconnecteAndNotMyObjetCptPointsOk(false);
+		mbFicheObjet.setCptPointsOk(true);
+		
+		this.annee = objet.getDateajout().getYear() + 1901;
+		this.imagesObjet = proxyFicheObjet.getImageByIdObjet(objet.getIdobjet());
 		
 		return "/FicheTransfert.xhtml?faces-redirect=true";
 	}
@@ -197,7 +189,64 @@ public class FicheTransfertBean {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
+	public int getSelectedIdParticipant() {
+		return selectedIdParticipant;
+	}
+
+	public void setSelectedIdParticipant(int selectedIdParticipant) {
+		this.selectedIdParticipant = selectedIdParticipant;
+	}
+
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
+	public String getDateDuRdvString() {
+		return dateDuRdvString;
+	}
+
+	public void setDateDuRdvString(String dateDuRdvString) {
+		this.dateDuRdvString = dateDuRdvString;
+	}
+
+	public int getAnnee() {
+		return annee;
+	}
+
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
+
+	public List<Image> getImagesObjet() {
+		return imagesObjet;
+	}
+
+	public void setImagesObjet(List<Image> imagesObjet) {
+		this.imagesObjet = imagesObjet;
+	}
+
+	public String getDisplayDate() {
+		return displayDate;
+	}
+
+	public void setDisplayDate(String displayDate) {
+		this.displayDate = displayDate;
+	}
+
+	public String getDateAjoutObjet() {
+		return dateAjoutObjet;
+	}
+
+	public void setDateAjoutObjet(String dateAjoutObjet) {
+		this.dateAjoutObjet = dateAjoutObjet;
+	}
+
+
 
 	
 }

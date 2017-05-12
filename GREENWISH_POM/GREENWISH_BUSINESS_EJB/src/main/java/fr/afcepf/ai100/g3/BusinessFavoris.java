@@ -18,9 +18,8 @@ public class BusinessFavoris implements IBusinessFavoris {
 	IDaoObjet proxyDaoObjet;
 	
 	@Override
-	public void ajouterFavoris(Favoris favoris) {
-		
-		proxyDaoFavoris.ajouterFavoris(favoris);
+	public Favoris ajouterFavoris(Favoris favoris) {
+		return proxyDaoFavoris.ajouterFavoris(favoris);
 	}
 	@Override
 	public List<Favoris> afficherFavorisByIdParticipant(int idParticipant) {
@@ -37,5 +36,9 @@ public class BusinessFavoris implements IBusinessFavoris {
 	@Override
 	public List<Souhait> afficherSouhaitsByIdParticipant(int idParticipant) {
 		return proxyDaoSouhaits.getSouhaitByIdParticipant(idParticipant);
+	}
+	@Override
+	public void effacerFavori(Favoris favoris) {
+		proxyDaoFavoris.supprimerFavoris(favoris);
 	}	
 }

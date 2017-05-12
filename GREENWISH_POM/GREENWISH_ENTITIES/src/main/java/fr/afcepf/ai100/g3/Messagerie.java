@@ -60,7 +60,7 @@ public class Messagerie  implements java.io.Serializable {
         this.idmessagerie = idmessagerie;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDPARTICIPANT", nullable=false)
     public Participant getParticipant() {
         return this.participant;
@@ -70,7 +70,7 @@ public class Messagerie  implements java.io.Serializable {
         this.participant = participant;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="messagerie")
+@OneToMany( mappedBy="messagerie")
     public List<Participant> getParticipants() {
         return this.participants;
     }
@@ -79,7 +79,7 @@ public class Messagerie  implements java.io.Serializable {
         this.participants = participants;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="messagerie")
+@OneToMany( mappedBy="messagerie")
     public List<Message> getMessages() {
         return this.messages;
     }

@@ -32,6 +32,7 @@ public class DaoParticipant implements IDaoParticipant {
 		Participant retour = null;
 		try {
 			retour = (Participant) query.getSingleResult();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +74,9 @@ public class DaoParticipant implements IDaoParticipant {
 	public Participant recupProprio(int Idobjet) {
 		final String req="SELECT o.listeProposition.participant FROM Objet o WHERE o.idobjet = :pIdobjet";
 		Query query = em.createQuery(req).setParameter("pIdobjet", Idobjet);
-		return (Participant)query.getSingleResult();
+		Participant participantRetour = (Participant)query.getSingleResult();
+		participantRetour.getavis().size();
+		return participantRetour;
 	}
 }
 

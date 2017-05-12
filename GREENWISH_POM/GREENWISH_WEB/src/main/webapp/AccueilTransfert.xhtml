@@ -122,11 +122,11 @@
 
 											<div class="progress progress1">
 												<div class="one T1 success-color"></div>
-												<div class="two T2 #{mbAfficherTransfert.test()}"></div>
-												<div class="three T3 #{mbAfficherTransfert.test()}"></div>
-												<div class="four T4 #{mbAfficherTransfert.test()}"></div>
+												<div class="two T2 #{mbAfficherTransfert.isRdvValide(unEchange)}"></div>
+												<div class="three T3 #{mbAfficherTransfert.isRdvTermine(unEchange)}"></div>
+												<div class="four T4 #{mbAfficherTransfert.isTransfertTermine(unEchange)}"></div>
 												<div class="progress-bar progress-bar-success"
-													style="width: 35%"></div>
+													style="width: #{mbAfficherTransfert.remplirProgressBar(unEchange)}"></div>
 											</div>
 
 										</div>

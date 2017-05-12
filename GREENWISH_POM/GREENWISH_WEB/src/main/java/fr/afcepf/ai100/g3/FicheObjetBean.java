@@ -1,5 +1,6 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -32,37 +33,13 @@ public class FicheObjetBean {
 	private boolean connecteAndNotMyObjetCptPointsOk = false;
 	private boolean cptPointsOk = true;
 	private Disponibilite disponibilite;
-	private Ville villeParticipantDonneur;
-	private String adresseParticipantDonneur;
 	private Horaire h = new Horaire();
 	private Jour j = new Jour();
-	private Ville villeParticipantReceveur;
-	private String adresseParticipantReceveur;
 	private String Message;
-	private List<String> ListeAdresseRdvs;
-	private String selectedAdresseRdv;
+	private List<Participant> participants = new ArrayList<>();
+
 	
-//	@PostConstruct
-//	public void init(){
-//		L = new ListeProposition();
-//		selectedListeProposition.setIdlisteobjet(listePropositions.get(0).getIdlisteobjet());
-//	}
-	
-	public Ville getVilleParticipantReceveur() {
-		return villeParticipantReceveur;
-	}
 
-	public void setVilleParticipantReceveur(Ville villeParticipantReceveur) {
-		this.villeParticipantReceveur = villeParticipantReceveur;
-	}
-
-	public String getAdresseParticipantReceveur() {
-		return adresseParticipantReceveur;
-	}
-
-	public void setAdresseParticipantReceveur(String adresseParticipantReceveur) {
-		this.adresseParticipantReceveur = adresseParticipantReceveur;
-	}
 
 	public Horaire getH() {
 		return h;
@@ -80,16 +57,6 @@ public class FicheObjetBean {
 		this.j = j;
 	}
 
-	
-	
-	
-	public boolean isConnecteAndNotMyObjetCptPointsOk() {
-		return connecteAndNotMyObjetCptPointsOk;
-	}
-
-	public void setConnecteAndNotMyObjetCptPointsOk(boolean connecteAndNotMyObjetCptPointsOk) {
-		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
-	}
 
 	public Disponibilite getDisponibilite() {
 		return disponibilite;
@@ -97,22 +64,6 @@ public class FicheObjetBean {
 
 	public void setDisponibilite(Disponibilite disponibilite) {
 		this.disponibilite = disponibilite;
-	}
-
-	public Ville getVilleParticipantDonneur() {
-		return villeParticipantDonneur;
-	}
-
-	public void setVilleParticipantDonneur(Ville villeParticipantDonneur) {
-		this.villeParticipantDonneur = villeParticipantDonneur;
-	}
-
-	public String getAdresseParticipantDonneur() {
-		return adresseParticipantDonneur;
-	}
-
-	public void setAdresseParticipantDonneur(String adresseParticipantDonneur) {
-		this.adresseParticipantDonneur = adresseParticipantDonneur;
 	}
 
 	public ConnexionBean getCnxBean() {
@@ -195,6 +146,14 @@ public class FicheObjetBean {
 		this.connecteAndNotMyObjetCptPointsOk = connecteAndNotMyObjetCptPointsOk;
 	}
 
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
+	}
+
 	public boolean isCptPointsOk() {
 		return cptPointsOk;
 	}
@@ -210,8 +169,7 @@ public class FicheObjetBean {
 		this.setIdAge(objet.getTrancheAge().getIdage().toString());
 		
 		this.disponibilite = proxyFicheObjet.recupProprio(objet.getIdobjet()).getDisponibilite();
-		this.adresseParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getAdresse();
-		this.villeParticipantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet()).getVille();
+		this.participants.add(proxyFicheObjet.recupProprio(objet.getIdobjet()));
 		
 		return "/FicheObjet.xhtml?faces-redirect=true";
 	}
@@ -252,8 +210,8 @@ public class FicheObjetBean {
 				connecteAndNotMyObjetCptPointsOk=true;
 				NotMyObjet=true;
 				cptPointsOk=true;
-				this.adresseParticipantReceveur = cnxBean.getParticipant().getAdresse();
-				this.villeParticipantReceveur = cnxBean.getParticipant().getVille();
+				this.participants.add(cnxBean.getParticipant());
+
 			}
 			ConfigurableNavigationHandler  nav =
 					(ConfigurableNavigationHandler)
@@ -289,19 +247,5 @@ public class FicheObjetBean {
 		Message = message;
 	}
 
-	public List<String> getListeAdresseRdvs() {
-		return ListeAdresseRdvs;
-	}
 
-	public void setListeAdresseRdvs(List<String> listeAdresseRdvs) {
-		ListeAdresseRdvs = listeAdresseRdvs;
-	}
-
-	public String getSelectedAdresseRdv() {
-		return selectedAdresseRdv;
-	}
-
-	public void setSelectedAdresseRdv(String selectedAdresseRdv) {
-		this.selectedAdresseRdv = selectedAdresseRdv;
-	}
 }
