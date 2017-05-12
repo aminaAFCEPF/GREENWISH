@@ -5,6 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="foot">
+	 <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                                   
+                });
+            });
+        </script>
+
+	</ui:define>
 	<ui:define name="content">
 
 		<body>
@@ -156,27 +166,27 @@
 												<label class="col-md-offset-1">Lieu de rendez-vous :</label>
 											</div>
 											<div class="col-md-3">
-<!-- 												<select id="filtre" class="col-md-offset-1" -->
-<!-- 													style="width: 100%;"> -->
-<!-- 													<option>Lieu de rendez-vous 1</option> -->
-<!-- 													<option>Lieu de rendez-vous 2</option> -->
-<!-- 													<option>Autre lieu</option> -->
-<!-- 												</select> -->
-												<h:selectOneMenu id="ladresse"
-													value="#{mbFicheTransfert.selectedAdresseDuRdv}"
+												<h:selectOneMenu id="participant"
+													value="#{mbFicheTransfert.selectedIdParticipant}"
 													class="form-control margin-bottom-20 fa-plus">
-													<f:selectItems value="#{mbFicheTransfert.adresseDuRdvs}"
-														var="adresseRdv" itemLabel="#{adresseRdv}"
-														itemValue="#{adresseRdv}" />
+													<f:selectItems value="#{mbFicheObjet.participants}"
+														var="participant" itemLabel="#{participant.adresse}"
+														itemValue="#{participant.idparticipant}" />
 												</h:selectOneMenu>
 											</div>
-											<div class="col-md-6">
-												<h:commandButton
-													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
-													value="Envoyer"
-													action="#{mbFicheTransfert.creerEchange(mbFicheObjet.objet, mbCnx.participant, mbCnx.participant.adresse, mbCnx.participant.ville)}" />
+											<div class="col-md-3">
+												<label class="col-md-offset-1">Date du rendez-vous :</label>
 											</div>
-
+    										<div class="col-md-3"> 
+									            <div class="form-group">
+									                <div class="input-group date background-white" style="opacity: 1;" id="datetimepicker2">
+									                    <h:inputText class="form-control" value="#{mbFicheTransfert.dateDuRdvString}"/>
+									                    <span class="input-group-addon">
+									                        <span class="glyphicon glyphicon-calendar"></span>
+									                    </span>
+									                </div>
+									            </div>						       
+										    </div>
 										</div>
 									</div>
 								</div>
@@ -209,16 +219,18 @@
 											</ui:repeat>
 										</tbody>
 									</table>
-
+									<h:commandButton
+													class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
+													value="Envoyer"
+													action="#{mbFicheTransfert.creerEchange(mbFicheObjet.objet, mbCnx.participant)}" />
 								</div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</h:form>
 		</body>
-
 	</ui:define>
 </ui:composition>
 </html>
