@@ -98,12 +98,12 @@
 						</div>
 						<div class="text-center margin-vert-10">
 							<h:commandButton class="btn btn-primary borderRadius"
-								action="#{mbFavoris.paginatorFavoris.prev}" value="&lt; prev" />
+								action="#{mbFavoris.paginatorFavoris.prev()}" value="&lt; prev" />
 							<h:outputText
 								value="#{mbFavoris.paginatorFavoris.pageIndex} / #{mbFavoris.paginatorFavoris.pages}"
 								class="margin-horiz-10" />
 							<h:commandButton class="btn btn-primary borderRadius"
-								action="#{mbFavoris.paginatorFavoris.next}" value="next &gt;" />
+								action="#{mbFavoris.paginatorFavoris.next()}" value="next &gt;" />
 							<h:inputHidden value="#{mbFavoris.paginatorFavoris.pageIndex}" />
 						</div>
 						<div id="Souhaits">

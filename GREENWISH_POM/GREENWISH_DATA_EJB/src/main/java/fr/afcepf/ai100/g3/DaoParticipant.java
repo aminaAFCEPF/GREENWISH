@@ -75,7 +75,7 @@ public class DaoParticipant implements IDaoParticipant {
 		final String req="SELECT o.listeProposition.participant FROM Objet o WHERE o.idobjet = :pIdobjet";
 		Query query = em.createQuery(req).setParameter("pIdobjet", Idobjet);
 		Participant participantRetour = (Participant)query.getSingleResult();
-		participantRetour.getavis().size();
+		participantRetour.getAvis().size();
 		return participantRetour;
 	}
 }
