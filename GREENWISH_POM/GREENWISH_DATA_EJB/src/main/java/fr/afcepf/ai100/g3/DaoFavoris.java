@@ -11,14 +11,16 @@ import javax.persistence.Query;
 @Remote(IDaoFavoris.class)
 @Singleton
 public class DaoFavoris implements IDaoFavoris {
-	
+
 	@PersistenceContext(unitName="GREENWISH_DATA_EJB")
 	@SuppressWarnings("unchecked")
 	EntityManager em;
 
 	@Override
 	public Favoris ajouterFavoris(Favoris favoris) {
-			em.persist(favoris);
+		Participant part = em.find(Participant.class, favoris.getParticipants().get(0).getIdparticipant());
+		em.persist(favoris);
+		part.getfavoris().add(favoris);
 		return favoris;
 	}
 	@Override
@@ -29,7 +31,7 @@ public class DaoFavoris implements IDaoFavoris {
 	@Override
 	public void supprimerFavoris(Favoris favoris) {
 		em.remove(favoris);
-		
+
 	}
 	@Override
 	public Favoris rechercherFavorisParId(int idFavoris) {
@@ -43,10 +45,11 @@ public class DaoFavoris implements IDaoFavoris {
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Favoris> rechercherFavorisParIdParticipant(int idParticipant) {
-		final String req = "SELECT f FROM Favoris f, Appartient a, Paticipant p WHERE f.idfavoris = a. = :pidParticipant";
+		final String req = "SELECT p.favoris FROM Participant p WHERE p.idparticipant = :pidParticipant";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}

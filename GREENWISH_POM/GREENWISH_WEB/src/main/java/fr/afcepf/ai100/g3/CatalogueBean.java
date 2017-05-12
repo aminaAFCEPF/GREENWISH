@@ -21,6 +21,8 @@ public class CatalogueBean {
 	private IBusinessFavoris proxyFavoris;
 	@EJB
 	private IBusinessAjouterObjet proxyAjoutObjet;
+	@EJB
+	private IDaoParticipant proxyDaoPart;
 
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
@@ -35,7 +37,11 @@ public class CatalogueBean {
 	
 	public void ajouterFavoris(Objet objet){
 		Favoris fav = new Favoris(objet);
+		List<Favoris> favoris = proxyFavoris.afficherFavorisByIdParticipant(mbCnx.getParticipant().getIdparticipant());
+		mbCnx.getParticipant().setfavoris(favoris);
 		fav.getParticipants().add(mbCnx.getParticipant());
+		mbCnx.getParticipant().getfavoris().add(fav);
+		//proxyDaoPart.updateParticipant(mbCnx.getParticipant());
 		proxyFavoris.ajouterFavoris(fav);
 		}
 	
