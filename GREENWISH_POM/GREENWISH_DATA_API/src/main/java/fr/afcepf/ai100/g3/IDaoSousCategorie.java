@@ -6,5 +6,5 @@ public interface IDaoSousCategorie {
 	
 	List<Souscategorie> getAllSousCategorie();
 	List<Souscategorie> rechercherSousCategorieByCategorie(Categorie categorie);
-
+	String getIntituleById (int id);
 }

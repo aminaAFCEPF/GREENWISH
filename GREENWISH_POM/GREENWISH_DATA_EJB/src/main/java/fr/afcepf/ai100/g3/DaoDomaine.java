@@ -22,5 +22,12 @@ public class DaoDomaine implements IDaoDomaine{
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
+	
+	@Override
+	public String getIntituleById(int id){
+		String req = "SELECT d.domaine FROM Domaine d WHERE d.iddomaine = :pid";
+		Query query = em.createQuery(req).setParameter("pid", id);
+		return (String) query.getSingleResult();
+	}
 
 }

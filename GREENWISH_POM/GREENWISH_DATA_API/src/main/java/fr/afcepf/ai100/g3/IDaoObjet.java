@@ -21,5 +21,7 @@ public interface IDaoObjet {
 	String getNomListePropositionByIdObjet(int idObjet);
 	List<Image> getAllImageByIdObjet(int idObjet);
 	Image getFirstImageByIdObjet(int idObjet);
+	
+	List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur);
   
 }
