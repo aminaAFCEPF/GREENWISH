@@ -6,11 +6,11 @@
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 
-	<ui:define name="scriptsAndCss">
-		<script src="resources/js/gmap.js"></script>
-		<script type="text/javascipt"
-			src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyAUt-qp3C_b71jsnj50SDdzbv4fM-aFhXg&amp;callback=initMap">
-		</script>
+	<ui:define name="foot">
+
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?v3.exp&amp;key=AIzaSyAUt-qp3C_b71jsnj50SDdzbv4fM-aFhXg"></script>
+		<script src="../resources/js/gmap.js"></script>
 	</ui:define>
 
 	<ui:define name="content">
@@ -110,6 +110,15 @@
 					</div>
 				</div>
 			</h:form>
+			<table style="visibility: hidden">
+				<ui:repeat var="lObjet" value="#{mbCatalogue.objets}">
+					<tr>
+						<td class="tdLat">#{mbCatalogue.proxyDaoParticipant.recupProprio(lObjet.idobjet).latitude}</td>
+						<td class="tdLng">#{mbCatalogue.proxyDaoParticipant.recupProprio(lObjet.idobjet).longitude}</td>
+						<td class="title">#{lObjet.intitule}}</td>
+					</tr>
+				</ui:repeat>
+			</table>
 		</body>
 	</ui:define>
 

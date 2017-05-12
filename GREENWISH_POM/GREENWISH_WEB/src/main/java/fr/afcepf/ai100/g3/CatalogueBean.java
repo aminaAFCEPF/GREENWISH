@@ -16,6 +16,9 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 public class CatalogueBean {
 
 	@EJB
+	private IDaoParticipant proxyDaoParticipant;
+	
+	@EJB
 	private IBusinessCatalogue proxyCatalogue;
 	@EJB
 	private IBusinessFavoris proxyFavoris;
@@ -93,5 +96,14 @@ public class CatalogueBean {
 	public void setProxyAjoutObjet(IBusinessAjouterObjet proxyAjoutObjet) {
 		this.proxyAjoutObjet = proxyAjoutObjet;
 	}
+
+	public IDaoParticipant getProxyDaoParticipant() {
+		return proxyDaoParticipant;
+	}
+
+	public void setProxyDaoParticipant(IDaoParticipant proxyDaoParticipant) {
+		this.proxyDaoParticipant = proxyDaoParticipant;
+	}
+	
 	
 }
