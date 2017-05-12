@@ -44,6 +44,7 @@ public class AccueilTransfertBean {
 
 	@PostConstruct
 	public void init(){
+		
 		participant = mbCnx.getParticipant();
 		lesTypesDeRdv.add("Rendez-vous proposés");
 		lesTypesDeRdv.add("Rendez-vous validés");
@@ -65,12 +66,15 @@ public class AccueilTransfertBean {
 		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 		//echanges=proxyTest.rechercherTousLesEchangesDonnesDUnParticipant(participant.getIdparticipant());		
 		paginator = new RepeatPaginator(echanges);
+		System.out.println(participant.getIdparticipant());
+		
 	}
 	
 	public void chargerLesTransferts(){
 //		selectedEtatDesTransferts = etatsDesTransferts.get(0);
 //		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		participant = mbCnx.getParticipant();
+		echanges.clear();
 		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 		paginator = new RepeatPaginator(echanges);
 	}
