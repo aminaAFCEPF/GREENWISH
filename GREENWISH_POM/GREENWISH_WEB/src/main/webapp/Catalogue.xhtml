@@ -7,18 +7,6 @@
 <ui:composition template="/WEB-INF/arche.xhtml">
 
 
-	<ui:define name="scriptsAndCss">
-		<script type="text/javascript"
-			src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyAUt-qp3C_b71jsnj50SDdzbv4fM-aFhXg&amp;callback=initMap">
-		</script>
-		<script src="resources/js/gmap.js"></script>
-		<style type="text/css">
-#star:active {
-	color: #33747a !important;
-}
-</style>
-  </ui:define>
-
 	<ui:define name="foot">
 
 		<script type="text/javascript"
@@ -91,7 +79,7 @@
 																		src="resources/img/blog/flocon.png" alt="thumb1" />
 																</h5>
 															</div>
-															<div  id="star" class="col-sm-5">
+															<div id="star" class="col-sm-5">
 																<h:commandLink
 																	action="#{mbCatalogue.ajouterFavoris(lObjet)}" value=""
 																	class="col-md-offset-9 fa-star-o fa-2x animate fadeIn"
@@ -128,7 +116,7 @@
 					</div>
 				</div>
 			</h:form>
-			<table style="visibility: hidden">
+			<table style="display: none">
 				<ui:repeat var="lObjet" value="#{mbCatalogue.objets}">
 					<tr>
 						<td class="tdLat">#{mbCatalogue.proxyDaoParticipant.recupProprio(lObjet.idobjet).latitude}</td>
@@ -140,8 +128,5 @@
 		</body>
 	</ui:define>
 
-	<ui:define name="footer">
-
-	</ui:define>
 </ui:composition>
 </html>

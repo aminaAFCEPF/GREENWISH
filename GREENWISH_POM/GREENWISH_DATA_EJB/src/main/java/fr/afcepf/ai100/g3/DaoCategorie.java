@@ -25,15 +25,15 @@ public class DaoCategorie implements IDaoCategorie{
 
 	@Override
 	public List<Categorie> rechercherCategorieByDomaine(Domaine domaine) {
-		final String req = "SELECT c FROM Categorie c WHERE c.domaine.id = :pid";
+		final String req = "SELECT c FROM Categorie c WHERE c.domaine.iddomaine = :pid";
 		Query query = em.createQuery(req).setParameter("pid", domaine.getIddomaine());
 		return query.getResultList();
 	}
 
 	@Override
 	public String getIntituleById(int id) {
-		String req = "SELECT c FROM Categorie c WHERE c.idcategorie = :pid";
-		Query query = em.createNativeQuery(req).setParameter("pid", id);
+		String req = "SELECT c.intitule FROM Categorie c WHERE c.idcategorie = :pid";
+		Query query = em.createQuery(req).setParameter("pid", id);
 		return (String) query.getSingleResult();
 	}
 

@@ -18,9 +18,11 @@ public class DaoFavoris implements IDaoFavoris {
 
 	@Override
 	public Favoris ajouterFavoris(Favoris favoris) {
-		Participant part = em.find(Participant.class, favoris.getParticipants().get(0).getIdparticipant());
+		Participant p = em.find(Participant.class, favoris.getParticipants().get(0).getIdparticipant());
 		em.persist(favoris);
-		part.getfavoris().add(favoris);
+
+		p.getFavoris().add(favoris);
+
 		return favoris;
 	}
 	@Override
@@ -51,6 +53,7 @@ public class DaoFavoris implements IDaoFavoris {
 	public List<Favoris> rechercherFavorisParIdParticipant(int idParticipant) {
 		final String req = "SELECT p.favoris FROM Participant p WHERE p.idparticipant = :pidParticipant";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		System.out.println(query.getResultList().toString());
 		return query.getResultList();
 	}
 }

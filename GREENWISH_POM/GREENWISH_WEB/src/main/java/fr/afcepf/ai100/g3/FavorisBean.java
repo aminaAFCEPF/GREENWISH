@@ -40,7 +40,7 @@ public class FavorisBean {
 	@PostConstruct
 	public void init(){
 		favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
-		cnxBean.getParticipant().setfavoris(favoris);
+		cnxBean.getParticipant().setFavoris(favoris);
 		paginatorFavoris = new RepeatPaginator(favoris);
 		souhaits = proxyFavoris.afficherSouhaitsByIdParticipant(cnxBean.getParticipant().getIdparticipant());
 		paginatorSouhaits = new RepeatPaginator(souhaits);

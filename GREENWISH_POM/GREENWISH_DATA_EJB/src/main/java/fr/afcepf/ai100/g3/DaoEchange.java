@@ -97,6 +97,8 @@ public class DaoEchange implements IDaoEchange{
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
+	
+	
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesTermines() {

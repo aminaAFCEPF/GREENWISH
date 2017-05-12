@@ -58,7 +58,7 @@ public class RechercheBean {
 	}
 
 	public String rechercherObjet() {
-
+		
 		String nav = "/Catalogue.xhtml?faces-redirect=true";
 
 		String rDomaine = "%%";
@@ -79,6 +79,7 @@ public class RechercheBean {
 		if (isSetSousCategorie(selectedSousCategorie.getIdsouscategorie())) {
 			rSousCategorie = selectedSousCategorie.getIdsouscategorie().toString();
 			System.out.println("je suis dans la sscategorie");
+			System.out.println(rSousCategorie);
 		}
 		if (isSetValeur(selectedValeur.getIdvaleur())) {
 			rValeur = selectedValeur.getIdvaleur().toString();

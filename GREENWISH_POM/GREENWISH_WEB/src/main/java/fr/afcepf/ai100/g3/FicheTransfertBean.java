@@ -21,6 +21,10 @@ public class FicheTransfertBean {
 	
 	@ManagedProperty(value="#{mbFicheObjet}")
 	private FicheObjetBean mbFicheObjet;
+	@ManagedProperty(value="#{mbCnx}")
+	private ConnexionBean cnxBean;
+
+
 	@EJB
 	private IBusinessFicheTransfert proxyFicheTransfert;
 	@EJB
@@ -41,6 +45,8 @@ public class FicheTransfertBean {
 	private List<Image> imagesObjet;
 	private String displayDate;
 	private String dateAjoutObjet;
+	private boolean rdvPasse;
+	private boolean rdvEnvoye;
 	
 	public FicheObjetBean getMbFicheObjet() {
 		return mbFicheObjet;
@@ -137,6 +143,24 @@ public class FicheTransfertBean {
 		//this.echange.setDaterefus(new Date());
 		return "/AccueilAdh.xhtml?faces-redirect=true";
 	}
+	public String envoyerMessage(){
+		if(cnxBean.getParticipant() == participantDonneur){
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+			message1 = proxyFicheTransfert.ajouterMessage(message1);
+			message2 = proxyFicheTransfert.ajouterMessage(message2);
+			messages.add(message2);
+		}
+		else{
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+			message1 = proxyFicheTransfert.ajouterMessage(message1);
+			message2 = proxyFicheTransfert.ajouterMessage(message2);
+			messages.add(message1);
+		}
+		
+		return "/FicheTransfert.xhtml?faces-redirect=true";
+	}
 
 	public String creerEchange (Objet objet, Participant participantReceveur){
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
@@ -155,7 +179,7 @@ public class FicheTransfertBean {
 		this.participantReceveur = participantReceveur;
 		this.participant = (proxyFicheTransfert.rechercherParticipantParId(this.selectedIdParticipant));
 				
-		Echange echange = new Echange(null, null, objet, null, new Date(), null, null, genererCodeFin(), objet.getValeur().getValeur(), null, null);
+		echange = new Echange(null, null, objet, null, new Date(), null, null, genererCodeFin(), objet.getValeur().getValeur(), null, null);
 		
 		Rdv rdv = new Rdv(echange, participant.getVille(), this.dateDuRdv, participant.getAdresse(), participantReceveur);
 		
@@ -166,10 +190,12 @@ public class FicheTransfertBean {
 		participantReceveur.setSolde(participantReceveur.getSolde()-objet.getValeur().getValeur());
 		proxyFicheTransfert.modifierPoints(participantReceveur);
 		
-		Message message1 = new Message(participant.getMessagerie(), this.message, echange, new Date());
+		Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
 		Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
 		message1 = proxyFicheTransfert.ajouterMessage(message1);
 		message2 = proxyFicheTransfert.ajouterMessage(message2);
+		messages.add(message1);
+		message = "Bonjour";
 		
 		mbFicheObjet.getParticipants().clear(); 
 		mbFicheObjet.setConnecte(true);
@@ -179,7 +205,21 @@ public class FicheTransfertBean {
 		this.annee = objet.getDateajout().getYear() + 1901;
 		this.imagesObjet = proxyFicheObjet.getImageByIdObjet(objet.getIdobjet());
 		
+		rdvPasse = false;
+		rdvEnvoye = true;
+		
 		return "/FicheTransfert.xhtml?faces-redirect=true";
+	}
+	
+	public boolean qui(){
+		boolean qui;
+		if(cnxBean.getParticipant() == getParticipantDonneur()){
+			qui = true;
+		}
+		else{
+			qui=false;
+		}
+		return qui;
 	}
 
 	public String getMessage() {
@@ -246,8 +286,29 @@ public class FicheTransfertBean {
 		this.dateAjoutObjet = dateAjoutObjet;
 	}
 
+	public ConnexionBean getCnxBean() {
+		return cnxBean;
+	}
 
+	public void setCnxBean(ConnexionBean cnxBean) {
+		this.cnxBean = cnxBean;
+	}
 
+	public boolean isRdvPasse() {
+		return rdvPasse;
+	}
+
+	public void setRdvPasse(boolean rdvPasse) {
+		this.rdvPasse = rdvPasse;
+	}
+
+	public boolean isRdvEnvoye() {
+		return rdvEnvoye;
+	}
+
+	public void setRdvEnvoye(boolean rdvEnvoye) {
+		this.rdvEnvoye = rdvEnvoye;
+	}
 	
 }
 
