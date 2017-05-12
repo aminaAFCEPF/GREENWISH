@@ -62,7 +62,7 @@ public class Avis  implements java.io.Serializable {
         this.idavis = idavis;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="IDPARTICIPANT")
     public Participant getParticipant() {
         return this.participant;

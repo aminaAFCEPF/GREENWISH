@@ -15,6 +15,10 @@ public class BusinessFicheTransfert implements IBusinessFicheTransfert {
 	IDaoObjet proxyDaoObjet;
 	@EJB
 	IDaoRdv proxyDaoRdv;
+	@EJB
+	IDaoParticipant proxyParticipant;
+	@EJB
+	IDaoMessage proxyDaoMessage;
 
 	@Override
 	public Disponibilite getDisponibiliteByIdParticipant(int idParticipant) {
@@ -34,5 +38,21 @@ public class BusinessFicheTransfert implements IBusinessFicheTransfert {
 	@Override
 	public Objet updateObjet(Objet objet) {
 		return proxyDaoObjet.updateObjet(objet);
+	}
+
+	@Override
+	public Participant rechercherParticipantParId(int id) {
+		
+		return proxyParticipant.rechercherParticipantParId(id);
+	}
+
+	@Override
+	public Message ajouterMessage(Message message) {
+		return proxyDaoMessage.ajouterMessage(message);
+	}
+
+	@Override
+	public Participant modifierPoints(Participant participant) {
+		return proxyParticipant.updateParticipant(participant);
 	}
 }

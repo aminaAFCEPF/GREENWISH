@@ -38,8 +38,18 @@ public class Message  implements java.io.Serializable {
      private Echange echange;
      private Date datePublication;
      
+     
+     
 
-    public Message() {
+    public Message(Messagerie messagerie, String message, Echange echange, Date datePublication) {
+		super();
+		this.messagerie = messagerie;
+		this.message = message;
+		this.echange = echange;
+		this.datePublication = datePublication;
+	}
+
+	public Message() {
     }
 
     public Message(Messagerie messagerie, String message, boolean lu) {
@@ -60,7 +70,7 @@ public class Message  implements java.io.Serializable {
         this.idmessage = idmessage;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDMESSAGERIE", nullable=false)
     public Messagerie getMessagerie() {
         return this.messagerie;
@@ -89,7 +99,7 @@ public class Message  implements java.io.Serializable {
     public void setLu(boolean lu) {
         this.lu = lu;
     }
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="IDECHANGE", nullable=false)
 	public Echange getEchange() {
 		return echange;
