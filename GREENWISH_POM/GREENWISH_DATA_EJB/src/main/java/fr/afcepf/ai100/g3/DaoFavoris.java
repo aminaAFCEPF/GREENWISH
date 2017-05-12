@@ -20,7 +20,7 @@ public class DaoFavoris implements IDaoFavoris {
 	public Favoris ajouterFavoris(Favoris favoris) {
 		Participant part = em.find(Participant.class, favoris.getParticipants().get(0).getIdparticipant());
 		em.persist(favoris);
-		part.getfavoris().add(favoris);
+		part.getFavoris().add(favoris);
 		return favoris;
 	}
 	@Override

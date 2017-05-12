@@ -161,10 +161,10 @@ public class DaoObjet implements IDaoObjet {
 	public List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur) {
 		String req = "SELECT o FROM Objet o WHERE o.domaine.domaine LIKE :pDomaine AND o.categorie.intitule LIKE :pCategorie AND o.souscategorie.intitule LIKE :pSousCategorie AND o.valeur.valeur <= :pValeur"; // AND o.intitule LIKE '%:pidObjetIntitule%'
 		
-		Query query = em.createQuery(req)	.setParameter("pDomaine", rDomaine)
-											.setParameter("pCategorie", rCategorie)
-											.setParameter("pSousCategorie", rSousCategorie)
-											.setParameter("pValeur", Integer.parseInt(rValeur));
+		Query query = em.createQuery(req).setParameter("pDomaine", rDomaine)
+										.setParameter("pCategorie", rCategorie)
+										.setParameter("pSousCategorie", rSousCategorie)
+										.setParameter("pValeur", Integer.parseInt(rValeur));
 		
 		System.out.println(query.toString());
 		System.out.println("coucou DAO");
