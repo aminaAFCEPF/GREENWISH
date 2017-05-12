@@ -24,6 +24,21 @@ public class BusinessRecherche implements IBusinessRecherche {
 	IDaoTrancheAge proxyDaoTrancheAge;
 	
 	
+	
+	@Override
+	public String RemplirEspaces(Objet objet, String description){
+		int nbEspace;
+		int longueurDescription = objet.getDescription().length();
+		String texteDescription = objet.getDescription();
+		if(longueurDescription < 50) {
+			nbEspace = 50 - longueurDescription;
+			for(int i = 0; i < nbEspace ; i++){
+				texteDescription = texteDescription + " ";
+			}
+		}
+		return texteDescription;
+	}
+	
 	@Override
 	public List<Domaine> rechercherDomaine() {
 		List<Domaine> domaines;
@@ -139,7 +154,7 @@ public class BusinessRecherche implements IBusinessRecherche {
 			}
 		
 		if(!rSousCategorie.equals("%%")){
-			rSousCategorie = proxyDaoDomaine.getIntituleById(Integer.parseInt(rSousCategorie));
+			rSousCategorie = proxyDaoSousCategorie.getIntituleById(Integer.parseInt(rSousCategorie));
 			System.out.println("Le critère Sous-Categorie est rempli, je recupere l'intitulé");
 			}
 		

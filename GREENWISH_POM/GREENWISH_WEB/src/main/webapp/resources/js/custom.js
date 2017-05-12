@@ -1,7 +1,7 @@
 
-
-window.onload = function () {
-    
+//test
+$(function () { 
+	
     var btnSearch = document.getElementById("btnSearch");
     var btnLogin = document.getElementById("btnLogin");
     var loginDiv = document.getElementById("loginDiv");
@@ -16,7 +16,7 @@ window.onload = function () {
     btnLogin.onmouseover = login;
     btnLogin.onmouseout = notLogin;
     loginDiv.onmouseout = notLogin;
-}
+});
 
 function recherche() {
 

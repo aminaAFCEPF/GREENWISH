@@ -12,4 +12,5 @@ public interface IBusinessRecherche {
 	List<Valeur> rechercherValeur();
 	List<TrancheAge> rechercherTrancheAge();
 	List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur);
+	String RemplirEspaces(Objet objet, String description);
 }

@@ -7,11 +7,12 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 
 @ManagedBean(name = "mbCatalogue")
-@SessionScoped
+@ViewScoped
 public class CatalogueBean {
 
 	@EJB
@@ -21,12 +22,7 @@ public class CatalogueBean {
 	private IBusinessCatalogue proxyCatalogue;
 	@EJB
 	private IBusinessFavoris proxyFavoris;
-	@EJB
-	private IBusinessAjouterObjet proxyAjoutObjet;
-	@EJB
-	private IDaoParticipant proxyDaoPart;
-  @EJB
-	private IDaoObjet proxyDaoObjet;
+
 
 
 	@ManagedProperty(value = "#{mbCnx}")
@@ -64,7 +60,9 @@ public class CatalogueBean {
 
 	public String formatDescription(Objet objet, String description) {
 		String output = objet.getDescription();
-		description = proxyAjoutObjet.RemplirEspaces(objet, output);
+
+		description = mbRecherche.getProxyBusinessRecherche().RemplirEspaces(objet, output);
+
 		return description;
 	}
 
@@ -108,13 +106,6 @@ public class CatalogueBean {
 		this.mbCnx = mbCnx;
 	}
 
-	public IBusinessAjouterObjet getProxyAjoutObjet() {
-		return proxyAjoutObjet;
-	}
-
-	public void setProxyAjoutObjet(IBusinessAjouterObjet proxyAjoutObjet) {
-		this.proxyAjoutObjet = proxyAjoutObjet;
-	}
 
 	public IDaoParticipant getProxyDaoParticipant() {
 		return proxyDaoParticipant;
@@ -125,13 +116,7 @@ public class CatalogueBean {
 	}
 	
 	
-	public IDaoObjet getProxyDaoObjet() {
-		return proxyDaoObjet;
-	}
 
-	public void setProxyDaoObjet(IDaoObjet proxyDaoObjet) {
-		this.proxyDaoObjet = proxyDaoObjet;
-	}
 
 	public RechercheBean getMbRecherche() {
 		return mbRecherche;
