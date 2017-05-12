@@ -1,18 +1,20 @@
 package fr.afcepf.ai100.g3;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 
 @ManagedBean(name = "mbAfficherTransfert")
-@ViewScoped
+@SessionScoped
 public class AccueilTransfertBean {
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
@@ -24,8 +26,10 @@ public class AccueilTransfertBean {
 	private IDaoObjet proxyDaoAfficherImage;
 	@EJB
 	private IDaoEchange proxyTest;
+	@EJB
+	private IDaoRdv proxyDaoRdv;
 	private List<Echange> echanges;
-	private Participant participant;
+	private Participant participant = new Participant();
 	private RepeatPaginator paginator;
 	private List<String> lesTypesDeRdv = new ArrayList<>();
 	private String selectedTypeRdv;
@@ -33,6 +37,7 @@ public class AccueilTransfertBean {
 	private String selectedEtatDesTransferts;
 	private List<String> typesDeTransferts = new ArrayList<>();
 	private String selectedTypesDesTransferts;
+	private Rdv rdv = new Rdv();
 	
 
 	
@@ -65,13 +70,55 @@ public class AccueilTransfertBean {
 	public void chargerLesTransferts(){
 //		selectedEtatDesTransferts = etatsDesTransferts.get(0);
 //		selectedTypesDesTransferts = typesDeTransferts.get(0);
-		
+		participant = mbCnx.getParticipant();
 		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
 		paginator = new RepeatPaginator(echanges);
 	}
 	
-	public String test(){
-		return "success-color";
+	public String isRdvValide(Echange echange){
+		String couleur ="";
+		rdv=proxyDaoRdv.getRdvByIdEchange(echange.getIdechange());
+		if(rdv.getDaterdv()!=null){
+			couleur="success-color";
+		}else{
+			couleur = "no-color";
+		}
+		return couleur;
+	}
+	
+	public String isRdvTermine(Echange echange){
+		String couleur ="";
+		
+		if(rdv.getDaterdv().before(new Date())){
+			couleur="success-color";
+		}else{
+			couleur = "no-color";
+		}
+		return couleur;
+	}
+	
+	public String isTransfertTermine(Echange echange){
+		String couleur ="";
+		if(echange.getDateFin()!=null){
+			couleur="success-color";
+		}else{
+			couleur = "no-color";
+		}
+		return couleur;
+	}
+	
+	public String remplirProgressBar(Echange echange){
+		String remplissage = "10%";
+		if( isRdvValide(echange).equals("success-color")){
+			remplissage = "35%";
+		}
+		if( isRdvTermine(echange).equals("success-color")){
+			remplissage = "60%";
+		}
+		if( isTransfertTermine(echange).equals("success-color")){
+			remplissage = "100%";
+		}
+		return remplissage;
 	}
 
 
@@ -208,6 +255,22 @@ public class AccueilTransfertBean {
 
 	public void setProxyTest(IDaoEchange proxyTest) {
 		this.proxyTest = proxyTest;
+	}
+
+	public IDaoRdv getProxyDaoRdv() {
+		return proxyDaoRdv;
+	}
+
+	public void setProxyDaoRdv(IDaoRdv proxyDaoRdv) {
+		this.proxyDaoRdv = proxyDaoRdv;
+	}
+
+	public Rdv getRdv() {
+		return rdv;
+	}
+
+	public void setRdv(Rdv rdv) {
+		this.rdv = rdv;
 	}
 
 
