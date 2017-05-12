@@ -40,6 +40,8 @@ public class Participant implements java.io.Serializable {
 	private String prenom;
 	private Date datenaissance;
 	private String adresse;
+	private Float longitude;
+	private Float latitude;
 	private String mail;
 	private String telephone;
 	private int solde;
@@ -77,6 +79,8 @@ public class Participant implements java.io.Serializable {
 		this.password = password;
 		this.statutadmin = statutadmin;
 	}
+	
+	
 
 	public Participant(Disponibilite disponibilite, Messagerie messagerie, Reglage reglage, Ville ville, String nom,
 			String prenom, Date datenaissance, String adresse, String mail, String telephone, int solde,
@@ -287,14 +291,8 @@ public class Participant implements java.io.Serializable {
 		this.datederniercontact = datederniercontact;
 	}
 
-	@OneToMany(mappedBy = "participant")
-	public List<Avis> getavis() {
-		return this.avis;
-	}
-
-	public void setavis(List<Avis> avis) {
-		this.avis = avis;
-	}
+	
+	
 
 	@OneToMany(mappedBy = "participant")
 	public List<Souhait> getSouhaits() {
@@ -317,17 +315,8 @@ public class Participant implements java.io.Serializable {
 		this.notifications = notifications;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "appartient", catalog = "greenwish", joinColumns = {
-			@JoinColumn(name = "IDPARTICIPANT", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "IDFAVORIS", nullable = false, updatable = false) })
-	public List<Favoris> getfavoris() {
-		return this.favoris;
-	}
-
-	public void setfavoris(List<Favoris> favoris) {
-		this.favoris = favoris;
-	}
+	
+	
 
 	@OneToMany(mappedBy = "participant")
 	public List<Reglage> getReglages() {
@@ -403,5 +392,46 @@ public class Participant implements java.io.Serializable {
 	public void setRdvs(List<Rdv> rdvs) {
 		this.rdvs = rdvs;
 	}
+
+	@Column(name = "LONGITUDE", unique = true, nullable = true)
+	public Float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
+	}
+
+	@Column(name = "LATITUDE", unique = true, nullable = true)
+	public Float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Float latitude) {
+		this.latitude = latitude;
+	}
+	
+	@OneToMany(mappedBy = "participant")
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "appartient", catalog = "greenwish", joinColumns = {
+			@JoinColumn(name = "IDPARTICIPANT", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "IDFAVORIS", nullable = false, updatable = false) })
+	public List<Favoris> getFavoris() {
+		return favoris;
+	}
+
+	public void setFavoris(List<Favoris> favoris) {
+		this.favoris = favoris;
+	}
+	
+	
 
 }

@@ -6,5 +6,5 @@ public interface IDaoCategorie {
 
 	List<Categorie> getAllCategorie();
 	List<Categorie> rechercherCategorieByDomaine(Domaine domaine);
-	
+	String getIntituleById (int id);
 }

@@ -737,9 +737,7 @@ color: white;
 {
 	min-height: 621px;
 }
-#all
-{
-	display:flex !important;
-	flex-direction: column !important;
-		
+
+#star:active{
+ color: yellow;
 }

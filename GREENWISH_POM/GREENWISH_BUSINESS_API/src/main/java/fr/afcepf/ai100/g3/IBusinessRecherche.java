@@ -4,12 +4,6 @@ import java.util.List;
 
 public interface IBusinessRecherche {
 	
-	TrancheAge rechercherObjetParTrancheAge();
-	Domaine rechercherObjetParDomaine();
-	Categorie rechercherObjetParCategorie();
-	Souscategorie rechercherObjetParSousCategorie();
-	Valeur rechercherObjetParValeur();
-	
 	List<Souscategorie> rechercherSousCategorie();
 	List<Souscategorie> rechercherSousCategorieParCategorie(Categorie categorie);
 	List<Categorie> rechercherCategorieParDomaine(Domaine domaine);
@@ -17,5 +11,5 @@ public interface IBusinessRecherche {
 	List<Domaine> rechercherDomaine();
 	List<Valeur> rechercherValeur();
 	List<TrancheAge> rechercherTrancheAge();
-	
+	List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur);
 }

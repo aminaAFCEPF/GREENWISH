@@ -25,9 +25,16 @@ public class DaoSousCategorie implements IDaoSousCategorie {
 
 	@Override
 	public List<Souscategorie> rechercherSousCategorieByCategorie(Categorie categorie) {
-		final String req = "SELECT s FROM Souscategorie s WHERE s.categorie.id = :pid";
+		final String req = "SELECT s FROM Souscategorie s WHERE s.categorie.idcategorie = :pid";
 		Query query = em.createQuery(req).setParameter("pid", categorie.getIdcategorie());
 		return query.getResultList();
+	}
+
+	@Override
+	public String getIntituleById(int id) {
+		String req = "SELECT sc FROM Souscategorie sc WHERE sc.idsouscategorie = :pid";
+		Query query = em.createNativeQuery(req).setParameter("pid", id);
+		return (String) query.getSingleResult();
 	}
 	
 	

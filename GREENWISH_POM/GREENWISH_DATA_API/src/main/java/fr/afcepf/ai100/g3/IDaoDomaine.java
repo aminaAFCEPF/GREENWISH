@@ -6,4 +6,6 @@ public interface IDaoDomaine {
 	
 	List<Domaine> getAllDomaine();
 
+	String getIntituleById(int id);
+
 }

@@ -35,11 +35,12 @@ public class FavorisBean {
 
 	private Date dateAjout;
 	private String dateAjoutFormat;
-	private Image PremiereImage;
+	private Image premiereImage;
 
 	@PostConstruct
 	public void init(){
 		favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
+		cnxBean.getParticipant().setfavoris(favoris);
 		paginatorFavoris = new RepeatPaginator(favoris);
 		souhaits = proxyFavoris.afficherSouhaitsByIdParticipant(cnxBean.getParticipant().getIdparticipant());
 		paginatorSouhaits = new RepeatPaginator(souhaits);
@@ -47,6 +48,10 @@ public class FavorisBean {
 		DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
 		setDateAjoutFormat(outputFormatter.format(dateAjout));
 		setPremiereImage(proxyFavoris.AfficherPremiereImageParIdObjet(favoris.get(0).getObjet().getIdobjet()));
+	}
+	
+	public void removeFavori(Favoris favoris){
+		proxyFavoris.effacerFavori(favoris);
 	}
 
 	public String afficherMonCompte(){
@@ -101,14 +106,6 @@ public class FavorisBean {
 		this.dateAjoutFormat = dateAjoutFormat;
 	}
 
-	public Image getPremiereImage() {
-		return PremiereImage;
-	}
-
-	public void setPremiereImage(Image premiereImage) {
-		PremiereImage = premiereImage;
-	}
-
 	public RepeatPaginator getPaginatorFavoris() {
 		return paginatorFavoris;
 	}
@@ -131,6 +128,14 @@ public class FavorisBean {
 
 	public void setSouhaits(List<Souhait> souhaits) {
 		this.souhaits = souhaits;
+	}
+
+	public Image getPremiereImage() {
+		return premiereImage;
+	}
+
+	public void setPremiereImage(Image premiereImage) {
+		this.premiereImage = premiereImage;
 	}
 
 

@@ -57,7 +57,7 @@ public class Favoris  implements java.io.Serializable {
         this.idfavoris = idfavoris;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne
     @JoinColumn(name="IDOBJET", nullable=false)
     public Objet getObjet() {
         return this.objet;
@@ -67,7 +67,7 @@ public class Favoris  implements java.io.Serializable {
         this.objet = objet;
     }
 
-@ManyToMany(fetch=FetchType.LAZY, mappedBy="favoris")
+@ManyToMany(mappedBy="favoris")
     public List<Participant> getParticipants() {
         return this.participants;
     }

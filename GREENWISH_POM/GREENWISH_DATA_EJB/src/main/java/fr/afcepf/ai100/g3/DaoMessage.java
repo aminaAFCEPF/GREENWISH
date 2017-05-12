@@ -17,7 +17,6 @@ public class DaoMessage implements IDaoMessage{
 	private EntityManager em;
 	@Override
 	public Message ajouterMessage(Message message) {
-		
 		em.persist(message);
 		return message;
 	}
