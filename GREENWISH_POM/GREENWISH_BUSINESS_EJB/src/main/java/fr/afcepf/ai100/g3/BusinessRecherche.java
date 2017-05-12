@@ -25,36 +25,6 @@ public class BusinessRecherche implements IBusinessRecherche {
 	
 	
 	@Override
-	public TrancheAge rechercherObjetParTrancheAge() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Domaine rechercherObjetParDomaine() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Categorie rechercherObjetParCategorie() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Souscategorie rechercherObjetParSousCategorie() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Valeur rechercherObjetParValeur() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public List<Domaine> rechercherDomaine() {
 		List<Domaine> domaines;
 		domaines = proxyDaoDomaine.getAllDomaine();
@@ -152,6 +122,30 @@ public class BusinessRecherche implements IBusinessRecherche {
 
 	public void setProxyDaoTrancheAge(IDaoTrancheAge proxyDaoTrancheAge) {
 		this.proxyDaoTrancheAge = proxyDaoTrancheAge;
+	}
+
+	@Override
+	public List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur) {
+		List<Objet> objets;
+		
+		if(!rDomaine.equals("%%")){
+			rDomaine = proxyDaoDomaine.getIntituleById(Integer.parseInt(rDomaine));
+			System.out.println("Le critère Domaine est rempli, je recupere l'intitulé");
+			}
+		
+		if(!rCategorie.equals("%%")){
+			rCategorie = proxyDaoCategorie.getIntituleById(Integer.parseInt(rCategorie));
+			System.out.println("Le critère Categorie est rempli, je recupere l'intitulé");
+			}
+		
+		if(!rSousCategorie.equals("%%")){
+			rSousCategorie = proxyDaoDomaine.getIntituleById(Integer.parseInt(rSousCategorie));
+			System.out.println("Le critère Sous-Categorie est rempli, je recupere l'intitulé");
+			}
+		
+		objets = proxyDaoObjet.rechercherObjetByAlgo(rDomaine, rCategorie, rSousCategorie, rValeur);
+		System.out.println("coucou Business");
+		return objets;
 	}
 
 }

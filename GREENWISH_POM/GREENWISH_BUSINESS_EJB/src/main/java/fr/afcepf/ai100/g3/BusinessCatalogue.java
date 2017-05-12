@@ -22,6 +22,6 @@ public class BusinessCatalogue implements IBusinessCatalogue {
 	public Image getFirstImageByIdObjet(int idObjet) {
 		return proxyDaoObjet.getFirstImageByIdObjet(idObjet);
 	}
-	
+
 
 }

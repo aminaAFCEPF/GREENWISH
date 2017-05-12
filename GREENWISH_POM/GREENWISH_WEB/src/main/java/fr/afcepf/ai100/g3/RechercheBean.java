@@ -1,29 +1,24 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+
 
 @ManagedBean(name = "mbRechercherObjet")
-@ViewScoped
+@SessionScoped
 public class RechercheBean {
-	
-	@ManagedProperty(value="#{mbCnx}")
+
+	@ManagedProperty(value = "#{mbCnx}")
 	private ConnexionBean mbCnx;
 	@EJB
-	private IDaoObjet proxyDaoObjet;
-	@EJB
 	private IBusinessRecherche proxyBusinessRecherche;
-	@EJB
-	private IDaoValeur proxyDaoValeur;
-	@EJB
-	private IDaoTrancheAge proxyDaoTrancheAge;
-	
-	
+
 	private Domaine selectedDomaine = new Domaine();
 	private List<Domaine> domaines;
 	private Categorie selectedCategorie = new Categorie();
@@ -34,46 +29,118 @@ public class RechercheBean {
 	private List<Valeur> valeurs;
 	private TrancheAge selectedTrancheAge = new TrancheAge();
 	private List<TrancheAge> trancheAges;
-	
-	
-	
+	private List<Objet> resultatRecherche = new ArrayList<>();
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		domaines = proxyBusinessRecherche.rechercherDomaine();
 		selectedDomaine = new Domaine();
-		//selectedDomaine.setIddomaine(domaines.get(0).getIddomaine());
-		
+
 		chargerCategories();
 		categories = proxyBusinessRecherche.rechercherCategorie();
-		//selectedCategorie.setIdcategorie(categories.get(0).getIdcategorie());
-		
+
 		chargerSousCategorie();
 		selectedSousCategorie = new Souscategorie();
-		//selectedSousCategorie.setIdsouscategorie(sousCategories.get(0).getIdsouscategorie());
-		
+
 		valeurs = proxyBusinessRecherche.rechercherValeur();
-		
+
 		trancheAges = proxyBusinessRecherche.rechercherTrancheAge();
 	}
-	
+
 	public void chargerCategories() {
 		categories = proxyBusinessRecherche.rechercherCategorieParDomaine(selectedDomaine);
 		selectedCategorie = new Categorie();
-		//selectedCategorie.setIdcategorie(categories.get(0).getIdcategorie());
 		sousCategories = proxyBusinessRecherche.rechercherSousCategorieParCategorie(selectedCategorie);
 	}
 
 	public void chargerSousCategorie() {
 		sousCategories = proxyBusinessRecherche.rechercherSousCategorieParCategorie(selectedCategorie);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public String rechercherObjet() {
+
+		String nav = "/Catalogue.xhtml?faces-redirect=true";
+
+		String rDomaine = "%%";
+		String rCategorie = "%%";
+		String rSousCategorie = "%%";
+		String rValeur = selectedValeur.toString();
+
+		if (isSetDomaine(selectedDomaine.getIddomaine())) {
+			rDomaine = selectedDomaine.getIddomaine().toString();
+			System.out.println("je suis dans le domaine");
+			System.out.println(rDomaine);
+		}
+		if (isSetCategorie(selectedCategorie.getIdcategorie())) {
+			rCategorie = selectedCategorie.getIdcategorie().toString();
+			System.out.println("je suis dans la categorie");
+			System.out.println(rCategorie);
+		}
+		if (isSetSousCategorie(selectedSousCategorie.getIdsouscategorie())) {
+			rSousCategorie = selectedSousCategorie.getIdsouscategorie().toString();
+			System.out.println("je suis dans la sscategorie");
+		}
+		if (isSetValeur(selectedValeur.getIdvaleur())) {
+			rValeur = selectedValeur.getIdvaleur().toString();
+			System.out.println("je suis dans la valeur");
+		}
+
+		if (isSetDomaine(selectedDomaine.getIddomaine()) 
+				|| isSetCategorie(selectedCategorie.getIdcategorie())
+				|| isSetSousCategorie(selectedSousCategorie.getIdsouscategorie())
+				|| isSetValeur(selectedValeur.getIdvaleur())) {
+
+			System.out.println("Au moins un critère est rempli, je lance ma recherche!");
+			resultatRecherche = proxyBusinessRecherche.rechercherObjet(rDomaine, rCategorie, rSousCategorie, rValeur);
+		}
+		System.out.println("taille du resultat : " + resultatRecherche.size());
+		for (Objet objet : resultatRecherche) {
+			System.out.println(objet.getIntitule());
+		}
+		System.out.println("coucou méthode BEAN!!!");
+		return nav;
+	}
+
+	public boolean isSetDomaine(Integer rDomaine) {
+		boolean domaineIsSet = false;
+		if (selectedDomaine.getIddomaine() != null) {
+			domaineIsSet = true;
+		}
+		return domaineIsSet;
+	}
+
+	public boolean isSetCategorie(Integer rCategorie) {
+		boolean categorieIsSet = false;
+		if (selectedCategorie.getIdcategorie() != null) {
+			categorieIsSet = true;
+		}
+		return categorieIsSet;
+	}
+
+	public boolean isSetSousCategorie(Integer rSousCategorie) {
+		boolean sousCategorieIsSet = false;
+		if (selectedSousCategorie.getIdsouscategorie() != null) {
+			sousCategorieIsSet = true;
+		}
+		return sousCategorieIsSet;
+	}
+
+	public boolean isSetTrancheAge(Integer rTrancheAge) {
+		boolean trancheAgeIsSet = false;
+		if (selectedTrancheAge.getIdage() != null) {
+			trancheAgeIsSet = true;
+		}
+		return trancheAgeIsSet;
+	}
+
+	public boolean isSetValeur(Integer rValeur) {
+		boolean valeurIsSet = false;
+		if (selectedValeur.getIdvaleur() != null) {
+			valeurIsSet = true;
+		}
+		return valeurIsSet;
+	}
+
 	public Domaine getSelectedDomaine() {
 		return selectedDomaine;
 	}
@@ -130,36 +197,12 @@ public class RechercheBean {
 		this.mbCnx = mbCnx;
 	}
 
-	public IDaoObjet getProxyDaoObjet() {
-		return proxyDaoObjet;
-	}
-
-	public void setProxyDaoObjet(IDaoObjet proxyDaoObjet) {
-		this.proxyDaoObjet = proxyDaoObjet;
-	}
-
 	public IBusinessRecherche getProxyBusinessRecherche() {
 		return proxyBusinessRecherche;
 	}
 
 	public void setProxyBusinessRecherche(IBusinessRecherche proxyBusinessRecherche) {
 		this.proxyBusinessRecherche = proxyBusinessRecherche;
-	}
-
-	public IDaoValeur getProxyDaoValeur() {
-		return proxyDaoValeur;
-	}
-
-	public void setProxyDaoValeur(IDaoValeur proxyDaoValeur) {
-		this.proxyDaoValeur = proxyDaoValeur;
-	}
-
-	public IDaoTrancheAge getProxyDaoTrancheAge() {
-		return proxyDaoTrancheAge;
-	}
-
-	public void setProxyDaoTrancheAge(IDaoTrancheAge proxyDaoTrancheAge) {
-		this.proxyDaoTrancheAge = proxyDaoTrancheAge;
 	}
 
 	public Valeur getSelectedValeur() {
@@ -193,7 +236,13 @@ public class RechercheBean {
 	public void setTrancheAges(List<TrancheAge> trancheAges) {
 		this.trancheAges = trancheAges;
 	}
-	
-	
-	
+
+	public List<Objet> getResultatRecherche() {
+		return resultatRecherche;
+	}
+
+	public void setResultatRecherche(List<Objet> resultatRecherche) {
+		this.resultatRecherche = resultatRecherche;
+	}
+
 }

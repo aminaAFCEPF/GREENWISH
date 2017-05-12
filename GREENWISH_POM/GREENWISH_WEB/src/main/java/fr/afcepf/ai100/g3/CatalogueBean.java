@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 
@@ -24,28 +23,41 @@ public class CatalogueBean {
 	private IBusinessFavoris proxyFavoris;
 	@EJB
 	private IBusinessAjouterObjet proxyAjoutObjet;
+	@EJB
+	private IDaoObjet proxyDaoObjet;
+	
 
-	@ManagedProperty(value="#{mbCnx}")
+	@ManagedProperty(value = "#{mbCnx}")
 	private ConnexionBean mbCnx;
+	@ManagedProperty(value = "#{mbRechercherObjet}")
+	private RechercheBean mbRecherche;
+
 	private List<Objet> objets;
 	private RepeatPaginator paginator;
-	
+
 	@PostConstruct
-	public void init(){
-		objets = proxyCatalogue.afficherTousLesObjets();
-		 paginator = new RepeatPaginator(objets);
+	public void init() {
+		if (mbRecherche.isSetDomaine(mbRecherche.getSelectedDomaine().getIddomaine()) 
+				|| mbRecherche.isSetCategorie(mbRecherche.getSelectedCategorie().getIdcategorie())
+				|| mbRecherche.isSetSousCategorie(mbRecherche.getSelectedSousCategorie().getIdsouscategorie())
+				|| mbRecherche.isSetValeur(mbRecherche.getSelectedValeur().getIdvaleur())) {
+			objets = mbRecherche.getResultatRecherche();
+		}else{
+			objets = proxyCatalogue.afficherTousLesObjets();
+		}
+		paginator = new RepeatPaginator(objets);
 	}
-	
-	public void ajouterFavoris(Objet objet){
+
+	public void ajouterFavoris(Objet objet) {
 		Favoris fav = new Favoris(objet);
 		fav.getParticipants().add(mbCnx.getParticipant());
 		proxyFavoris.ajouterFavoris(fav);
-		}
-	
-	public String formatDescription(Objet objet, String description){
+	}
+
+	public String formatDescription(Objet objet, String description) {
 		String output = objet.getDescription();
 		description = proxyAjoutObjet.RemplirEspaces(objet, output);
-		
+
 		return description;
 	}
 
@@ -88,7 +100,7 @@ public class CatalogueBean {
 	public void setMbCnx(ConnexionBean mbCnx) {
 		this.mbCnx = mbCnx;
 	}
-	
+
 	public IBusinessAjouterObjet getProxyAjoutObjet() {
 		return proxyAjoutObjet;
 	}
@@ -106,4 +118,20 @@ public class CatalogueBean {
 	}
 	
 	
+	public IDaoObjet getProxyDaoObjet() {
+		return proxyDaoObjet;
+	}
+
+	public void setProxyDaoObjet(IDaoObjet proxyDaoObjet) {
+		this.proxyDaoObjet = proxyDaoObjet;
+	}
+
+	public RechercheBean getMbRecherche() {
+		return mbRecherche;
+	}
+
+	public void setMbRecherche(RechercheBean mbRecherche) {
+		this.mbRecherche = mbRecherche;
+	}
+
 }

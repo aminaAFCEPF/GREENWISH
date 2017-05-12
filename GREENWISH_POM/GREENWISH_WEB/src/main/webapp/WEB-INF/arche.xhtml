@@ -103,7 +103,7 @@
 				<div id="searchDiv">
 					<h:form id="search" name="recherche" class="input-group">
 						<input type="text" id="searchBar" placeholder="Rechercher..." />
-						<input type="submit" id="searchSubmit" value="Rechercher" />
+						<h:commandButton action="#{mbRechercherObjet.rechercherObjet()}" id="searchSubmit" value="Rechercher" />
 						<br />
 						<br />
 						<div class="text-center searchFiltre">
@@ -112,7 +112,7 @@
 												class="filtre" id="filtreDomaine">
 								<f:ajax event="change" render=":search:filtreCategorie :search:filtreSousCategorie" 
 										listener ="#{mbRechercherObjet.chargerCategories()}" execute="@form"/>
-								<f:selectItem itemValue="0" itemLabel="Domaines..."/>
+								<f:selectItem itemValue="" itemLabel="Domaines..."/>
 								<f:selectItems value="#{mbRechercherObjet.domaines}" var="domain"
 											itemLabel="#{domain.domaine}" itemValue="#{domain.iddomaine}" />
 
@@ -123,7 +123,7 @@
 								<f:ajax event="change" render="search:filtreSousCategorie"
 										listener="#{mbRechercherObjet.chargerSousCategorie()}"
 										execute="@form"/>
-								<f:selectItem itemValue="0" itemLabel="Catégorie..."/>
+								<f:selectItem itemValue="" itemLabel="Catégorie..."/>
 								<f:selectItems value="#{mbRechercherObjet.categories}" var="categorie"
 										itemLabel="#{categorie.intitule}" itemValue="#{categorie.idcategorie}"/>
 
@@ -131,22 +131,22 @@
 							
 							<h:selectOneMenu value="#{mbRechercherObjet.selectedSousCategorie.idsouscategorie}" 
 												class="filtre" id="filtreSousCategorie">
-								<f:selectItem itemValue="0" itemLabel="Sous Catégorie..."/>
+								<f:selectItem itemValue="" itemLabel="Sous Catégorie..."/>
 								<f:selectItems value="#{mbRechercherObjet.sousCategories}" var="souscategorie"
 										itemLabel="#{souscategorie.intitule}" itemValue="#{souscategorie.idsouscategorie}"/>	
 							</h:selectOneMenu>
 
 								<h:selectOneMenu value="#{mbRechercherObjet.selectedTrancheAge.idage}"
 												class="filtre" id="filtreAge" >
-								<f:selectItem itemValue="0" itemLabel="Tranche Age..."/>
+								<f:selectItem itemValue="" itemLabel="Tranche d'Age..."/>
 								<f:selectItems value ="#{mbRechercherObjet.trancheAges}" var="trancheAge"
-											itemLabel="#{trancheAge.ageMaxi} a #{trancheAge.ageMini} ans" itemValue="#{trancheAge.idage}"/>
+											itemLabel="#{trancheAge.ageMaxi} à #{trancheAge.ageMini} ans" itemValue="#{trancheAge.idage}"/>
 											
 							</h:selectOneMenu>
 							
 							<h:selectOneMenu value="#{mbRechercherObjet.selectedValeur.idvaleur}"
 												class="filtre" id="filtreValeur">
-								<f:selectItem itemValue="0" itemLabel="Valeur..."/>
+								<f:selectItem itemValue="10" itemLabel="Valeur..."/>
 								<f:selectItems value="#{mbRechercherObjet.valeurs}" var="valeur"
 											itemLabel="#{valeur.valeur} points" itemValue="#{valeur.idvaleur}"/>
 							</h:selectOneMenu>

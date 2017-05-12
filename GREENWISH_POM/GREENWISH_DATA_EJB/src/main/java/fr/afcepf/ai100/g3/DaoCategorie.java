@@ -30,4 +30,11 @@ public class DaoCategorie implements IDaoCategorie{
 		return query.getResultList();
 	}
 
+	@Override
+	public String getIntituleById(int id) {
+		String req = "SELECT c FROM Categorie c WHERE c.idcategorie = :pid";
+		Query query = em.createNativeQuery(req).setParameter("pid", id);
+		return (String) query.getSingleResult();
+	}
+
 }
