@@ -53,17 +53,18 @@ public class CatalogueBean {
 	public void ajouterFavoris(Objet objet) {
 		Favoris fav = new Favoris(objet);
 		List<Favoris> favoris = proxyFavoris.afficherFavorisByIdParticipant(mbCnx.getParticipant().getIdparticipant());
-		mbCnx.getParticipant().setfavoris(favoris);
+		mbCnx.getParticipant().setFavoris(favoris);
 		fav.getParticipants().add(mbCnx.getParticipant());
-		mbCnx.getParticipant().getfavoris().add(fav);
+		mbCnx.getParticipant().getFavoris().add(fav);
 		//proxyDaoPart.updateParticipant(mbCnx.getParticipant());
 		proxyFavoris.ajouterFavoris(fav);
+		Participant part = mbCnx.getParticipant();
+		part.getFavoris().add(fav);
 	}
 
 	public String formatDescription(Objet objet, String description) {
 		String output = objet.getDescription();
 		description = proxyAjoutObjet.RemplirEspaces(objet, output);
-
 		return description;
 	}
 
