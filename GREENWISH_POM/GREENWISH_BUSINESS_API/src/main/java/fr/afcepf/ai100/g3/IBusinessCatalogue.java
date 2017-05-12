@@ -6,4 +6,5 @@ public interface IBusinessCatalogue {
 
 	List<Objet> afficherTousLesObjets();
 	Image getFirstImageByIdObjet(int idObjet);
+	
 }
