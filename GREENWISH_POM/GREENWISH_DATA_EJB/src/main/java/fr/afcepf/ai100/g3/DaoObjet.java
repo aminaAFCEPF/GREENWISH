@@ -50,7 +50,7 @@ public class DaoObjet implements IDaoObjet {
 
 	@Override
 	public List<Objet> getAllObjetsByIdParticipant(int idParticipant) {
-		final String req = "Select o FROM Objet o WHERE listeProposition.participant.idparticipant = :pidParticipant";
+		final String req = "Select o FROM Objet o INNER JOIN ListeProposition lp ON lp.idlisteobjet = o.listeProposition.idlisteobjet WHERE lp.participant.idparticipant = :pidParticipant";
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}
