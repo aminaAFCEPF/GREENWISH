@@ -1,5 +1,6 @@
 package fr.afcepf.ai100.g3;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Date;
 import java.util.List;
 
@@ -95,7 +96,8 @@ public class AjouterObjetBean {
 		return null;
 	}
 	//a ajouter
-	public Objet ajouterObjet(){
+	public String ajouterObjet(){
+		String nav = "/MesObjets.xhtml?faces-redirect=true";
 		valeur = new Valeur(10);
 		valeur = proxyDaoValeur.ajouterValeur(valeur);
 		objetNouveau.setActif(true);
@@ -107,7 +109,7 @@ public class AjouterObjetBean {
 		objetNouveau.setTrancheAge(null);
 		objetNouveau.setValeur(valeur);
 		proxyAjouterObjet.ajouterObjet(objetNouveau,participant);
-		return null;
+		return nav;
 	}
 
 	public IDaoValeur getProxyDaoValeur() {

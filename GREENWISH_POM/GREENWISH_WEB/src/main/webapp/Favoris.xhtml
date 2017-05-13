@@ -14,19 +14,19 @@
 			<!-- === BEGIN CONTENT === -->
 			<div id="content">
 				<div
-					class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
+					class="container background-white bottom-border padding-vert-10">
 					<div class="row">
 						<h1>Favoris</h1>
 					</div>
-					<div id="searchFiltre">
+					<div id="searchFiltre" class="row">
 						<h:form>
-							<ol class="breadcrumb background-white">
+							<ol class="breadcrumb background-white col-md-6 pull-left">
 								<li><h:commandLink
 										action="#{mbFavoris.afficherMonCompte()}" value="Mon compte"></h:commandLink></li>
 								<li class="active">Favoris</li>
 							</ol>
 						</h:form>
-						<div class="boutons pull-left">
+						<div class="boutons pull-right col-md-3">
 							<div class="btn-groupFavo">
 								<button id="hideShowFavoris" type="button"
 									class="btn btn-primary borderRadius">Objet</button>
@@ -39,9 +39,11 @@
 					</div>
 				</div>
 				<div class="container background-gray-lighter">
-					<div id="all" class=" row margin-vert-30" style="display: flex; flex-direction: column;">
+					<div id="all" class=" row margin-vert-30"
+						style="display: flex; flex-direction: column;">
 						<div id="Favoris">
-							<div class="col-sm-2 background-white borderRadius divBorderComposition text-center">
+							<div
+								class="col-sm-2 background-white borderRadius divBorderComposition text-center">
 								<h3>Objets</h3>
 							</div>
 							<div class="col-md-12 margin-top-10">
@@ -53,12 +55,16 @@
 											<div
 												class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
 												<div class="col-sm-2">
-												<h:graphicImage value="#{mbFavoris.proxyFavoris.AfficherPremiereImageParIdObjet(favoris.objet.idobjet).image}" alt="Image" />
+													<h:graphicImage
+														value="#{mbFavoris.proxyFavoris.AfficherPremiereImageParIdObjet(favoris.objet.idobjet).image}"
+														alt="Image" />
 												</div>
 												<div class="col-sm-10 vertical">
 													<div class="row ">
 														<div class="col-sm-6">
-															<h3 style="color: #33747a;"><b>#{favoris.objet.intitule}</b></h3>
+															<h3 style="color: #33747a;">
+																<b>#{favoris.objet.intitule}</b>
+															</h3>
 														</div>
 														<div class="col-sm-6">
 															<h5>Ajouté le : #{mbFavoris.dateAjoutFormat}</h5>
@@ -67,7 +73,9 @@
 													<div class="row">
 														<div class="col-sm-8">
 															<fieldset>
-																<legend class="animate fadeIn"><h3>Ma recherche</h3></legend>
+																<legend class="animate fadeIn">
+																	<h3>Ma recherche</h3>
+																</legend>
 																<a class="blog-tag perso" href="#">#{favoris.objet.domaine.domaine}</a>
 																<a class="blog-tag perso" href="#">#{favoris.objet.categorie.intitule}</a>
 																<a class="blog-tag perso" href="#">#{favoris.objet.souscategorie.intitule}</a>
@@ -86,8 +94,12 @@
 														</div>
 													</div>
 													<div class="row">
-													<div class="col-md-10">Description objet :#{favoris.objet.description}</div>
-													<h:commandButton class="col-md-1 btn btn-primary borderRadius padding-horiz-10" action="#{mbFavoris.removeFavori(favoris)}" value="Supprimer" />
+														<div class="col-md-10">Description objet
+															:#{favoris.objet.description}</div>
+														<h:commandButton
+															class="col-md-1 btn btn-primary borderRadius padding-horiz-10"
+															action="#{mbFavoris.removeFavori(favoris)}"
+															value="Supprimer" />
 													</div>
 												</div>
 											</div>
@@ -96,58 +108,6 @@
 								</ui:repeat>
 							</div>
 						</div>
-						<div class="text-center margin-vert-10">
-							<h:commandButton class="btn btn-primary borderRadius"
-								action="#{mbFavoris.paginatorFavoris.prev()}" value="&lt; prev" />
-							<h:outputText
-								value="#{mbFavoris.paginatorFavoris.pageIndex} / #{mbFavoris.paginatorFavoris.pages}"
-								class="margin-horiz-10" />
-							<h:commandButton class="btn btn-primary borderRadius"
-								action="#{mbFavoris.paginatorFavoris.next()}" value="next &gt;" />
-							<h:inputHidden value="#{mbFavoris.paginatorFavoris.pageIndex}" />
-						</div>
-						<div id="Souhaits">
-							<div
-								class="col-sm-2 background-white borderRadius divBorderComposition">
-								<h3>Recherche</h3>
-							</div>
-							<div class="col-md-12 margin-top-10">
-								<ui:repeat var="favoris"
-									value="#{mbFavoris.paginatorSouhaits.model}">
-									<h:form>
-										<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
-											<div
-												class="row background-white centrerElementVertical padding-top-10 margin-top-10 borderperso margin-bottom-10">
-												<div class="col-md-11">
-													<fieldset>
-														<legend class="animate fadeIn">Ma recherche</legend>
-														<a class="blog-tag perso" href="#">Bouton</a> <a
-															class="blog-tag perso" href="#">Bouton</a> <a
-															class="blog-tag perso" href="#">Bouton</a> <a
-															class="blog-tag perso" href="#">Bouton</a> <a
-															class="blog-tag perso" href="#">Bouton</a> <a
-															class="blog-tag perso" href="#">Bouton</a>
-													</fieldset>
-												</div>
-												<div class="col-md-1">
-													<a href="#"><i class="fa-search fa-2x animate fadeIn"></i></a>
-												</div>
-											</div>
-										</h:commandLink>
-									</h:form>
-								</ui:repeat>
-							</div>
-						</div>
-					</div>
-					<div class="text-center margin-vert-10">
-						<h:commandButton class="btn btn-primary borderRadius"
-							action="#{mbFavoris.paginatorSouhaits.prev()}" value="&lt; prev" />
-						<h:outputText
-							value="#{mbFavoris.paginatorSouhaits.pageIndex} / #{mbFavoris.paginatorSouhaits.pages}"
-							class="margin-horiz-10" />
-						<h:commandButton class="btn btn-primary borderRadius"
-							action="#{mbFavoris.paginatorSouhaits.next}" value="next &gt;" />
-						<h:inputHidden value="#{mbFavoris.paginatorSouhaits.pageIndex}" />
 					</div>
 				</div>
 			</div>
