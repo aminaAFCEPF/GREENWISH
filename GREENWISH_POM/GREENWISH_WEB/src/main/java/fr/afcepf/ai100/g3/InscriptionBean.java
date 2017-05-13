@@ -39,7 +39,10 @@ public class InscriptionBean {
 		inscription.setDateinscription(new Date());
 		
 		Participant participant = new Participant(selectedville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
-		proxyInscription.inscrire(participant);
+		participant = proxyInscription.inscrire(participant);
+		
+	    proxyInscription.creerListeProp(new ListeProposition(participant, "Ma première liste", true));
+		
 		mbCnx.setMail(mail);
 		mbCnx.setMdp(password);
 		
@@ -150,6 +153,14 @@ public class InscriptionBean {
 		this.proxyDaoVille = proxyDaoVille;
 	}
 	
-	
+	public void remplirChamp(){
+		setAdresse("53 rue mozart");
+		setCodePostal("77220");
+		setSelectedville(new Ville("Tournan en Brie", "77220"));
+		setMail("Mowgli@Gmail.com");
+		setNom("Jungle");
+		setPrenom("Mowgli");
+		setPassword("afcepf");
+	}
 	
 }

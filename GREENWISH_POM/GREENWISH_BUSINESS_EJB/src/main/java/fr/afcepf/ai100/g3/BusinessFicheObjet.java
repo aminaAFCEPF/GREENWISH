@@ -26,4 +26,12 @@ public class BusinessFicheObjet implements IBusinessFicheObjet {
 		return proxyDaoParticipant.recupProprio(Idobjet);
 	}
 
+	public List<Objet> getMineObjects(int idParticipant){
+		return proxyDaoObjet.getAllObjetsByIdParticipant(idParticipant);
+	}
+
+	@Override
+	public Image getFirstImageByIdObjet(int idObjet) {
+		return proxyDaoObjet.getFirstImageByIdObjet(idObjet);
+	}
 }

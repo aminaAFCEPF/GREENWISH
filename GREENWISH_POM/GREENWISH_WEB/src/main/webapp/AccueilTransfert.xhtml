@@ -1,12 +1,15 @@
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-	
-	<f:metadata>
-		<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
-	</f:metadata>
+
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
 
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
@@ -20,62 +23,63 @@
 							<h1>Mes transferts</h1>
 						</div>
 						<h:form id="TrierParRdvForm">
-						<div class="col-md-7 padding-vert-10 customAlign">
-							<span class="">Sélectionner les Rendez-vous pris entre le</span>
-							<span><input type="date" name="debutRendezVous" /></span> <span>et
-								le</span> <span><input type="date" name="finRendezVous" /></span>
-						</div>
+							<div class="col-md-7 padding-vert-10 customAlign">
+								<span class="">Sélectionner les Rendez-vous pris entre le</span>
+								<span><input type="date" name="debutRendezVous" /></span> <span>et
+									le</span> <span><input type="date" name="finRendezVous" /></span>
+							</div>
 						</h:form>
 						<h:form id="TrierEchange">
-						<div id="pannelBouton" class="col-md-12 pull-right">
-							<ol class="breadcrumb col-lg-3 background-white">
-								<li><a href="#">Accueil</a></li>
-								<li class="active">Mes transferts</li>
-							</ol>
+							<div id="pannelBouton" class="col-md-12 pull-right">
+								<ol class="breadcrumb col-lg-3 background-white">
+									<li><a href="#">Accueil</a></li>
+									<li class="active">Mes transferts</li>
+								</ol>
 
-							<div class="col-lg-4 text-center">
-								<h:selectOneMenu id="menuEtatTransfert"
-									class="boutonsSelect btn-primary borderRadius"
-									value="#{mbAfficherTransfert.selectedEtatDesTransferts}">
-									<f:ajax event="change" render=":toto"
-										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
-										execute="@form" />
-									<f:selectItems
-										value="#{mbAfficherTransfert.etatsDesTransferts}"
-										var="etatsDesTransferts"
-										itemLabel="#{etatsDesTransferts.toString()}"
-										itemValue="#{etatsDesTransferts.toString()}" />
+								<div class="col-lg-4 text-center">
+									<h:selectOneMenu id="menuEtatTransfert"
+										class="boutonsSelect btn-primary borderRadius"
+										value="#{mbAfficherTransfert.selectedEtatDesTransferts}">
+										<f:ajax event="change" render=":toto"
+											listener="#{mbAfficherTransfert.chargerLesTransferts()}"
+											execute="@form" />
+										<f:selectItems
+											value="#{mbAfficherTransfert.etatsDesTransferts}"
+											var="etatsDesTransferts"
+											itemLabel="#{etatsDesTransferts.toString()}"
+											itemValue="#{etatsDesTransferts.toString()}" />
 
 
-								</h:selectOneMenu>
+									</h:selectOneMenu>
+								</div>
+								<div class=" col-lg-4 text-center">
+									<h:selectOneMenu id="menuTypeTransfert"
+										class="boutonsSelect btn-primary borderRadius"
+										value="#{mbAfficherTransfert.selectedTypesDesTransferts}">
+										<f:ajax event="change" render=":toto"
+											listener="#{mbAfficherTransfert.chargerLesTransferts()}"
+											execute="@form" />
+										<f:selectItems
+											value="#{mbAfficherTransfert.typesDeTransferts}"
+											var="typesDesTransferts"
+											itemLabel="#{typesDesTransferts.toString()}"
+											itemValue="#{typesDesTransferts.toString()}" />
+
+
+									</h:selectOneMenu>
+								</div>
+								<div class="col-lg-4 text-center">
+									<h:selectOneMenu id="btnFiltre"
+										class="boutonsSelect btn-primary borderRadius"
+										value="#{mbAfficherTransfert.selectedTypeRdv}">
+										<f:selectItems value="#{mbAfficherTransfert.lesTypesDeRdv}"
+											var="typesDeRdv" itemLabel="#{typesDeRdv.toString()}"
+											itemValue="#{typesDeRdv.toString()}" />
+
+
+									</h:selectOneMenu>
+								</div>
 							</div>
-							<div class=" col-lg-4 text-center">
-								<h:selectOneMenu id="menuTypeTransfert"
-									class="boutonsSelect btn-primary borderRadius"
-									value="#{mbAfficherTransfert.selectedTypesDesTransferts}">
-									<f:ajax event="change" render=":toto"
-										listener="#{mbAfficherTransfert.chargerLesTransferts()}"
-										execute="@form" />
-									<f:selectItems value="#{mbAfficherTransfert.typesDeTransferts}"
-										var="typesDesTransferts"
-										itemLabel="#{typesDesTransferts.toString()}"
-										itemValue="#{typesDesTransferts.toString()}" />
-
-
-								</h:selectOneMenu>
-							</div>
-							<div class="col-lg-4 text-center">
-								<h:selectOneMenu id="btnFiltre"
-									class="boutonsSelect btn-primary borderRadius"
-									value="#{mbAfficherTransfert.selectedTypeRdv}">
-									<f:selectItems value="#{mbAfficherTransfert.lesTypesDeRdv}"
-										var="typesDeRdv" itemLabel="#{typesDeRdv.toString()}"
-										itemValue="#{typesDeRdv.toString()}" />
-
-
-								</h:selectOneMenu>
-							</div>
-						</div>
 						</h:form>
 					</div>
 
@@ -89,66 +93,70 @@
 				<div class="row margin-vert-30">
 					<!-- Main Column -->
 					<div class="col-md-12">
-						<!-- debut panel titrePage-->
 
-						<!-- fin panel titrePage-->
-						<!-- debut panel boutons-->
-
-						<!-- fin panel boutons-->
-						<!-- debut panel label-->
 						<div class="panel panel-primary background-white">
 
 
 							<div id="label" class="panel-body">
-								<span><h3>Objet</h3></span> <span><h3>Intitulé Objet</h3></span> <span><h3>Rendez-vous
-										proposé</h3></span> <span><h3>Rendez-vous validé</h3></span> <span><h3>Rendez-vous
-										terminé</h3></span> <span><h3>transfert terminé</h3></span>
+							
+								
+								<h3>Objet</h3>
+								<h3>Intitulé Objet</h3>
+								<h3>Rendez-vous proposé</h3>
+								<h3>Rendez-vous validé</h3>
+								<h3>Rendez-vous terminé</h3>
+								<h3>Transfert terminé</h3>
+
 							</div>
 						</div>
 						<!-- fin panel label-->
 						<h:panelGroup id="toto">
-						<ui:repeat var="unEchange"
-							value="#{mbAfficherTransfert.paginator.model}">
-							<h:form id="afficherUnEchangeForm">
-								<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
-									<div id="afficherUnEchange" class="containerBar">
-										<div class="well background-white divBorderComposition">
-											<h:graphicImage width="150" height="130"
-												value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
-												alt="thumb1" class="ImgDimensions" />
-										</div>
-										<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
-										<div class="well background-white divBorderComposition">
+							<ui:repeat var="unEchange"
+								value="#{mbAfficherTransfert.paginator.model}">
+								<h:form id="afficherUnEchangeForm">
+									<h:commandLink action="#{mbFicheObjet.afficherObjet(lObjet)}">
+										<div id="afficherUnEchange" class="containerBar">
+											<div class="well background-white divBorderComposition">
+												<h:graphicImage width="150" height="130"
+													value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
+													alt="thumb1" class="ImgDimensions" />
+												
 
-											<div class="progress progress1">
-												<div class="one T1 success-color"></div>
-												<div class="two T2 #{mbAfficherTransfert.isRdvValide(unEchange)}"></div>
-												<div class="three T3 #{mbAfficherTransfert.isRdvTermine(unEchange)}"></div>
-												<div class="four T4 #{mbAfficherTransfert.isTransfertTermine(unEchange)}"></div>
-												<div class="progress-bar progress-bar-success"
-													style="width: #{mbAfficherTransfert.remplirProgressBar(unEchange)}"></div>
+											</div>
+											<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
+											<div class="well background-white divBorderComposition">
+
+												<div class="progress progress1">
+													<div class="one T1 success-color"></div>
+													<div
+														class="two T2 #{mbAfficherTransfert.isRdvValide(unEchange)}"></div>
+													<div
+														class="three T3 #{mbAfficherTransfert.isRdvTermine(unEchange)}"></div>
+													<div
+														class="four T4 #{mbAfficherTransfert.isTransfertTermine(unEchange)}"></div>
+													<div class="progress-bar progress-bar-success"
+														style="width:#{mbAfficherTransfert.remplirProgressBar(unEchange)}"></div>
+												</div>
+
 											</div>
 
 										</div>
-
-									</div>
-								</h:commandLink>
-							</h:form>
-						</ui:repeat>
-</h:panelGroup>
+									</h:commandLink>
+								</h:form>
+							</ui:repeat>
+           </h:panelGroup>
 
 						<div class="text-center margin-bottom-20">
-								<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
-									value="&lt; prev" />
-								<h:outputText
-									value="#{mbAfficherTransfert.paginator.pageIndex} / #{mbAfficherTransfert.paginator.pages}" />
-								<h:commandButton action="#{mbAfficherTransfert.paginator.next}"
-									value="next &gt;" />
-								<h:inputHidden value="#{mbAfficherTransfert.paginator.pageIndex}" />
+							<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
+								value="Page précédente" class="btn btn-primary borderRadius" />
+							<h:outputText
+								value="#{mbAfficherTransfert.paginator.pageIndex} / #{mbAfficherTransfert.paginator.pages}"
+								class="margin-horiz-10" />
+							<h:commandButton action="#{mbAfficherTransfert.paginator.next}"
+								value="Page suivante" class="btn btn-primary borderRadius" />
+							<h:inputHidden value="#{mbAfficherTransfert.paginator.pageIndex}" />
 
-							</div>
-
-
+						</div>
 					</div>
 				</div>
 				<!-- End Main Column -->

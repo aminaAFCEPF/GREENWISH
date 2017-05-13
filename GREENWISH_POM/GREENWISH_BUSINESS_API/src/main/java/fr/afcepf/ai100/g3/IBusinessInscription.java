@@ -4,6 +4,8 @@ import fr.afcepf.ai100.g3.Participant;
 
 public interface IBusinessInscription {
 
-	void inscrire(Participant participant);
+	Participant inscrire(Participant participant);
+	
+	ListeProposition creerListeProp(ListeProposition listeproposition);
 	
 }

@@ -47,7 +47,7 @@
 										<label>Confirmer mot de passe : <span
 											class="color-red">*</span>
 										</label>
-										<h:inputText value="#{mbInscription.password}"
+										<h:inputSecret value="#{mbInscription.password}"
 											class="form-control  margin-bottom-20" />
 									</div>
 								</div>
@@ -87,6 +87,8 @@
 									<div class="col-lg-6 padding-top-20">
 										<h:commandButton class="btn btn-primary" action="#{mbInscription.inscrire()}"
 											value="S'inscrire" />
+										<h:commandButton class="btn btn-primary" style="margin-top: 10px;" action="#{mbInscription.remplirChamp()}"
+											value="Auto-complétion" />
 									</div>
 								</div>
 								<span class="color-red">*</span> Champ obligatoire
@@ -115,7 +117,7 @@
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-lock"></i>
 									</span>
-									<h:inputText value="#{mbCnx.mdp}"
+									<h:inputSecret value="#{mbCnx.mdp}"
 										class="form-control  margin-bottom-20"
 										a:placeholder="Mot de passe" />
 								</div>

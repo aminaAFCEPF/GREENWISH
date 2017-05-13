@@ -20,7 +20,7 @@ public class DaoParticipant implements IDaoParticipant {
 	@SuppressWarnings("unchecked")
 
 	@Override
-	public Participant ajouter(Participant participant) {
+	public Participant ajouter(Participant participant) {		
 		em.persist(participant);
 		return participant;
 	}

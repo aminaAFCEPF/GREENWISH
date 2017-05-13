@@ -162,5 +162,10 @@ public class BusinessRecherche implements IBusinessRecherche {
 		System.out.println("coucou Business");
 		return objets;
 	}
+	
+	public String getIntituleDomaineById(int idDomaine){
+		String retour = proxyDaoDomaine.getIntituleById(idDomaine);
+		return retour;
+	}
 
 }

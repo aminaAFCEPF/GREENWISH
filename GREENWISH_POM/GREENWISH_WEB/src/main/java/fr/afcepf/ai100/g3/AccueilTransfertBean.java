@@ -1,3 +1,5 @@
+
+
 package fr.afcepf.ai100.g3;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class AccueilTransfertBean {
 	@EJB
 	private IDaoRdv proxyDaoRdv;
 	private List<Echange> echanges;
-	private Participant participant = new Participant();
+	private Participant participant;
 	private RepeatPaginator paginator;
 	private List<String> lesTypesDeRdv = new ArrayList<>();
 	private String selectedTypeRdv;
@@ -38,6 +40,7 @@ public class AccueilTransfertBean {
 	private List<String> typesDeTransferts = new ArrayList<>();
 	private String selectedTypesDesTransferts;
 	private Rdv rdv = new Rdv();
+	private String couleurAnnule ="";
 	
 
 	
@@ -63,26 +66,24 @@ public class AccueilTransfertBean {
 		selectedTypesDesTransferts = typesDeTransferts.get(0);
 		
 		
-		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
-		//echanges=proxyTest.rechercherTousLesEchangesDonnesDUnParticipant(participant.getIdparticipant());		
+		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());	
 		paginator = new RepeatPaginator(echanges);
 		System.out.println(participant.getIdparticipant());
 		
 	}
 	
 	public void chargerLesTransferts(){
-//		selectedEtatDesTransferts = etatsDesTransferts.get(0);
-//		selectedTypesDesTransferts = typesDeTransferts.get(0);
-		participant = mbCnx.getParticipant();
-		echanges.clear();
-		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
-		paginator = new RepeatPaginator(echanges);
+		paginator.getModel().clear();
+		List<Echange> echange2 = new ArrayList<>();
+		System.out.println(selectedEtatDesTransferts);
+		echange2 = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());
+		paginator.setModel(echange2);
 	}
 	
 	public String isRdvValide(Echange echange){
 		String couleur ="";
 		rdv=proxyDaoRdv.getRdvByIdEchange(echange.getIdechange());
-		if(rdv.getDaterdv()!=null){
+		if(rdv.isRdvValide()){
 			couleur="success-color";
 		}else{
 			couleur = "no-color";
@@ -118,6 +119,10 @@ public class AccueilTransfertBean {
 		}
 		if( isRdvTermine(echange).equals("success-color")){
 			remplissage = "60%";
+			if(!isRdvValide(echange).equals("success-color")){
+				couleurAnnule = "red";
+			}
+			
 		}
 		if( isTransfertTermine(echange).equals("success-color")){
 			remplissage = "100%";
@@ -275,6 +280,14 @@ public class AccueilTransfertBean {
 
 	public void setRdv(Rdv rdv) {
 		this.rdv = rdv;
+	}
+
+	public String getCouleurAnnule() {
+		return couleurAnnule;
+	}
+
+	public void setCouleurAnnule(String couleurAnnule) {
+		this.couleurAnnule = couleurAnnule;
 	}
 
 
