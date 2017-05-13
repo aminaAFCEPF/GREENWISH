@@ -16,3 +16,9 @@ jQuery(document).ready(function(){
          jQuery('#Souhaits').show();
     });
 });
+
+jQuery(document).ready(function(){
+    jQuery('#ajouterNomListe').on('click', function(event) {        
+         jQuery('#newListe').toggle('show');
+    });
+});

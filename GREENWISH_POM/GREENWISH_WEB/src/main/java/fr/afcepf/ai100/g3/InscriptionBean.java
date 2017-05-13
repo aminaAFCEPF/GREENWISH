@@ -39,7 +39,10 @@ public class InscriptionBean {
 		inscription.setDateinscription(new Date());
 		
 		Participant participant = new Participant(selectedville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
-		proxyInscription.inscrire(participant);
+		participant = proxyInscription.inscrire(participant);
+		
+	    proxyInscription.creerListeProp(new ListeProposition(participant, "Ma première liste", true));
+		
 		mbCnx.setMail(mail);
 		mbCnx.setMdp(password);
 		

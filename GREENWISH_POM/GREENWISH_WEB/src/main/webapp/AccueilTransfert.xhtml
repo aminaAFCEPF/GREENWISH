@@ -98,12 +98,15 @@
 
 
 							<div id="label" class="panel-body">
+							
+								
 								<h3>Objet</h3>
 								<h3>Intitulé Objet</h3>
 								<h3>Rendez-vous proposé</h3>
 								<h3>Rendez-vous validé</h3>
 								<h3>Rendez-vous terminé</h3>
 								<h3>Transfert terminé</h3>
+
 							</div>
 						</div>
 						<!-- fin panel label-->
@@ -117,6 +120,8 @@
 												<h:graphicImage width="150" height="130"
 													value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
 													alt="thumb1" class="ImgDimensions" />
+												
+
 											</div>
 											<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
 											<div class="well background-white divBorderComposition">
@@ -139,7 +144,7 @@
 									</h:commandLink>
 								</h:form>
 							</ui:repeat>
-						</h:panelGroup>
+           </h:panelGroup>
 
 						<div class="text-center margin-bottom-20">
 							<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
@@ -152,8 +157,6 @@
 							<h:inputHidden value="#{mbAfficherTransfert.paginator.pageIndex}" />
 
 						</div>
-
-
 					</div>
 				</div>
 				<!-- End Main Column -->

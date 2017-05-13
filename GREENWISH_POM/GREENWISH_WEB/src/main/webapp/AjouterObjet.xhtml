@@ -3,9 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-	<f:metadata>
-		<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
-	</f:metadata>
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
 
 
 <ui:composition template="/WEB-INF/arche.xhtml">
@@ -14,7 +14,8 @@
 			<div class="container background-gray-lighter ">
 				<div class="row margin-vert-30 ">
 
-					<h:form id="ajouterObjetForm" class="login-page bottom-border borderperso">
+					<h:form id="ajouterObjetForm"
+						class="login-page bottom-border borderperso">
 
 						<div class="signup-header"></div>
 
@@ -29,36 +30,45 @@
 						<div class="row">
 							<div class="col-md-6">
 
-								<h:selectOneMenu id="lesListes" 
-								value="#{mbAjouterObjet.selectedListeProposition.idlisteobjet}"
-								class="form-control margin-bottom-20 fa-plus">
-									<f:selectItems value="#{mbAjouterObjet.listePropositions}" var="listeProp"
-										itemLabel="#{listeProp.nom}" itemValue="#{listeProp.idlisteobjet}" />
-								</h:selectOneMenu> 
+								<h:selectOneMenu id="lesListes"
+									value="#{mbAjouterObjet.selectedListeProposition.idlisteobjet}"
+									class="form-control margin-bottom-20 fa-plus">
+									<f:selectItems value="#{mbAjouterObjet.listePropositions}"
+										var="listeProp" itemLabel="#{listeProp.nom}"
+										itemValue="#{listeProp.idlisteobjet}" />
+								</h:selectOneMenu>
 
 							</div>
 							<div class="col-md-1">
-								<h:commandButton  class="btn btn-primary" ><i class="fa-plus fa-2x color-primary animate fadeIn"></i></h:commandButton>
-								
-						 	</div>
-							<div class="col-md-4">
-								<h:inputText value="#{mbAjouterObjet.nouvelleListeProposition.nom}" class="form-control  margin-bottom-20" type="text"
-									placeholder="Nom" />
+								<button id="ajouterNomListe" type="button" class="btn btn-primary borderRadius" style="">
+									<i class=" fa-plus fa-2x color-primary animate fadeIn"></i>
+								</button>
 							</div>
-							<div class="col-md-1">
-								<h:commandButton id="toto" class="btn btn-primary" action="#{mbAjouterObjet.ajouterUneListe()}">
-								<i class="fa-check fa-2x color-primary animate fadeIn"></i>
-								</h:commandButton>
+							<div id="newListe" style="display:none">
+								<div class="col-md-4">
+									<h:inputText
+										value="#{mbAjouterObjet.nouvelleListeProposition.nom}"
+										class="form-control  margin-bottom-20" type="text"
+										placeholder="Nom" />
+								</div>
+								<div class="col-md-1">
+									<h:commandLink action="#{mbAjouterObjet.ajouterUneListe()}">
+										<i class="fa-check fa-2x color-primary animate fadeIn"></i>
+									</h:commandLink>
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label>Nom <span class="color-red">*</span></label> 
-								<h:inputText id="nomObjet" value="#{mbAjouterObjet.objetNouveau.intitule}" class="form-control  margin-bottom-20" /> 
-								<label>Description
-									<span class="color-red">*</span>
+								<label>Nom <span class="color-red">*</span></label>
+								<h:inputText id="nomObjet"
+									value="#{mbAjouterObjet.objetNouveau.intitule}"
+									class="form-control  margin-bottom-20" />
+								<label>Description <span class="color-red">*</span>
 								</label>
-								<h:inputTextarea value="#{mbAjouterObjet.objetNouveau.description}"  rows="5" class="form-control  margin-bottom-20" />
+								<h:inputTextarea
+									value="#{mbAjouterObjet.objetNouveau.description}" rows="5"
+									class="form-control  margin-bottom-20" />
 							</div>
 							<div class="col-md-6">
 
@@ -66,7 +76,8 @@
 								<h:selectOneMenu id="lesDomaines"
 									value="#{mbAjouterObjet.selectedDomaine.iddomaine}"
 									class="form-control margin-bottom-20 fa-plus">
-									<f:ajax event="change" render=":ajouterObjetForm:lesCategories :ajouterObjetForm:lesSousCategories"
+									<f:ajax event="change"
+										render=":ajouterObjetForm:lesCategories :ajouterObjetForm:lesSousCategories"
 										listener="#{mbAjouterObjet.chargerCategories()}"
 										execute="@form" />
 									<f:selectItems value="#{mbAjouterObjet.domaines}" var="domain"
@@ -77,55 +88,58 @@
 								<h:selectOneMenu id="lesCategories"
 									value="#{mbAjouterObjet.selectedCategorie.idcategorie}"
 									class="form-control margin-bottom-20 fa-plus">
-									<f:ajax event="change" render=":ajouterObjetForm:lesSousCategories"
+									<f:ajax event="change"
+										render=":ajouterObjetForm:lesSousCategories"
 										listener="#{mbAjouterObjet.chargerSousCategorie()}"
 										execute="@form" />
-									<f:selectItems value="#{mbAjouterObjet.categories}" var="categorie"
-										itemLabel="#{categorie.intitule}" itemValue="#{categorie.idcategorie}" />
+									<f:selectItems value="#{mbAjouterObjet.categories}"
+										var="categorie" itemLabel="#{categorie.intitule}"
+										itemValue="#{categorie.idcategorie}" />
 								</h:selectOneMenu>
 
 								<label>Sous-Catégorie</label>
-								<h:selectOneMenu id="lesSousCategories" 
+								<h:selectOneMenu id="lesSousCategories"
 									value="#{mbAjouterObjet.selectedSousCategorie.idsouscategorie}"
 									class="form-control margin-bottom-20 fa-plus">
-									<f:selectItems value="#{mbAjouterObjet.sousCategories}" var="souscategorie"
-										itemLabel="#{souscategorie.intitule}" itemValue="#{souscategorie.idsouscategorie}"/>
+									<f:selectItems value="#{mbAjouterObjet.sousCategories}"
+										var="souscategorie" itemLabel="#{souscategorie.intitule}"
+										itemValue="#{souscategorie.idsouscategorie}" />
 								</h:selectOneMenu>
 
 							</div>
 						</div>
 
 						<div class="row padding-vert-10 padding-horiz-20">
-							<label>Images</label>
+							<label>Images :</label>
 						</div>
-						<div class="row margin-vert-10">
-							<div class="col-md-4 centrerElementHorizontal">
-								<button type="button" class="btn btn-primary">Parcourir</button>
+						<div class="row ">
+							<div class="col-md-2 centrerElementHorizontal">
+								<button type="button" class="btn btn-primary borderRadius">Parcourir</button>
 							</div>
 							<div class="col-md-8">
-								<label>Desktop/images/monObjet/image1.jpg</label>
+								<label class="margin-vert-10">Desktop/images/monObjet/image1.jpg</label>
 							</div>
 						</div>
-						<div class="row margin-vert-10">
-							<div class="col-md-4 centrerElementHorizontal ">
-								<button type="button" class="btn btn-primary">Parcourir</button>
+						<div class="row">
+							<div class="col-md-2 centrerElementHorizontal ">
+								<button type="button" class="btn btn-primary borderRadius">Parcourir</button>
 							</div>
 							<div class="col-md-8">
-								<label>Desktop/images/monObjet/image2.jpg</label>
+								<label class="margin-vert-10">Desktop/images/monObjet/image2.jpg</label>
 							</div>
 						</div>
-						<div class="row margin-vert-10">
-							<div class="col-md-4 centrerElementHorizontal">
-								<button type="button" class="btn btn-primary">Parcourir</button>
+						<div class="row">
+							<div class="col-md-2 centrerElementHorizontal">
+								<button type="button" class="btn btn-primary borderRadius">Parcourir</button>
 							</div>
 							<div class="col-md-8">
-								<label>Desktop/images/monObjet/image3.jpg</label>
+								<label class="margin-vert-10">Desktop/images/monObjet/image3.jpg</label>
 							</div>
 						</div>
-						<div class="row padding-vert-10 padding-horiz-20">
-							<label>(*) : Champ obligatoire</label>
+						<div class="row text-center">
 							<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
-											value="Ajouter" />
+								value="Ajouter" class="btn btn-lg btn-primary borderRadius text-center" /><br/>
+								<label class="margin-vert-10">(*) : Champ obligatoire</label>
 						</div>
 					</h:form>
 				</div>
