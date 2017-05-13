@@ -181,7 +181,7 @@ public class FicheTransfertBean {
 				
 		echange = new Echange(null, null, objet, null, new Date(), null, null, genererCodeFin(), objet.getValeur().getValeur(), null, null);
 		
-		Rdv rdv = new Rdv(echange, participant.getVille(), this.dateDuRdv, participant.getAdresse(), participantReceveur);
+		Rdv rdv = new Rdv(echange, participant.getVille(), this.dateDuRdv, participant.getAdresse(), participantReceveur, false);
 		
 		echange = proxyFicheTransfert.ajouterEchange(echange);
 		rdv.setEchange(echange);

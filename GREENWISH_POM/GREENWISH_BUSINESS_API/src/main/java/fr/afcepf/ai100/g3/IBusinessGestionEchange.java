@@ -8,7 +8,6 @@ public interface IBusinessGestionEchange {
 	List<Echange> afficherLesEchangesEnCoursDUnParticipant(int idParticipant);
 	
 	List<Echange> trierTousLesEchangeParType(String type,int Participant);
-	List<Echange> afficherEchangesTries(String etat,String type,int Participant);
 	
 	List<Echange> trierEchangeEnCoursParType(String type, int idParticipant);
 	List<Echange> trierEchangeTerminesParType(String type, int idParticipant);

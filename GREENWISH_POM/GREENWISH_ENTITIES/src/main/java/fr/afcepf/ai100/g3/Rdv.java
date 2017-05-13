@@ -40,6 +40,7 @@ public class Rdv  implements java.io.Serializable {
      private Date daterdv;
      private String adresse;
      private Participant participant;
+     private boolean rdvValide;
 
     public Rdv() {
     }
@@ -55,13 +56,14 @@ public class Rdv  implements java.io.Serializable {
 		this.participant = participant;
 	}
     
-    public Rdv(Echange echange, Ville ville, Date daterdv, String adresse, Participant participant) {
+    public Rdv(Echange echange, Ville ville, Date daterdv, String adresse, Participant participant, boolean rdvValide) {
 		super();
 		this.echange = echange;
 		this.ville = ville;
 		this.daterdv = daterdv;
 		this.adresse = adresse;
 		this.participant = participant;
+		this.rdvValide = rdvValide;
 	}
 
 
@@ -140,6 +142,16 @@ public class Rdv  implements java.io.Serializable {
 
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
+	}
+
+	@Column(name = "RDVVALIDE", nullable = false, columnDefinition = "TINYINT(1)")
+	public boolean isRdvValide() {
+		return rdvValide;
+	}
+
+
+	public void setRdvValide(boolean rdvValide) {
+		this.rdvValide = rdvValide;
 	}
 
 

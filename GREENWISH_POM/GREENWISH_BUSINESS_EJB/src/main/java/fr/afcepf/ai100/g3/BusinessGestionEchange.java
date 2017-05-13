@@ -1,3 +1,5 @@
+
+
 package fr.afcepf.ai100.g3;
 
 import java.util.ArrayList;
@@ -13,19 +15,22 @@ import javax.ejb.Stateless;
 public class BusinessGestionEchange implements IBusinessGestionEchange {
 	@EJB
 	private IDaoEchange proxyDaoEchange;
-	private List<Echange> echangesDonnes = new ArrayList<>();
-	private List<Echange> echangesRecus = new ArrayList<>();
-	private List<Echange> echanges = new ArrayList<>();
+
 	private final String ETATTERMINE = "Transferts terminés";
 	private final String ETATENCOURS = "Transferts en cours";
 	private final String ETATTOUS = "Tous";
 	private final String TYPERECU = "Objets reçus";
 	private final String TYPEDONNE = "Objets donnés";
 	private final String TYPETOUS = "Tous";
+	private List<Echange> echanges;
+	private List<Echange> echangesDonnes;
+	private List<Echange> echangesRecus;
 
 	@Override
 	public List<Echange> afficherTousLesEchangesDUnParticipant(int idParticipant) {
-		
+		echanges = new ArrayList<>();
+		echangesDonnes = new ArrayList<>();
+		echangesRecus = new ArrayList<>();
 		try {
 
 			echangesDonnes = proxyDaoEchange.rechercherTousLesEchangesDonnesDUnParticipant(idParticipant);
@@ -46,6 +51,7 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 
 	@Override
 	public List<Echange> afficherLesEchangesTerminesDUnParticipant(int idParticipant) {
+		List<Echange> echanges = new ArrayList<>();
 		List<Echange> echangesTermines = new ArrayList<>();
 		echangesDonnes = proxyDaoEchange.rechercherTousLesEchangesDonnesDUnParticipant(idParticipant);
 		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusDUnParticipant(idParticipant);
@@ -68,6 +74,7 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 
 	@Override
 	public List<Echange> afficherLesEchangesEnCoursDUnParticipant(int idParticipant) {
+		List<Echange> echanges = new ArrayList<>();
 		echangesDonnes = proxyDaoEchange.rechercherTousLesEchangesDonnesEnCoursDUnParticipant(idParticipant);
 		echangesRecus = proxyDaoEchange.rechercherTousLesEchangesRecusEnCoursDUnParticipant(idParticipant);
 		echanges.addAll(echangesDonnes);
@@ -150,10 +157,6 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 		return echangesTries;
 	}
 
-	@Override
-	public List<Echange> afficherEchangesTries(String etat, String type, int Participant) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

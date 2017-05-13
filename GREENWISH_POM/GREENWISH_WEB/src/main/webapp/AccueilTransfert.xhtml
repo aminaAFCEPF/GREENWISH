@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -90,21 +93,20 @@
 				<div class="row margin-vert-30">
 					<!-- Main Column -->
 					<div class="col-md-12">
-						<!-- debut panel titrePage-->
 
-						<!-- fin panel titrePage-->
-						<!-- debut panel boutons-->
-
-						<!-- fin panel boutons-->
-						<!-- debut panel label-->
 						<div class="panel panel-primary background-white">
 
 
 							<div id="label" class="panel-body">
-								<span><h3>Objet</h3></span> <span><h3>Intitulé Objet</h3></span>
-								<span><h3>Rendez-vous proposé</h3></span> <span><h3>Rendez-vous
-										validé</h3></span> <span><h3>Rendez-vous terminé</h3></span> <span><h3>transfert
-										terminé</h3></span>
+							
+								
+								<h3>Objet</h3>
+								<h3>Intitulé Objet</h3>
+								<h3>Rendez-vous proposé</h3>
+								<h3>Rendez-vous validé</h3>
+								<h3>Rendez-vous terminé</h3>
+								<h3>Transfert terminé</h3>
+
 							</div>
 						</div>
 						<!-- fin panel label-->
@@ -118,6 +120,8 @@
 												<h:graphicImage width="150" height="130"
 													value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
 													alt="thumb1" class="ImgDimensions" />
+												
+
 											</div>
 											<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
 											<div class="well background-white divBorderComposition">
@@ -131,14 +135,28 @@
 													<div
 														class="four T4 #{mbAfficherTransfert.isTransfertTermine(unEchange)}"></div>
 													<div class="progress-bar progress-bar-success"
-														style="width: #{mbAfficherTransfert.remplirProgressBar(unEchange)}"></div>
+														style="width:#{mbAfficherTransfert.remplirProgressBar(unEchange)}"></div>
 												</div>
+
 											</div>
+
 										</div>
 									</h:commandLink>
 								</h:form>
 							</ui:repeat>
-						</h:panelGroup>
+           </h:panelGroup>
+
+						<div class="text-center margin-bottom-20">
+							<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"
+								value="Page précédente" class="btn btn-primary borderRadius" />
+							<h:outputText
+								value="#{mbAfficherTransfert.paginator.pageIndex} / #{mbAfficherTransfert.paginator.pages}"
+								class="margin-horiz-10" />
+							<h:commandButton action="#{mbAfficherTransfert.paginator.next}"
+								value="Page suivante" class="btn btn-primary borderRadius" />
+							<h:inputHidden value="#{mbAfficherTransfert.paginator.pageIndex}" />
+
+						</div>
 					</div>
 				</div>
 				<!-- End Main Column -->
