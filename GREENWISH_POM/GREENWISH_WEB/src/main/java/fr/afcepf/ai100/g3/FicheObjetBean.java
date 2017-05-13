@@ -267,6 +267,4 @@ public class FicheObjetBean {
 	public void setMessage(String message) {
 		Message = message;
 	}
-
-
 }

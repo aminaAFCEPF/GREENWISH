@@ -7,4 +7,6 @@ public interface IBusinessFicheObjet {
 	
 	List<Image> getImageByIdObjet(int id);
 	Participant recupProprio(int Idobjet);
+	List<Objet> getMineObjects(int idParticipant);
+	Image getFirstImageByIdObjet(int idObjet);
 }

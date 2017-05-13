@@ -32,7 +32,15 @@ public class CatalogueBean {
 
 	private List<Objet> objets;
 	private RepeatPaginator paginator;
-
+	// Variables de récuperation des filtres de la recherche
+	private String rDomaine = mbRecherche.getProxyBusinessRecherche().getIntituleDomaineById(Integer.parseInt(mbRecherche.getSelectedDomaine().getDomaine()));
+	private String rCategorie = mbRecherche.getSelectedCategorie().getIntitule();
+	private String rSsCategorie = mbRecherche.getSelectedSousCategorie().getIntitule();
+	private String rTrancheAge; // Variable inutile recherche non fonctionnelle sur ce champ.
+	private Integer crValeur = mbRecherche.getSelectedValeur().getValeur(); // Conversion int -> Integer pour pouvoir toString()
+	private String rValeur = crValeur.toString();
+	// *****************************************************
+	
 	@PostConstruct
 	public void init() {
 		if (mbRecherche.isSetDomaine(mbRecherche.getSelectedDomaine().getIddomaine()) 
@@ -125,5 +133,45 @@ public class CatalogueBean {
 	public void setMbRecherche(RechercheBean mbRecherche) {
 		this.mbRecherche = mbRecherche;
 	}
+	public String getrDomaine() {
+		return rDomaine;
+	}
+
+	public void setrDomaine(String rDomaine) {
+		this.rDomaine = rDomaine;
+	}
+
+	public String getrCategorie() {
+		return rCategorie;
+	}
+
+	public void setrCategorie(String rCategorie) {
+		this.rCategorie = rCategorie;
+	}
+
+	public String getrSsCategorie() {
+		return rSsCategorie;
+	}
+
+	public void setrSsCategorie(String rSsCategorie) {
+		this.rSsCategorie = rSsCategorie;
+	}
+
+	public String getrTrancheAge() {
+		return rTrancheAge;
+	}
+
+	public void setrTrancheAge(String rTrancheAge) {
+		this.rTrancheAge = rTrancheAge;
+	}
+
+	public String getrValeur() {
+		return rValeur;
+	}
+
+	public void setrValeur(String rValeur) {
+		this.rValeur = rValeur;
+	}
+
 
 }

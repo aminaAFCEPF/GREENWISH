@@ -153,6 +153,14 @@ public class InscriptionBean {
 		this.proxyDaoVille = proxyDaoVille;
 	}
 	
-	
+	public void remplirChamp(){
+		setAdresse("53 rue mozart");
+		setCodePostal("77220");
+		setSelectedville(new Ville("Tournan en Brie", "77220"));
+		setMail("Mowgli@Gmail.com");
+		setNom("Jungle");
+		setPrenom("Mowgli");
+		setPassword("afcepf");
+	}
 	
 }
