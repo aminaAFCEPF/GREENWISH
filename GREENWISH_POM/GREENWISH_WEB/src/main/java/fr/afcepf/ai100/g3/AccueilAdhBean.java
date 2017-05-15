@@ -20,6 +20,8 @@ public class AccueilAdhBean {
 	private IBusinessGestionAdh proxyBusinessGestionAdh;
 	@EJB
 	private IBusinessCatalogue proxyBusinessCatalogue;
+	@EJB
+	private IBusinessMesObjets proxyBusinessMesObjets;
 	
 	@EJB
 	private IBusinessGestionEchange proxyBusinessEchange;
@@ -31,7 +33,7 @@ public class AccueilAdhBean {
 	@PostConstruct
 	public void init(){
 		participant = mbCnx.getParticipant();
-		objets=proxyBusinessGestionAdh.recupObjetsParticipant(participant.getIdparticipant());
+		objets = proxyBusinessMesObjets.AfficherObjetParIdParticipant(mbCnx.getParticipant().getIdparticipant());
 	}
 	
 	
