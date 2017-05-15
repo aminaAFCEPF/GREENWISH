@@ -16,14 +16,17 @@ import fr.afcepf.ai100.g3.entities.RepeatPaginator;
 public class CatalogueBean {
 
 	@EJB
+	private IDaoDomaine proxyDaoDomaine;
+	@EJB
+	private IDaoCategorie proxyDaoCategorie;
+	@EJB
+	private IDaoSousCategorie proxyDaoSouscategorie;
+	@EJB
 	private IDaoParticipant proxyDaoParticipant;
-	
 	@EJB
 	private IBusinessCatalogue proxyCatalogue;
 	@EJB
 	private IBusinessFavoris proxyFavoris;
-
-
 
 	@ManagedProperty(value = "#{mbCnx}")
 	private ConnexionBean mbCnx;
@@ -33,12 +36,11 @@ public class CatalogueBean {
 	private List<Objet> objets;
 	private RepeatPaginator paginator;
 	// Variables de récuperation des filtres de la recherche
-	private String rDomaine = mbRecherche.getProxyBusinessRecherche().getIntituleDomaineById(Integer.parseInt(mbRecherche.getSelectedDomaine().getDomaine()));
-	private String rCategorie = mbRecherche.getSelectedCategorie().getIntitule();
-	private String rSsCategorie = mbRecherche.getSelectedSousCategorie().getIntitule();
-	private String rTrancheAge; // Variable inutile recherche non fonctionnelle sur ce champ.
-	private Integer crValeur = mbRecherche.getSelectedValeur().getValeur(); // Conversion int -> Integer pour pouvoir toString()
-	private String rValeur = crValeur.toString();
+	private String rDomaine ="Domaine";
+	private String rCategorie = "Categorie";
+	private String rSousCategorie = "Sous-catégorie";
+	private String rTrancheAge = "Tout ages"; // Variable inutile recherche non fonctionnelle sur ce champ.
+	private String rValeur = "<=10";
 	// *****************************************************
 	
 	@PostConstruct
@@ -50,8 +52,20 @@ public class CatalogueBean {
 			objets = mbRecherche.getResultatRecherche();
 		}else{
 			objets = proxyCatalogue.afficherTousLesObjets();
+			rDomaine ="Domaine";
+			rCategorie = "Categorie";
+			rSousCategorie = "Sous-catégorie";
 		}
 		paginator = new RepeatPaginator(objets);
+		if (mbRecherche.getrDomaine() != "%%") {
+			rDomaine = proxyDaoDomaine.getIntituleById(Integer.parseInt(mbRecherche.getrDomaine()));
+		}
+		if (mbRecherche.getrCategorie() != "%%") {
+			rCategorie = proxyDaoCategorie.getIntituleById(Integer.parseInt(mbRecherche.getrCategorie()));
+		}
+		if (mbRecherche.getrSousCategorie() != "%%") {
+			rSousCategorie = proxyDaoSouscategorie.getIntituleById(Integer.parseInt(mbRecherche.getrSousCategorie()));
+		}
 	}
 
 	public void ajouterFavoris(Objet objet) {
@@ -122,9 +136,6 @@ public class CatalogueBean {
 	public void setProxyDaoParticipant(IDaoParticipant proxyDaoParticipant) {
 		this.proxyDaoParticipant = proxyDaoParticipant;
 	}
-	
-	
-
 
 	public RechercheBean getMbRecherche() {
 		return mbRecherche;
@@ -149,20 +160,44 @@ public class CatalogueBean {
 		this.rCategorie = rCategorie;
 	}
 
-	public String getrSsCategorie() {
-		return rSsCategorie;
-	}
-
-	public void setrSsCategorie(String rSsCategorie) {
-		this.rSsCategorie = rSsCategorie;
-	}
-
 	public String getrTrancheAge() {
 		return rTrancheAge;
 	}
 
 	public void setrTrancheAge(String rTrancheAge) {
 		this.rTrancheAge = rTrancheAge;
+	}
+
+	public String getrSousCategorie() {
+		return rSousCategorie;
+	}
+
+	public void setrSousCategorie(String rSousCategorie) {
+		this.rSousCategorie = rSousCategorie;
+	}
+
+	public IDaoDomaine getProxyDaoDomaine() {
+		return proxyDaoDomaine;
+	}
+
+	public void setProxyDaoDomaine(IDaoDomaine proxyDaoDomaine) {
+		this.proxyDaoDomaine = proxyDaoDomaine;
+	}
+
+	public IDaoCategorie getProxyDaoCategorie() {
+		return proxyDaoCategorie;
+	}
+
+	public void setProxyDaoCategorie(IDaoCategorie proxyDaoCategorie) {
+		this.proxyDaoCategorie = proxyDaoCategorie;
+	}
+
+	public IDaoSousCategorie getProxyDaoSouscategorie() {
+		return proxyDaoSouscategorie;
+	}
+
+	public void setProxyDaoSouscategorie(IDaoSousCategorie proxyDaoSouscategorie) {
+		this.proxyDaoSouscategorie = proxyDaoSouscategorie;
 	}
 
 	public String getrValeur() {
@@ -172,6 +207,7 @@ public class CatalogueBean {
 	public void setrValeur(String rValeur) {
 		this.rValeur = rValeur;
 	}
-
+	
+	
 
 }

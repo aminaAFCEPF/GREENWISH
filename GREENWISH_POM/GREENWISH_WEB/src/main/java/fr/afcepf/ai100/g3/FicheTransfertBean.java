@@ -3,6 +3,7 @@ package fr.afcepf.ai100.g3;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +48,13 @@ public class FicheTransfertBean {
 	private String dateAjoutObjet;
 	private boolean rdvPasse;
 	private boolean rdvEnvoye;
+	private boolean proprio;
+	private boolean rdvAccepte;
+	private boolean echangeTermine;
+	private String code;
+	private boolean codeBon;
+	private boolean modifierRdv;
+	
 	
 	public FicheObjetBean getMbFicheObjet() {
 		return mbFicheObjet;
@@ -140,20 +148,23 @@ public class FicheTransfertBean {
 	}
 	
 	public String AnnulerEchange(){
-		//this.echange.setDaterefus(new Date());
+		echange.setDaterefus(new Date());
+		proxyFicheTransfert.MAJ(echange);
 		return "/AccueilAdh.xhtml?faces-redirect=true";
 	}
 	public String envoyerMessage(){
 		if(cnxBean.getParticipant() == participantDonneur){
-			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
-			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+			String auteur = participantDonneur.getNom() + " " + participantDonneur.getPrenom();
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date(), auteur);
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date(), auteur);
 			message1 = proxyFicheTransfert.ajouterMessage(message1);
 			message2 = proxyFicheTransfert.ajouterMessage(message2);
 			messages.add(message2);
 		}
 		else{
-			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
-			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+			String auteur = participantReceveur.getNom() + " " + participantReceveur.getPrenom();
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date(), auteur);
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date(), auteur);
 			message1 = proxyFicheTransfert.ajouterMessage(message1);
 			message2 = proxyFicheTransfert.ajouterMessage(message2);
 			messages.add(message1);
@@ -161,10 +172,55 @@ public class FicheTransfertBean {
 		
 		return "/FicheTransfert.xhtml?faces-redirect=true";
 	}
+	
+	public String recupEchange(Echange echange){
+		this.objet = echange.getObjet();
+		this.participantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet());
+		this.participantReceveur = echange.getRdv().getParticipant();
+		this.rdv = echange.getRdv();
+		codeBon = true;
+		modifierRdv = false;
+		Date dateRdv = echange.getRdv().getDaterdv();
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
+		displayDate = sdf2.format(dateRdv)+ " à " + sdf3.format(dateRdv);
+		
+		if(cnxBean.getParticipant().getIdparticipant() == participantDonneur.getIdparticipant()){
+			this.proprio = true;
+		}else{
+			this.proprio = false;
+		}
+		
+		Date date = new Date();
+		Date daterdv = echange.getRdv().getDaterdv();
+		
+		
+		
+		
+		if(echange.getRdv().getDaterdv().before(date)){
+			rdvPasse=true;
+		}else{
+			rdvPasse=false;
+		}
+		
+		if(echange.getRdv().isRdvValide()){
+			rdvAccepte = true;
+		}else{
+			rdvAccepte = false;
+		}
+		
+		if(echange.getDateFin() == null){
+			echangeTermine= false;
+		}else{
+			echangeTermine = true;
+		}
+		System.out.println(rdvPasse);
+			
+		return "/FicheTransfert.xhtml?faces-redirect=true";
+	}
 
 	public String creerEchange (Objet objet, Participant participantReceveur){
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-		System.out.println(dateDuRdvString);
 		try {
 			dateDuRdv = sdf.parse(dateDuRdvString);
 		} catch (ParseException e) {
@@ -172,7 +228,7 @@ public class FicheTransfertBean {
 		}
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
-		displayDate = sdf2.format(dateDuRdv)+ " à " + sdf3.format(getDateDuRdv());
+		displayDate = sdf2.format(dateDuRdv)+ " à " + sdf3.format(dateDuRdv);
 		this.objet = objet;
 		dateAjoutObjet = sdf2.format(objet.getDateajout());
 		this.participantDonneur = proxyFicheObjet.recupProprio(objet.getIdobjet());
@@ -185,13 +241,17 @@ public class FicheTransfertBean {
 		
 		echange = proxyFicheTransfert.ajouterEchange(echange);
 		rdv.setEchange(echange);
-		this.rdv = proxyFicheTransfert.ajouterRdv(rdv);
+		rdv = proxyFicheTransfert.ajouterRdv(rdv);
+		echange.setRdv(rdv);
+		echange = proxyFicheTransfert.MAJ(echange);
 		
 		participantReceveur.setSolde(participantReceveur.getSolde()-objet.getValeur().getValeur());
 		proxyFicheTransfert.modifierPoints(participantReceveur);
 		
-		Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date());
-		Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date());
+		String auteur = participantReceveur.getNom() + " " + participantReceveur.getPrenom();
+		
+		Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date(), auteur);
+		Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date(), auteur);
 		message1 = proxyFicheTransfert.ajouterMessage(message1);
 		message2 = proxyFicheTransfert.ajouterMessage(message2);
 		messages.add(message1);
@@ -207,21 +267,75 @@ public class FicheTransfertBean {
 		
 		rdvPasse = false;
 		rdvEnvoye = true;
+		rdvAccepte = false;
+		echangeTermine= false;
+		codeBon = true;
+		modifierRdv = false;
 		
 		return "/FicheTransfert.xhtml?faces-redirect=true";
 	}
 	
-	public boolean qui(){
-		boolean qui;
-		if(cnxBean.getParticipant() == getParticipantDonneur()){
-			qui = true;
+	public void modifierDateRdv(){
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		System.out.println(dateDuRdvString);
+		try {
+			dateDuRdv = sdf.parse(dateDuRdvString);
+		} catch (ParseException e) {
+			dateDuRdv = new Date();
+		}
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
+		displayDate = sdf2.format(dateDuRdv)+ " à " + sdf3.format(getDateDuRdv());
+		this.participant = (proxyFicheTransfert.rechercherParticipantParId(this.selectedIdParticipant));
+		
+		
+		rdv.setDaterdv(dateDuRdv);
+		rdv.setAdresse(participant.getAdresse());
+		rdv.setVille(participant.getVille());
+		proxyFicheTransfert.MAJ(rdv);
+		
+		if(cnxBean.getParticipant() == participantDonneur){
+			String auteur = participantDonneur.getNom() + " " + participantDonneur.getPrenom();
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date(), auteur);
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date(), auteur);
+			message1 = proxyFicheTransfert.ajouterMessage(message1);
+			message2 = proxyFicheTransfert.ajouterMessage(message2);
+			messages.add(message2);
 		}
 		else{
-			qui=false;
+			String auteur = participantReceveur.getNom() + " " + participantReceveur.getPrenom();
+			Message message1 = new Message(participantReceveur.getMessagerie(), this.message, echange, new Date(), auteur);
+			Message message2 = new Message(participantDonneur.getMessagerie(), this.message, echange, new Date(), auteur);
+			message1 = proxyFicheTransfert.ajouterMessage(message1);
+			message2 = proxyFicheTransfert.ajouterMessage(message2);
+			messages.add(message1);
 		}
-		return qui;
+		
+	}
+	
+    public void laisserUnAvis(){
+		
 	}
 
+	public void accepterRdv(){
+		rdv.setRdvValide(true);
+		proxyFicheTransfert.MAJ(rdv);
+		rdvAccepte = true;
+	}
+	
+	public void finaliserEchange(){
+		if(code == echange.getCodefin()){
+			echange.setDateFin(new Date());
+			echange = proxyFicheTransfert.MAJ(echange);
+		}else{
+			codeBon = false;
+		}
+	}
+	
+	public void modifierRdv(){
+		setModifierRdv(true);
+	}
+	
 	public String getMessage() {
 		return message;
 	}
@@ -309,6 +423,56 @@ public class FicheTransfertBean {
 	public void setRdvEnvoye(boolean rdvEnvoye) {
 		this.rdvEnvoye = rdvEnvoye;
 	}
+
+	public boolean isProprio() {
+		return proprio;
+	}
+
+	public void setProprio(boolean proprio) {
+		this.proprio = proprio;
+	}
+
+	public boolean isRdvAccepte() {
+		return rdvAccepte;
+	}
+
+	public void setRdvAccepte(boolean rdvAccepte) {
+		this.rdvAccepte = rdvAccepte;
+	}
+
+	public boolean isEchangeTermine() {
+		return echangeTermine;
+	}
+
+	public void setEchangeTermine(boolean echangeTermine) {
+		this.echangeTermine = echangeTermine;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public boolean isCodeBon() {
+		return codeBon;
+	}
+
+	public void setCodeBon(boolean codeBon) {
+		this.codeBon = codeBon;
+	}
+
+	public boolean isModifierRdv() {
+		return modifierRdv;
+	}
+
+	public void setModifierRdv(boolean modifierRdv) {
+		this.modifierRdv = modifierRdv;
+	}
+
+	
 	
 }
 

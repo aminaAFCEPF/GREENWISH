@@ -37,16 +37,18 @@ public class Message  implements java.io.Serializable {
      private boolean lu;
      private Echange echange;
      private Date datePublication;
+     private String auteur;
      
      
      
 
-    public Message(Messagerie messagerie, String message, Echange echange, Date datePublication) {
+    public Message(Messagerie messagerie, String message, Echange echange, Date datePublication, String auteur) {
 		super();
 		this.messagerie = messagerie;
 		this.message = message;
 		this.echange = echange;
 		this.datePublication = datePublication;
+		this.auteur = auteur;
 	}
 
 	public Message() {
@@ -115,6 +117,15 @@ public class Message  implements java.io.Serializable {
 
 	public void setDatePublication(Date datePublication) {
 		this.datePublication = datePublication;
+	}
+	
+	@Column(name="AUTEUR", nullable=false)
+	public String getAuteur() {
+		return auteur;
+	}
+
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
 	}
 
 

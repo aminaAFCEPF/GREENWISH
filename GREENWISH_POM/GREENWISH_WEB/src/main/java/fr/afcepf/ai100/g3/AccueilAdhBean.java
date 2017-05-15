@@ -26,10 +26,12 @@ public class AccueilAdhBean {
 
 	private Participant participant;
 	private List<Objet> suggestions = new ArrayList<>();
+	private List<Objet> objets;
 	
 	@PostConstruct
 	public void init(){
 		participant = mbCnx.getParticipant();
+		objets=proxyBusinessGestionAdh.recupObjetsParticipant(participant.getIdparticipant());
 	}
 	
 	
@@ -128,6 +130,16 @@ public class AccueilAdhBean {
 
 	public void setProxyBusinessEchange(IBusinessGestionEchange proxyBusinessEchange) {
 		this.proxyBusinessEchange = proxyBusinessEchange;
+	}
+
+
+	public List<Objet> getObjets() {
+		return objets;
+	}
+
+
+	public void setObjets(List<Objet> objets) {
+		this.objets = objets;
 	}
 
 

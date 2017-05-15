@@ -131,9 +131,11 @@ public class DaoEchange implements IDaoEchange{
 
 	@Override
 	public List<Echange> rechercherTousLesEchangesRecusDUnParticipant(int idParticipant) {
-		final String req = "SELECT e FROM Echange e inner join fetch e.rdv rdv inner join fetch rdv.participant  WHERE e.rdv.participant.idparticipant = :pid";
-		Query query = em.createQuery(req).setParameter("pid", idParticipant);
-		return query.getResultList();
+		final String req = "SELECT e FROM Echange e WHERE e.rdv.participant.idparticipant = :pidParticipant";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		List<Echange> echanges = query.getResultList();
+		echanges.size();
+		return echanges;
 	}
 
 	@Override

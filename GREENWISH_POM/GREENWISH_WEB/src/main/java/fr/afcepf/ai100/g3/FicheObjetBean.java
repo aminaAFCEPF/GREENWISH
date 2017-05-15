@@ -194,6 +194,7 @@ public class FicheObjetBean {
 		return estVide;
 
 	}
+	
 
 	public void estConnecte() {
 		if(cnxBean.getParticipant() == null) {
@@ -233,17 +234,18 @@ public class FicheObjetBean {
 	}
 	
 	public String redirectionReinitia(String redirection){
-		String bla = "http://localhost:8080/GreenWish/faces/";
+		String bla = "/";
 		bla = bla.concat(redirection);
 		this.connecteAndNotMyObjetCptPointsOk=false;
 		this.NotMyObjet=true;
 		this.cptPointsOk=true;
-	return redirection;
+	return redirection + "?faces-redirect=true";
 	}
 	
-	public String ajoutLigneTabHTML () {
+	public String ajoutLigneTabHTML (Participant participant) {
+		if(participant != null) {
 		StringBuilder sb = new StringBuilder();
-		Disponibilite dispo = participantDonneur.getDisponibilite();
+		Disponibilite dispo = participant.getDisponibilite();
 		List<Jour> jours = dispo.getJours();
 		for(Jour j:jours){
 			for(Horaire h : j.getHoraires()){
@@ -251,6 +253,8 @@ public class FicheObjetBean {
 			}
 		}
 		return sb.toString();
+		}
+		return "";
 	}
 	
 	public void setUneDispoRdv(Jour j, Horaire h ){

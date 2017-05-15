@@ -9,7 +9,6 @@ public interface IDaoObjet {
 	void supprimerObjet (Objet objet);
 	
 	List<Objet> getAllObjets();
-	List<Objet> getAllObjetsByIdParticipant(int idParticipant);
 	List<Objet> rechercherObjetsParDomaine(Domaine domaine);
 	List<Objet> getObjetDisponible();
 	Objet getObjetById(int idObjet);

@@ -18,7 +18,7 @@ public class ConnexionBean {
 	private String pageRedirection = "/AccueilAdh.xhtml?faces-redirect=true";
 	private String connecte ="Connexion";
 	
-	public void connexion(){
+	public String connexion(){
 		if(participant ==null){
 			ConfigurableNavigationHandler  nav =
 					(ConfigurableNavigationHandler)
@@ -26,9 +26,10 @@ public class ConnexionBean {
 					.getApplication()
 					.getNavigationHandler();
 			nav.performNavigation("/Connexion.xhtml?faces-redirect=true");
+			return "";
 		}
 		else{
-			seDeconnecter();
+			return seDeconnecter();
 		}
 	}
 

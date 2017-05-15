@@ -710,7 +710,7 @@ p.site-slogan {
 /* Top Menu - Hornav */
 /*-----------------------------------------------------------------------------------*/
 #hornav {
-  font-family: Roboto Condensed;
+  font-family: Roboto Condensed, sans serif;
   position: relative;
   width: 100%;
 }
