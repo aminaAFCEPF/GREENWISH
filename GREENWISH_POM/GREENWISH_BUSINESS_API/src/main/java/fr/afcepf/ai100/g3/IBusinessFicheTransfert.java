@@ -9,4 +9,6 @@ public interface IBusinessFicheTransfert {
 	Participant rechercherParticipantParId(int id);
 	Message ajouterMessage(Message message);
 	Participant modifierPoints(Participant participant);
+	Echange MAJ(Echange echange);
+	Rdv MAJ(Rdv rdv);
 }

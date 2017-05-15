@@ -55,4 +55,14 @@ public class BusinessFicheTransfert implements IBusinessFicheTransfert {
 	public Participant modifierPoints(Participant participant) {
 		return proxyParticipant.updateParticipant(participant);
 	}
+
+	@Override
+	public Echange MAJ(Echange echange) {
+		return proxyDaoEchange.updateEchange(echange);
+	}
+
+	@Override
+	public Rdv MAJ(Rdv rdv) {
+		return proxyDaoRdv.updateRdv(rdv);
+	}
 }
