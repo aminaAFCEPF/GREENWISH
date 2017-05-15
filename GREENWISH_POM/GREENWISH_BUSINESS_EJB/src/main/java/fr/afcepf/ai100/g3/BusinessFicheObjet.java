@@ -27,7 +27,7 @@ public class BusinessFicheObjet implements IBusinessFicheObjet {
 	}
 
 	public List<Objet> getMineObjects(int idParticipant){
-		return proxyDaoObjet.getAllObjetsByIdParticipant(idParticipant);
+		return proxyDaoParticipant.getAllObjetByIdParticipant(idParticipant);
 	}
 
 	@Override

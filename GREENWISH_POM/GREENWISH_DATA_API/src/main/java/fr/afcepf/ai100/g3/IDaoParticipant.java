@@ -18,6 +18,7 @@ public interface IDaoParticipant {
 	
 	List<Notification> rechercherNotifByIdParticipant(int idParticipant);
 	
+	List<Objet> getAllObjetByIdParticipant(int idParticipant);
 
 	Participant recupProprio(int Idobjet);
 
