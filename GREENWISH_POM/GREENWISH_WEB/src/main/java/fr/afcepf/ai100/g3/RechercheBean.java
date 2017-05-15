@@ -30,6 +30,10 @@ public class RechercheBean {
 	private TrancheAge selectedTrancheAge = new TrancheAge();
 	private List<TrancheAge> trancheAges;
 	private List<Objet> resultatRecherche = new ArrayList<>();
+	private String rDomaine = "%%";
+	private String rCategorie = "%%";
+	private String rSousCategorie = "%%";
+	private String rValeur = selectedValeur.toString();
 
 	@PostConstruct
 	public void init() {
@@ -61,10 +65,10 @@ public class RechercheBean {
 		
 		String nav = "/Catalogue.xhtml?faces-redirect=true";
 
-		String rDomaine = "%%";
-		String rCategorie = "%%";
-		String rSousCategorie = "%%";
-		String rValeur = selectedValeur.toString();
+		rDomaine = "%%";
+		rCategorie = "%%";
+		rSousCategorie = "%%";
+		rValeur = selectedValeur.toString();
 
 		if (isSetDomaine(selectedDomaine.getIddomaine())) {
 			rDomaine = selectedDomaine.getIddomaine().toString();
@@ -100,6 +104,38 @@ public class RechercheBean {
 		}
 		System.out.println("coucou méthode BEAN!!!");
 		return nav;
+	}
+
+	public String getrDomaine() {
+		return rDomaine;
+	}
+
+	public void setrDomaine(String rDomaine) {
+		this.rDomaine = rDomaine;
+	}
+
+	public String getrCategorie() {
+		return rCategorie;
+	}
+
+	public void setrCategorie(String rCategorie) {
+		this.rCategorie = rCategorie;
+	}
+
+	public String getrSousCategorie() {
+		return rSousCategorie;
+	}
+
+	public void setrSousCategorie(String rSousCategorie) {
+		this.rSousCategorie = rSousCategorie;
+	}
+
+	public String getrValeur() {
+		return rValeur;
+	}
+
+	public void setrValeur(String rValeur) {
+		this.rValeur = rValeur;
 	}
 
 	public boolean isSetDomaine(Integer rDomaine) {
