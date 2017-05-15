@@ -78,5 +78,12 @@ public class DaoParticipant implements IDaoParticipant {
 		participantRetour.getAvis().size();
 		return participantRetour;
 	}
+
+	@Override
+	public List<Objet> recupObjetsParticipant(int idParticipant) {
+		final String req="SELECT o FROM Objet o WHERE o.listeProposition.participant.idparticipant = :pidParticipant";
+		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
+	}
 }
 

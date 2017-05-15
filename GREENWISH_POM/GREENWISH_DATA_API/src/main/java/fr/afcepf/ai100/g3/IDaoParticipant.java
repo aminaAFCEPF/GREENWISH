@@ -20,6 +20,8 @@ public interface IDaoParticipant {
 	
 
 	Participant recupProprio(int Idobjet);
+	
+	List<Objet> recupObjetsParticipant(int idParticipant);
 
 
 }
