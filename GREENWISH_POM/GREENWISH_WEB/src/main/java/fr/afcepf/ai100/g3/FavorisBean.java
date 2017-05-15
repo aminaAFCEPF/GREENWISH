@@ -23,31 +23,24 @@ public class FavorisBean {
 
 	@EJB
 	private IBusinessFavoris proxyFavoris;
+	
+	@EJB
+	private IBusinessFicheObjet proxyBusinessObjet;
 
 	@ManagedProperty(value = "#{mbCnx}")
 	private ConnexionBean cnxBean;
 
 	private List<Favoris> favoris = new ArrayList<>();
 	private List<Souhait> souhaits = new ArrayList<>();
-
-	private RepeatPaginator paginatorFavoris;
-	private RepeatPaginator paginatorSouhaits;
-
+	
 	private Date dateAjout;
 	private String dateAjoutFormat;
-	private Image premiereImage;
 
 	@PostConstruct
 	public void init(){
-		favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
+		this.favoris = proxyFavoris.afficherFavorisByIdParticipant(cnxBean.getParticipant().getIdparticipant());
 		cnxBean.getParticipant().setFavoris(favoris);
-		paginatorFavoris = new RepeatPaginator(favoris);
 		souhaits = proxyFavoris.afficherSouhaitsByIdParticipant(cnxBean.getParticipant().getIdparticipant());
-		paginatorSouhaits = new RepeatPaginator(souhaits);
-		setDateAjout(favoris.get(0).getObjet().getDateajout());
-		DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
-		setDateAjoutFormat(outputFormatter.format(dateAjout));
-		setPremiereImage(proxyFavoris.AfficherPremiereImageParIdObjet(favoris.get(0).getObjet().getIdobjet()));
 	}
 	
 	public void removeFavori(Favoris favoris){
@@ -56,6 +49,17 @@ public class FavorisBean {
 
 	public String afficherMonCompte(){
 		return "/AccueilAdh.xhtml?faces-redirect=true";
+	}
+	
+	public String formatDate(Date date){
+		this.dateAjout = date;
+		DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		String dateAjoutFormat = outputFormatter.format(dateAjout);
+		return dateAjoutFormat;
+	}
+	
+	public Image afficherImage(Objet objet){
+		return proxyBusinessObjet.getFirstImageByIdObjet(objet.getIdobjet());	
 	}
 
 	public IBusinessCatalogue getProxyCatalogue() {
@@ -105,22 +109,6 @@ public class FavorisBean {
 	public void setDateAjoutFormat(String dateAjoutFormat) {
 		this.dateAjoutFormat = dateAjoutFormat;
 	}
-
-	public RepeatPaginator getPaginatorFavoris() {
-		return paginatorFavoris;
-	}
-
-	public void setPaginatorFavoris(RepeatPaginator paginatorFavoris) {
-		this.paginatorFavoris = paginatorFavoris;
-	}
-
-	public RepeatPaginator getPaginatorSouhaits() {
-		return paginatorSouhaits;
-	}
-
-	public void setPaginatorSouhaits(RepeatPaginator paginatorSouhaits) {
-		this.paginatorSouhaits = paginatorSouhaits;
-	}
 	
 	public List<Souhait> getSouhaits() {
 		return souhaits;
@@ -129,15 +117,7 @@ public class FavorisBean {
 	public void setSouhaits(List<Souhait> souhaits) {
 		this.souhaits = souhaits;
 	}
-
-	public Image getPremiereImage() {
-		return premiereImage;
-	}
-
-	public void setPremiereImage(Image premiereImage) {
-		this.premiereImage = premiereImage;
-	}
-
+	
 
 
 }

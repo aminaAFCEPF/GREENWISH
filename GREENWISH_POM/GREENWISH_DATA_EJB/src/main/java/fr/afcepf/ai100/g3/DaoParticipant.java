@@ -32,14 +32,14 @@ public class DaoParticipant implements IDaoParticipant {
 		Participant retour = null;
 		try {
 			retour = (Participant) query.getSingleResult();
-			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return retour;
 	}
-  
+
 	@Override
 	public Participant rechercherParticipantParId(int idParticipant) {
 		Participant retour = null;
@@ -80,8 +80,9 @@ public class DaoParticipant implements IDaoParticipant {
 	}
 
 	@Override
-	public List<Objet> recupObjetsParticipant(int idParticipant) {
-		final String req="SELECT o FROM Objet o WHERE o.listeProposition.participant.idparticipant = :pidParticipant";
+	public List<Objet> getAllObjetByIdParticipant(int idParticipant) {
+		final String req = "Select o FROM Objet o WHERE o.listeProposition.participant.idparticipant = :pidParticipant";
+
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}

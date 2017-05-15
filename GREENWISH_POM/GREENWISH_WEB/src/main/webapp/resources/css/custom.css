@@ -669,6 +669,10 @@ background-color: #33747a;
 color: white;
 }
 
+.padding-5 {
+    padding: 5px;
+}
+
 .padding-right-10 {
     padding-right: 10px;
 }

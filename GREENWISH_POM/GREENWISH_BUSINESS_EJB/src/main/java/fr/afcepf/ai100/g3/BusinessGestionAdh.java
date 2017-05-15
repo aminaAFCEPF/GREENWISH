@@ -33,7 +33,7 @@ public class BusinessGestionAdh implements IBusinessGestionAdh {
 	@Override
 	public List<Objet> getAllObjetsByIdParticipant(int idParticipant) {
 		
-		return proxyDaoObjet.getAllObjetsByIdParticipant(idParticipant);
+		return proxyDaoParticipant.getAllObjetByIdParticipant(idParticipant);
 	}
 
 	@Override

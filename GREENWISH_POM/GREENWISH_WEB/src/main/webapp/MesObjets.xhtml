@@ -4,6 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
+
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -14,253 +18,93 @@
 					<div class="row">
 						<h1>Mes objets</h1>
 					</div>
-					<div id="searchFiltre" class="margin-bottom-10">
-						<ol class="breadcrumb ">
-							<li><a href="#">Mon compte</a></li>
-							<li class="active">Mes objets</li>
-						</ol>
-						<select id="filtre">
-							<option>Afficher par liste</option>
-							<option>Afficher par liste</option>
-							<option>Afficher par liste</option>
-							<option>Afficher par liste</option>
-							<option>Afficher par liste</option>
-						</select> <select id="filtre">
-							<option>Trier par</option>
-							<option>Trier par</option>
-							<option>Trier par</option>
-							<option>Trier par</option>
-							<option>Trier par</option>
-						</select>
-						<div>
-							<a href=""><i
-								class="fa-plus fa-2x color-primary animate fadeIn"></i></a> <a
-								href=""><i
-								class="fa-pencil fa-2x color-primary animate fadeIn"></i></a> <a
-								href=""><i
-								class="fa-minus fa-2x color-primary animate fadeIn"></i></a>
+					<div class="row">
+						<div id="searchFiltre" class="col-lg-4">
+							<ol class="breadcrumb background-white ">
+								<li><a href="#">Mon compte</a></li>
+								<li class="active">Mes objets</li>
+							</ol>
 						</div>
-
+						<div class="col-lg-3 text-center">
+							<select id="filtre" class="borderRadius" style="padding: 5px">
+								<option>Afficher par liste</option>
+								<option>Afficher par liste</option>
+								<option>Afficher par liste</option>
+								<option>Afficher par liste</option>
+								<option>Afficher par liste</option>
+							</select> <select id="filtre" class="borderRadius" style="padding: 5px">
+								<option>Trier par</option>
+								<option>Trier par</option>
+								<option>Trier par</option>
+								<option>Trier par</option>
+								<option>Trier par</option>
+							</select>
+						</div>
+						<h:form>
+							<div class="col-md-2 pull-right">
+								<h:commandLink action="#{mbMesObjet.RedirectAjouterObjet()}"
+									value="">
+									<i class="fa-plus fa-2x color-primary animate fadeIn"></i>
+								</h:commandLink>
+								<h:commandLink action="#{mbMesObjet.modifyObjet(lObjet)}"
+									value="">
+									<i class="fa-pencil fa-2x color-primary animate fadeIn"></i>
+								</h:commandLink>
+							</div>
+						</h:form>
 					</div>
-
 				</div>
 				<div class="container background-gray-lighter">
 					<div class="row margin-vert-30">
 						<div class="col-md-12">
-							<a>
+							<ui:repeat var="lObjet" value="#{mbMesObjet.objets}">
 								<div
 									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
 									<div class="col-sm-2">
-										<img src="resources/img/blog/asia.jpg" alt="thumb1" />
+										<h:graphicImage
+											value="#{mbMesObjet.afficherImage(lObjet).image}"
+											class="text-center" />
 									</div>
 									<div class="col-sm-10 vertical">
 										<div class="row ">
 											<div class="col-sm-4">
-												<h4>Super-bang</h4>
+												<h3>
+													<b>#{lObjet.intitule}</b>
+												</h3>
 											</div>
 											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
+												<h5>Liste : #{lObjet.listeProposition.nom}</h5>
 											</div>
 											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
+												<h5>Ajouté le
+													#{mbMesObjet.formatDate(lObjet.dateajout)}</h5>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-8">
+												<h4>Classification :</h4>
 												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
+													<li>#{lObjet.domaine.domaine}</li>
+													<li>#{lObjet.categorie.intitule}</li>
+													<li>#{lObjet.souscategorie.intitule}</li>
 												</ol>
 											</div>
 											<div class="col-sm-4">
 												<h5>
-													Valeur : 4 <img class="idflocon"
+													Valeur : #{lObjet.valeur.valeur}<img class="idflocon"
 														src="resources/img/blog/flocon.jpg" alt="thumb1" />
 												</h5>
 											</div>
 										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
+										<h:form class="row">
+										<div class="col-md-10">Description objet : #{lObjet.description}</div>
+										<h:commandButton action="#{mbMesObjet.removeObjet(lObjet)}"
+											value="Supprimer" class="btn btn-primary borderRadius"/>
+										</h:form>
 									</div>
 								</div>
-							</a> <a>
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/asia.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a>
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/asia.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a>
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/asia.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a> <a>
-								<div
-									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
-									<div class="col-sm-2">
-										<img src="resources/img/blog/asia.jpg" alt="thumb1" />
-									</div>
-									<div class="col-sm-10 vertical">
-										<div class="row ">
-											<div class="col-sm-4">
-												<h4>Super-bang</h4>
-											</div>
-											<div class="col-sm-4">
-												<h5>Liste : Mes petits objets</h5>
-											</div>
-											<div class="col-sm-4">
-												<h5>Ajouté le 10 juin 2016</h5>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-8">
-												<ol class="breadcrumb">
-													<li>Herbalife</li>
-													<li>Accessoires Fumeur</li>
-													<li>Chou Bang</li>
-												</ol>
-											</div>
-											<div class="col-sm-4">
-												<h5>
-													Valeur : 4 <img class="idflocon"
-														src="resources/img/blog/flocon.jpg" alt="thumb1" />
-												</h5>
-											</div>
-										</div>
-										<div>Description objet : bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-											bla bla bla bla bla bla bla...</div>
-									</div>
-								</div>
-							</a>
-							<div class="text-center">
-								<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
-							</div>
+							</ui:repeat>
 						</div>
-
 					</div>
 				</div>
 			</div>
