@@ -11,7 +11,7 @@ public interface IBusinessRecherche {
 	List<Domaine> rechercherDomaine();
 	List<Valeur> rechercherValeur();
 	List<TrancheAge> rechercherTrancheAge();
-	List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur);
+	List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur, String rIntitule);
 	String RemplirEspaces(Objet objet, String description);
 	String getIntituleDomaineById(int idDomaine);
 }

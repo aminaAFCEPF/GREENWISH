@@ -25,6 +25,11 @@ public class BusinessMesObjets implements IBusinessMesObjets{
 	public void supprimerObjet(Objet objet) {
 		proxyDaoObjet.supprimerObjet(objet);
 	}
+
+	@Override
+	public List<Objet> AfficherTousObjets() {
+		return proxyDaoObjet.getAllObjets();
+	}
 	
 	
 }

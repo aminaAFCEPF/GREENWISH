@@ -31,6 +31,7 @@ public class AccueilTransfertBean {
 	@EJB
 	private IDaoRdv proxyDaoRdv;
 	private List<Echange> echanges;
+	private List<Echange> tousEchanges;
 	private Participant participant;
 	private RepeatPaginator paginator;
 	private List<String> lesTypesDeRdv = new ArrayList<>();
@@ -69,6 +70,9 @@ public class AccueilTransfertBean {
 		echanges = proxyAfficherEchange.afficherLesEchangesTries(selectedEtatDesTransferts, selectedTypesDesTransferts, participant.getIdparticipant());	
 		paginator = new RepeatPaginator(echanges);
 		System.out.println(participant.getIdparticipant());
+		
+		tousEchanges = proxyAfficherEchange.afficherTousEchanges();
+		
 		
 	}
 	
@@ -129,7 +133,6 @@ public class AccueilTransfertBean {
 		}
 		return remplissage;
 	}
-
 
 	public IBusinessAjouterObjet getProxyAjouterObjet() {
 		return proxyAjouterObjet;
@@ -289,6 +292,16 @@ public class AccueilTransfertBean {
 	public void setCouleurAnnule(String couleurAnnule) {
 		this.couleurAnnule = couleurAnnule;
 	}
+
+	public List<Echange> getTousEchanges() {
+		return tousEchanges;
+	}
+
+	public void setTousEchanges(List<Echange> tousEchanges) {
+		this.tousEchanges = tousEchanges;
+	}
+	
+	
 
 
 
