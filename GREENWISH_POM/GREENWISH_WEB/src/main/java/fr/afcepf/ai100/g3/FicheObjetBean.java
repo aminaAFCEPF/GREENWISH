@@ -38,7 +38,7 @@ public class FicheObjetBean {
 	private String Message ="Bonjour, je suis intéressé par votre objet, je vous propose donc un rendez-vous pour l'échanger.";
 	private List<Participant> participants = new ArrayList<>();
 	private Participant participantDonneur;
-
+	
 	
 	public String afficherAjouterObjet(){
 		return "/AjouterObjet.xhtml?faces-redirect=true";

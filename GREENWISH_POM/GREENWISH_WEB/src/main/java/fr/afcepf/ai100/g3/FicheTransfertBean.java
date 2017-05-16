@@ -39,7 +39,7 @@ public class FicheTransfertBean {
 	private List<Message> messages = new ArrayList<>();
 	private String dateDuRdvString;
 	private Date dateDuRdv;
-	private String message;
+	private String message = "Bonjour, je suis intéressé par votre objet, je vous propose donc un rendez-vous pour l'échanger.";
 	private int selectedIdParticipant;
 	private Participant participant;
 	private int annee;

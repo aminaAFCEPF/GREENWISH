@@ -17,6 +17,27 @@ public class InscriptionBean {
 	private IBusinessInscription proxyInscription;
 	@EJB
 	private IDaoVille proxyDaoVille;
+	@EJB
+	private IDaoMessagerie proxyDaoMessagerie;
+	@EJB
+	private IDaoDisponibilite proxyDaoDispo;
+	
+	public IDaoMessagerie getProxyDaoMessagerie() {
+		return proxyDaoMessagerie;
+	}
+
+	public void setProxyDaoMessagerie(IDaoMessagerie proxyDaoMessagerie) {
+		this.proxyDaoMessagerie = proxyDaoMessagerie;
+	}
+
+	public IDaoDisponibilite getProxyDaoDispo() {
+		return proxyDaoDispo;
+	}
+
+	public void setProxyDaoDispo(IDaoDisponibilite proxyDaoDispo) {
+		this.proxyDaoDispo = proxyDaoDispo;
+	}
+
 	private String adresse;
 	private Date datenaissance = new Date();
 	private String mail;
@@ -39,6 +60,8 @@ public class InscriptionBean {
 		inscription.setDateinscription(new Date());
 		
 		Participant participant = new Participant(selectedville, nom, prenom, datenaissance, adresse, mail, 0, password, false);
+		participant.setMessagerie(proxyDaoMessagerie.getMessagerieById(6));
+		participant.setDisponibilite(proxyDaoDispo.getDisponibiliteById(8));
 		participant = proxyInscription.inscrire(participant);
 		
 	    proxyInscription.creerListeProp(new ListeProposition(participant, "Ma première liste", true));
@@ -155,11 +178,9 @@ public class InscriptionBean {
 	
 	public void remplirChamp(){
 		setAdresse("53 rue mozart");
-		setCodePostal("75007");
-		setSelectedville(new Ville("Paris", "75007"));
-		setMail("Mowgli@Gmail.com");
-		setNom("Jungle");
-		setPrenom("Mowgli");
+		setMail("Michel@Gmail.com");
+		setNom("Lucien");
+		setPrenom("Michel");
 		setPassword("afcepf");
 	}
 	
