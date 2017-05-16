@@ -66,6 +66,14 @@
 									<h:inputText id="nomObjet"
 										value="#{mbAjouterObjet.objetNouveau.intitule}"
 										class="form-control  margin-bottom-20" />
+
+									<label>Valeur</label>
+									<h:selectOneMenu id="lesValeurs"
+										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
+										class="form-control margin-bottom-20 fa-plus">
+										<f:selectItems value="#{mbAjouterObjet.valeurs}" var="valeur"
+											itemLabel="#{valeur.valeur}" itemValue="#{valeur.idvaleur}" />
+									</h:selectOneMenu>
 									<label>Description <span class="color-red">*</span>
 									</label>
 									<h:inputTextarea
@@ -114,20 +122,31 @@
 									<label>Images :</label>
 								</div>
 								<div class="col-lg-3">
-									<span class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
+									<span
+										class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
 										type="file" /> </span> <span
 										class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
 										type="file" /> </span> <span
 										class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
 										type="file" /> </span>
 								</div>
-								<div class="row text-center col-lg-12">
+
+
+								<div class="row text-center col-lg-12 centrerElementHorizontal ">
 									<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
 										value="Ajouter"
 										class="btn btn-lg btn-primary borderRadius text-center" />
-									<br /> <label class="margin-vert-10">(*) : Champ
+									
+
+
+									<h:commandButton action="#{mbAjouterObjet.chargerLesInfosTest}"
+										value="Auto-complétion"
+										class="btn btn-lg btn-primary borderRadius text-center" />
+										<br /> <label class="margin-vert-10">(*) : Champ
 										obligatoire</label>
+
 								</div>
+
 							</div>
 						</div>
 					</h:form>

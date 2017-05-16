@@ -1,6 +1,7 @@
 package fr.afcepf.ai100.g3;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class AjouterObjetBean {
 	@EJB
 	private IDaoObjet proxyDaoAjouterObjet;
 	
+	
+	
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
 	
@@ -41,6 +44,8 @@ public class AjouterObjetBean {
 	private ListeProposition nouvelleListeProposition = new ListeProposition();
 	private String nom;
 	private Valeur valeur;
+	private List<Valeur>valeurs = new ArrayList<>();
+	private Valeur selectedValeur = new Valeur();
 	private boolean actif;
 	private Objet objetNouveau = new Objet();
 	
@@ -59,9 +64,18 @@ public class AjouterObjetBean {
 		chargerListeProposition();
 		selectedListeProposition = new ListeProposition();
 		selectedListeProposition.setIdlisteobjet(listePropositions.get(0).getIdlisteobjet());
+		chargerValeur();
+		selectedValeur = new Valeur();
+		selectedValeur = valeurs.get(0);
+		
+		
+		
 	}
 	
 	
+	
+
+
 	public ConnexionBean getMbCnx() {
 		return mbCnx;
 	}
@@ -70,7 +84,22 @@ public class AjouterObjetBean {
 	public void setMbCnx(ConnexionBean mbCnx) {
 		this.mbCnx = mbCnx;
 	}
+	
+	public void chargerLesInfosTest(){
+		objetNouveau.setIntitule("pc portable toshiba");
+		objetNouveau.setDescription("fonctionne correctement");
+		selectedValeur = valeurs.get(8);
+		selectedCategorie = categories.get(0);
+		selectedSousCategorie = sousCategories.get(0);
+		selectedDomaine = domaines.get(0);
+		selectedListeProposition = listePropositions.get(0);
+	}
 
+	private List<Valeur> chargerValeur() {
+		valeurs = proxyDaoValeur.getAllValeur();
+		return valeurs;
+		
+	}
 
 	public void chargerCategories() {
 		categories = proxyAjouterObjet.rechercherCategorieParDomaine(selectedDomaine);
@@ -98,7 +127,7 @@ public class AjouterObjetBean {
 	//a ajouter
 	public String ajouterObjet(){
 		String nav = "/MesObjets.xhtml?faces-redirect=true";
-		valeur = new Valeur(10);
+		valeur = new Valeur();
 		valeur = proxyDaoValeur.ajouterValeur(valeur);
 		objetNouveau.setActif(true);
 		objetNouveau.setCategorie(selectedCategorie);
@@ -107,7 +136,7 @@ public class AjouterObjetBean {
 		objetNouveau.setListeProposition(selectedListeProposition);
 		objetNouveau.setSouscategorie(selectedSousCategorie);
 		objetNouveau.setTrancheAge(null);
-		objetNouveau.setValeur(valeur);
+		objetNouveau.setValeur(selectedValeur);
 		proxyAjouterObjet.ajouterObjet(objetNouveau,participant);
 		return nav;
 	}
@@ -273,6 +302,26 @@ public class AjouterObjetBean {
 
 	public void setObjetNouveau(Objet objetNouveau) {
 		this.objetNouveau = objetNouveau;
+	}
+
+
+	public List<Valeur> getValeurs() {
+		return valeurs;
+	}
+
+
+	public void setValeurs(List<Valeur> valeurs) {
+		this.valeurs = valeurs;
+	}
+
+
+	public Valeur getSelectedValeur() {
+		return selectedValeur;
+	}
+
+
+	public void setSelectedValeur(Valeur selectedValeur) {
+		this.selectedValeur = selectedValeur;
 	}
 
 	
