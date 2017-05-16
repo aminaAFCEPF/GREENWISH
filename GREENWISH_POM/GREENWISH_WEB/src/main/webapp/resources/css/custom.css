@@ -528,6 +528,10 @@ h5 {
     background-color: #5cb85c;
 }
 
+.annule-color{
+	background-color: #c0c0c0;
+}
+
 .danger-color {
     background-color: #d9534f;
 }
@@ -553,7 +557,7 @@ h5 {
 }
 
 .progress2{
-    width: 1000px;
+    width: 1000px
 }
 
 
@@ -751,3 +755,17 @@ color: white;
 	  width: 450px;
 	
 }
+
+.progress-bar-annule {
+  background-color: #c0c0c0;
+}
+
+.no-color2{
+	background-color: white;
+}
+
+.bootstrap-datetimepicker-widget{
+	background-color: white;
+}
+
+

@@ -35,7 +35,7 @@ public class FicheObjetBean {
 	private Disponibilite disponibilite;
 	private Horaire h = new Horaire();
 	private Jour j = new Jour();
-	private String Message;
+	private String Message ="Bonjour, je suis intéressé par votre objet, je vous propose donc un rendez-vous pour l'échanger.";
 	private List<Participant> participants = new ArrayList<>();
 	private Participant participantDonneur;
 

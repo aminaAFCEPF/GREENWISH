@@ -7,5 +7,5 @@ public interface IDaoMessage {
 	Message ajouterMessage(Message message);
 	List<Message>getAllMessage();
 	List<Message> getMessageByIdTransfert(int idTransfert, int idParticipant);
-		
+
 }
