@@ -64,6 +64,14 @@
 									<h:inputText id="nomObjet"
 										value="#{mbAjouterObjet.objetNouveau.intitule}"
 										class="form-control  margin-bottom-20" />
+
+									<label>Valeur</label>
+									<h:selectOneMenu id="lesValeurs"
+										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
+										class="form-control margin-bottom-20 fa-plus">
+										<f:selectItems value="#{mbAjouterObjet.valeurs}" var="valeur"
+											itemLabel="#{valeur.valeur}" itemValue="#{valeur.idvaleur}" />
+									</h:selectOneMenu>
 									<label>Description <span class="color-red">*</span>
 									</label>
 									<h:inputTextarea
@@ -104,6 +112,7 @@
 											var="souscategorie" itemLabel="#{souscategorie.intitule}"
 											itemValue="#{souscategorie.idsouscategorie}" />
 									</h:selectOneMenu>
+
 									<label>Tranche d'Age</label>
 									<h:selectOneMenu id="trancheAge"
 										value="#{mbAjouterObjet.selectedTrancheAge.idage}"
@@ -113,7 +122,8 @@
 											itemLabel="#{trancheage.ageMaxi} à #{trancheage.ageMini} ans"
 											itemValue="#{trancheage.idage}" />
 									</h:selectOneMenu>
-									<label>Valeur</label>
+									
+                  <label>Valeur</label>
 									<h:selectOneMenu id="valeur"
 										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
 										class="form-control margin-bottom-20 fa-plus">
@@ -121,7 +131,9 @@
 											itemLabel="#{valeur.idvaleur} flocons"
 											itemValue="#{valeur.idvaleur}" />
 									</h:selectOneMenu>
+
 								</div>
+
 							</div>
 							<br />
 							<div class="row col-lg-3">
@@ -137,6 +149,9 @@
 								<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
 									value="Ajouter"
 									class="btn btn-lg btn-primary borderRadius text-center" />
+                <h:commandButton action="#{mbAjouterObjet.chargerLesInfosTest}"
+										value="Auto-complétion"
+										class="btn btn-lg btn-primary borderRadius text-center" />
 								<br /> <label class="margin-vert-10">(*) : Champ
 									obligatoire</label>
 							</div>
