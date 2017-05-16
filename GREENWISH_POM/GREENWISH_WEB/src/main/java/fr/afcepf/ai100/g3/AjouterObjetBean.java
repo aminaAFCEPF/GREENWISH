@@ -24,7 +24,8 @@ public class AjouterObjetBean {
 	private IDaoValeur proxyDaoValeur;
 	@EJB
 	private IDaoObjet proxyDaoAjouterObjet;
-	
+	@EJB
+	private IDaoParticipant proxyDaoParticipant;
 	
 	
 	@ManagedProperty(value="#{mbCnx}")
@@ -138,6 +139,8 @@ public class AjouterObjetBean {
 		objetNouveau.setTrancheAge(null);
 		objetNouveau.setValeur(selectedValeur);
 		proxyAjouterObjet.ajouterObjet(objetNouveau,participant);
+		participant.setSolde(participant.getSolde()+5);
+		proxyDaoParticipant.updateParticipant(participant);
 		return nav;
 	}
 
