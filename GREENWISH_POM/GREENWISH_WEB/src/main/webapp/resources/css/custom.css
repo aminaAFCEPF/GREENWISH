@@ -135,6 +135,11 @@
     border-radius: 7px;
 }
 
+.searchBar {
+    width: 90.5%;
+    border-radius: 7px;
+}
+
 #searchSubmit {
     margin-left: 15px;
     border-radius: 7px;
@@ -685,6 +690,10 @@ color: white;
 }
 .margin-left-5{
     margin-left: 5px;
+}
+.margin-left-30
+{
+	margin-left: 30px;
 }
 
 .table-bordered {

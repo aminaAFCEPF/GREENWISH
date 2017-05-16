@@ -157,6 +157,11 @@ public class BusinessGestionEchange implements IBusinessGestionEchange {
 		return echangesTries;
 	}
 
+	@Override
+	public List<Echange> afficherTousEchanges() {
+		return proxyDaoEchange.rechercherTousLesEchanges();
+	}
+
 
 
 }

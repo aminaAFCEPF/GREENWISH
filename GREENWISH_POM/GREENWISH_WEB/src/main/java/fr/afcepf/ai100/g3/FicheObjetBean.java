@@ -40,6 +40,9 @@ public class FicheObjetBean {
 	private Participant participantDonneur;
 
 	
+	public String afficherAjouterObjet(){
+		return "/AjouterObjet.xhtml?faces-redirect=true";
+	}
 
 	public Participant getParticipantDonneur() {
 		return participantDonneur;
