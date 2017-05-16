@@ -1,5 +1,7 @@
 package fr.afcepf.ai100.g3;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -64,5 +66,20 @@ public class BusinessFicheTransfert implements IBusinessFicheTransfert {
 	@Override
 	public Rdv MAJ(Rdv rdv) {
 		return proxyDaoRdv.updateRdv(rdv);
+	}
+
+	@Override
+	public List<Message> recupMessage(int idTransfert, int idParticipant) {
+		return proxyDaoMessage.getMessageByIdTransfert(idTransfert, idParticipant);
+	}
+
+	@Override
+	public Participant recupProprio2(int idObjet) {
+		return proxyParticipant.recupProprio(idObjet);
+	}
+
+	@Override
+	public List<Image> recupImagesObjet(int idObjet) {
+		return proxyDaoObjet.getAllImageByIdObjet(idObjet);
 	}
 }

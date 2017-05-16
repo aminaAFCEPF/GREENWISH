@@ -155,8 +155,8 @@ public class InscriptionBean {
 	
 	public void remplirChamp(){
 		setAdresse("53 rue mozart");
-		setCodePostal("77220");
-		setSelectedville(new Ville("Tournan en Brie", "77220"));
+		setCodePostal("75007");
+		setSelectedville(new Ville("Paris", "75007"));
 		setMail("Mowgli@Gmail.com");
 		setNom("Jungle");
 		setPrenom("Mowgli");

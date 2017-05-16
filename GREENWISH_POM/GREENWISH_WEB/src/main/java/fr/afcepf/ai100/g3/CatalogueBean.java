@@ -41,6 +41,7 @@ public class CatalogueBean {
 	private String rSousCategorie = "Sous-catégorie";
 	private String rTrancheAge = "Tout ages"; // Variable inutile recherche non fonctionnelle sur ce champ.
 	private String rValeur = "<=10";
+	private String rIntitule = "Intitulé de la recherche";
 	// *****************************************************
 	
 	@PostConstruct
@@ -55,6 +56,7 @@ public class CatalogueBean {
 			rDomaine ="Domaine";
 			rCategorie = "Categorie";
 			rSousCategorie = "Sous-catégorie";
+			rIntitule = "Intitulé de la recherche";
 		}
 		paginator = new RepeatPaginator(objets);
 		if (mbRecherche.getrDomaine() != "%%") {
@@ -65,6 +67,10 @@ public class CatalogueBean {
 		}
 		if (mbRecherche.getrSousCategorie() != "%%") {
 			rSousCategorie = proxyDaoSouscategorie.getIntituleById(Integer.parseInt(mbRecherche.getrSousCategorie()));
+		}
+		if(mbRecherche.getrIntitule() != "%%"){
+			String rSave = rIntitule;
+			rIntitule = "Initulé de la recherche: " + mbRecherche.getrIntitule();
 		}
 	}
 
@@ -206,6 +212,14 @@ public class CatalogueBean {
 
 	public void setrValeur(String rValeur) {
 		this.rValeur = rValeur;
+	}
+
+	public String getrIntitule() {
+		return rIntitule;
+	}
+
+	public void setrIntitule(String rIntitule) {
+		this.rIntitule = rIntitule;
 	}
 	
 	

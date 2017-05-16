@@ -13,9 +13,8 @@
 		<body>
 			<div class="container background-gray-lighter ">
 				<div class="row margin-vert-30 ">
-
-					<h:form>
-						<div id="ajouterObjetForm"
+					<h:form id="ajouterObjetForm">
+						<div
 							class="login-page bottom-border borderperso">
 
 							<div class="signup-header"></div>
@@ -38,7 +37,6 @@
 											var="listeProp" itemLabel="#{listeProp.nom}"
 											itemValue="#{listeProp.idlisteobjet}" />
 									</h:selectOneMenu>
-
 								</div>
 								<div class="col-md-1">
 									<button id="ajouterNomListe" type="button"
@@ -66,6 +64,14 @@
 									<h:inputText id="nomObjet"
 										value="#{mbAjouterObjet.objetNouveau.intitule}"
 										class="form-control  margin-bottom-20" />
+
+									<label>Valeur</label>
+									<h:selectOneMenu id="lesValeurs"
+										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
+										class="form-control margin-bottom-20 fa-plus">
+										<f:selectItems value="#{mbAjouterObjet.valeurs}" var="valeur"
+											itemLabel="#{valeur.valeur}" itemValue="#{valeur.idvaleur}" />
+									</h:selectOneMenu>
 									<label>Description <span class="color-red">*</span>
 									</label>
 									<h:inputTextarea
@@ -73,7 +79,6 @@
 										class="form-control  margin-bottom-20" />
 								</div>
 								<div class="col-md-6">
-
 									<label>Domaine</label>
 									<h:selectOneMenu id="lesDomaines"
 										value="#{mbAjouterObjet.selectedDomaine.iddomaine}"
@@ -108,26 +113,47 @@
 											itemValue="#{souscategorie.idsouscategorie}" />
 									</h:selectOneMenu>
 
+									<label>Tranche d'Age</label>
+									<h:selectOneMenu id="trancheAge"
+										value="#{mbAjouterObjet.selectedTrancheAge.idage}"
+										class="form-control margin-bottom-20 fa-plus">
+										<f:selectItems value="#{mbAjouterObjet.tranchesAges}"
+											var="trancheage"
+											itemLabel="#{trancheage.ageMaxi} à #{trancheage.ageMini} ans"
+											itemValue="#{trancheage.idage}" />
+									</h:selectOneMenu>
+									
+                  <label>Valeur</label>
+									<h:selectOneMenu id="valeur"
+										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
+										class="form-control margin-bottom-20 fa-plus">
+										<f:selectItems value="#{mbAjouterObjet.valeurs}" var="valeur"
+											itemLabel="#{valeur.idvaleur} flocons"
+											itemValue="#{valeur.idvaleur}" />
+									</h:selectOneMenu>
+
 								</div>
 
-								<div class="row padding-vert-10 padding-horiz-20">
-									<label>Images :</label>
-								</div>
-								<div class="col-lg-3">
-									<span class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
-										type="file" /> </span> <span
-										class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
-										type="file" /> </span> <span
-										class="btn btn-primary borderRadius pull-left padding-vert-10 margin-vert-10"><input
-										type="file" /> </span>
-								</div>
-								<div class="row text-center col-lg-12">
-									<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
-										value="Ajouter"
+							</div>
+							<br />
+							<div class="row col-lg-3">
+								<span
+									class="btn btn-primary borderRadius padding-vert-10 margin-vert-10"><input
+									type="file" /> </span> <span
+									class="btn btn-primary borderRadius padding-vert-10 margin-vert-10"><input
+									type="file" /> </span> <span
+									class="btn btn-primary borderRadius padding-vert-10 margin-vert-10"><input
+									type="file" /> </span>
+							</div>
+							<div class="row text-center col-lg-12">
+								<h:commandButton action="#{mbAjouterObjet.ajouterObjet()}"
+									value="Ajouter"
+									class="btn btn-lg btn-primary borderRadius text-center" />
+                <h:commandButton action="#{mbAjouterObjet.chargerLesInfosTest}"
+										value="Auto-complétion"
 										class="btn btn-lg btn-primary borderRadius text-center" />
-									<br /> <label class="margin-vert-10">(*) : Champ
-										obligatoire</label>
-								</div>
+								<br /> <label class="margin-vert-10">(*) : Champ
+									obligatoire</label>
 							</div>
 						</div>
 					</h:form>

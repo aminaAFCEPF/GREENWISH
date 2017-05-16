@@ -34,6 +34,8 @@ public class RechercheBean {
 	private String rCategorie = "%%";
 	private String rSousCategorie = "%%";
 	private String rValeur = selectedValeur.toString();
+	private String rIntitule = "%%";
+	private String selectedIntitule;
 
 	@PostConstruct
 	public void init() {
@@ -69,6 +71,7 @@ public class RechercheBean {
 		rCategorie = "%%";
 		rSousCategorie = "%%";
 		rValeur = selectedValeur.toString();
+		rIntitule = "%%";
 
 		if (isSetDomaine(selectedDomaine.getIddomaine())) {
 			rDomaine = selectedDomaine.getIddomaine().toString();
@@ -89,14 +92,19 @@ public class RechercheBean {
 			rValeur = selectedValeur.getIdvaleur().toString();
 			System.out.println("je suis dans la valeur");
 		}
+		if (isSetIntitule(selectedIntitule)){
+			rIntitule = selectedIntitule;
+			System.out.println("Je suis dans l'intitule");
+		}
 
 		if (isSetDomaine(selectedDomaine.getIddomaine()) 
 				|| isSetCategorie(selectedCategorie.getIdcategorie())
 				|| isSetSousCategorie(selectedSousCategorie.getIdsouscategorie())
-				|| isSetValeur(selectedValeur.getIdvaleur())) {
+				|| isSetValeur(selectedValeur.getIdvaleur())
+				|| isSetIntitule(selectedIntitule)) {
 
 			System.out.println("Au moins un critère est rempli, je lance ma recherche!");
-			resultatRecherche = proxyBusinessRecherche.rechercherObjet(rDomaine, rCategorie, rSousCategorie, rValeur);
+			resultatRecherche = proxyBusinessRecherche.rechercherObjet(rDomaine, rCategorie, rSousCategorie, rValeur, rIntitule);
 		}
 		System.out.println("taille du resultat : " + resultatRecherche.size());
 		for (Objet objet : resultatRecherche) {
@@ -176,6 +184,14 @@ public class RechercheBean {
 			valeurIsSet = true;
 		}
 		return valeurIsSet;
+	}
+	
+	public boolean isSetIntitule(String rIntitule){
+		boolean intituleIsSet = false;
+		if(selectedIntitule != null){
+			intituleIsSet = true;
+		}
+		return intituleIsSet;
 	}
 
 	public Domaine getSelectedDomaine() {
@@ -281,5 +297,24 @@ public class RechercheBean {
 	public void setResultatRecherche(List<Objet> resultatRecherche) {
 		this.resultatRecherche = resultatRecherche;
 	}
+
+	public String getrIntitule() {
+		return rIntitule;
+	}
+
+	public void setrIntitule(String rIntitule) {
+		this.rIntitule = rIntitule;
+	}
+
+	public String getSelectedIntitule() {
+		return selectedIntitule;
+	}
+
+	public void setSelectedIntitule(String selectedIntitule) {
+		this.selectedIntitule = selectedIntitule;
+	}
+	
+	
+	
 
 }

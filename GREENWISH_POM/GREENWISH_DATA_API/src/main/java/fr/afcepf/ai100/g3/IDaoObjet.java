@@ -21,6 +21,6 @@ public interface IDaoObjet {
 	List<Image> getAllImageByIdObjet(int idObjet);
 	Image getFirstImageByIdObjet(int idObjet);
 	
-	List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur);
+	List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur, String rIntitule);
   
 }

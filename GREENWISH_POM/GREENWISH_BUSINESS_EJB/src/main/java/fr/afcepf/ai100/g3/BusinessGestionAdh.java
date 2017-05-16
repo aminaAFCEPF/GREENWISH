@@ -35,4 +35,9 @@ public class BusinessGestionAdh implements IBusinessGestionAdh {
 		
 		return proxyDaoParticipant.getAllObjetByIdParticipant(idParticipant);
 	}
+
+	@Override
+	public List<Participant> getAllParticipants() {
+		return proxyDaoParticipant.getAllParticipants();
+	}
 }

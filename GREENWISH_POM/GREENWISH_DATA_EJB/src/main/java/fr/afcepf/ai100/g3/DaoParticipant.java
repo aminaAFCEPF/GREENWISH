@@ -46,6 +46,7 @@ public class DaoParticipant implements IDaoParticipant {
 		final String req="SELECT p FROM Participant p WHERE p.id = :pid";
 		Query query = em.createQuery(req).setParameter("pid", idParticipant);
 		retour = (Participant)query.getSingleResult();
+		retour.getAvis().size();
 		return retour;
 	}
 
@@ -82,8 +83,15 @@ public class DaoParticipant implements IDaoParticipant {
 	@Override
 	public List<Objet> getAllObjetByIdParticipant(int idParticipant) {
 		final String req = "Select o FROM Objet o WHERE o.listeProposition.participant.idparticipant = :pidParticipant";
-
+		
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Participant> getAllParticipants() {
+		final String req = "Select p FROM Participant p WHERE p.idparticipant != 1";
+		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
 }

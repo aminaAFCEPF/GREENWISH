@@ -1,6 +1,7 @@
 package fr.afcepf.ai100.g3;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AjouterObjetBean {
 
-	
+
 	@EJB
 	private IBusinessAjouterObjet proxyAjouterObjet;
 	@EJB
@@ -23,10 +24,10 @@ public class AjouterObjetBean {
 	private IDaoValeur proxyDaoValeur;
 	@EJB
 	private IDaoObjet proxyDaoAjouterObjet;
-	
+
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
-	
+
 	private String intitule;
 	private String description;
 	private Domaine selectedDomaine = new Domaine();
@@ -41,10 +42,17 @@ public class AjouterObjetBean {
 	private ListeProposition nouvelleListeProposition = new ListeProposition();
 	private String nom;
 	private Valeur valeur;
+	private List<Valeur>valeurs = new ArrayList<>();
+	private Valeur selectedValeur = new Valeur();
 	private boolean actif;
 	private Objet objetNouveau = new Objet();
-	
-	
+
+
+	private Valeur selectedValeur = new Valeur(); //+G/S
+	private List<Valeur> valeurs; //+G/S
+	private TrancheAge selectedTrancheAge = new TrancheAge(); //+G/S
+	private List<TrancheAge> tranchesAges; //+G/S
+
 	@PostConstruct
 	public void init(){
 		participant = mbCnx.getParticipant();
@@ -59,9 +67,27 @@ public class AjouterObjetBean {
 		chargerListeProposition();
 		selectedListeProposition = new ListeProposition();
 		selectedListeProposition.setIdlisteobjet(listePropositions.get(0).getIdlisteobjet());
+		chargerValeur();
+		selectedValeur = new Valeur();
+
+		selectedValeur.setIdvaleur(valeurs.get(0).getIdvaleur());
+		chargerTrancheAge();
+		selectedTrancheAge = new TrancheAge();
+		selectedTrancheAge.setIdage(tranchesAges.get(0).getIdage());
+
 	}
 	
+	public void chargerValeur(){ 
+		valeurs = proxyAjouterObjet.rechercherValeur(); 
 	
+	} 
+	
+	public void chargerTrancheAge(){ 
+		tranchesAges = proxyAjouterObjet.rechercherTrancheAge(); 
+	}
+
+
+
 	public ConnexionBean getMbCnx() {
 		return mbCnx;
 	}
@@ -70,7 +96,22 @@ public class AjouterObjetBean {
 	public void setMbCnx(ConnexionBean mbCnx) {
 		this.mbCnx = mbCnx;
 	}
+	
+	public void chargerLesInfosTest(){
+		objetNouveau.setIntitule("pc portable toshiba");
+		objetNouveau.setDescription("fonctionne correctement");
+		selectedValeur = valeurs.get(8);
+		selectedCategorie = categories.get(0);
+		selectedSousCategorie = sousCategories.get(0);
+		selectedDomaine = domaines.get(0);
+		selectedListeProposition = listePropositions.get(0);
+	}
 
+	private List<Valeur> chargerValeur() {
+		valeurs = proxyDaoValeur.getAllValeur();
+		return valeurs;
+		
+	}
 
 	public void chargerCategories() {
 		categories = proxyAjouterObjet.rechercherCategorieParDomaine(selectedDomaine);
@@ -78,16 +119,16 @@ public class AjouterObjetBean {
 		selectedCategorie.setIdcategorie(categories.get(0).getIdcategorie());
 		sousCategories = proxyAjouterObjet.rechercherSousCategorieParCategorie(selectedCategorie);
 	}
-	
+
 	public void chargerSousCategorie() {
 		sousCategories = proxyAjouterObjet.rechercherSousCategorieParCategorie(selectedCategorie);
 	}
-	
+
 	public void chargerListeProposition(){
 		listePropositions = proxyAjouterObjet.rechercherListeProposition(participant);
 		System.out.println(listePropositions);
 	}
-	
+
 	public ListeProposition ajouterUneListe(){
 		nouvelleListeProposition.setParticipant(participant);
 		nouvelleListeProposition.setActif(true);
@@ -98,7 +139,7 @@ public class AjouterObjetBean {
 	//a ajouter
 	public String ajouterObjet(){
 		String nav = "/MesObjets.xhtml?faces-redirect=true";
-		valeur = new Valeur(10);
+		valeur = new Valeur();
 		valeur = proxyDaoValeur.ajouterValeur(valeur);
 		objetNouveau.setActif(true);
 		objetNouveau.setCategorie(selectedCategorie);
@@ -107,7 +148,7 @@ public class AjouterObjetBean {
 		objetNouveau.setListeProposition(selectedListeProposition);
 		objetNouveau.setSouscategorie(selectedSousCategorie);
 		objetNouveau.setTrancheAge(null);
-		objetNouveau.setValeur(valeur);
+		objetNouveau.setValeur(selectedValeur);
 		proxyAjouterObjet.ajouterObjet(objetNouveau,participant);
 		return nav;
 	}
@@ -167,7 +208,7 @@ public class AjouterObjetBean {
 	public void setSelectedDomaine(Domaine selectedDomaine) {
 		System.out.println(selectedDomaine);
 		System.out.println(selectedDomaine.getIddomaine());
-		
+
 		this.selectedDomaine = selectedDomaine;
 	}
 
@@ -275,18 +316,39 @@ public class AjouterObjetBean {
 		this.objetNouveau = objetNouveau;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public Valeur getSelectedValeur() {
+		return selectedValeur;
+	}
+
+	public void setSelectedValeur(Valeur selectedValeur) {
+		this.selectedValeur = selectedValeur;
+	}
+
+
+	public List<Valeur> getValeurs() {
+		return valeurs;
+	}
+
+	public void setValeurs(List<Valeur> valeurs) {
+		this.valeurs = valeurs;
+	}
+
+	public TrancheAge getSelectedTrancheAge() {
+		return selectedTrancheAge;
+	}
+
+	public void setSelectedTrancheAge(TrancheAge selectedTrancheAge) {
+		this.selectedTrancheAge = selectedTrancheAge;
+	}
+
+	public List<TrancheAge> getTranchesAges() {
+		return tranchesAges;
+	}
+
+	public void setTranchesAges(List<TrancheAge> tranchesAges) {
+		this.tranchesAges = tranchesAges;
+	}
+
+
 }

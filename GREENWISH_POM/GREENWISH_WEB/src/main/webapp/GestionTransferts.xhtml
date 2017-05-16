@@ -20,20 +20,23 @@
 					class="container background-white bottom-border padding-top-10 padding-left-0 padding-right-0">
 					<div class="row ">
 						<div class="col-md-4 margin-bottom-20">
-							<h1>Mes transferts</h1>
+							<h1>Gestion des transferts</h1>
 						</div>
 						<h:form id="TrierParRdvForm">
 							<div class="col-md-7 padding-vert-10 customAlign">
 								<span class="">Sélectionner les Rendez-vous pris entre le</span>
-								<span><input type="date" name="debutRendezVous" class="borderRadius"/></span> <span>et
-									le</span> <span><input type="date" name="finRendezVous" class="borderRadius" /></span>
+								<span><input type="date" name="debutRendezVous"
+									class="borderRadius" /></span> <span>et le</span> <span><input
+									type="date" name="finRendezVous" class="borderRadius" /></span>
 							</div>
 						</h:form>
 						<h:form id="TrierEchange">
 							<div id="pannelBouton" class="col-md-12 pull-right">
 								<ol class="breadcrumb col-lg-3 background-white">
-									<li><a href="#">Mon Compte</a></li>
-									<li class="active">Mes transferts</li>
+									<li><h:commandLink
+											action="#{mbAccueilAdmin.redirectAccueilAdmin()}"
+											value="Accueil administrateur" /></li>
+									<li class="active">Gestion des transferts</li>
 								</ol>
 
 								<div class="col-lg-4 text-center">
@@ -98,8 +101,8 @@
 
 
 							<div id="label" class="panel-body">
-							
-								
+
+
 								<h3>Objet</h3>
 								<h3>Intitulé Objet</h3>
 								<h3>Rendez-vous proposé</h3>
@@ -112,19 +115,21 @@
 						<!-- fin panel label-->
 						<h:panelGroup id="toto">
 							<ui:repeat var="unEchange"
-								value="#{mbAfficherTransfert.paginator.model}">
+								value="#{mbAfficherTransfert.tousEchanges}">
 								<h:form id="afficherUnEchangeForm">
-									<h:commandLink action="#{mbFicheTransfert.recupEchange(unEchange)}">
+									<h:commandLink
+										action="#{mbFicheTransfert.recupEchange(unEchange)}">
 										<div id="afficherUnEchange" class="containerBar">
 											<div class="well background-white divBorderComposition">
 												<h:graphicImage width="150" height="130"
 													value="#{mbAfficherTransfert.proxyDaoAfficherImage.getFirstImageByIdObjet(unEchange.objet.idobjet).image}"
 													alt="thumb1" class="ImgDimensions" />
-												
+
 
 											</div>
 											<div class="well background-white divBorderComposition">#{unEchange.objet.intitule}</div>
-											<div class="well background-white divBorderComposition centrerElementVertical">
+											<div
+												class="well background-white divBorderComposition centrerElementVertical">
 
 												<div class="progress progress1 centrerElementVertical">
 													<div class="one T1 success-color"></div>
@@ -144,7 +149,7 @@
 									</h:commandLink>
 								</h:form>
 							</ui:repeat>
-           </h:panelGroup>
+						</h:panelGroup>
 
 						<div class="text-center margin-bottom-20">
 							<h:commandButton action="#{mbAfficherTransfert.paginator.prev}"

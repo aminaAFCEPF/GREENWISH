@@ -5,6 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="foot">
+		<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                                   
+                });
+            });
+        </script>
+
+	</ui:define>
 	<ui:define name="content">
 		<h:form>
 			<body>
@@ -19,10 +29,10 @@
 							<ol class="breadcrumb background-white">
 								<li class="breadcrumb-item"><h:commandLink
 										action="#{mbFicheObjet.redirectionReinitia('Catalogue.xhtml')}"
-										value="Catalogue" /></li>
+										value="Mon Compte" /></li>
 								<li class="breadcrumb-item"><h:commandLink
 										action="#{mbFicheObjet.redirectionReinitia('FicheObjet.xhtml')}"
-										value="Fiche Objet" /></li>
+										value="Mes transferts" /></li>
 								<li class="breadcrumb-item active">Fiche Transfert</li>
 							</ol>
 						</div>
@@ -33,190 +43,316 @@
 							<div
 								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
 								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Un Rendez-vous avec
-										#{mbFicheTransfert.participantReceveur.nom} vous est proposé
-										le #{mbFicheTransfert.displayDate}</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
-									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
-								</div>
-							</div>
-							<div
-								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
-								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Rendez-vous avec
-										#{mbFicheTransfert.participantDonneur.nom} le
-										#{mbFicheTransfert.displayDate}</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
-									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
-								</div>
-							</div>
-							<div
-								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
-								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Votre rendez-vous est passé. Envoyez le code transmis
-										lors de l'échange pour le terminer</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
-									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
-								</div>
-							</div>
-
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
-								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 12%"></div>
-							</div>
-
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
-								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 30%"></div>
-							</div>
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
-								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 60%"></div>
-							</div>
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
-								style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 100%"></div>
-							</div>
-						</div>
-						<div
-							class="row margin-bottom-40 padding-top-40 centrerElementVertical"
-							style="display:#{(mbFicheTransfert.codeBon)?'none':'block'}">
-							<div class="centrerElementHorizontal text-center">
-								<h3>Code erroné. Veuillez essayer de nouveau.</h3>
-							</div>
-						</div>
-						<div
-							class="row margin-bottom-40 padding-top-40 centrerElementVertical">
-							<div class="centrerElementHorizontal text-center"
-								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-								<h3>Un rendez-vous vous est proposé le
-									#{mbFicheTransfert.displayDate}.</h3>
-								<h:commandButton action="#{mbFicheTransfert.accepterRdv()}"
-									value="Accepter" class="btn btn-primary borderRadius" />
-								<h:commandButton action="#{mbFicheTransfert.modifierRdv()}"
-									value="Modifier Rdv" class="btn btn-primary borderRadius" />
-							</div>
-							<div class="centrerElementHorizontal text-center"
-								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
-								<h3>L'échange est bientôt terminé! Rentrez le code pour le
-									finaliser.</h3>
-								<h:inputText value="#{mbFicheTransfert.code}"
-									class="form-control outwidth margin-bottom-20" type="text" />
-								<h:commandButton action="#{mbFicheTransfert.finaliserEchange()}"
-									value="Accepter" class="btn btn-primary borderRadius" />
-							</div>
-							<div class="centrerElementHorizontal text-center"
-								style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
-								<h3>Merci d'avoir troqué sur notre site! N'hésitez pas à
-									laisser un avis sur #{mbFicheTransfert.participantReceveur.nom}
-									#{mbFicheTransfert.participantReceveur.prenom}</h3>
-								<h:commandButton action="#{mbFicheTransfert.laisserUnAvis()}"
-									value="Laisser un avis" class="btn btn-primary borderRadius" />
-							</div>
-						</div>
-						<div class="background-white borderperso"
-							style="display:#{(mbFicheTransfert.modifierRdv)?'block':'none'}">
-							<div
-								class="row margin-vert-10 centrerElementHorizontal
-								 padding-top-10 padding-bottom-10 padding-horiz-20 ">
-								<div class="col-md-8">
-									<div>
-										<label>Nouveau Message : </label>
-										<h:inputTextarea styleClass="form-control"
-											value="#{mbFicheTransfert.message}" rows="8" />
-									</div>
-								</div>
-								<div class="col-md-4">
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
 									<div
-										class="borderperso background-white centrerElementHorizontal">
-										<h3>Disponibilités</h3>
-
-									</div>
-									<table id="tableDispos"
-										class="table table-hover table-responsive">
-										<thead>
-											<tr>
-												<th>Jour</th>
-												<th>heure</th>
-											</tr>
-										</thead>
-										<tbody>
-											<h:outputText value="#{mbFicheObjet.ajoutLigneTabHTML(mbFicheTransfert.participantReceveur)}"
-												escape="html" />
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div
-								class="row margin-vert-10 centrerElementHorizontal
-								 padding-top-10 padding-horiz-20 ">
-								<div class="col-md-2">
-									<label class="col-md-offset-1">Lieu de rendez-vous</label>
-								</div>
-								<div class="">
-									<h:selectOneMenu id="participant"
-										value="#{mbFicheTransfert.selectedIdParticipant}"
-										class="form-control margin-bottom-20 fa-plus"
-										style="width:90%">
-										<f:selectItems value="#{mbFicheObjet.participants}"
-											var="participant" itemLabel="#{participant.adresse}"
-											itemValue="#{participant.idparticipant}" />
-									</h:selectOneMenu>
-								</div>
-								<div class="col-md-2">
-									<label class="col-md-offset-1">Date du rendez-vous</label>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<div class="input-group date background-white"
-											style="opacity: 1;" id="datetimepicker2">
-											<h:inputText class="form-control"
-												value="#{mbFicheTransfert.dateDuRdvString}" />
-											<span class="input-group-addon"> <span
-												class="glyphicon glyphicon-calendar"></span>
-											</span>
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}"
+										class="centrerElementVertical">
+										<div class="col-md-10 centrerElementHorizontal">
+											<h1>Un Rendez-vous avec
+												#{mbFicheTransfert.participantReceveur.nom} vous est proposé
+												le #{mbFicheTransfert.displayDate}</h1>
+										</div>
+										<div
+											class="col-md-2 centrerElementHorizontal centrerElementVertical"
+											style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+											<h:commandButton
+												action="#{mbFicheTransfert.AnnulerEchange()}"
+												value="Annuler l'échange"
+												class=" btn btn-primary borderRadius" />
 										</div>
 									</div>
 								</div>
-								<div class="col-md-2">
-									<h:commandButton
-										class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
-										value="Envoyer" action="#{mbFicheTransfert.modifierDateRdv()}" />
+							</div>
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+										<div class="col-md-10 centrerElementHorizontal">
+											<h1>Rendez-vous avec
+												#{mbFicheTransfert.participantDonneur.nom} le
+												#{mbFicheTransfert.displayDate}</h1>
+										</div>
+										<div
+											class="col-md-2 centrerElementHorizontal centrerElementVertical"
+											style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+											<h:commandButton
+												action="#{mbFicheTransfert.AnnulerEchange()}"
+												value="Annuler l'échange"
+												class=" btn btn-primary borderRadius" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
+								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+										<div class="col-md-10 centrerElementHorizontal">
+											<h1>Votre rendez-vous est passé. Envoyez le code
+												transmis lors de l'échange pour le terminer</h1>
+										</div>
+										<div class="col-md-2 centrerElementHorizontal"
+											style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+											<h:commandButton
+												action="#{mbFicheTransfert.AnnulerEchange()}"
+												value="Annuler l'échange"
+												class=" btn btn-primary borderRadius" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
+								style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}">
+								<div class="centrerElementHorizontal">
+									<h1>Le rendez-vous a été annulé</h1>
+								</div>
+							</div>
+							<div class=" margin-top-40 margin-bottom-40"
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  no-color2"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 18%; height: 20px;"></div>
+									</div>
+								</div>
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  no-color2"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 18%; height: 20px;"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="margin-top-40 margin-bottom-40"
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  success-color"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 40%; height: 20px;"></div>
+									</div>
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  annule-color"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 40%; height: 20px;"></div>
+									</div>
+								</div>
+							</div>
+							<div class="margin-top-40 margin-bottom-40 "
+								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  success-color"></div>
+										<div class="three B3 success-color"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 60%; height: 20px;"></div>
+									</div>
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  annule-color"></div>
+										<div class="three B3 annule-color"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 60%; height: 20px;"></div>
+									</div>
+								</div>
+							</div>
+							<div class="margin-top-40 margin-bottom-40 progress "
+								style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
+								<div class="one B1  success-color"></div>
+								<div class="two B2  success-color"></div>
+								<div class="three B3 success-color"></div>
+								<div class="four B4 success-color"></div>
+								<div class="progress-bar progress-bar-success"
+									style="width: 100%; height: 20px;"></div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.modifierRdv)?'block':'none'}"
+								class="borderperso">
+								<div
+									class="row margin-vert-10 centrerElementHorizontal
+									 padding-top-10 padding-bottom-10 padding-horiz-20 ">
+									<div class="col-md-8">
+										<div>
+											<label>Nouveau Message : </label>
+											<h:inputTextarea styleClass="form-control"
+												value="#{mbFicheTransfert.message}" rows="8" />
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div
+											class="borderperso background-white centrerElementHorizontal">
+											<h3>Disponibilités</h3>
+
+										</div>
+										<table id="tableDispos"
+											class="table table-hover table-responsive">
+											<thead>
+												<tr>
+													<th>Jour</th>
+													<th>heure</th>
+												</tr>
+											</thead>
+											<tbody>
+												<h:outputText
+													value="#{mbFicheObjet.ajoutLigneTabHTML(mbFicheTransfert.participantReceveur)}"
+													escape="html" />
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div
+									class="row margin-vert-10 centrerElementHorizontal
+									 padding-top-10 padding-horiz-20 ">
+									<div class="col-md-2">
+										<label class="col-md-offset-1">Lieu de rendez-vous</label>
+									</div>
+									<div class="">
+										<h:selectOneMenu id="participant"
+											value="#{mbFicheTransfert.selectedIdParticipant}"
+											class="form-control margin-bottom-20 fa-plus"
+											style="width:90%">
+											<f:selectItems value="#{mbFicheObjet.participants}"
+												var="participant" itemLabel="#{participant.adresse}"
+												itemValue="#{participant.idparticipant}" />
+										</h:selectOneMenu>
+									</div>
+									<div class="col-md-2">
+										<label class="col-md-offset-1">Date du rendez-vous</label>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="input-group date background-white"
+												style="opacity: 1;" id="datetimepicker2">
+												<h:inputText class="form-control"
+													value="#{mbFicheTransfert.dateDuRdvString}" />
+												<span class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<h:commandButton
+											class=" col-md-offset-10 btn btn-primary margin-bottom-20 pull-right borderRadius"
+											value="Envoyer"
+											action="#{mbFicheTransfert.modifierDateRdv()}" />
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+									class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+									<div class="centrerElementHorizontal centrerElementVertical">
+										<h3>Un rendez-vous vous est proposé le
+											#{mbFicheTransfert.displayDate}.</h3>
+										<h:commandButton action="#{mbFicheTransfert.accepterRdv()}"
+											value="Accepter"
+											class="btn btn-primary borderRadius margin-horiz-10" />
+										<h:commandButton action="#{mbFicheTransfert.modifierRdv()}"
+											value="Modifier RDV"
+											class="btn btn-primary borderRadius margin-horiz-10" />
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+										<div class="centrerElementHorizontal text-center">
+											<h3>Vous avez accepté le Rdv !</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
+										<div class=" row margin-bottom-40 padding-top-40 ">
+											<div class="col-md-6 centrerElementVertical">
+												<h3>L'échange est bientôt terminé! Rentrez le code pour
+													le finaliser</h3>
+											</div>
+											<div
+												class="col-md-3 centrerElementHorizontal centrerElementVertical">
+												<h:inputText value="#{mbFicheTransfert.codeRecup}"
+													class="form-control outwidth margin-bottom-20 margin-horiz-10"
+													type="text" />
+											</div>
+											<div
+												class="col-md-3 centrerElementHorizontal centrerElementVertical">
+												<h:commandButton
+													action="#{mbFicheTransfert.finaliserEchange()}"
+													value="OK"
+													class="btn btn-primary borderRadius margin-horiz-10" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
+								<div
+									class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+									<div class="col-md-9  centrerElementHorizontal">
+										<h3>Merci d'avoir troqué sur notre site ! N'hésitez pas à
+											laisser un avis sur
+											#{mbFicheTransfert.participantReceveur.prenom}
+											#{mbFicheTransfert.participantReceveur.nom}</h3>
+									</div>
+									<div class="col-md-3">
+										<h:commandButton action="#{mbFicheTransfert.laisserUnAvis()}"
+											value="Laisser un avis"
+											class="btn btn-primary borderRadius margin-horiz-10" />
+									</div>
 								</div>
 							</div>
 						</div>
@@ -275,7 +411,8 @@
 												<div class="col-md-8 padding-horiz-10 padding-vert-10 ">
 													<div class="row centrerElementHorizontal padding-vert-20 ">
 														<h3>
-															Proposé par <a href="#">#{mbFicheTransfert.participantReceveur.nom}</a>
+															<a href="#">#{mbFicheTransfert.participantReceveur.nom}
+																#{mbFicheTransfert.participantReceveur.prenom}</a>
 														</h3>
 														<br />
 													</div>
@@ -286,11 +423,7 @@
 																class="fa fa-star checked"></span> <span
 																class="fa fa-star"></span> <span class="fa fa-star"></span>
 														</div>
-														<span class="review-no">
-															Avis</span>
-													</div>
-													<div class="centrerElementHorizontal">
-														<span>Distance : 3 km</span>
+														<span class="review-no">#{mbFicheTransfert.participantReceveur.avis.size()} Avis</span>
 													</div>
 													<div class="centrerElementHorizontal padding-vert-20">
 														<button
@@ -324,7 +457,7 @@
 										<div>
 											<label>Nouveau Message : </label>
 											<h:inputTextarea styleClass="form-control"
-												value="#{mbFicheTransfert.message}" rows="3" />
+												value="#{mbFicheTransfert.message3}" rows="3" />
 											<h:commandButton
 												action="#{mbFicheTransfert.envoyerMessage()}"
 												value="Envoyer"
@@ -340,109 +473,221 @@
 							<div
 								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
 								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Rendez-vous avec
-										#{mbFicheTransfert.participantDonneur.nom} proposé le
-										#{mbFicheTransfert.displayDate}</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
+								<div
 									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+										<div class="col-md-10 centrerElementHorizontal">
+											<h1>Rendez-vous avec
+												#{mbFicheTransfert.participantDonneur.nom} proposé le
+												#{mbFicheTransfert.displayDate}</h1>
+										</div>
+										<div class="col-md-2 centrerElementHorizontal"
+											style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+											<h:commandButton
+												action="#{mbFicheTransfert.AnnulerEchange()}"
+												value="Annuler l'échange"
+												class=" btn btn-primary borderRadius" />
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
 								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
 								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Rendez-vous avec
-										#{mbFicheTransfert.participantDonneur.nom} le
-										#{mbFicheTransfert.displayDate}</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
-									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+										<div class="col-md-10 centrerElementHorizontal">
+											<h1>Rendez-vous avec
+												#{mbFicheTransfert.participantDonneur.nom} le
+												#{mbFicheTransfert.displayDate}</h1>
+										</div>
+										<div class="col-md-2 centrerElementHorizontal"
+											style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
+											<h:commandButton
+												action="#{mbFicheTransfert.AnnulerEchange()}"
+												value="Annuler l'échange"
+												class=" btn btn-primary borderRadius" />
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
 								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
 								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
-								<div class="col-md-10 centrerElementHorizontal">
-									<h1>Votre rendez-vous est passé. Merci d'avoir troqué sur
-										notre site !</h1>
-								</div>
-								<div class="col-md-2 centrerElementHorizontal"
-									style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}">
-									<h:commandButton action="#{mbFicheTransfert.AnnulerEchange()}"
-										value="Annuler l'échange"
-										class=" btn btn-primary borderRadius" />
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+										<div class="centrerElementHorizontal">
+											<h1>Votre rendez-vous est passé. Merci d'avoir troqué
+												sur notre site !</h1>
+										</div>
+									</div>
 								</div>
 							</div>
-
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
+								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+										<div class="centrerElementHorizontal">
+											<h1>Votre rendez-vous est passé et terminé. Merci d'avoir troqué
+												sur notre site !</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="padding-bottom-20 margin-top-20 row centrerElementVertical "
+								style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}">
+								<div class="centrerElementHorizontal">
+									<h1>Le rendez-vous a été annulé</h1>
+								</div>
+							</div>
+							<div class="margin-top-40 margin-bottom-40 "
 								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 12%"></div>
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  no-color2"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 18%; height: 20px;"></div>
+									</div>
+								</div>
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvPasse)?'none':'block'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  no-color2"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 18%; height: 20px;"></div>
+									</div>
+								</div>
 							</div>
 
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
+							<div class="margin-top-40 margin-bottom-40 "
 								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 30%"></div>
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  success-color"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 40%; height: 20px;"></div>
+									</div>
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  annule-color"></div>
+										<div class="three B3 no-color2"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 40%; height: 20px;"></div>
+									</div>
+								</div>
 							</div>
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
+							<div class="margin-top-40 margin-bottom-40 "
 								style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
-								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
-								<div class="progress-bar progress-bar-success"
-									style="width: 60%"></div>
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="progress">
+										<div class="one B1  success-color"></div>
+										<div class="two B2  success-color"></div>
+										<div class="three B3 success-color"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-success"
+											style="width: 60%; height: 20px;"></div>
+									</div>
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'block':'none'}"
+										class="progress">
+										<div class="one B1  annule-color"></div>
+										<div class="two B2  annule-color"></div>
+										<div class="three B3 annule-color"></div>
+										<div class="four B4 no-color2"></div>
+										<div class="progress-bar progress-bar-annule"
+											style="width: 60%; height: 20px;"></div>
+									</div>
+								</div>
 							</div>
-							<div class="margin-top-40 margin-bottom-40 progress progress2"
+							<div class="margin-top-40 margin-bottom-40 progress"
 								style="display:#{(mbFicheTransfert.echangeTermine)?'block':'none'}">
 								<div class="one B1  success-color"></div>
-								<div class="two B2  no-color"></div>
-								<div class="three B3 no-color"></div>
-								<div class="four B4 no-color"></div>
+								<div class="two B2  success-color"></div>
+								<div class="three B3 success-color"></div>
+								<div class="four B4 success-color"></div>
 								<div class="progress-bar progress-bar-success"
-									style="width: 100%"></div>
+									style="width: 100%; height: 20px;"></div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
+								<div
+									style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+									class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+									<div class="centrerElementHorizontal text-center">
+										<h3>En attente de la réponse de
+											#{mbFicheTransfert.participantDonneur.nom}</h3>
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">
+								<div
+									style="display:#{(mbFicheTransfert.echangeTermine)?'none':'block'}">
+									<div
+										style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}"
+										class="row margin-bottom-40 padding-top-40 centrerElementVertical">
+										<div class="centrerElementHorizontal text-center">
+
+											<h3>
+												Votre demande de rendez-vous a été acceptée ! Le code a
+												donner est : <b>#{mbFicheTransfert.code}</b>
+											</h3>
+											<h:commandButton class="margin-horiz-20" action="#{mbFicheTransfert.modifierRdv2()}" value="OK" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								style="display:#{(mbFicheTransfert.rdvAnnule)?'none':'block'}">
+								<div
+									class="row margin-bottom-40 padding-top-40 centrerElementVertical"
+									style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">
+									<div class="centrerElementHorizontal text-center">
+										<h3>L'échange est bientôt terminé! N'hésitez pas à
+											laisser un avis sur
+											#{mbFicheTransfert.participantDonneur.nom}
+											#{mbFicheTransfert.participantDonneur.prenom}</h3>
+										<h:commandButton action="#{mbFicheTransfert.laisserUnAvis()}"
+											value="Laisser un avis"
+											class="btn btn-primary borderRadius margin-horiz-20" />
+									</div>
+								</div>
 							</div>
 						</div>
-						<div
-							class="row margin-bottom-40 padding-top-40 centrerElementVertical" style="display:#{(mbFicheTransfert.rdvAccepte)?'none':'block'}">
-							<div class="centrerElementHorizontal text-center">
-								<h3>En attente de la réponse de
-									#{mbFicheTransfert.participantDonneur.nom}</h3>
-							</div>
-						</div>	
-						<div
-							class="row margin-bottom-40 padding-top-40 centrerElementVertical" style="display:#{(mbFicheTransfert.rdvAccepte)?'block':'none'}">	
-							<div class="centrerElementHorizontal text-center">
-								<h3>Votre demande de rendez-vous a été acceptée !</h3>
-							</div>
-						</div>
-						<div
-							class="row margin-bottom-40 padding-top-40 centrerElementVertical" style="display:#{(mbFicheTransfert.rdvPasse)?'block':'none'}">	
-							<div class="centrerElementHorizontal text-center">
-								<h3>L'échange est bientôt terminé! N'hésitez pas à laisser
-									un avis sur #{mbFicheTransfert.participantDonneur.nom}
-									#{mbFicheTransfert.participantDonneur.prenom}</h3>
-								<h:commandButton action="#{mbFicheTransfert.laisserUnAvis()}"
-									value="Laisser un avis" class="btn btn-primary borderRadius" />
-							</div>
-						</div>
+
+
 						<div>
 							<div class="container background-gray-lighter ">
 								<div class="row margin-bottom-10 margin-top-10">
@@ -498,7 +743,8 @@
 												<div class="col-md-8 padding-horiz-10 padding-vert-10 ">
 													<div class="row centrerElementHorizontal padding-vert-20 ">
 														<h3>
-															Proposé par <a href="#">#{mbFicheTransfert.participantDonneur.nom}</a>
+															<a href="#">#{mbFicheTransfert.participantDonneur.nom}
+																#{mbFicheTransfert.participantDonneur.prenom}</a>
 														</h3>
 														<br />
 													</div>
@@ -509,11 +755,7 @@
 																class="fa fa-star checked"></span> <span
 																class="fa fa-star"></span> <span class="fa fa-star"></span>
 														</div>
-														<span class="review-no">
-															Avis</span>
-													</div>
-													<div class="centrerElementHorizontal">
-														<span>Distance : 3 km</span>
+														<span class="review-no">#{mbFicheTransfert.participantDonneur.avis.size()} Avis</span>
 													</div>
 													<div class="centrerElementHorizontal padding-vert-20">
 														<button
