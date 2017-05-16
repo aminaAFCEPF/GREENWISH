@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
+
+<ui:composition template="/WEB-INF/arche.xhtml">
+	<ui:define name="content">
+		<body>
+			<!-- === BEGIN CONTENT === -->
+			<div id="content">
+				<div
+					class="container background-white bottom-border  padding-top-10 padding-left-0 padding-right-0">
+					<div class="row">
+						<h1>Gestion des objets</h1>
+					</div>
+					<div class="row">
+						<h:form>
+							<div id="searchFiltre" class="col-lg-4">
+								<ol class="breadcrumb background-white ">
+									<li><h:commandLink
+											action="#{mbAccueilAdmin.redirectAccueilAdmin()}"
+											value="Accueil administrateur" /></li>
+									<li class="active">Gestion des objets</li>
+								</ol>
+							</div>
+						</h:form>
+						<div class="col-lg-3 text-center">
+							<select id="filtre" class="borderRadius" style="padding: 5px">
+								<option>Trier par</option>
+								<option>Date d'ajout</option>
+								<option>Valeur</option>
+								<option>Domaine</option>
+								<option>Catégorie</option>
+								<option>Sous-catégorie</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="container background-gray-lighter">
+					<div class="row margin-vert-30">
+						<div class="col-md-12">
+							<ui:repeat var="lObjet" value="#{mbMesObjet.tousObjets}">
+								<div
+									class="row background-white padding-top-10 padding-bottom-10 borderperso margin-bottom-10">
+									<div class="col-sm-2">
+										<h:graphicImage
+											value="#{mbMesObjet.afficherImage(lObjet).image}"
+											class="text-center" />
+									</div>
+									<div class="col-sm-10 vertical">
+										<div class="row ">
+											<div class="col-sm-4">
+												<h3>
+													<b>#{lObjet.intitule}</b>
+												</h3>
+											</div>
+											<div class="col-sm-4">
+												<h5>Liste : #{lObjet.listeProposition.nom}</h5>
+											</div>
+											<div class="col-sm-4">
+												<h5>Ajouté le
+													#{mbMesObjet.formatDate(lObjet.dateajout)}</h5>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-8">
+												<h4>Classification :</h4>
+												<ol class="breadcrumb">
+													<li>#{lObjet.domaine.domaine}</li>
+													<li>#{lObjet.categorie.intitule}</li>
+													<li>#{lObjet.souscategorie.intitule}</li>
+												</ol>
+											</div>
+											<div class="col-sm-4">
+												<h5>
+													Valeur : #{lObjet.valeur.valeur}<img class="idflocon"
+														src="resources/img/blog/flocon.jpg" alt="thumb1" />
+												</h5>
+											</div>
+										</div>
+										<h:form class="row">
+											<div class="col-md-10">Description objet :
+												#{lObjet.description}</div>
+											<h:commandButton action="#{mbMesObjet.removeObjet(lObjet)}"
+												value="Supprimer" class="btn btn-primary borderRadius" />
+										</h:form>
+									</div>
+								</div>
+							</ui:repeat>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

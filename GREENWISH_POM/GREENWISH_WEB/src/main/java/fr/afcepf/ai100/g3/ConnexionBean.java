@@ -67,6 +67,16 @@ public class ConnexionBean {
 		}
 	}
 
+	public int chargerSolde(){
+		if(participant != null){
+			return participant.getSolde();
+		}
+		else{
+			return 0;
+		}
+		
+	}
+	
 	public IBusinessIdentification getProxyIdentification() {
 		return proxyIdentification;
 	}

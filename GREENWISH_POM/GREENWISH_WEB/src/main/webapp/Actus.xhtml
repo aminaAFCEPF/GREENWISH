@@ -9,19 +9,21 @@
 			<!-- === BEGIN CONTENT === -->
 			<div id="content">
 				<div class="container background-white bottom-border">
-					<h1 class="titlePosition">Publiez vos actualités</h1>
-					<ul class="breadcrumb background-white">
-						<li><a href="Accueil.xhtml">Accueil</a></li>
-						<li><a href="AccueilAdmin.xhtml">Mon compte</a></li>
-						<li class="active">Actualités</li>
-					</ul>
+					<h:form>
+						<h1 class="titlePosition">Publiez vos actualités</h1>
+						<ul class="breadcrumb background-white">
+							<li><h:commandLink
+									action="#{mbAccueilAdmin.redirectAccueilAdmin()}"
+									value="Accueil administrateur" /></li>
+							<li class="active">Actualités</li>
+						</ul>
+					</h:form>
 				</div>
 				<div class="container background-gray-lighter">
 					<div class="row">
 						<!-- Register Box -->
 						<div class="col-lg-12 col-md-10 col-sm-8">
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition">
+							<h:form class="signup-page margin-vert-10 divBorderComposition">
 								<div class="signup-header row">
 									<div class="col-md-6">
 										<div class="padding-vert-10">
@@ -46,37 +48,37 @@
 									</div>
 								</div>
 							</h:form>
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition ">
+							<h:form class="signup-page margin-vert-10 divBorderComposition ">
 								<img src="resources/img/slideshow/AG.png"
 									alt="assemblee_generale" width="1080" height="422" />
 								<div class="PosElementsActus padding-top-10">
 									<div class="checkbox mr-10">
 										<label><input type="checkbox" checked="checked" />Publier</label>
 									</div>
-									<button class="btn btn-primary borderRadius margin-left-5" type="submit">Modifier</button>
+									<button class="btn btn-primary borderRadius margin-left-5"
+										type="submit">Modifier</button>
 								</div>
 							</h:form>
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition ">
+							<h:form class="signup-page margin-vert-10 divBorderComposition ">
 								<img src="resources/img/slideshow/statutUtilitePublique.png"
 									alt="utilite_publique" width="1080" height="422" />
 								<div class="PosElementsActus padding-top-10">
 									<div class="checkbox mr-10">
 										<label><input type="checkbox" checked="checked" />Publier</label>
 									</div>
-									<button class="btn btn-primary borderRadius margin-left-5" type="submit">Modifier</button>
+									<button class="btn btn-primary borderRadius margin-left-5"
+										type="submit">Modifier</button>
 								</div>
 							</h:form>
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition  ">
+							<h:form class="signup-page margin-vert-10 divBorderComposition  ">
 								<img src="resources/img/slideshow/voyageCrete.png"
 									alt="voyage_crete" width="1080" height="422" />
 								<div class="PosElementsActus padding-top-10">
 									<div class="checkbox mr-10">
 										<label><input type="checkbox" checked="checked" />Publier</label>
 									</div>
-									<button class="btn btn-primary borderRadius margin-left-5" type="submit">Modifier</button>
+									<button class="btn btn-primary borderRadius margin-left-5"
+										type="submit">Modifier</button>
 								</div>
 							</h:form>
 						</div>

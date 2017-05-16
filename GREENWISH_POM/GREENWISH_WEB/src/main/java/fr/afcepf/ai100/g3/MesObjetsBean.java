@@ -30,6 +30,7 @@ public class MesObjetsBean {
 	private ConnexionBean mbCnx;
 
 	private List<Objet> objets;
+	private List<Objet> tousObjets;
 	private RepeatPaginator paginator;
 
 	private String intitule;
@@ -45,6 +46,7 @@ public class MesObjetsBean {
 	@PostConstruct
 	public void init(){
 		this.objets = proxyBusinessMesObjets.AfficherObjetParIdParticipant(mbCnx.getParticipant().getIdparticipant());
+		this.setTousObjets(proxyBusinessMesObjets.AfficherTousObjets());
 	}
 	
 	public String formatDate(Date date){
@@ -182,6 +184,14 @@ public class MesObjetsBean {
 
 	public void setDateAjout(Date dateAjout) {
 		this.dateAjout = dateAjout;
+	}
+
+	public List<Objet> getTousObjets() {
+		return tousObjets;
+	}
+
+	public void setTousObjets(List<Objet> tousObjets) {
+		this.tousObjets = tousObjets;
 	}
 
 

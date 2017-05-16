@@ -4,6 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>
+
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -12,8 +16,6 @@
 				<div class="container background-white bottom-border">
 					<h1 class="titlePosition">Accueil administrateur</h1>
 					<ul class="breadcrumb background-white">
-						<li><a href="Accueil.xhtml">Accueil</a></li>
-						<li><a href="Connexion.xhtml">Connexion</a></li>
 						<li class="active">Accueil administrateur</li>
 					</ul>
 				</div>
@@ -21,8 +23,7 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="col-md-9">
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition ">
+							<h:form class="signup-page margin-vert-10 divBorderComposition ">
 								<h1>Bonjour Administrateur</h1>
 								<p>
 									Dernière connexion il y a 3 jours <br />Vous avez 5 messages
@@ -30,8 +31,7 @@
 									actualié date de 4 semaines
 								</p>
 							</h:form>
-							<h:form
-								class="signup-page margin-vert-10 divBorderComposition">
+							<h:form class="signup-page margin-top-10 divBorderComposition">
 								<div class="signup-header row">
 									<div class="col-md-6">
 										<div class="padding-vert-10">
@@ -73,9 +73,10 @@
 											<tr>
 												<th colspan="7" class="text-center"><span
 													class="btn-group"> <a class="btn"><i
-															class="glyphicon glyphicon-chevron-left"></i></a> 
-															<a class="btn active">Mai 2017</a> <a class="btn active">
-															<i class="glyphicon glyphicon-chevron-right"></i></a>
+															class="glyphicon glyphicon-chevron-left"></i></a> <a
+														class="btn active">Mai 2017</a> <a class="btn active">
+															<i class="glyphicon glyphicon-chevron-right"></i>
+													</a>
 												</span></th>
 											</tr>
 											<tr>
@@ -137,8 +138,8 @@
 										</tbody>
 									</table>
 									<div>
-									<h3 class="text-center margin-vert-10">Notes</h3>
-									<textarea rows="4" cols="29"></textarea>
+										<h3 class="text-center margin-vert-10">Notes</h3>
+										<textarea rows="4" cols="29"></textarea>
 									</div>
 								</div>
 							</div>
@@ -146,8 +147,7 @@
 						</div>
 						<!-- End Side Column -->
 					</div>
-					<h:form
-						class="signup-page margin-vert-10 divBorderComposition">
+					<h:form class="signup-page margin-bottom-10 divBorderComposition">
 						<h1 class="text-center">Publiez vos statistiques sur la page
 							d'accueil</h1>
 						<div class="row">
@@ -184,65 +184,80 @@
 									class="btn btn-primary btn-lg borderRadius">Publier</button>
 							</div>
 						</div>
-
 					</h:form>
-					<h:form
-						class="signup-page margin-vert-10 divBorderComposition">
+					<h:form class="signup-page margin-vert-10 divBorderComposition">
 						<div class="row">
 							<div class="padding-vert-30">
 								<div class="col-md-12 portfolio-group no-padding">
 									<!-- Portfolio Item -->
 									<div class="col-md-4 portfolio-item margin-bottom-40 code">
 										<div>
-											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminAdh.png" alt="image1" /> <figcaption>
+											<h:commandLink
+												action="#{mbAccueilAdmin.redirectGestionAdh()}" value="">
+												<figure> <img
+													src="resources/img/IMGPageAdmin/PageAdminAdh.png"
+													alt="image1" /> <figcaption>
 												<h3 class="text-center">Adhérents</h3>
 												</figcaption> </figure>
-											</a>
+											</h:commandLink>
 										</div>
 									</div>
 									<!-- End Portfolio Item -->
 									<!-- Portfolio Item -->
 									<div class="col-md-4 portfolio-item margin-bottom-40 video">
 										<div>
-											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminEchanges.png" alt="image2" /> <figcaption>
+											<h:commandLink
+												action="#{mbAccueilAdmin.redirectGestionTransferts()}"
+												value="">
+												<figure> <img
+													src="resources/img/IMGPageAdmin/PageAdminEchanges.png"
+													alt="image2" /> <figcaption>
 												<h3 class="text-center">Transferts</h3>
 												</figcaption> </figure>
-											</a>
+											</h:commandLink>
 										</div>
 									</div>
 									<!-- End Portfolio Item -->
 									<!-- Portfolio Item -->
 									<div class="col-md-4 portfolio-item margin-bottom-40 code">
 										<div>
-											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminActus.png" alt="image3" /> <figcaption>
+											<h:commandLink
+												action="#{mbAccueilAdmin.redirectGestionActus()}" value="">
+												<figure> <img
+													src="resources/img/IMGPageAdmin/PageAdminActus.png"
+													alt="image3" /> <figcaption>
 												<h3 class="text-center">Actualités</h3>
 												</figcaption> </figure>
-											</a>
+											</h:commandLink>
 										</div>
 									</div>
 									<!-- End Portfolio Item -->
 									<!-- Portfolio Item -->
-									<div class="col-md-4 portfolio-item margin-bottom-40 video">
+									<div
+										class="col-md-4 portfolio-item margin-bottom-40 margin-left-30 video">
 										<div>
-											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminlitiges.png" alt="image4" /> <figcaption>
+											<h:commandLink
+												action="#{mbAccueilAdmin.redirectGestionLitiges()}" value="">
+												<figure> <img
+													src="resources/img/IMGPageAdmin/PageAdminlitiges.png"
+													alt="image4" /> <figcaption>
 												<h3 class="text-center">Litiges</h3>
 												</figcaption> </figure>
-											</a>
+											</h:commandLink>
 										</div>
 									</div>
 									<!-- End Portfolio Item -->
 									<!-- Portfolio Item -->
 									<div class="col-md-4 portfolio-item margin-bottom-40 audio">
 										<div>
-											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminObjets.png" alt="image5" /> <figcaption>
+											<h:commandLink
+												action="#{mbAccueilAdmin.redirectGestionObjets()}" value="">
+												<figure> <img
+													src="resources/img/IMGPageAdmin/PageAdminObjets.png"
+													alt="image5" /> <figcaption>
 												<h3 class="text-center">Objets</h3>
 												</figcaption> </figure>
-											</a>
+											</h:commandLink>
 										</div>
 									</div>
 									<!-- End Portfolio Item -->
@@ -250,7 +265,8 @@
 									<div class="col-md-4 portfolio-item margin-bottom-40 video">
 										<div>
 											<a href="#"> <figure> <img
-													src="resources/img/IMGPageAdmin/PageAdminStats.png" alt="image7" /> <figcaption>
+													src="resources/img/IMGPageAdmin/PageAdminStats.png"
+													alt="image7" /> <figcaption>
 												<h3 class="text-center">Statistiques</h3>
 												</figcaption> </figure>
 											</a>

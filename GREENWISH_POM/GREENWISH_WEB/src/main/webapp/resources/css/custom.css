@@ -135,6 +135,11 @@
     border-radius: 7px;
 }
 
+.searchBar {
+    width: 90.5%;
+    border-radius: 7px;
+}
+
 #searchSubmit {
     margin-left: 15px;
     border-radius: 7px;
@@ -528,6 +533,10 @@ h5 {
     background-color: #5cb85c;
 }
 
+.annule-color{
+	background-color: #c0c0c0;
+}
+
 .danger-color {
     background-color: #d9534f;
 }
@@ -553,7 +562,7 @@ h5 {
 }
 
 .progress2{
-    width: 1000px;
+    width: 1000px
 }
 
 
@@ -686,6 +695,10 @@ color: white;
 .margin-left-5{
     margin-left: 5px;
 }
+.margin-left-30
+{
+	margin-left: 30px;
+}
 
 .table-bordered {
     border: 1px solid #33747a;
@@ -751,3 +764,17 @@ color: white;
 	  width: 450px;
 	
 }
+
+.progress-bar-annule {
+  background-color: #c0c0c0;
+}
+
+.no-color2{
+	background-color: white;
+}
+
+.bootstrap-datetimepicker-widget{
+	background-color: white;
+}
+
+
