@@ -46,10 +46,6 @@ public class AjouterObjetBean {
 	private Valeur selectedValeur = new Valeur();
 	private boolean actif;
 	private Objet objetNouveau = new Objet();
-
-
-	private Valeur selectedValeur = new Valeur(); //+G/S
-	private List<Valeur> valeurs; //+G/S
 	private TrancheAge selectedTrancheAge = new TrancheAge(); //+G/S
 	private List<TrancheAge> tranchesAges; //+G/S
 
@@ -77,10 +73,10 @@ public class AjouterObjetBean {
 
 	}
 	
-	public void chargerValeur(){ 
-		valeurs = proxyAjouterObjet.rechercherValeur(); 
-	
-	} 
+//	public void chargerValeur(){ 
+//		valeurs = proxyAjouterObjet.rechercherValeur(); 
+//	
+//	}
 	
 	public void chargerTrancheAge(){ 
 		tranchesAges = proxyAjouterObjet.rechercherTrancheAge(); 
