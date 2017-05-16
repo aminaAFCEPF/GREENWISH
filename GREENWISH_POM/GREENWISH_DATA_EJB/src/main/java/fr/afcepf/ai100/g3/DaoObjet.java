@@ -43,7 +43,7 @@ public class DaoObjet implements IDaoObjet {
 
 	@Override
 	public List<Objet> getAllObjets() {
-		final String req = "Select o FROM Objet o inner join fetch o.valeur";
+		final String req = "Select o FROM Objet o inner join fetch o.valeur WHERE o.idobjet not in(SELECT e.objet.idobjet FROM Echange e)";
 		Query query = em.createQuery(req);
 		return query.getResultList();
 	}
@@ -151,14 +151,15 @@ public class DaoObjet implements IDaoObjet {
 	}
 
 	@Override
-	public List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur) {
-		String req = "SELECT o FROM Objet o WHERE o.domaine.domaine LIKE :pDomaine AND o.categorie.intitule LIKE :pCategorie AND o.souscategorie.intitule LIKE :pSousCategorie AND o.valeur.valeur <= :pValeur"; // AND o.intitule LIKE '%:pidObjetIntitule%'
+	public List<Objet> rechercherObjetByAlgo(String rDomaine, String rCategorie, String rSousCategorie, String rValeur,
+			String rIntitule) {
 		
-		Query query = em.createQuery(req).setParameter("pDomaine", rDomaine)
-										.setParameter("pCategorie", rCategorie)
-										.setParameter("pSousCategorie", rSousCategorie)
-										.setParameter("pValeur", Integer.parseInt(rValeur));
-		
+		String req = "SELECT o FROM Objet o WHERE o.domaine.domaine LIKE :pDomaine AND o.categorie.intitule LIKE :pCategorie AND o.souscategorie.intitule LIKE :pSousCategorie AND o.valeur.valeur <= :pValeur AND o.intitule LIKE :pidObjetIntitule AND o.idobjet not in(SELECT e.objet.idobjet FROM Echange e)";
+
+		Query query = em.createQuery(req).setParameter("pDomaine", rDomaine).setParameter("pCategorie", rCategorie)
+				.setParameter("pSousCategorie", rSousCategorie).setParameter("pValeur", Integer.parseInt(rValeur))
+				.setParameter("pidObjetIntitule", rIntitule);
+
 		System.out.println(query.toString());
 		System.out.println("coucou DAO");
 		return query.getResultList();

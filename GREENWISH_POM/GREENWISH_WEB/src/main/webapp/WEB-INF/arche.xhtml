@@ -103,7 +103,7 @@
 				</div>
 				<div id="searchDiv">
 					<h:form id="search" name="recherche" class="input-group">
-						<input type="text" id="searchBar" placeholder="Rechercher..." />
+						<h:inputText type="text" id="searchBar" class="searchBar" value="#{mbRechercherObjet.selectedIntitule}" />
 						<h:commandButton action="#{mbRechercherObjet.rechercherObjet()}" 
 						id="searchSubmit" value="Rechercher" class="btn btn-primary borderRadius margin-left-5"/>
 						<br />

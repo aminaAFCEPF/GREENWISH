@@ -140,7 +140,7 @@ public class BusinessRecherche implements IBusinessRecherche {
 	}
 
 	@Override
-	public List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur) {
+	public List<Objet> rechercherObjet(String rDomaine, String rCategorie, String rSousCategorie, String rValeur, String rIntitule) {
 		List<Objet> objets;
 		
 		if(!rDomaine.equals("%%")){
@@ -157,8 +157,12 @@ public class BusinessRecherche implements IBusinessRecherche {
 			rSousCategorie = proxyDaoSousCategorie.getIntituleById(Integer.parseInt(rSousCategorie));
 			System.out.println("Le critère Sous-Categorie est rempli, je recupere l'intitulé");
 			}
+		if(!rIntitule.equals("%%")){
+			String rSave = rIntitule;
+			rIntitule = '%' + rSave + '%';
+		}
 		
-		objets = proxyDaoObjet.rechercherObjetByAlgo(rDomaine, rCategorie, rSousCategorie, rValeur);
+		objets = proxyDaoObjet.rechercherObjetByAlgo(rDomaine, rCategorie, rSousCategorie, rValeur, rIntitule);
 		System.out.println("coucou Business");
 		return objets;
 	}
