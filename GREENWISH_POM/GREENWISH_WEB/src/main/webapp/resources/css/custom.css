@@ -103,7 +103,7 @@
 }
 #loginDiv {
     width: 100px;
-    height: 100px;
+    height: 70px;
     background-color: #313131;
     position: absolute;
     opacity: 1;
@@ -486,7 +486,6 @@ h5 {
 .three,
 .four {
     position: absolute;
-    margin-top: -10px;
     z-index: 1;
     height: 40px;
     width: 40px;
