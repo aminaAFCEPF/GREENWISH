@@ -25,7 +25,7 @@ public class DaoMessagerie implements IDaoMessagerie{
 	@Override
 	public Messagerie getMessagerieById(int id) {
 		final String req = "SELECT m FROM Messagerie m WHERE m.idmessagerie = :pidmessagerie";
-		Query query = em.createQuery(req).setParameter("pidActualite", id);
+		Query query = em.createQuery(req).setParameter("pidmessagerie", id);
 		return (Messagerie) query.getSingleResult();
 	}
 	

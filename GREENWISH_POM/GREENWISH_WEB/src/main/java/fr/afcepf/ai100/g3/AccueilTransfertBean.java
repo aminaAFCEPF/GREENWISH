@@ -117,12 +117,12 @@ public class AccueilTransfertBean {
 	}
 	
 	public String remplirProgressBar(Echange echange){
-		String remplissage = "10%";
+		String remplissage = "7.5%";
 		if( isRdvValide(echange).equals("success-color")){
-			remplissage = "35%";
+			remplissage = "32%";
 		}
 		if( isRdvTermine(echange).equals("success-color")){
-			remplissage = "60%";
+			remplissage = "57.5%";
 			if(!isRdvValide(echange).equals("success-color")){
 				couleurAnnule = "red";
 			}

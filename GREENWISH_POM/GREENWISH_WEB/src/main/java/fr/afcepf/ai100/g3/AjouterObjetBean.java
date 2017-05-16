@@ -31,6 +31,9 @@ public class AjouterObjetBean {
 
 	@ManagedProperty(value="#{mbCnx}")
 	private ConnexionBean mbCnx;
+	
+	@ManagedProperty(value="#{mbFicheObjet}")
+	private FicheObjetBean mbficheobjet;
 
 	private String intitule;
 	private String description;
@@ -105,6 +108,23 @@ public class AjouterObjetBean {
 		selectedSousCategorie = sousCategories.get(0);
 		selectedDomaine = domaines.get(0);
 		selectedListeProposition = listePropositions.get(0);
+		mbficheobjet.setCptPointsOk(true);
+	}
+
+	public IDaoParticipant getProxyDaoParticipant() {
+		return proxyDaoParticipant;
+	}
+
+	public void setProxyDaoParticipant(IDaoParticipant proxyDaoParticipant) {
+		this.proxyDaoParticipant = proxyDaoParticipant;
+	}
+
+	public FicheObjetBean getMbficheobjet() {
+		return mbficheobjet;
+	}
+
+	public void setMbficheobjet(FicheObjetBean mbficheobjet) {
+		this.mbficheobjet = mbficheobjet;
 	}
 
 	private List<Valeur> chargerValeur() {
