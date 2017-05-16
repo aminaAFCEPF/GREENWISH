@@ -86,5 +86,12 @@ public class DaoParticipant implements IDaoParticipant {
 		Query query = em.createQuery(req).setParameter("pidParticipant", idParticipant);
 		return query.getResultList();
 	}
+
+	@Override
+	public List<Participant> getAllParticipants() {
+		final String req = "Select p FROM Participant p WHERE p.idparticipant != 1";
+		Query query = em.createQuery(req);
+		return query.getResultList();
+	}
 }
 

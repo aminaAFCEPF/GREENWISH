@@ -6,4 +6,5 @@ public interface IBusinessMesObjets {
 	
 	List<Objet> AfficherObjetParIdParticipant(int idParticipant);
 	void supprimerObjet(Objet objet);
+	List<Objet> AfficherTousObjets();
 }

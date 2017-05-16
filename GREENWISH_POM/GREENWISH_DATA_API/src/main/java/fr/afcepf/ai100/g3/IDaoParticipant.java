@@ -21,5 +21,7 @@ public interface IDaoParticipant {
 	List<Objet> getAllObjetByIdParticipant(int idParticipant);
 
 	Participant recupProprio(int Idobjet);
+	
+	List<Participant> getAllParticipants();
 
 }

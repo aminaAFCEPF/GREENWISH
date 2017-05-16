@@ -22,7 +22,22 @@ public class BusinessAjouterObjet implements IBusinessAjouterObjet {
 	IDaoListeProposition proxyDaoListeProposition;
 	@EJB
 	IDaoParticipant proxyDaoParticipant;
-	
+	@EJB
+	IDaoValeur proxyDaoValeur;
+	@EJB
+	IDaoTrancheAge proxyDaoTrancheAge;
+
+
+	@Override
+	public List<Valeur> rechercherValeur(){
+	List<Valeur> valeurs = proxyDaoValeur.getAllValeur();
+	return valeurs;
+	}
+	@Override
+	public List<TrancheAge> rechercherTrancheAge(){
+	List<TrancheAge> tranchesAge = proxyDaoTrancheAge.getAllTrancheAge();
+	return tranchesAge;
+	}
 	
 	//a ajouter
 	public void ajouterObjet(Objet objet,Participant participant) {

@@ -4,6 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+
+<!--<f:metadata>
+	<f:event listener="#{mbCnx.securePage()}" type="preRenderView"></f:event>
+</f:metadata>-->
+
 <ui:composition template="/WEB-INF/arche.xhtml">
 	<ui:define name="content">
 		<body>
@@ -13,583 +18,70 @@
 					<div class="row">
 						<h1>Gestion des adhérents</h1>
 					</div>
-					<div id="searchFiltre" class="margin-bottom-10">
-						<ol class="breadcrumb ">
-							<li><a href="#">Accueil</a></li>
-							<li class="active">gestion des adhérents</li>
-						</ol>
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary divBorderComposition borderRadius">Actif</button>
-							<button type="button" class="btn btn-primary divBorderComposition borderRadius">Inactif</button>
-							<button type="button" class="btn btn-primary divBorderComposition borderRadius">Tous</button>
-						</div>
-						<div>
-							<input type="text" name="saisieRechercheAdherent"
-								class="margin-left-40" />
-							<button class="btn btn-primary divBorderComposition borderRadius" type="button">Rechercher
-							</button>
+					<div class="row">
+						<div id="searchFiltre" class="margin-bottom-10">
+							<h:form>
+								<ol class="breadcrumb col-lg-5 background-white">
+									<li><h:commandLink
+											action="#{mbAccueilAdmin.redirectAccueilAdmin()}"
+											value="Accueil administrateur" /></li>
+									<li class="active">gestion des adhérents</li>
+								</ol>
+							</h:form>
+							<div class="btn-group col-lg-3">
+								<button type="button"
+									class="btn btn-primary divBorderComposition borderRadius">Actif</button>
+								<button type="button"
+									class="btn btn-primary divBorderComposition borderRadius">Inactif</button>
+								<button type="button"
+									class="btn btn-primary divBorderComposition borderRadius">Tous</button>
+							</div>
+							<div class="col-lg-4">
+								<input type="text" name="saisieRechercheAdherent"
+									class="margin-left-40" />
+								<button
+									class="btn btn-primary divBorderComposition borderRadius"
+									type="button">Rechercher</button>
+							</div>
 						</div>
 
 					</div>
 				</div>
 				<!--fin panel titre-->
 				<div class="container background-gray-lighter">
-					<div class="row margin-top-30">
-						<div class="background-white borderperso margin-bottom-10">
-							<div class="row">
-								<div
-									class="background-white borderperso col-md-1 col-md-offset-1 margin-top-10 text-center">
-									<h3>A</h3>
-								</div>
-							</div>
-							<div id="carousel-1" class="carousel alternative slide"
-								data-ride="carousel" data-interval="50000">
-								<div class="carousel-inner">
-									<div class="item active">
-										<div class="row">
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div>
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso ">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso ">
-															<img src="resources/img/GrayProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso ">
-															<img src="resources\img\GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources\img\GreenProfil.png"
-																style="max-width: 100%;" class="background-green" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div>
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GrayProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Controls -->
-								<a class="left carousel-control" href="#carousel-1"
-									data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left"></span>
-								</a> <a class="right carousel-control" href="#carousel-1"
-									data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right"></span>
-								</a>
-							</div>
-
-						</div>
-						<div class="background-white borderperso margin-bottom-10">
-							<div class="row">
-								<div
-									class="background-white borderperso col-md-1 col-md-offset-1 margin-top-10 text-center">
-									<h3>E</h3>
-								</div>
-							</div>
-							<div id="carousel-2" class="carousel slide alternative"
-								data-ride="carousel">
-								<div class="carousel-inner">
-									<div class="item active">
-										<div class="row">
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GrayProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Controls -->
-								<a class="left carousel-control" href="#carousel-2"
-									data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left"></span>
-								</a> <a class="right carousel-control" href="#carousel-2"
-									data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right"></span>
-								</a>
-							</div>
-						</div>
-						<div class="background-white borderperso margin-bottom-10">
-							<div class="row">
-								<div
-									class="background-white borderperso col-md-1 col-md-offset-1 margin-top-10 text-center">
-									<h3>T</h3>
-								</div>
-							</div>
-							<div id="carousel-3" class="carousel slide alternative"
-								data-ride="carousel">
-								<div class="carousel-inner">
-									<div class="item active">
-										<div class="row">
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GrayProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GrayProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/RedProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div id="unAdherent" class="text-center">
-													<a href="#">
-														<div class="borderperso">
-															<img src="resources/img/GreenProfil.png"
-																style="max-width: 100%;" />
-															<p>Adhérent1</p>
-														</div>
-													</a>
-													<div class="row margin-top-10">
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Radier</small>
-														</button>
-														<button type="button" class="btn btn-primary divBorderComposition borderRadius">
-															<small>Inscrire</small>
-														</button>
-														<br />
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Controls -->
-								<a class="left carousel-control" href="#carousel-3"
-									data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left"></span>
-								</a> <a class="right carousel-control" href="#carousel-3"
-									data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right"></span>
-								</a>
-							</div>
-
-						</div>
-					</div>
 					<div class="row">
-						<div class="text-center">
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
+
+						<!-- Register Box -->
+						<div class="col-lg-12 col-md-10 col-sm-8">
+							<h:form class="signup-page divBorderComposition margin-vert-10">
+								<div class="signup-header row">
+									<ui:repeat var="participant"
+										value="#{mbAccueilAdmin.afficherTousParticipant()}">
+										<div class="col-md-3 margin-bottom-20">
+											<div id="unAdherent" class="text-center">
+												<a href="#">
+													<div class="borderperso">
+														<img src="resources/img/GreenProfil.png"
+															style="max-width: 100%;" />
+														<p>#{participant.nom.toUpperCase()}
+															#{participant.prenom}</p>
+													</div>
+												</a>
+												<div class="row margin-top-10">
+													<button type="button"
+														class="btn btn-primary divBorderComposition borderRadius">
+														<small>Radier</small>
+													</button>
+													<button type="button"
+														class="btn btn-primary divBorderComposition borderRadius">
+														<small>Inscrire</small>
+													</button>
+												</div>
+											</div>
+										</div>
+									</ui:repeat>
+								</div>
+							</h:form>
 						</div>
 					</div>
 				</div>

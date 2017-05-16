@@ -686,6 +686,10 @@ color: white;
 .margin-left-5{
     margin-left: 5px;
 }
+.margin-left-30
+{
+	margin-left: 30px;
+}
 
 .table-bordered {
     border: 1px solid #33747a;

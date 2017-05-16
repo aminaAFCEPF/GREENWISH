@@ -12,4 +12,5 @@ public interface IBusinessGestionEchange {
 	List<Echange> trierEchangeEnCoursParType(String type, int idParticipant);
 	List<Echange> trierEchangeTerminesParType(String type, int idParticipant);
 	List<Echange> afficherLesEchangesTries(String etat, String type, int idParticipant);
+	List<Echange> afficherTousEchanges();
 }
