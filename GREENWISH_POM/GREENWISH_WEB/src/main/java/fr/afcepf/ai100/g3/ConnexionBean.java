@@ -74,7 +74,6 @@ public class ConnexionBean {
 		else{
 			return 0;
 		}
-		
 	}
 	
 	public IBusinessIdentification getProxyIdentification() {
