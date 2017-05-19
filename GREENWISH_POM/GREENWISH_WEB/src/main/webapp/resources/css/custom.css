@@ -762,11 +762,7 @@ color: white;
  color: yellow;
 }
 
-#map{
-	  height: 450px;
-	  width: 450px;
-	
-}
+
 
 .progress-bar-annule {
   background-color: #c0c0c0;
@@ -780,4 +776,8 @@ color: white;
 	background-color: white;
 }
 
-
+.map{
+	  height: 450px;
+	  width: 450px;
+	
+}

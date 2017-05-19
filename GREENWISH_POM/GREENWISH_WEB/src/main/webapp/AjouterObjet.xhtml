@@ -15,7 +15,7 @@
 				<div class="row margin-vert-30 ">
 					<h:form id="ajouterObjetForm">
 						<div
-							class="login-page bottom-border borderperso">
+							class="login-page bottom-border borderperso" style="height: 820px;">
 
 							<div class="signup-header"></div>
 
@@ -122,15 +122,7 @@
 											itemLabel="#{trancheage.ageMaxi} à #{trancheage.ageMini} ans"
 											itemValue="#{trancheage.idage}" />
 									</h:selectOneMenu>
-									
-                  <label>Valeur</label>
-									<h:selectOneMenu id="valeur"
-										value="#{mbAjouterObjet.selectedValeur.idvaleur}"
-										class="form-control margin-bottom-20 fa-plus">
-										<f:selectItems value="#{mbAjouterObjet.valeurs}" var="valeur"
-											itemLabel="#{valeur.idvaleur} flocons"
-											itemValue="#{valeur.idvaleur}" />
-									</h:selectOneMenu>
+						
 
 								</div>
 
